@@ -1,0 +1,43 @@
+# Cloudflare Workers Static Assets — アップロード除外パターン
+# https://developers.cloudflare.com/workers/static-assets/binding/
+# per-file 25 MiB 上限。node_modules/workerd が 119 MiB のため必ず除外。
+
+# ビルド依存（一番大きい原因）
+node_modules/
+.wrangler/
+
+# ビルド設定・ソース（配信不要）
+package.json
+package-lock.json
+tailwind.config.js
+src/
+
+# サーバー側スクリプト（配信不要）
+spec-checker.js
+sync-spec.js
+verify-all.js
+
+# 3 法規（gitignored だが二重に防御）
+SPEC.md
+GOOGLE-STANDARDS.md
+GEO-STANDARDS.md
+
+# 内部ドキュメント
+README.md
+
+# Git 内部
+.git/
+.gitignore
+.gitattributes
+
+# Editor / Tooling
+.claude/
+.vscode/
+.idea/
+
+# ログ
+*.log
+
+# OS 系
+.DS_Store
+Thumbs.db
