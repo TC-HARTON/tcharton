@@ -28,7 +28,7 @@
 
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
 
   <link rel="canonical" href="https://tcharton.com/about/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -95,6 +95,23 @@
       "closes": "18:00"
     }
   }
+  </script>
+
+  <!-- Google Analytics 4 (gtag.js) — DNT-aware (privacy.html §6 公約準拠) -->
+  <script>
+  (function () {
+    var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+    if (dnt === '1' || dnt === 'yes') return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HKXN8TV6HG';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-HKXN8TV6HG');
+  })();
   </script>
 
   <link rel="stylesheet" href="/dist/output.css">

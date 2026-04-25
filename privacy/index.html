@@ -23,7 +23,7 @@
 
   <meta name="robots" content="index, follow, max-snippet:-1">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
 
   <link rel="canonical" href="https://tcharton.com/privacy/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -31,6 +31,23 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Google Analytics 4 (gtag.js) — DNT-aware (privacy.html §6 公約準拠) -->
+  <script>
+  (function () {
+    var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+    if (dnt === '1' || dnt === 'yes') return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HKXN8TV6HG';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-HKXN8TV6HG');
+  })();
+  </script>
 
   <link rel="stylesheet" href="/dist/output.css">
 
@@ -148,11 +165,11 @@
 
       <section aria-label="6. アクセス解析" class="mt-10">
         <h2 class="font-display text-xl font-bold text-white">6. アクセス解析ツールの使用</h2>
-        <p class="mt-3 text-dark-300 text-sm leading-relaxed">当サイトでは Google Analytics（GA4）または Cloudflare Web Analytics をサイト改善のために導入する予定です（運用開始時に本ポリシーで再告知）。</p>
+        <p class="mt-3 text-dark-300 text-sm leading-relaxed">当サイトでは <strong class="text-white">Google Analytics（GA4・測定 ID: G-HKXN8TV6HG）</strong> をサイト改善のために導入しています。</p>
         <ul class="mt-3 space-y-2 text-dark-300 text-sm">
-          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">▶</span><span>収集情報は<strong class="text-white">匿名化された統計データ</strong>のみで、個人を特定する情報は収集しません</span></li>
-          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">▶</span><span>GA4 利用時は IP 匿名化を有効化、データ保持期間を最短に設定</span></li>
-          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">▶</span><span>ブラウザの DNT（Do Not Track）信号を尊重します</span></li>
+          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">▶</span><span>収集情報は<strong class="text-white">匿名化された統計データ</strong>のみで、個人を特定する情報は収集しません（GA4 はデフォルトで IP 匿名化）</span></li>
+          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">▶</span><span>データ保持期間は<strong class="text-white">最短（2 ヶ月）</strong>に設定</span></li>
+          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">▶</span><span>ブラウザの <strong class="text-white">DNT（Do Not Track）信号</strong>を尊重し、有効時は GA を読み込みません（実装済）</span></li>
           <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">▶</span><span>オプトアウト方法: <a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Google Analytics オプトアウト アドオン</a> をご利用ください</span></li>
         </ul>
       </section>
