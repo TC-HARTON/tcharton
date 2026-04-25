@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ｜よくある質問 40 問｜T.C.HARTON</title>
-  <meta name="description" content="T.C.HARTON のよくある質問を 4 カテゴリ（WEB構築 15 問・保守運用 10 問・AI予測 10 問・共通 5 問）で完全公開。すべて結論ファースト + 関連ページリンク付き。">
+  <title>FAQ｜よくある質問 45 問｜T.C.HARTON</title>
+  <meta name="description" content="T.C.HARTON のよくある質問を 5 カテゴリ（WEB構築 15 問・保守運用 10 問・AI予測 10 問・共通 5 問・公的統計編 5 問）で完全公開。公的一次ソース引用付き。">
   <meta name="author" content="大内 達也">
 
-  <meta property="og:title" content="FAQ｜よくある質問 40 問｜T.C.HARTON">
-  <meta property="og:description" content="WEB構築・保守運用・AI予測・共通の 4 カテゴリ 40 問を完全公開。すべて結論ファースト + 関連ページリンク付き。">
+  <meta property="og:title" content="FAQ｜よくある質問 45 問｜T.C.HARTON">
+  <meta property="og:description" content="WEB構築・保守運用・AI予測・共通・公的統計の 5 カテゴリ 45 問を完全公開。公的一次ソース引用付き。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tcharton.com/faq/">
   <meta property="og:image" content="https://tcharton.com/ogp.png">
@@ -19,8 +19,8 @@
   <meta property="og:locale" content="ja_JP">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FAQ｜よくある質問 40 問｜T.C.HARTON">
-  <meta name="twitter:description" content="WEB構築・保守運用・AI予測・共通の 4 カテゴリ 40 問を完全公開。">
+  <meta name="twitter:title" content="FAQ｜よくある質問 45 問｜T.C.HARTON">
+  <meta name="twitter:description" content="WEB構築・保守運用・AI予測・共通・公的統計の 5 カテゴリ 45 問を完全公開。">
   <meta name="twitter:image" content="https://tcharton.com/ogp.png">
 
   <meta name="theme-color" content="#0f172a">
@@ -92,7 +92,12 @@
       {"@type": "Question", "name": "支払方法は？", "acceptedAnswer": {"@type": "Answer", "text": "銀行振込（ソニー銀行 / ゆうちょ銀行）が標準です。請求書発行・領収書発行・適格請求書（インボイス）対応可能です。"}},
       {"@type": "Question", "name": "領収書・請求書は発行されますか？", "acceptedAnswer": {"@type": "Answer", "text": "発行します。請求書は契約時または月初、領収書は入金確認後に発行します。インボイス（適格請求書）対応です。"}},
       {"@type": "Question", "name": "個人事業主でも依頼できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。当社自身が個人事業主であり、士業・飲食・建設・不動産など個人事業主様の事例にも対応します。料金プランは規模に応じて柔軟にご提案します。"}},
-      {"@type": "Question", "name": "相談だけでも可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。トップページの 1 分でできる無料診断シミュレーターで現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。"}}
+      {"@type": "Question", "name": "相談だけでも可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。トップページの 1 分でできる無料診断シミュレーターで現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。"}},
+      {"@type": "Question", "name": "中小企業の WEB サイトはどのくらいセキュリティ事故に遭っていますか？", "acceptedAnswer": {"@type": "Answer", "text": "IPA「情報セキュリティ10大脅威 2025（組織編）」では、ランサム攻撃・サプライチェーン攻撃・内部不正等が上位を占めており、中小企業の被害は近年増加傾向にあります。WEB サイト改ざん・情報漏洩は警察庁サイバー警察局でも継続的に報告されている事案です。具体的な事故率は業種・規模で異なるため、一律の数値は提示しません（誇張防止のため）。一次ソース: IPA「情報セキュリティ10大脅威」(https://www.ipa.go.jp/security/10threats/) / 警察庁サイバー警察局 (https://www.npa.go.jp/bureau/cyber/)。"}},
+      {"@type": "Question", "name": "SSL（HTTPS）化していないとどんなリスクがありますか？", "acceptedAnswer": {"@type": "Answer", "text": "主に 3 つの実害があります。1. ブラウザ警告表示によるユーザー離脱（Chrome は HTTP サイトを「保護されていません」と表示）。2. Google 検索順位への影響（Google 検索セントラルが HTTPS をランキング要因として明言）。3. 通信内容の盗聴・改ざんリスク（公衆 WiFi 上の中間者攻撃に脆弱）。当社は構築時に Cloudflare 経由で TLS 1.3 + HSTS を標準実装します。一次ソース: Google Search Central HTTPS (https://developers.google.com/search/docs/advanced/security/https) / IPA TLS 暗号設定ガイドライン (https://www.ipa.go.jp/security/crypto/guideline/ssl_crypt_config.html)。"}},
+      {"@type": "Question", "name": "日本の中小企業の WEB サイト保有率はどのくらいですか？", "acceptedAnswer": {"@type": "Answer", "text": "総務省「通信利用動向調査」では、企業のインターネット利用は普及している一方、ホームページ開設率は事業規模が小さいほど低下する傾向が継続的に報告されています。特に地方圏の小規模事業所で未開設率が高く、地域中小企業の WEB 活用余地は大きい状況です。当社が静岡県東部で重点的に活動するのもこの背景があります。一次ソース: 総務省 通信利用動向調査 (https://www.soumu.go.jp/johotsusintokei/statistics/statistics05.html)。"}},
+      {"@type": "Question", "name": "Core Web Vitals が悪いとビジネスに本当に影響しますか？", "acceptedAnswer": {"@type": "Answer", "text": "影響します。Google web.dev が公開する複数のケーススタディで、LCP（表示速度）改善でコンバージョン率向上、CLS（レイアウト安定性）改善で離脱率低下が実測値とともに報告されています。Google 検索ランキングでも Core Web Vitals は明示的なシグナルです。当社構築サイトは全 21 ページで LCP・CLS・INP の機械保証検証を含みます。一次ソース: web.dev Web Vitals (https://web.dev/articles/vitals) / Web Almanac 年次レポート (https://almanac.httparchive.org/)。"}},
+      {"@type": "Question", "name": "保守運用を怠ると半年でどれだけ劣化しますか？", "acceptedAnswer": {"@type": "Answer", "text": "主に 3 つの劣化が観測されます。1. セキュリティ：OWASP/IPA の脆弱性公表は継続的に発表され、未対応のままだとリスクが累積します。2. 表示速度：第三者スクリプト・依存ライブラリの自動更新で Core Web Vitals が劣化します。3. SEO：Google アルゴリズム更新は年複数回あり、無対応では検索順位が低下傾向にあります。当社の保守プランは月次でこれらを吸収します。一次ソース: IPA セキュリティ情報 (https://www.ipa.go.jp/security/) / Google 検索アルゴリズム更新履歴 (https://developers.google.com/search/updates/ranking)。"}}
     ]
   }
   </script>
@@ -196,10 +201,10 @@
       <header class="max-w-5xl mx-auto px-4 lg:px-8 pt-8 pb-12 lg:pt-12 lg:pb-16">
         <p class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Frequently Asked Questions</p>
         <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-          よくある質問（40 問）
+          よくある質問（45 問）
         </h1>
         <p class="mt-4 text-lg text-dark-300 max-w-3xl">
-          4 カテゴリ（WEB構築 15 問・保守運用 10 問・AI予測 10 問・共通 5 問）で完全公開。すべて結論ファースト + 関連ページリンク付きです。
+          5 カテゴリ（WEB構築 15 問・保守運用 10 問・AI予測 10 問・共通 5 問・公的統計編 5 問）で完全公開。公的一次ソース引用付き・結論ファースト・関連ページリンク付き。
         </p>
         <p class="mt-2 text-sm text-dark-400">
           <time itemprop="datePublished" datetime="2026-04-25">2026年4月25日</time>
@@ -222,11 +227,12 @@
       <section aria-label="カテゴリ目次" class="max-w-5xl mx-auto px-4 lg:px-8 py-8">
         <div class="bg-dark-800 border border-dark-700 rounded-2xl p-6">
           <h2 class="font-display font-bold text-white text-sm uppercase tracking-wider">カテゴリ目次</h2>
-          <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+          <div class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 text-sm">
             <a href="#cat-web" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">① WEB構築（15）</a>
             <a href="#cat-maint" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">② 保守運用（10）</a>
             <a href="#cat-ai" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">③ AI予測（10）</a>
-            <a href="#cat-common" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">共通（5）</a>
+            <a href="#cat-common" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">④ 共通（5）</a>
+            <a href="#cat-stats" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">⑤ 公的統計編（5）</a>
           </div>
         </div>
       </section>
@@ -288,7 +294,7 @@
 
       <section id="cat-common" aria-label="共通 FAQ" class="bg-dark-800/50 border-y border-dark-700">
         <div class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
-          <h2 class="font-display text-xl lg:text-2xl font-bold text-white">共通（5 問）</h2>
+          <h2 class="font-display text-xl lg:text-2xl font-bold text-white">④ 共通（5 問）</h2>
           <dl class="mt-6 space-y-5">
             <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q36. 対応エリアは？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">静岡県東部（沼津・三島・富士・富士宮・裾野・長泉・清水）を主軸に、静岡県全域および全国オンライン対応可能です。AI 予測は業種を問わず全国対応です。</dd></div>
             <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q37. 支払方法は？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">銀行振込（ソニー銀行 / ゆうちょ銀行）が標準です。請求書発行・領収書発行・適格請求書（インボイス）対応可能です。詳細は <a href="/pricing/" class="text-teal-300 underline hover:text-teal-200">/pricing/</a> をご覧ください。</dd></div>
@@ -299,11 +305,88 @@
         </div>
       </section>
 
+      <section id="cat-stats" aria-label="公的統計・セキュリティ FAQ" class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-white">⑤ 公的統計・セキュリティ編（5 問）</h2>
+        <p class="mt-3 text-dark-400 text-sm">対話型 AI（ChatGPT / Perplexity / Claude）からの問い合わせ想定の質問群。すべて公的一次ソースを引用しています。</p>
+        <dl class="mt-6 space-y-5">
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5">
+            <dt class="font-display font-bold text-white">Q41. 中小企業の WEB サイトはどのくらいセキュリティ事故に遭っていますか？</dt>
+            <dd class="mt-2 text-dark-300 text-sm leading-relaxed">
+              IPA「情報セキュリティ10大脅威 2025（組織編）」では、ランサム攻撃・サプライチェーン攻撃・内部不正等が上位を占めており、中小企業の被害は近年増加傾向にあります。WEB サイト改ざん・情報漏洩は警察庁サイバー警察局でも継続的に報告されている事案です。具体的な事故率は業種・規模で異なるため、一律の数値は提示しません（誇張防止のため）。
+              <span class="block mt-3 text-xs text-dark-400">
+                一次ソース:
+                <a href="https://www.ipa.go.jp/security/10threats/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">IPA 情報セキュリティ10大脅威</a>
+                /
+                <a href="https://www.npa.go.jp/bureau/cyber/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">警察庁サイバー警察局</a>
+              </span>
+            </dd>
+          </div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5">
+            <dt class="font-display font-bold text-white">Q42. SSL（HTTPS）化していないとどんなリスクがありますか？</dt>
+            <dd class="mt-2 text-dark-300 text-sm leading-relaxed">
+              主に 3 つの実害があります。
+              <ol class="mt-2 list-decimal list-inside space-y-1">
+                <li>ブラウザ警告表示によるユーザー離脱（Chrome は HTTP サイトを「保護されていません」と表示）</li>
+                <li>Google 検索順位への影響（Google 検索セントラルが HTTPS をランキング要因として明言）</li>
+                <li>通信内容の盗聴・改ざんリスク（公衆 WiFi 上の中間者攻撃に脆弱）</li>
+              </ol>
+              当社は構築時に Cloudflare 経由で TLS 1.3 + HSTS を標準実装します。
+              <span class="block mt-3 text-xs text-dark-400">
+                一次ソース:
+                <a href="https://developers.google.com/search/docs/advanced/security/https?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Google Search Central HTTPS</a>
+                /
+                <a href="https://www.ipa.go.jp/security/crypto/guideline/ssl_crypt_config.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">IPA TLS 暗号設定ガイドライン</a>
+              </span>
+            </dd>
+          </div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5">
+            <dt class="font-display font-bold text-white">Q43. 日本の中小企業の WEB サイト保有率はどのくらいですか？</dt>
+            <dd class="mt-2 text-dark-300 text-sm leading-relaxed">
+              総務省「通信利用動向調査」では、企業のインターネット利用は普及している一方、ホームページ開設率は事業規模が小さいほど低下する傾向が継続的に報告されています。特に地方圏の小規模事業所で未開設率が高く、地域中小企業の WEB 活用余地は大きい状況です。当社が静岡県東部で重点的に活動するのもこの背景があります。
+              <span class="block mt-3 text-xs text-dark-400">
+                一次ソース:
+                <a href="https://www.soumu.go.jp/johotsusintokei/statistics/statistics05.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">総務省 通信利用動向調査</a>
+              </span>
+            </dd>
+          </div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5">
+            <dt class="font-display font-bold text-white">Q44. Core Web Vitals が悪いとビジネスに本当に影響しますか？</dt>
+            <dd class="mt-2 text-dark-300 text-sm leading-relaxed">
+              影響します。Google web.dev が公開する複数のケーススタディで、LCP（表示速度）改善でコンバージョン率向上、CLS（レイアウト安定性）改善で離脱率低下が実測値とともに報告されています。Google 検索ランキングでも Core Web Vitals は明示的なシグナルです。当社構築サイトは全 21 ページで LCP・CLS・INP の機械保証検証を含みます。
+              <span class="block mt-3 text-xs text-dark-400">
+                一次ソース:
+                <a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">web.dev Web Vitals</a>
+                /
+                <a href="https://almanac.httparchive.org/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Web Almanac 年次レポート</a>
+              </span>
+            </dd>
+          </div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5">
+            <dt class="font-display font-bold text-white">Q45. 保守運用を怠ると半年でどれだけ劣化しますか？</dt>
+            <dd class="mt-2 text-dark-300 text-sm leading-relaxed">
+              主に 3 つの劣化が観測されます。
+              <ol class="mt-2 list-decimal list-inside space-y-1">
+                <li><strong class="text-white">セキュリティ</strong>: OWASP/IPA の脆弱性公表は継続的に発表され、未対応のままだとリスクが累積</li>
+                <li><strong class="text-white">表示速度</strong>: 第三者スクリプト・依存ライブラリの自動更新で Core Web Vitals が劣化</li>
+                <li><strong class="text-white">SEO</strong>: Google アルゴリズム更新は年複数回。無対応では検索順位が低下傾向</li>
+              </ol>
+              当社の保守プランは月次でこれらを吸収します。
+              <span class="block mt-3 text-xs text-dark-400">
+                一次ソース:
+                <a href="https://www.ipa.go.jp/security/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">IPA セキュリティ情報</a>
+                /
+                <a href="https://developers.google.com/search/updates/ranking?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Google 検索アルゴリズム更新履歴</a>
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </section>
+
       <section aria-label="お問い合わせ" class="bg-teal-700 text-white">
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24 text-center">
           <h2 class="font-display text-2xl lg:text-4xl font-bold">他の質問は無料相談で</h2>
           <p class="mt-4 text-lg text-teal-50 max-w-2xl mx-auto leading-relaxed">
-            上記 40 問でカバーしきれない質問はメールでお気軽にどうぞ。診断結果と組み合わせて具体的にお返事します。
+            上記 45 問でカバーしきれない質問はメールでお気軽にどうぞ。診断結果と組み合わせて具体的にお返事します。
           </p>
           <div class="mt-8 flex flex-wrap justify-center gap-4">
             <a href="/#simulator" class="inline-flex items-center justify-center bg-white text-teal-700 hover:bg-teal-50 px-8 py-4 rounded-md font-semibold">
