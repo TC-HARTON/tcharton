@@ -8,3 +8,6 @@ Thumbs.db
 SPEC.md
 GOOGLE-STANDARDS.md
 GEO-STANDARDS.md
+
+# Claude Code (per-user, not shared)
+.claude/settings.local.json

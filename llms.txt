@@ -1,0 +1,47 @@
+# T.C.HARTON
+
+> 静岡県東部（沼津・三島・富士）の中小企業向けに、買い切り型WEBサイト構築（Sクラス保証）・保守運用・AI予測モデル開発を提供する個人事業主。代表 大内 達也。
+
+## 事業の3本柱
+
+- [WEB構築（Sクラス保証）](/services/web/): 買い切り型 30〜80万円。SPEC v3.2 / 2,554 検証項目で機械保証。
+- [保守運用](/services/maintenance/): 月額 1〜3万円の3プラン。セキュリティ・速度・SEO/LLMOを毎月最適化。
+- [AI予測モデル開発](/services/ai-prediction/): 在庫・需要予測 / 売上・来客予測。3段階導入（分析→PoC→本番）。
+
+## 信頼形成
+
+- [料金](/pricing/): 3本柱すべての価格表。買い切り・月額・プロジェクトの全パターン明示。
+- [導入事例](/cases/): 業種別・サービス別の実績。
+- [FAQ](/faq/): WEB構築 / 保守 / AI予測の各カテゴリ別。
+- [代表プロフィール](/profile/): 大内 達也（プログラミング経験 15年）。
+
+## 事業者情報
+
+- [会社情報](/about/): 屋号・所在地・対応エリア。
+- [お問い合わせ](/contact/): 無料相談（30分）受付窓口。
+- [お知らせ](/news/): 事業の活動状況。
+
+## 法令
+
+- [特定商取引法表記](/legal/)
+- [プライバシーポリシー](/privacy/)
+
+## 対応エリア
+
+静岡県東部：沼津市・三島市・富士市・富士宮市・裾野市・長泉町・清水町
+静岡県全域および全国オンライン対応可（AI予測は業種を問わず全国対象）
+
+## 連絡先
+
+電話: 080-1058-0538（平日 9:00〜18:00）
+メール: harton.info@gmail.com
+
+## 準拠する公式基準（一次ソース）
+
+- HTML Living Standard: https://html.spec.whatwg.org/
+- WCAG 2.2 Level AA: https://www.w3.org/TR/WCAG22/
+- Core Web Vitals: https://web.dev/articles/vitals
+- Google 検索セントラル: https://developers.google.com/search/?hl=ja
+- OWASP Top 10:2025: https://owasp.org/Top10/
+- IPA 安全なウェブサイトの作り方 改訂第7版: https://www.ipa.go.jp/security/vuln/websecurity/about.html
+- GEO (Aggarwal et al., KDD 2024): https://arxiv.org/abs/2311.09735
