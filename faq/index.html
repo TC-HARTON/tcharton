@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ｜よくある質問 40 問｜T.C.HARTON</title>
+  <meta name="description" content="T.C.HARTON のよくある質問を 4 カテゴリ（WEB構築 15 問・保守運用 10 問・AI予測 10 問・共通 5 問）で完全公開。すべて結論ファースト + 関連ページリンク付き。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="FAQ｜よくある質問 40 問｜T.C.HARTON">
+  <meta property="og:description" content="WEB構築・保守運用・AI予測・共通の 4 カテゴリ 40 問を完全公開。すべて結論ファースト + 関連ページリンク付き。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tcharton.com/faq/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ｜よくある質問 40 問｜T.C.HARTON">
+  <meta name="twitter:description" content="WEB構築・保守運用・AI予測・共通の 4 カテゴリ 40 問を完全公開。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#0f172a">
+  <meta name="color-scheme" content="dark">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+
+  <link rel="canonical" href="https://tcharton.com/faq/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://tcharton.com/"},
+      {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://tcharton.com/faq/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "なぜ買い切り型なのですか？", "acceptedAnswer": {"@type": "Answer", "text": "月額制は数十万円分の支払いを 5 年で続ける構造です。当社は買い切りで 30〜80 万円を一括（または分割 2〜3 回）でお支払いいただき、その後の保守運用は月額 1〜3 万円のプランと切り分けます。クライアント様は早期に投資回収でき、サービス契約に縛られない自由を保てます。"}},
+      {"@type": "Question", "name": "月額制と比べて本当にお得ですか？", "acceptedAnswer": {"@type": "Answer", "text": "5 年スパンで見ると、月額制（月 3 万 × 60 ヶ月 = 180 万円）に対し、買い切り 50 万 + 保守スタンダード 60 ヶ月 = 132 万円となり、累計でも安価です。所有権がお客様にある点も大きなメリットです。"}},
+      {"@type": "Question", "name": "制作期間はどのくらいですか？", "acceptedAnswer": {"@type": "Answer", "text": "標準で 4 週間（W1: ヒアリング・設計、W2: デザイン・コーディング、W3: 実装・テスト、W4: 検証・公開・引継ぎ）です。業種特性や写真撮影が必要な場合は 5〜6 週間となることもあります。"}},
+      {"@type": "Question", "name": "自分でも更新できますか？", "acceptedAnswer": {"@type": "Answer", "text": "Markdown ベースの編集インターフェースをご希望に応じて構築可能です。ただし WordPress のような汎用 CMS は採用しません（保守負担とセキュリティリスクが大きいため）。日常的な軽微更新は保守プランで対応する設計を推奨しています。"}},
+      {"@type": "Question", "name": "スマホ対応は標準ですか？", "acceptedAnswer": {"@type": "Answer", "text": "標準対応です。モバイルファーストデザイン + Core Web Vitals 最適化 + WCAG 2.2 Level AA 準拠で構築します。Tailwind CSS のレスポンシブクラスで全画面サイズを網羅します。"}},
+      {"@type": "Question", "name": "ドメイン・サーバーはどうなりますか？", "acceptedAnswer": {"@type": "Answer", "text": "ドメインはお客様名義で取得・管理いただきます（T.C.HARTON では代行管理しません）。サーバーは Cloudflare Pages（無料枠で十分なケースが多い）または希望のホスティングを選択可能です。"}},
+      {"@type": "Question", "name": "既存のメールアドレスは使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "ドメインメール（info@yourdomain.com 等）の継続利用は可能です。Cloudflare Email Routing や Google Workspace 等との連携を構築時にご提案します。"}},
+      {"@type": "Question", "name": "業種特化のデザインは可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "GEO-STANDARDS §4.1 のドメイン分類（Law &amp; Government / Opinion / Statement 等 10 ドメイン）に基づき、業種ごとに最適な GEO 戦略を選定して構築します。詳細は /services/web/industries/ をご覧ください。"}},
+      {"@type": "Question", "name": "写真撮影は別料金ですか？", "acceptedAnswer": {"@type": "Answer", "text": "撮影同行は別料金（半日 3.3 万円・沼津/三島/富士エリア）です。基本構築には含まれません。お客様撮影の写真または無料素材を活用するケースが多いです。"}},
+      {"@type": "Question", "name": "原稿作成は手伝ってもらえますか？", "acceptedAnswer": {"@type": "Answer", "text": "中規模プラン（50 万円帯）では原稿の構成サポート（叩き台作成・校正）を含みます。完全な代筆は別料金（11,000 円〜 / 1,000 字）で対応可能です。"}},
+      {"@type": "Question", "name": "制作後の小さな修正はできますか？", "acceptedAnswer": {"@type": "Answer", "text": "保守プラン（スタンダード以上）に含まれる軽微修正で対応可能です。プラン外の場合はスポット作業（時間単価 5,500 円）で承ります。"}},
+      {"@type": "Question", "name": "SEO 対策は含まれますか？", "acceptedAnswer": {"@type": "Answer", "text": "構築時の標準対応として Google 検索セントラル準拠の SEO（title / description / OGP / sitemap.xml / robots.txt / 構造化データ等）を含みます。継続的な SEO 最適化は保守プランで対応します。"}},
+      {"@type": "Question", "name": "多言語対応は可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。日本語 + 英語の 2 言語が標準で、追加言語も対応できます。hreflang 属性 + 言語別 sitemap 構築含めて大規模プラン（80 万円帯）で承ります。"}},
+      {"@type": "Question", "name": "EC サイトは作れますか？", "acceptedAnswer": {"@type": "Answer", "text": "Shopify / Stripe Payment Links / Cloudflare Stream 等を組み合わせた小〜中規模 EC は対応可能です。在庫数千 SKU 以上の本格 EC は別途要件定義となります。"}},
+      {"@type": "Question", "name": "既存サイトのリニューアルも可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。リニューアル時は既存コンテンツの 301 リダイレクト設計、SEO 順位の維持、Search Console 移行手続まで含めて対応します。"}},
+      {"@type": "Question", "name": "保守運用は必須ですか？", "acceptedAnswer": {"@type": "Answer", "text": "必須ではありません。ただしセキュリティ脆弱性は毎月新規発見されます（OWASP / IPA 参照）。放置サイトは半年で表示速度が劣化することも一般的です。月額 1 万円のライトプランから提供しています。"}},
+      {"@type": "Question", "name": "プランの違いは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "ライト（1 万・監視のみ）/ スタンダード（2 万・月 60 分修正可）/ プレミアム（3 万・月 3 時間修正 + SEO/LLMO フル対応）の 3 段階です。詳細は /services/maintenance/plans/ で完全比較表を公開しています。"}},
+      {"@type": "Question", "name": "解約はいつでもできますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。解約申請から 1 ヶ月後に終了します。違約金なし・縛り月数なし。データはすべてお客様にお渡しします。"}},
+      {"@type": "Question", "name": "プラン変更の方法は？", "acceptedAnswer": {"@type": "Answer", "text": "メール 1 通でいつでもアップ・ダウン可能です。翌月から新プランが適用されます。変更回数の上限はありません。"}},
+      {"@type": "Question", "name": "緊急時の対応はどうなりますか？", "acceptedAnswer": {"@type": "Answer", "text": "ライトは通常対応、スタンダードは 24 時間以内、プレミアムは即日対応です。プラン外の緊急対応はスポット 11,000 円〜 / 件で承ります。"}},
+      {"@type": "Question", "name": "月次レポートは見るのが大変では？", "acceptedAnswer": {"@type": "Answer", "text": "サマリー（30 秒で読める）+ 提案アクション（お客様判断箇所のみ強調）の構成です。実物見本を /services/maintenance/report-sample/ で公開しています。"}},
+      {"@type": "Question", "name": "軽微な修正の範囲は？", "acceptedAnswer": {"@type": "Answer", "text": "テキスト修正、画像差替え、お知らせ追加、リンク修正等の数十分以内で完了する作業です。スタンダードは月 60 分、プレミアムは月 3 時間が枠です。"}},
+      {"@type": "Question", "name": "大きな変更は別料金になりますか？", "acceptedAnswer": {"@type": "Answer", "text": "プラン枠を超える作業はスポット作業（時間単価 5,500 円）または機能追加見積（別途）となります。事前見積り承認後に着手します。"}},
+      {"@type": "Question", "name": "他社で作ったサイトの保守も可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。ただし既存サイトの構造によっては Sクラス保証の品質に到達できないケースがあります。Phase 1（無料診断）で現状を可視化し、保守可能性をご報告します。"}},
+      {"@type": "Question", "name": "ドメイン・サーバー管理も含まれますか？", "acceptedAnswer": {"@type": "Answer", "text": "保守プラン全プランで Cloudflare Pages の管理・SSL 証明書更新監視を含みます。ドメイン更新は名義人（お客様）の自動更新設定を推奨します。"}},
+      {"@type": "Question", "name": "AI予測モデルとは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "過去のデータから将来の値（在庫消費量・売上・来客数等）を統計的・機械学習的に推定する仕組みです。勘ではなく確率分布で推定し、運用判断を統計でバックアップします。"}},
+      {"@type": "Question", "name": "どんな業種でも対応できますか？", "acceptedAnswer": {"@type": "Answer", "text": "予測可能なあらゆる業種に対応可能です。最初の 6 ヶ月は在庫予測・売上予測の 2 系統に集中していますが、他のユースケース（人員配置・需要予測・離脱予測等）もご相談ください。"}},
+      {"@type": "Question", "name": "必要なデータの量は？", "acceptedAnswer": {"@type": "Answer", "text": "最低 6 ヶ月分（推奨 12〜24 ヶ月）の販売・出荷データが必要です。データ量が少ない場合は時系列モデル（Prophet 等）で対応できることがあります。Phase 1 で適合可否を判定します。"}},
+      {"@type": "Question", "name": "データのセキュリティは大丈夫ですか？", "acceptedAnswer": {"@type": "Answer", "text": "NDA 締結 + TLS 1.3 暗号化転送 + AES-256 暗号化保存 + アクセスログ保管で対応します。お預かりしたデータを外部 AI サービスに送信することはありません。"}},
+      {"@type": "Question", "name": "精度はどのくらいですか？", "acceptedAnswer": {"@type": "Answer", "text": "業種・データ量・季節性で大きく異なります。Phase 1（30 万円・分析のみ）で実現可能な精度を試算したレポートを提出し、Phase 2 進行可否のご判断をいただきます。"}},
+      {"@type": "Question", "name": "導入期間はどのくらい？", "acceptedAnswer": {"@type": "Answer", "text": "標準 12 週間（Phase 1 が 4 週、Phase 2 が 4 週、Phase 3 が 4 週）です。Phase ごとに進む / 止まるの判断ができます。"}},
+      {"@type": "Question", "name": "既存システムと連携できますか？", "acceptedAnswer": {"@type": "Answer", "text": "API 連携・CSV 入出力・データベース直接読込み等で対応可能です。既存基幹システム（SAP / Oracle / kintone 等）との連携実績ベースで Phase 1 にて検証します。"}},
+      {"@type": "Question", "name": "運用後のサポートはありますか？", "acceptedAnswer": {"@type": "Answer", "text": "Phase 3 完了後、月次のモデル再学習・精度モニタリング・改善提案を保守プラン（プレミアム枠の追加 or 別途月額契約）で対応します。"}},
+      {"@type": "Question", "name": "ROI はどうなりますか？", "acceptedAnswer": {"@type": "Answer", "text": "投資対効果は事業規模・業種・現状の在庫精度等で大きく異なります。Phase 1 の実現可能性レポートで個別試算します。一律の数値は提示しません（誇張防止のため）。"}},
+      {"@type": "Question", "name": "スモールスタートは可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "Phase 1（30 万円・2 週間・分析のみ）からのスタートが可能です。Phase 1 だけで終了するご判断もできます。"}},
+      {"@type": "Question", "name": "対応エリアは？", "acceptedAnswer": {"@type": "Answer", "text": "静岡県東部（沼津・三島・富士・富士宮・裾野・長泉・清水）を主軸に、静岡県全域および全国オンライン対応可能です。AI 予測は業種を問わず全国対応です。"}},
+      {"@type": "Question", "name": "支払方法は？", "acceptedAnswer": {"@type": "Answer", "text": "銀行振込（PayPay 銀行 / みずほ銀行）が標準です。請求書発行・領収書発行・適格請求書（インボイス）対応可能です。"}},
+      {"@type": "Question", "name": "領収書・請求書は発行されますか？", "acceptedAnswer": {"@type": "Answer", "text": "発行します。請求書は契約時または月初、領収書は入金確認後に発行します。インボイス（適格請求書）対応です。"}},
+      {"@type": "Question", "name": "個人事業主でも依頼できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。当社自身が個人事業主であり、士業・飲食・建設・不動産など個人事業主様の事例にも対応します。料金プランは規模に応じて柔軟にご提案します。"}},
+      {"@type": "Question", "name": "相談だけでも可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。トップページの 1 分でできる無料診断シミュレーターで現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。"}}
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .fade-in { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+
+  <noscript>
+    <style>.fade-in { opacity: 1 !important; transform: none !important; }</style>
+  </noscript>
+</head>
+<body class="bg-dark-900 text-dark-300 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-dark-900/90 nav-blur border-b border-dark-700">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-white font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-8" data-nosnippet>
+        <a href="/services/web/" class="text-dark-300 hover:text-white py-3">WEB構築</a>
+        <a href="/services/maintenance/" class="text-dark-300 hover:text-white py-3">保守運用</a>
+        <a href="/services/ai-prediction/" class="text-dark-300 hover:text-white py-3">AI予測</a>
+        <a href="/pricing/" class="text-dark-300 hover:text-white py-3">料金</a>
+        <a href="/cases/" class="text-dark-300 hover:text-white py-3">事例</a>
+        <a href="/profile/" class="text-dark-300 hover:text-white py-3">プロフィール</a>
+        <a href="/#simulator" class="bg-teal-500 hover:bg-teal-400 text-white px-5 py-3 rounded-md font-medium">無料診断</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-200" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 top-16 z-50 bg-dark-900 lg:hidden" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">WEB構築</a>
+      <a href="/services/maintenance/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">保守運用</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">AI予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">導入事例</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-white font-bold border-b border-dark-700" aria-current="page">FAQ</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">お知らせ</a>
+      <a href="/#simulator" class="mt-4 block bg-teal-500 hover:bg-teal-400 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料診断シミュレーター</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <nav aria-label="パンくずリスト" class="max-w-5xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-400">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-white py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-200">FAQ</span></li>
+      </ol>
+    </nav>
+
+    <article>
+      <header class="max-w-5xl mx-auto px-4 lg:px-8 pt-8 pb-12 lg:pt-12 lg:pb-16">
+        <p class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Frequently Asked Questions</p>
+        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+          よくある質問（40 問）
+        </h1>
+        <p class="mt-4 text-lg text-dark-300 max-w-3xl">
+          4 カテゴリ（WEB構築 15 問・保守運用 10 問・AI予測 10 問・共通 5 問）で完全公開。すべて結論ファースト + 関連ページリンク付きです。
+        </p>
+        <p class="mt-2 text-sm text-dark-400">
+          <time itemprop="datePublished" datetime="2026-04-25">2026年4月25日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time itemprop="dateModified" datetime="2026-04-25">最終更新 2026年4月25日</time>
+        </p>
+      </header>
+
+      <figure class="max-w-5xl mx-auto px-4 lg:px-8 mb-10 lg:mb-16">
+        <div class="bg-dark-800 border-l-4 border-teal-400 pl-6 pr-6 py-6 rounded-r-lg">
+          <blockquote cite="https://tcharton.com/profile/">
+            <p class="text-dark-200 leading-relaxed text-lg">「すべての回答は結論を最初に 1〜2 文で示し、必要なら補足を続けます。相対参照（『上記参照』『詳しくはこちら』のみ）は避け、自己完結した回答を心がけています（GEO 戦略 §6.6 準拠）。」</p>
+          </blockquote>
+          <figcaption class="mt-4 text-sm text-dark-400">
+            根拠: <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Aggarwal et al. (KDD 2024) GEO 論文</a> の Self-contained Answer 原則 + Google FAQPage 構造化データ仕様
+          </figcaption>
+        </div>
+      </figure>
+
+      <section aria-label="カテゴリ目次" class="max-w-5xl mx-auto px-4 lg:px-8 py-8">
+        <div class="bg-dark-800 border border-dark-700 rounded-2xl p-6">
+          <h2 class="font-display font-bold text-white text-sm uppercase tracking-wider">カテゴリ目次</h2>
+          <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            <a href="#cat-web" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">① WEB構築（15）</a>
+            <a href="#cat-maint" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">② 保守運用（10）</a>
+            <a href="#cat-ai" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">③ AI予測（10）</a>
+            <a href="#cat-common" class="bg-dark-700 hover:bg-dark-600 rounded-lg px-4 py-3 text-teal-300 hover:text-white transition-colors">共通（5）</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="cat-web" aria-label="WEB構築 FAQ" class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-white">① WEB 構築（15 問）</h2>
+        <dl class="mt-6 space-y-5">
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q1. なぜ買い切り型なのですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">月額制は数十万円分の支払いを 5 年で続ける構造です。当社は買い切りで 30〜80 万円を一括（または分割 2〜3 回）でお支払いいただき、その後の保守運用は月額 1〜3 万円のプランと切り分けます。クライアント様は早期に投資回収でき、サービス契約に縛られない自由を保てます。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q2. 月額制と比べて本当にお得ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">5 年スパンで見ると、月額制（月 3 万 × 60 ヶ月 = 180 万円）に対し、買い切り 50 万 + 保守スタンダード 60 ヶ月 = 132 万円となり、累計でも安価です。所有権がお客様にある点も大きなメリットです。詳細は <a href="/pricing/" class="text-teal-300 underline hover:text-teal-200">/pricing/</a> の LTV 試算をご覧ください。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q3. 制作期間はどのくらいですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">標準で 4 週間（W1: ヒアリング・設計、W2: デザイン・コーディング、W3: 実装・テスト、W4: 検証・公開・引継ぎ）です。業種特性や写真撮影が必要な場合は 5〜6 週間となることもあります。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q4. 自分でも更新できますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">Markdown ベースの編集インターフェースをご希望に応じて構築可能です。ただし WordPress のような汎用 CMS は採用しません（保守負担とセキュリティリスクが大きいため）。日常的な軽微更新は保守プランで対応する設計を推奨しています。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q5. スマホ対応は標準ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">標準対応です。モバイルファーストデザイン + Core Web Vitals 最適化 + WCAG 2.2 Level AA 準拠で構築します。Tailwind CSS のレスポンシブクラスで全画面サイズを網羅します。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q6. ドメイン・サーバーはどうなりますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">ドメインはお客様名義で取得・管理いただきます（T.C.HARTON では代行管理しません）。サーバーは Cloudflare Pages（無料枠で十分なケースが多い）または希望のホスティングを選択可能です。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q7. 既存のメールアドレスは使えますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">ドメインメール（info@yourdomain.com 等）の継続利用は可能です。Cloudflare Email Routing や Google Workspace 等との連携を構築時にご提案します。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q8. 業種特化のデザインは可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">GEO-STANDARDS §4.1 のドメイン分類（Law &amp; Government / Opinion / Statement 等 10 ドメイン）に基づき、業種ごとに最適な GEO 戦略を選定して構築します。詳細は <a href="/services/web/industries/" class="text-teal-300 underline hover:text-teal-200">/services/web/industries/</a> をご覧ください。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q9. 写真撮影は別料金ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">撮影同行は別料金（半日 3.3 万円・沼津/三島/富士エリア）です。基本構築には含まれません。お客様撮影の写真または無料素材を活用するケースが多いです。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q10. 原稿作成は手伝ってもらえますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">中規模プラン（50 万円帯）では原稿の構成サポート（叩き台作成・校正）を含みます。完全な代筆は別料金（11,000 円〜 / 1,000 字）で対応可能です。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q11. 制作後の小さな修正はできますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">保守プラン（スタンダード以上）に含まれる軽微修正で対応可能です。プラン外の場合はスポット作業（時間単価 5,500 円）で承ります。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q12. SEO 対策は含まれますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">構築時の標準対応として Google 検索セントラル準拠の SEO（title / description / OGP / sitemap.xml / robots.txt / 構造化データ等）を含みます。継続的な SEO 最適化は保守プランで対応します。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q13. 多言語対応は可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">可能です。日本語 + 英語の 2 言語が標準で、追加言語も対応できます。hreflang 属性 + 言語別 sitemap 構築含めて大規模プラン（80 万円帯）で承ります。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q14. EC サイトは作れますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">Shopify / Stripe Payment Links / Cloudflare Stream 等を組み合わせた小〜中規模 EC は対応可能です。在庫数千 SKU 以上の本格 EC は別途要件定義となります。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q15. 既存サイトのリニューアルも可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">可能です。リニューアル時は既存コンテンツの 301 リダイレクト設計、SEO 順位の維持、Search Console 移行手続まで含めて対応します。</dd></div>
+        </dl>
+      </section>
+
+      <section id="cat-maint" aria-label="保守運用 FAQ" class="bg-dark-800/50 border-y border-dark-700">
+        <div class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+          <h2 class="font-display text-xl lg:text-2xl font-bold text-white">② 保守運用（10 問）</h2>
+          <dl class="mt-6 space-y-5">
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q16. 保守運用は必須ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">必須ではありません。ただしセキュリティ脆弱性は毎月新規発見されます（<a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">OWASP</a> / <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">IPA</a> 参照）。放置サイトは半年で表示速度が劣化することも一般的です。月額 1 万円のライトプランから提供しています。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q17. プランの違いは何ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">ライト（1 万・監視のみ）/ スタンダード（2 万・月 60 分修正可）/ プレミアム（3 万・月 3 時間修正 + SEO/LLMO フル対応）の 3 段階です。詳細は <a href="/services/maintenance/plans/" class="text-teal-300 underline hover:text-teal-200">/services/maintenance/plans/</a> で完全比較表を公開しています。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q18. 解約はいつでもできますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">はい。解約申請から 1 ヶ月後に終了します。違約金なし・縛り月数なし。データはすべてお客様にお渡しします。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q19. プラン変更の方法は？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">メール 1 通でいつでもアップ・ダウン可能です。翌月から新プランが適用されます。変更回数の上限はありません。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q20. 緊急時の対応はどうなりますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">ライトは通常対応、スタンダードは 24 時間以内、プレミアムは即日対応です。プラン外の緊急対応はスポット 11,000 円〜 / 件で承ります。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q21. 月次レポートは見るのが大変では？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">サマリー（30 秒で読める）+ 提案アクション（お客様判断箇所のみ強調）の構成です。実物見本を <a href="/services/maintenance/report-sample/" class="text-teal-300 underline hover:text-teal-200">/services/maintenance/report-sample/</a> で公開しています。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q22. 軽微な修正の範囲は？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">テキスト修正、画像差替え、お知らせ追加、リンク修正等の数十分以内で完了する作業です。スタンダードは月 60 分、プレミアムは月 3 時間が枠です。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q23. 大きな変更は別料金になりますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">プラン枠を超える作業はスポット作業（時間単価 5,500 円）または機能追加見積（別途）となります。事前見積り承認後に着手します。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q24. 他社で作ったサイトの保守も可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">可能です。ただし既存サイトの構造によっては Sクラス保証の品質に到達できないケースがあります。Phase 1（無料診断）で現状を可視化し、保守可能性をご報告します。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q25. ドメイン・サーバー管理も含まれますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">保守プラン全プランで Cloudflare Pages の管理・SSL 証明書更新監視を含みます。ドメイン更新は名義人（お客様）の自動更新設定を推奨します。</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section id="cat-ai" aria-label="AI予測 FAQ" class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-white">③ AI 予測（10 問）</h2>
+        <dl class="mt-6 space-y-5">
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q26. AI 予測モデルとは何ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">過去のデータから将来の値（在庫消費量・売上・来客数等）を統計的・機械学習的に推定する仕組みです。勘ではなく確率分布で推定し、運用判断を統計でバックアップします。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q27. どんな業種でも対応できますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">予測可能なあらゆる業種に対応可能です。最初の 6 ヶ月は在庫予測・売上予測の 2 系統に集中していますが、他のユースケース（人員配置・需要予測・離脱予測等）もご相談ください。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q28. 必要なデータの量は？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">最低 6 ヶ月分（推奨 12〜24 ヶ月）の販売・出荷データが必要です。データ量が少ない場合は時系列モデル（Prophet 等）で対応できることがあります。Phase 1 で適合可否を判定します。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q29. データのセキュリティは大丈夫ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">NDA 締結 + TLS 1.3 暗号化転送 + AES-256 暗号化保存 + アクセスログ保管で対応します。お預かりしたデータを外部 AI サービスに送信することはありません。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q30. 精度はどのくらいですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">業種・データ量・季節性で大きく異なります。Phase 1（30 万円・分析のみ）で実現可能な精度を試算したレポートを提出し、Phase 2 進行可否のご判断をいただきます。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q31. 導入期間はどのくらい？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">標準 12 週間（Phase 1 が 4 週、Phase 2 が 4 週、Phase 3 が 4 週）です。Phase ごとに進む / 止まるの判断ができます。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q32. 既存システムと連携できますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">API 連携・CSV 入出力・データベース直接読込み等で対応可能です。既存基幹システム（SAP / Oracle / kintone 等）との連携実績ベースで Phase 1 にて検証します。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q33. 運用後のサポートはありますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">Phase 3 完了後、月次のモデル再学習・精度モニタリング・改善提案を保守プラン（プレミアム枠の追加 or 別途月額契約）で対応します。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q34. ROI はどうなりますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">投資対効果は事業規模・業種・現状の在庫精度等で大きく異なります。Phase 1 の実現可能性レポートで個別試算します。一律の数値は提示しません（誇張防止のため）。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q35. スモールスタートは可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">Phase 1（30 万円・2 週間・分析のみ）からのスタートが可能です。Phase 1 だけで終了するご判断もできます。</dd></div>
+        </dl>
+      </section>
+
+      <section id="cat-common" aria-label="共通 FAQ" class="bg-dark-800/50 border-y border-dark-700">
+        <div class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+          <h2 class="font-display text-xl lg:text-2xl font-bold text-white">共通（5 問）</h2>
+          <dl class="mt-6 space-y-5">
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q36. 対応エリアは？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">静岡県東部（沼津・三島・富士・富士宮・裾野・長泉・清水）を主軸に、静岡県全域および全国オンライン対応可能です。AI 予測は業種を問わず全国対応です。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q37. 支払方法は？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">銀行振込（PayPay 銀行 / みずほ銀行）が標準です。請求書発行・領収書発行・適格請求書（インボイス）対応可能です。詳細は <a href="/pricing/" class="text-teal-300 underline hover:text-teal-200">/pricing/</a> をご覧ください。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q38. 領収書・請求書は発行されますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">発行します。請求書は契約時または月初、領収書は入金確認後に発行します。インボイス（適格請求書）対応です。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q39. 個人事業主でも依頼できますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">はい。当社自身が個人事業主であり、士業・飲食・建設・不動産など個人事業主様の事例にも対応します。料金プランは規模に応じて柔軟にご提案します。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q40. 相談だけでも可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">可能です。トップページの 1 分でできる無料診断シミュレーターで現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section aria-label="お問い合わせ" class="bg-teal-700 text-white">
+        <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24 text-center">
+          <h2 class="font-display text-2xl lg:text-4xl font-bold">他の質問は無料相談で</h2>
+          <p class="mt-4 text-lg text-teal-50 max-w-2xl mx-auto leading-relaxed">
+            上記 40 問でカバーしきれない質問はメールでお気軽にどうぞ。診断結果と組み合わせて具体的にお返事します。
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="/#simulator" class="inline-flex items-center justify-center bg-white text-teal-700 hover:bg-teal-50 px-8 py-4 rounded-md font-semibold">
+              無料診断シミュレーター
+            </a>
+            <a href="/contact/" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-teal-600 px-8 py-4 rounded-md font-semibold">
+              メールで問い合わせ
+            </a>
+          </div>
+          <p class="mt-6 text-sm text-teal-100">メール返信目安: 24 時間以内（土日祝除く）</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-400 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB構築</a></li>
+            <li><a href="/services/maintenance/" class="hover:text-white py-3 inline-block">保守運用</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI予測</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block" aria-current="page">FAQ</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">法令</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet>© 2026 T.C.HARTON. All rights reserved.</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      var btn = document.getElementById('menuToggle');
+      var menu = document.getElementById('mobile-menu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'メニューを開く');
+          document.body.style.overflow = '';
+        });
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.fade-in').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
