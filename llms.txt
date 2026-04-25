@@ -36,6 +36,10 @@
 電話: 080-1058-0538（平日 9:00〜18:00）
 メール: info@tcharton.com
 
+## 日々の発信
+
+- note: https://note.com/harton_official（毎日更新 / 事業哲学・WEB制作・AI予測の現場メモ）
+
 ## 準拠する公式基準（一次ソース）
 
 - HTML Living Standard: https://html.spec.whatwg.org/
