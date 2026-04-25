@@ -1,0 +1,4 @@
+# Cloudflare Pages 301 redirect rules
+# Format: <from-path> <to-path> <status>
+# 旧 harton.pages.dev / harton.netlify.app からの移行に備えて準備。
+# 実際のリダイレクトは独自ドメイン移行時に追加する。
