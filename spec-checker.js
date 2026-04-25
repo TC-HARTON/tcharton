@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 /**
- * SPEC.md v2.4 完全自動検証エージェント
+ * SPEC.md v3.2 完全自動検証エージェント (tcharton.com 18ページ)
  * ─────────────────────────────────────
- * SPEC.md v2.4 納品前チェックリスト全項目
+ * SPEC.md v3.2 §1.2 18ページ階層 + §10.6 Body Theme Variants
+ * + 納品前チェックリスト全項目
  * + Google Search Central準拠チェック
+ * + GEO/LLMO (G-1〜G-6, KDD2024 arXiv:2311.09735)
  * + 本文仕様の全項目を機械的にチェック
  *
  * 使い方:
@@ -16,54 +18,85 @@ const path = require('path');
 
 // ═══════════════════ 設定 ═══════════════════
 const ROOT = __dirname;
-const DOMAIN = 'https://harton.pages.dev';
+const DOMAIN = 'https://tcharton.com';
 
-// 静的ページ（手書き/テンプレート管理）
+// SPEC v3.2 §1.2 — tcharton.com 18ページ階層 + 補助ページ (404/thanks)
+// 本配列は SPEC §1.2 マッピング表の正典に対応する。
+// 新規ページ追加時は SPEC §1.5 に従い 5 項目同時更新（ディレクトリ図 / §1.2 / sitemap.xml / 本配列 / llms.txt）。
 const STATIC_TARGETS = [
+  // TOP
   'index.html',
+
+  // ① WEB構築
   'services/web/index.html',
-  'services/automation/index.html',
+  'services/web/sclass/index.html',
+  'services/web/industries/index.html',
+
+  // ② 保守運用
+  'services/maintenance/index.html',
+  'services/maintenance/plans/index.html',
+  'services/maintenance/report-sample/index.html',
+
+  // ③ AI予測
   'services/ai-prediction/index.html',
-  'privacy/index.html',
-  'thanks.html',
-  '404.html',
+  'services/ai-prediction/inventory/index.html',
+  'services/ai-prediction/sales/index.html',
+
+  // 信頼形成
+  'pricing/index.html',
+  'cases/index.html',
+  'faq/index.html',
   'profile/index.html',
-  'site-builder/index.html',
+
+  // 必須情報
+  'about/index.html',
+  'contact/index.html',
+  'legal/index.html',
+  'privacy/index.html',
+  'news/index.html',
+
+  // エラー・確認画面（§1.2 注記より別枠）
+  '404.html',
+  'thanks.html',
 ];
 
-// ブログ記事（generate-blog.js で動的生成）を自動検出して追加
-// SPEC v2.4 以降、ブログも静的ページと同一の S-RANK 基準で検証する
-function detectBlogTargets() {
-  const blogDir = path.join(ROOT, 'blog');
-  if (!fs.existsSync(blogDir)) return [];
-  const targets = [];
-  if (fs.existsSync(path.join(blogDir, 'index.html'))) targets.push('blog/index.html');
-  for (const entry of fs.readdirSync(blogDir, { withFileTypes: true })) {
-    if (entry.isDirectory()) {
-      const p = `blog/${entry.name}/index.html`;
-      if (fs.existsSync(path.join(ROOT, p))) targets.push(p);
-    }
-  }
-  return targets.sort();
-}
+const TARGET_FILES = [...STATIC_TARGETS];
 
-const BLOG_TARGETS = detectBlogTargets();
-const TARGET_FILES = [...STATIC_TARGETS, ...BLOG_TARGETS];
-
+// ページ種別 → 検証強度のマッピング
+// full    : TOP（5 種 JSON-LD: ProfessionalService/WebSite/FAQPage/BreadcrumbList/Person）
+// service : 3 ハブ（3 種 JSON-LD: ProfessionalService/WebSite/BreadcrumbList）
+// subpage : 階層下位ページ（BreadcrumbList のみ必須・モバイル品質検証あり）
+// profile : 代表プロフィール（subpage 相当・モバイル品質はスキップ）
+// minimal : 法務/エラー/確認（最小チェック）
 const PAGE_TYPE = {
   'index.html': 'full',
+
   'services/web/index.html': 'service',
-  'services/automation/index.html': 'service',
+  'services/web/sclass/index.html': 'subpage',
+  'services/web/industries/index.html': 'subpage',
+
+  'services/maintenance/index.html': 'service',
+  'services/maintenance/plans/index.html': 'subpage',
+  'services/maintenance/report-sample/index.html': 'subpage',
+
   'services/ai-prediction/index.html': 'service',
-  'privacy/index.html': 'minimal',
-  'thanks.html': 'minimal',
-  '404.html': 'minimal',
+  'services/ai-prediction/inventory/index.html': 'subpage',
+  'services/ai-prediction/sales/index.html': 'subpage',
+
+  'pricing/index.html': 'subpage',
+  'cases/index.html': 'subpage',
+  'faq/index.html': 'subpage',
   'profile/index.html': 'profile',
-  'site-builder/index.html': 'subpage',
+
+  'about/index.html': 'subpage',
+  'contact/index.html': 'subpage',
+  'legal/index.html': 'minimal',
+  'privacy/index.html': 'minimal',
+  'news/index.html': 'subpage',
+
+  '404.html': 'minimal',
+  'thanks.html': 'minimal',
 };
-// ブログ記事は 'subpage' 相当（BreadcrumbList + OGP + canonical + モバイル品質 全て必須）
-// blog/index.html は一覧ページなので同じく 'subpage'
-for (const bp of BLOG_TARGETS) PAGE_TYPE[bp] = 'subpage';
 
 // ─── SPEC 10.6 Body Theme Variants（v2.4 必須） ───
 // 各ページがどの Variant を採用すべきかを定義（SPEC 10.6.2 準拠）
@@ -80,18 +113,24 @@ const THEME_VARIANTS = {
   },
 };
 
+// SPEC v3.2 §1.2 / §10.6.2 — Body Theme Variant 正典マッピング
+// marketing: 訴求・コンバージョン用途（明色）
+// reading  : 集中閲覧・長文用途（暗色）
 function getVariant(relPath) {
-  // marketing Variant (light theme): LP / サービス / プロダクト LP
-  const MARKETING = [
+  const MARKETING = new Set([
     'index.html',
     'services/web/index.html',
-    'services/automation/index.html',
+    'services/web/sclass/index.html',
+    'services/web/industries/index.html',
+    'services/maintenance/index.html',
+    'services/maintenance/plans/index.html',
     'services/ai-prediction/index.html',
-    'site-builder/index.html',
-  ];
-  if (MARKETING.includes(relPath)) return 'marketing';
-  // reading Variant (dark theme): blog / 法務 / profile / 管理 / エラー
-  return 'reading';
+    'services/ai-prediction/inventory/index.html',
+    'services/ai-prediction/sales/index.html',
+    'pricing/index.html',
+    'contact/index.html',
+  ]);
+  return MARKETING.has(relPath) ? 'marketing' : 'reading';
 }
 
 // カスタムCSSクラス（output.css照合から除外）
@@ -420,10 +459,15 @@ function c11_3_eeat() {
     r.push(FAIL('11.3-1st', S, '一次情報', 'プロフィールページ不存在'));
   }
 
-  // 3. 孤立ページなし（全対象HTMLにパンくずまたはフッターナビからのリンクがあるか）
+  // 3. 孤立ページなし（TOP からの主要ハブ・必須情報層へのリンクがあるか）
+  // SPEC v3.2 §1.2 18ページのうち、TOPから直接導線が必要な主要ページ
   const mainHtml = fs.existsSync(path.join(ROOT, 'index.html'))
     ? fs.readFileSync(path.join(ROOT, 'index.html'), 'utf-8') : '';
-  const pages = ['services/web/', 'services/automation/', 'services/ai-prediction/', 'privacy/', 'profile/'];
+  const pages = [
+    'services/web/', 'services/maintenance/', 'services/ai-prediction/',
+    'pricing/', 'cases/', 'faq/', 'profile/',
+    'about/', 'contact/', 'legal/', 'privacy/', 'news/',
+  ];
   const orphans = pages.filter(p => !mainHtml.includes(p));
   r.push(orphans.length === 0
     ? PASS('11.3-orphan', S, '孤立ページなし')
@@ -932,17 +976,18 @@ function cSpec(html, pt, variant) {
   else if (cp > -1 && tp > -1 && cp > tp) r.push(FAIL('sp-ord', S, 'head順序', 'title < charset'));
   else r.push(PASS('sp-ord', S, 'head要素順序'));
 
-  // footer copyright
+  // footer copyright (SPEC v3.2 — ブランド名 T.C.HARTON 対応)
   if (ftr) {
-    if (/HARTON\s*Inc\./i.test(ftr)) r.push(FAIL('sp-cr', S, 'フッターCR', '"HARTON Inc."は不正'));
-    else if (/2026\s*HARTON/i.test(ftr)) r.push(PASS('sp-cr', S, 'フッターCR'));
+    if (/(?:T\.C\.)?HARTON\s*Inc\./i.test(ftr)) r.push(FAIL('sp-cr', S, 'フッターCR', '"HARTON Inc."は不正'));
+    else if (/2026\s*(?:T\.C\.)?HARTON/i.test(ftr)) r.push(PASS('sp-cr', S, 'フッターCR'));
     else r.push(WARN('sp-cr', S, 'フッターCR', '形式不明'));
   }
 
-  // URL整合性
-  r.push(html.includes('harton.netlify.app')
-    ? FAIL('sp-url', S, '旧ドメイン', `${(html.match(/harton\.netlify\.app/g) || []).length}箇所`)
-    : PASS('sp-url', S, '旧ドメイン残存なし'));
+  // URL整合性 — 旧ドメイン残存検出 (harton.netlify.app / harton.pages.dev)
+  const oldDomainMatches = html.match(/harton\.(?:netlify\.app|pages\.dev)/g) || [];
+  r.push(oldDomainMatches.length === 0
+    ? PASS('sp-url', S, '旧ドメイン残存なし')
+    : FAIL('sp-url', S, '旧ドメイン', `${oldDomainMatches.length}箇所 (harton.netlify.app/pages.dev)`));
 
   // sitemap link
   r.push(/rel=["']sitemap["']/i.test(hd) ? PASS('sp-sm', S, 'sitemap link') : WARN('sp-sm', S, 'sitemap link'));
@@ -980,7 +1025,7 @@ function cGlobal() {
     const c = fs.readFileSync(smP, 'utf-8');
     if (!c.includes('<urlset')) r.push(FAIL('gl-sm', S, 'sitemap.xml', 'urlsetなし'));
     else if (!c.includes(DOMAIN)) r.push(FAIL('gl-sm', S, 'sitemap.xml', 'ドメイン不一致'));
-    else if (c.includes('harton.netlify.app')) r.push(FAIL('gl-sm', S, 'sitemap.xml', '旧ドメイン残存'));
+    else if (/harton\.(?:netlify\.app|pages\.dev)/.test(c)) r.push(FAIL('gl-sm', S, 'sitemap.xml', '旧ドメイン残存'));
     else r.push(PASS('gl-sm', S, 'sitemap.xml'));
     if (!c.includes('<lastmod>')) r.push(WARN('gl-sm-lm', S, 'sitemap lastmod'));
   }
@@ -994,7 +1039,10 @@ function cGlobal() {
     if (!c.includes('User-agent:')) issues.push('User-agentなし');
     if (!c.includes('Sitemap:')) issues.push('Sitemapなし');
     else if (!c.includes(DOMAIN)) issues.push('ドメイン不一致');
-    if (!c.includes('Disallow: /ogp.html')) issues.push('ogp.html未除外');
+    // SPEC v3.2 §1.3.2 — 主要 AI クローラーの明示許可（Allow: / ）が必須
+    const requiredBots = ['GPTBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended', 'Googlebot'];
+    const missingBots = requiredBots.filter(b => !new RegExp(`User-agent:\\s*${b}\\b`, 'i').test(c));
+    if (missingBots.length > 0) issues.push(`AIクローラ未許可: ${missingBots.join(',')}`);
     r.push(issues.length === 0 ? PASS('gl-rb', S, 'robots.txt') : FAIL('gl-rb', S, 'robots.txt', issues.join(',')));
   }
 
@@ -1050,7 +1098,7 @@ function report(all) {
   }));
 
   console.log('\n' + '='.repeat(72));
-  console.log('  SPEC.md v2.4 完全自動検証レポート');
+  console.log('  SPEC.md v3.2 完全自動検証レポート (tcharton.com 18ページ)');
   console.log('  検証日時: ' + new Date().toISOString());
   console.log('  チェックリスト: 11.1(6)+11.2(12)+11.3(3)+11.4(7)+11.5(7)+11.6(4)+11.7モバイル+11.8Google+11.9(2)');
   console.log('                 + GEO/LLMO(G-1〜G-6) + SPEC本文 + グローバル + コントラスト比');
