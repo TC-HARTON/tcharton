@@ -4,23 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>送信完了｜お問い合わせありがとうございます｜T.C.HARTON</title>
-  <meta name="description" content="お問い合わせを受付しました。24 時間以内にご返信します（土日祝除く）。緊急のご相談は電話 080-1058-0538 までどうぞ。">
+  <meta name="description" content="T.C.HARTON へのお問い合わせを受け付けました。内容を確認のうえ 24 時間以内にご連絡いたします（土日祝除く）。緊急のご相談は電話 080-1058-0538 までどうぞ。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="送信完了｜お問い合わせありがとうございます｜T.C.HARTON">
+  <meta property="og:description" content="T.C.HARTON へのお問い合わせを受け付けました。24 時間以内にご返信します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tcharton.com/thanks.html">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
   <meta name="theme-color" content="#0f172a">
   <meta name="color-scheme" content="dark">
-  <meta name="robots" content="noindex, follow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com">
   <link rel="canonical" href="https://tcharton.com/thanks.html">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://tcharton.com/"},
+      {"@type": "ListItem", "position": 2, "name": "送信完了", "item": "https://tcharton.com/thanks.html"}
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="/dist/output.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     html { scroll-behavior: smooth; }
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.15s; }
+    .fade-in-delay-2 { transition-delay: 0.3s; }
+    .fade-in-delay-3 { transition-delay: 0.45s; }
+    .hero-grid {
+      background-image: radial-gradient(circle at 1px 1px, rgba(27,73,101,0.15) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+    .glow { box-shadow: 0 0 60px rgba(27,73,101,0.2); }
+    .gradient-text {
+      background: linear-gradient(135deg, #1B4965 0%, #2c6e8c 50%, #1B4965 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .float { animation: float 3s ease-in-out infinite; }
+    @keyframes pulse-line { 0%{opacity:0.4} 50%{opacity:1} 100%{opacity:0.4} }
+    .pulse-line { animation: pulse-line 2s infinite; }
+    @keyframes check-draw { 0% { stroke-dashoffset: 24; } 100% { stroke-dashoffset: 0; } }
+    @keyframes circle-pop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes ring-expand { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+    .check-circle { animation: circle-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards; opacity: 0; }
+    .check-circle svg path { stroke-dasharray: 24; stroke-dashoffset: 24; animation: check-draw 0.4s ease-out 0.7s forwards; }
+    .check-ring { animation: ring-expand 1s ease-out 0.5s forwards; opacity: 0; }
+    .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -29,16 +83,20 @@
         scroll-behavior: auto !important;
       }
       .fade-in { opacity: 1 !important; transform: none !important; }
+      .check-circle { opacity: 1; }
+      .check-circle svg path { stroke-dashoffset: 0; }
     }
   </style>
+
   <noscript>
     <style>.fade-in { opacity: 1 !important; transform: none !important; }</style>
   </noscript>
 </head>
 <body class="bg-dark-900 text-dark-300 font-sans antialiased min-h-screen flex flex-col">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
-  <header class="bg-dark-900 border-b border-dark-700">
-    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center">
+
+  <header class="fixed top-0 left-0 right-0 bg-dark-900/80 nav-blur border-b border-dark-700 z-40">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2 text-white font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
         <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
           <rect width="28" height="28" rx="6" fill="#1B4965"/>
@@ -46,51 +104,146 @@
         </svg>
         <span>T.C.HARTON</span>
       </a>
+      <a href="/" class="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-white text-sm font-bold px-5 py-3 rounded-md transition-colors">
+        トップへ戻る
+      </a>
     </nav>
   </header>
-  <main id="main" class="flex-1 flex items-center justify-center px-4 py-16">
-    <div class="max-w-2xl w-full text-center">
-      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-teal-500/20 border-2 border-teal-400 mb-6">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-teal-300" aria-hidden="true">
-          <path d="M5 13l4 4L19 7"/>
-        </svg>
+
+  <main id="main" class="relative flex-1 flex items-center overflow-hidden pt-16">
+    <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
+    <div class="absolute top-20 right-10 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl" aria-hidden="true"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-teal-700/10 rounded-full blur-3xl" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 py-20 lg:py-24 w-full">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/30 text-teal-300 px-4 py-1.5 rounded-full text-sm font-medium mb-8 fade-in">
+            <span class="w-2 h-2 bg-emerald-400 rounded-full pulse-line" aria-hidden="true"></span>
+            送信完了
+          </div>
+
+          <h1 class="font-display text-4xl lg:text-6xl font-extrabold text-white leading-[1.15] mb-6 fade-in fade-in-delay-1">
+            ありがとう<br>ございます<span class="gradient-text">。</span>
+          </h1>
+
+          <p class="text-lg lg:text-xl text-dark-300 mb-4 leading-relaxed max-w-lg mx-auto lg:mx-0 fade-in fade-in-delay-2">
+            お問い合わせを受け付けました。<br>
+            内容を確認のうえ、<strong class="text-white font-bold">24 時間以内</strong>にご連絡いたします（土日祝除く）。
+          </p>
+          <p class="text-dark-500 text-sm mb-10 fade-in fade-in-delay-2">代表 大内達也が直接ご対応いたしますので、今しばらくお待ちください。</p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in fade-in-delay-3">
+            <a href="/" class="inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-400 text-white font-bold px-8 py-4 rounded-md text-base shadow-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+              トップページに戻る
+            </a>
+            <a href="/cases/" class="inline-flex items-center justify-center gap-2 text-dark-200 font-medium px-8 py-4 rounded-md text-base border border-dark-600 hover:border-teal-500 hover:text-white transition-all">
+              導入事例を見る →
+            </a>
+          </div>
+
+          <p class="text-dark-500 text-xs mt-8 fade-in fade-in-delay-3" id="countdown">10 秒後に自動でトップページへ移動します</p>
+        </div>
+
+        <div class="hidden lg:block relative mt-16 lg:mt-0">
+          <div class="bg-dark-800 rounded-2xl border border-dark-700 p-8 glow float">
+            <div class="flex items-center gap-2 mb-6">
+              <div class="w-3 h-3 rounded-full bg-red-500" aria-hidden="true"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500" aria-hidden="true"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500" aria-hidden="true"></div>
+              <span class="text-dark-500 text-xs ml-2">tcharton.com/contact</span>
+            </div>
+
+            <div class="text-center mb-6">
+              <div class="relative inline-block">
+                <div class="check-circle w-20 h-20 mx-auto bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border-2 border-emerald-500/50 rounded-full flex items-center justify-center">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-emerald-400" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div class="check-ring absolute inset-0 w-20 h-20 mx-auto border-2 border-emerald-500/30 rounded-full" aria-hidden="true"></div>
+              </div>
+              <p class="text-emerald-400 text-sm font-bold mt-4">正常に送信されました</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="bg-dark-700/50 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-8 h-8 bg-teal-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-teal-300" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs text-dark-500">通知先</p>
+                  <p class="text-sm text-dark-200 truncate">代表メールへ送信済み</p>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400 flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div class="bg-dark-700/50 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs text-dark-500">返信予定</p>
+                  <p class="text-sm text-dark-200">24 時間以内（土日祝除く）</p>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400 flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div class="bg-dark-700/50 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-8 h-8 bg-teal-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-teal-300" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs text-dark-500">セキュリティ</p>
+                  <p class="text-sm text-dark-200">SSL/TLS 暗号化通信で送信</p>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400 flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <h1 class="font-display text-3xl lg:text-4xl font-extrabold text-white">送信完了しました</h1>
-
-      <p class="mt-6 text-lg text-dark-200 leading-relaxed">
-        お問い合わせをお預かりしました。<br>
-        <strong class="text-white">24 時間以内</strong>にご返信します（土日祝除く）。
-      </p>
-
-      <div class="mt-8 bg-dark-800 border border-dark-700 rounded-xl p-6 text-left">
-        <h2 class="font-display font-bold text-white text-sm uppercase tracking-wider">次のステップ</h2>
-        <ol class="mt-4 space-y-3 text-sm text-dark-300">
-          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">①</span><span>代表 大内 達也が直接内容を確認します（自動返信ではありません）</span></li>
-          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">②</span><span>ご相談内容に応じて、診断レポート / お見積り / オンライン MTG 設定をご提案</span></li>
-          <li class="flex gap-3"><span class="text-teal-300 font-bold flex-shrink-0">③</span><span>必要に応じて Phase 1（30 万円・分析のみ）からのスモールスタートを案内</span></li>
-        </ol>
-      </div>
-
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="/" class="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-white px-6 py-3 rounded-md font-semibold">
-          トップへ戻る
-        </a>
-        <a href="/cases/" class="inline-flex items-center justify-center border border-dark-600 text-dark-200 hover:text-white hover:border-teal-500 px-6 py-3 rounded-md font-semibold">
-          導入事例を見る
-        </a>
-      </div>
-
-      <p class="mt-10 text-sm text-dark-400">
-        <strong class="text-dark-200">緊急のご相談</strong>は電話でも承ります<br>
-        <a href="tel:+81-80-1058-0538" class="mt-2 inline-block text-teal-300 hover:text-teal-200 font-bold text-lg py-3">080-1058-0538</a>
-        <span class="block text-xs text-dark-500 mt-1">受付: 平日 9:00 〜 18:00</span>
-      </p>
     </div>
   </main>
 
   <footer class="bg-dark-900 text-dark-500 border-t border-dark-700">
-    <div class="max-w-7xl mx-auto px-4 py-6 text-center text-sm">© 2026 T.C.HARTON. All rights reserved.</div>
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-6 flex flex-col items-center gap-3 text-sm">
+      <nav aria-label="フッターナビゲーション" class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+        <a href="/" class="hover:text-white py-3 inline-block">ホーム</a>
+        <a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a>
+        <a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a>
+        <a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシー</a>
+      </nav>
+      <p data-nosnippet class="text-xs">© 2026 T.C.HARTON. All rights reserved.</p>
+    </div>
   </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(function (el) { io.observe(el); });
+
+      var sec = 10;
+      var cd = document.getElementById('countdown');
+      var timer = setInterval(function () {
+        sec--;
+        if (sec <= 0) {
+          clearInterval(timer);
+          window.location.href = '/';
+        } else if (cd) {
+          cd.textContent = sec + ' 秒後に自動でトップページへ移動します';
+        }
+      }, 1000);
+    })();
+  </script>
 </body>
 </html>
