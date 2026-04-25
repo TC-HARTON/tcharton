@@ -1,0 +1,10 @@
+node_modules/
+dist/*.css.map
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+SPEC.md
+GOOGLE-STANDARDS.md
+GEO-STANDARDS.md
