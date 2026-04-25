@@ -8,10 +8,12 @@
   },
   "scripts": {
     "build:css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "build:ogp": "node scripts/build-ogp.js",
     "watch:css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "verify": "node spec-checker.js"
   },
   "devDependencies": {
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.0"
   }
 }
