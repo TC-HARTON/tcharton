@@ -1,0 +1,37 @@
+# Cloudflare Workers Static Assets — HTTP Response Headers
+# 配信プラットフォーム: Cloudflare Workers Static Assets（_assetsignore 参照）
+# 根拠: SPEC v3.2 §8 / GOOGLE-STANDARDS §11.1-11.3 / scanner Sクラス必須条件1
+# 設計判断: HANDOVER-S-CLASS-FIX.md §1.1 タスク 1.1 設計判断の根拠表
+#
+# 注意:
+#   - meta http-equiv CSP は 21 HTML に残置（冗長保険）。両者の指令はブラウザ側で AND 合成される
+#   - frame-ancestors は meta では仕様上無視されるため HTTP ヘッダのみ記載
+#   - upgrade-insecure-requests と form-action は meta 側にも同期反映済
+
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: credentialless
+  Cross-Origin-Resource-Policy: same-origin
+  X-Robots-Tag: index, follow
+
+/dist/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/ogp.png
+  Cache-Control: public, max-age=86400
+
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json
