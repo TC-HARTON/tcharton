@@ -182,11 +182,20 @@ function jsonld(html) {
 }
 function jsonldTypes(schemas) {
   const t = new Set();
+  const addType = (v) => {
+    if (Array.isArray(v)) v.forEach(x => x && t.add(x));
+    else if (v) t.add(v);
+  };
   for (const s of schemas) {
-    if (s['@type']) t.add(s['@type']);
-    if (s['@graph']) s['@graph'].forEach(i => i['@type'] && t.add(i['@type']));
+    addType(s['@type']);
+    if (s['@graph']) s['@graph'].forEach(i => addType(i['@type']));
   }
   return t;
+}
+function hasType(schema, typeName) {
+  const t = schema?.['@type'];
+  if (Array.isArray(t)) return t.includes(typeName);
+  return t === typeName;
 }
 function headings(html) {
   const h = []; let m;
@@ -406,8 +415,8 @@ function c11_2(html, pt) {
     // ProfessionalService プロパティ
     if (types.has('ProfessionalService')) {
       const schemas = jsonld(html);
-      const ps = schemas.find(s => s['@type'] === 'ProfessionalService') ||
-                 schemas.flatMap(s => s['@graph'] || []).find(i => i['@type'] === 'ProfessionalService');
+      const ps = schemas.find(s => hasType(s, 'ProfessionalService')) ||
+                 schemas.flatMap(s => s['@graph'] || []).find(i => hasType(i, 'ProfessionalService'));
       if (ps) {
         const need2 = ['name','description','url','telephone','address','geo','knowsAbout','areaServed'];
         const miss = need2.filter(p => !ps[p]);
@@ -825,11 +834,10 @@ function cGeo(html, pt) {
   // G-4: schema.org Quotation または Claim の JSON-LD 存在
   const schemas = jsonld(html);
   let hasQuoteSchema = false;
+  const QUOTE_TYPES = ['Quotation', 'Claim', 'ClaimReview'];
   for (const s of schemas) {
-    const types = [];
-    if (s['@type']) types.push(s['@type']);
-    if (s['@graph']) s['@graph'].forEach(i => i['@type'] && types.push(i['@type']));
-    if (types.some(t => t === 'Quotation' || t === 'Claim' || t === 'ClaimReview')) {
+    if (QUOTE_TYPES.some(qt => hasType(s, qt))) { hasQuoteSchema = true; break; }
+    if (s['@graph'] && s['@graph'].some(i => QUOTE_TYPES.some(qt => hasType(i, qt)))) {
       hasQuoteSchema = true; break;
     }
   }
