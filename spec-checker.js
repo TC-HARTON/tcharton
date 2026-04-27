@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 // ═══════════════════ 設定 ═══════════════════
 const ROOT = __dirname;
@@ -1143,10 +1144,122 @@ function report(all) {
   return tF;
 }
 
+// ═══════════════════ LIVE モード（HTTP ヘッダ実配信検証）═══════════════════
+// SPEC v3.4 §8.1 / §8.9.2 / INSTRUCTION-FROM-ROOT-SPEC-V3.4.md §3.3
+// 旧②セッション虚偽 S-RANK 報告（meta CSP 存在のみで PASS）の再発防止 machine gate
+
+function fetchHeaders(targetUrl) {
+  return new Promise((resolve, reject) => {
+    let u;
+    try { u = new URL(targetUrl); } catch (e) { return reject(new Error(`不正な URL: ${targetUrl}`)); }
+    if (u.protocol !== 'https:') return reject(new Error(`https のみサポート: ${targetUrl}`));
+    const req = https.request({
+      method: 'HEAD',
+      hostname: u.hostname,
+      port: u.port || 443,
+      path: u.pathname + u.search,
+      headers: { 'User-Agent': 'spec-checker-live/1.0' },
+    }, (res) => {
+      // リダイレクト追跡（最大 1 段）
+      if ([301, 302, 307, 308].includes(res.statusCode) && res.headers.location) {
+        const next = new URL(res.headers.location, targetUrl).toString();
+        res.resume();
+        return fetchHeaders(next).then(resolve).catch(reject);
+      }
+      resolve({ status: res.statusCode, headers: res.headers, finalUrl: targetUrl });
+      res.resume();
+    });
+    req.on('error', reject);
+    req.setTimeout(10000, () => req.destroy(new Error('timeout 10s')));
+    req.end();
+  });
+}
+
+async function liveHeaderCheck(targetUrl) {
+  const S = 'LIVE-HTTP-headers';
+  const r = [];
+  let resp;
+  try { resp = await fetchHeaders(targetUrl); }
+  catch (e) {
+    r.push(FAIL('LIVE-fetch', S, 'HTTP HEAD 取得', e.message));
+    return r;
+  }
+  const h = resp.headers;
+  const get = (k) => (h[k.toLowerCase()] || '').toString();
+
+  // 1. HSTS（max-age ≥ 31536000 + includeSubDomains + preload）
+  const hsts = get('strict-transport-security');
+  const hstsMatch = /max-age\s*=\s*(\d+)/i.exec(hsts);
+  const hstsAge = hstsMatch ? parseInt(hstsMatch[1], 10) : 0;
+  const hstsOK = !!hsts && hstsAge >= 31536000 && /includeSubDomains/i.test(hsts) && /preload/i.test(hsts);
+  r.push(hstsOK
+    ? PASS('LIVE-hsts', S, 'HSTS', `max-age=${hstsAge} +includeSubDomains +preload`)
+    : FAIL('LIVE-hsts', S, 'HSTS', hsts ? `不備: "${hsts}"` : '未配信'));
+
+  // 2. CSP（必須コア 6 個 + 推奨拡張 3 個 = 静的検証と同じ 9 個）
+  const csp = get('content-security-policy');
+  if (!csp) r.push(FAIL('LIVE-csp', S, 'CSP', '未配信'));
+  else {
+    const need = ['default-src','script-src','style-src','font-src','img-src','frame-src','object-src','base-uri','form-action'];
+    const miss = need.filter(d => !csp.includes(d));
+    r.push(miss.length === 0
+      ? PASS('LIVE-csp', S, 'CSP 9 ディレクティブ配信')
+      : FAIL('LIVE-csp', S, 'CSP', `不足: ${miss.join(',')}`));
+  }
+
+  // 3. X-Frame-Options（DENY / SAMEORIGIN）
+  const xfo = get('x-frame-options');
+  r.push(/^(DENY|SAMEORIGIN)$/i.test(xfo)
+    ? PASS('LIVE-xfo', S, 'X-Frame-Options', xfo)
+    : FAIL('LIVE-xfo', S, 'X-Frame-Options', xfo || '未配信'));
+
+  // 4. X-Content-Type-Options（nosniff）
+  const xcto = get('x-content-type-options');
+  r.push(/^nosniff$/i.test(xcto)
+    ? PASS('LIVE-xcto', S, 'X-Content-Type-Options', 'nosniff')
+    : FAIL('LIVE-xcto', S, 'X-Content-Type-Options', xcto || '未配信'));
+
+  // 5-9. COOP / COEP / CORP / Referrer-Policy / Permissions-Policy（値存在）
+  const presenceChecks = [
+    ['LIVE-coop', 'cross-origin-opener-policy', 'COOP'],
+    ['LIVE-coep', 'cross-origin-embedder-policy', 'COEP'],
+    ['LIVE-corp', 'cross-origin-resource-policy', 'CORP'],
+    ['LIVE-rp',   'referrer-policy',              'Referrer-Policy'],
+    ['LIVE-pp',   'permissions-policy',           'Permissions-Policy'],
+  ];
+  for (const [id, key, label] of presenceChecks) {
+    const v = get(key);
+    r.push(v
+      ? PASS(id, S, label, v.length > 60 ? v.substring(0, 60) + '…' : v)
+      : FAIL(id, S, label, '未配信'));
+  }
+
+  // 10. X-Hosting honest signaling（SPEC §8.9.2 許可リスト・任意推奨）
+  const xh = get('x-hosting');
+  const allowedHosts = ['cloudflare-pages','cloudflare-workers-static-assets','vercel','netlify','github-pages','custom-static-cdn'];
+  if (!xh) r.push(WARN('LIVE-xh', S, 'X-Hosting', '未配信（任意推奨・honest signaling）'));
+  else r.push(allowedHosts.includes(xh)
+    ? PASS('LIVE-xh', S, 'X-Hosting', xh)
+    : FAIL('LIVE-xh', S, 'X-Hosting', `不正値（許可リスト外）: ${xh}`));
+
+  return r;
+}
+
 // ═══════════════════ main ═══════════════════
 
-function main() {
+async function main() {
   const args = process.argv.slice(2);
+  const liveIdx = args.indexOf('--live');
+  let liveUrl = null;
+  if (liveIdx >= 0) {
+    liveUrl = args[liveIdx + 1];
+    if (!liveUrl || liveUrl.startsWith('-')) {
+      console.error('  ERROR: --live は URL を引数に取ります（例: --live https://tcharton.com/）');
+      process.exit(1);
+    }
+    args.splice(liveIdx, 2);
+  }
+
   const files = args.length > 0
     ? args.map(f => path.resolve(f))
     : TARGET_FILES.map(f => path.join(ROOT, f));
@@ -1165,7 +1278,13 @@ function main() {
   // グローバル(sitemap/robots/コントラスト)
   all.push({ file: '[グローバル] sitemap+robots+コントラスト', pt: 'global', results: cGlobal() });
 
+  // LIVE モード: HTTP ヘッダ実配信検証（旧②虚偽 S-RANK 報告再発防止 machine gate）
+  if (liveUrl) {
+    const liveResults = await liveHeaderCheck(liveUrl);
+    all.push({ file: `[LIVE: ${liveUrl}]`, pt: 'live', results: liveResults });
+  }
+
   process.exit(report(all) > 0 ? 1 : 0);
 }
 
-main();
+main().catch(e => { console.error('  FATAL: ' + e.message); process.exit(1); });
