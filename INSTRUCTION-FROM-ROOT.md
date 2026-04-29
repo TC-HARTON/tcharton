@@ -1,236 +1,83 @@
 # ② tcharton 指示書（S クラスサイト構築責任者）
 
-**発行**: 2026-04-27 / ① HARTON 総合責任者
-**目標**: scanner で **S クラス（必須 5/5 + 90 点 + 致命的 NG ゼロ）取得**
+**最終更新**: 2026-04-27 / ① HARTON 総合責任者
+**現状**: 🏆 **scanner で S クラス取得確定**（格付け S / 総合 90 / 必須 4/4 + 1 保留 / 致命的 NG 0）
+**目標達成**: SPEC v3.4 §8.5 必須 5 条件 + spec-checker S-RANK + scanner S クラスの**両層達成**
 
 ---
 
 ## 起動時 自動 Read（上から順に Read ツールで全件読み込め。担当判断不要、無条件実行）
 
 1. 本書（既読）
-2. **Read** `C:\Users\ohuch\Desktop\HARTON\tcharton\SPEC.md` — §4.2 #1 / §8.1 / §8.5 / §8.9 を確認
-3. **Read** `C:\Users\ohuch\Desktop\HARTON\CLAUDE.md` — §1 役割名称 + 報告義務
-4. **Read** `C:\Users\ohuch\Desktop\HARTON\tcharton\HARTON-CERTIFIED-INTEGRATION.md` — §0.0 緊急実装要請
-5. **Read** `C:\Users\ohuch\Desktop\HARTON\tcharton\HANDOVER-S-CLASS-FIX.md` — ② 自身の元計画
-6. **Read** `C:\Users\ohuch\Desktop\HARTON\CRITICAL-ISSUES-REPORT.md` — §11 §12
-
-全件 Read 完了後、本書「ロードマップ」へ進む。途中で代表へ確認・許可要請禁止。
+2. **Read** `C:\Users\ohuch\Desktop\HARTON\REPORT-TO-ROOT-FROM-TCHARTON.md` — ② 自身の完了報告（v1.5）
+3. **Read** `C:\Users\ohuch\Desktop\HARTON\tcharton\SPEC.md` — §4.2 #1 / §8.1 / §8.5 / §8.9
+4. **Read** `C:\Users\ohuch\Desktop\HARTON\CRITICAL-ISSUES-REPORT.md` — §13（S 取得）+ §15-§18（最新統制 + 4 Skill 必須化）
+5. **Read** `C:\Users\ohuch\Desktop\HARTON\CLAUDE.md` — §1
 
 ---
 
-## ロードマップ
+## 🔴 実装 必須プロセス（2026-04-28 ① 確定 / ②④⑤ 共通 / 単独実装厳禁）
 
-| 順 | タスク | 依存 | 達成する必須条件 |
+代表確定（2026-04-28）— ② / ④ / ⑤ 全担当は **単独実装を禁止**。以下 4 Skill を構造的に組込:
+
+| Skill | 用途 | 適用タイミング |
+|---|---|---|
+| `/feature-dev:feature-dev` | Phase 1-7 構造化実装（codebase understanding + architecture focus）| 新規機能 / 大規模修正の着手時 |
+| `/gstack` | 実機ブラウザテスト + dogfooding（ローカル PASS / 本番 FAIL ドリフト防止）| 機能実装後 + 本番デプロイ後 |
+| `/requesting-code-review` | 完了前の自己レビュー要請（タスク完了 / 主要機能 / マージ前必須）| 完了報告前 mandatory |
+| `/receiving-code-review` | 受信した review feedback の技術的厳格処理（performative 禁止）| review 受領時 mandatory |
+
+**禁止**: 上記 Skill を経ずに「完了」「合格」「PASS」「達成」を称すること（§0.0.1 narrow-scope claim 一般化 / 背任）。
+
+**完了条件 AND 化**:
+1. spec-checker FAIL=0
+2. `/requesting-code-review` 並列複数 reviewer の CRITICAL/HIGH 全件解消
+3. `/gstack` で本番実機検証 PASS
+4. ① 報告
+
+⑤ v1.4 第二次厳格検証完遂（並列 5 エージェント自己レビュー）が standard。
+
+---
+
+## 完了タスク（履歴）
+
+| # | タスク | commit | 状態 |
 |---|---|---|---|
-| 1 | spec-checker.js バグ修正 | なし | （#2 の前提）|
-| 2 | JSON-LD `@type` 配列化（5 ファイル）| #1 | 必須 2（部分）|
-| 3 | `_headers` に X-Hosting 追加 + push | #2 | 必須 5（④#1 完了後）|
-| 4 | GBP 作成 + sameAs に GBP URL | 代表手動 | 必須 2（完全）|
-| 5 | scanner 再判定で S クラス確認 | #2 #3 #4 + ④#1 | **目標達成** |
+| 1 | spec-checker.js バグ修正（`@type` 配列対応 + `hasType()` ヘルパ）| `a12f686` | ✅ |
+| 2 | JSON-LD `@type` 配列化 5 ファイル | `a12f686` | ✅ |
+| 3 | `_headers` X-Hosting honest signaling | `a12f686` | ✅ |
+| 改善#1 | spec-checker.js `--live` モード（HTTP ヘッダ実測 machine gate）| `a4d34de` | ✅ |
+| 4 | GBP 作成 + sameAs に GBP URL 配置 | `a3113d1` | ✅ CID `16606425942373165010` |
+| 5 | scanner で S クラス取得確認 | `36d4328` | ✅ **S/90** |
+| 6 | Deep Work ナラティブ + 連絡導線再設計（Form 主 CTA / Phone 補助）| `06c3d1c` → `68b0f8b`（ビデオ会議 CTA 撤回 → フォーム経由）| ✅ |
+
+**達成基準**: spec-checker FAIL=0 維持 / verify-all exit 0 / scanner で S/90 + 致命的 NG 0 / NAP 100
 
 ---
 
-## #1 spec-checker.js バグ修正
+## 継続タスク（運用）
 
-**修正 A**: `tcharton/spec-checker.js` lines 183-189 を置換:
+### 月次
 
-```js
-function jsonldTypes(schemas) {
-  const t = new Set();
-  const addType = (v) => {
-    if (Array.isArray(v)) v.forEach(x => x && t.add(x));
-    else if (v) t.add(v);
-  };
-  for (const s of schemas) {
-    addType(s['@type']);
-    if (s['@graph']) s['@graph'].forEach(i => addType(i['@type']));
-  }
-  return t;
-}
-```
+- 月初: scanner で再判定 → S 維持確認 → ① 報告（変動あれば即報）
+- 月中: SPEC / GOOGLE / GEO 更新時、`node sync-spec.js --check` で同期確認
 
-**修正 B**: ヘルパ追加 + `=== 'ProfessionalService'` 形式の strict equality を全置換:
+### 随時（追加要請が来たら）
 
-```js
-function hasType(schema, typeName) {
-  const t = schema?.['@type'];
-  if (Array.isArray(t)) return t.includes(typeName);
-  return t === typeName;
-}
-```
-
-`grep -n "=== '" tcharton/spec-checker.js` で全箇所特定 → `hasType(...)` に置換。
-
-**検証**: `node spec-checker.js` → FAIL=0
-**FAIL 時**: grep 漏れがある。全数再監査
-**コミット**: `fix: spec-checker @type array support per SPEC v3.4 §4.2 #1.0`
-
----
-
-## #2 JSON-LD `@type` 配列化
-
-対象 5 ファイル:
-- `tcharton/index.html`
-- `tcharton/services/web/index.html`
-- `tcharton/services/maintenance/index.html`
-- `tcharton/services/ai-prediction/index.html`
-- `tcharton/about/index.html`
-
-各ファイルの ProfessionalService スキーマで:
-
-```diff
-- "@type": "ProfessionalService"
-+ "@type": ["ProfessionalService", "LocalBusiness"]
-```
-
-**検証**: `node verify-all.js` → exit 0（S-RANK 維持）
-**FAIL 時**: #1 を再確認
-**コミット**: `feat: JSON-LD @type array per SPEC v3.4 §4.2 #1.0`
-
----
-
-## #3 `_headers` に X-Hosting 追加
-
-`tcharton/_headers` の `/*` ブロック末尾に 1 行追加:
-
-```
-  X-Hosting: cloudflare-workers-static-assets
-```
-
-push 後の検証:
-
-```bash
-curl -sI https://tcharton.com/ | grep -i x-hosting
-```
-
-**期待出力**: `x-hosting: cloudflare-workers-static-assets`
-**FAIL 時**: Cloudflare Workers の `_headers` 反映を待つ（数分）/ 反映されない場合 ① エスカレーション
-**コミット**: `feat: X-Hosting honest signaling per SPEC v3.4 §8.9.2`
-
----
-
-## #4 GBP 作成 → sameAs
-
-**代表手動作業**:
-1. <https://business.google.com> で **Service Area Business** モードで HARTON GBP 作成
-2. NAP（社名 / 住所 / 電話）を tcharton.com の JSON-LD と完全一致させる
-3. 検証完了後、CID URL を ② に共有
-
-**② 実装**: 5 ファイル（#2 と同一）の JSON-LD `sameAs` を:
-
-```json
-"sameAs": [
-  "https://www.google.com/maps/place/?cid={代表から受領した CID}",
-  "https://note.com/harton_official"
-]
-```
-
-**検証**: `node verify-all.js` → exit 0
-**コミット**: `feat: GBP sameAs per SPEC v3.4 §4.2 #1.3`
-
----
-
-## #5 scanner 再判定で S クラス確認
-
-**前提**: 以下すべて完了
-- ② #2 #3 #4 完了 + push 済
-- ④ scanner #1（`check_ssg_hint` 拡張）完了 — `HARTON/REPORT-TO-ROOT-FROM-SCANNER.md` で確認
-- ④ scanner #2（`INDUSTRY_KEYWORD_MAP` 拡張）完了 — 同上
-
-**実行**:
-
-```bash
-cd C:\Users\ohuch\Desktop\HARTON\scanner
-py -c "
-import os; os.environ['USE_PLAYWRIGHT']='1'
-import scanner, requests
-sess = requests.Session()
-res = scanner.scan_single({'社名':'T.C.HARTON','業種':'コンサル','URL':'https://tcharton.com/','住所':'静岡県沼津市','電話番号':''}, sess)
-print('格付け:', res['格付け'])
-print('総合:', res['総合スコア'])
-print('必須条件:', res['必須条件達成'])
-print('致命的NG:', res['致命的NG件数'])
-"
-```
-
-**完了条件（全て満たすこと）**:
-- 格付け: `S`
-- 総合: 90 以上
-- 必須条件: `5/5`
-- 致命的 NG 件数: 0
-
-**FAIL 時**: 未達条件を特定し ① エスカレーション。具体的な不足項目を `HARTON/REPORT-TO-ROOT-FROM-TCHARTON.md` に記載。
+- ① / 代表からの追加実装要請を本書に追記して着手
 
 ---
 
 ## 報告
 
-各タスク完了時、`HARTON/REPORT-TO-ROOT-FROM-TCHARTON.md` に末尾追記:
+`HARTON/REPORT-TO-ROOT-FROM-TCHARTON.md` に末尾追記:
 
 ```markdown
-## 2026-MM-DD タスク#N 完了
+## YYYY-MM-DD タスク#N 完了
 - commit: {hash}
 - 検証: {コマンド} → {出力 1 行}
 - 残: {残課題 / 「なし」}
 ```
-
-#5 完了時は ① 最終承認案件として明示。
-
----
-
-## #6 連絡導線の再設計 — 問合せフォーム主CTA + 電話は補助（Deep Work ナラティブ）
-
-**背景**: 代表の電話番号（個人スマホ）が SPEC v3.4 §4.2 #1.1 `telephone` 必須要件で公開されているが、営業電話の負担と Deep Work（集中作業）の阻害が課題。電話番号は維持しつつ、**主 CTA を問合せフォームに集約**し、Deep Work ナラティブでブランディング転換する。
-
-### 維持事項（変更禁止）
-- JSON-LD `telephone` は既存番号を維持（scanner Sクラス + GBP NAP 完全一致を崩さない）
-- 特商法表記内の電話番号も維持
-
-### 実装事項
-
-| # | ファイル | 操作 |
-|---|---|---|
-| 6.1 | `contact/index.html` | 主 CTA を「✉️ 問合せフォーム」+「📅 予約制ビデオ会議（Calendly 等の予約リンク）」の 2 本立てに変更。電話は「📞 電話（補助）」として小さく配置。営業時間「平日 10:00-17:00」明記 |
-| 6.2 | `index.html` / `services/web/index.html` 等の主要ヘッダ | CTA ボタンを「お問合せ」→「📅 予約 / ✉️ 問合せ」に変更 |
-| 6.3 | `about/index.html` | Deep Work ナラティブを記載（下記文例参照）|
-| 6.4 | `legal/index.html` | 特商法表記の電話番号は維持。隣に「※ 緊急以外は問合せフォームにてお願いします」を追加 |
-| 6.5 | `_layout` / `footer` | フッター連絡先表記を「✉️ お問合せフォーム / 📅 ご予約 / 📞 電話（特商法表記）」の優先順 |
-
-### Deep Work ナラティブ文例（about / contact に配置）
-
-```
-当事務所では、1 ピクセル・1 ミリ秒にこだわる超集中作業（Deep Work）を
-優先するため、原則として電話による窓口を主動線としていません。
-すべての履歴を正確に記録し、SPEC v3.4 の厳格な品質管理を徹底するため、
-テキストベース（問合せフォーム）または予約制ビデオ会議でのご相談を
-お願いしております。
-
-電話によるご連絡も承っておりますが、作業中は応答できないことがあります。
-平日 10:00–17:00 を目安にご利用ください。
-
-沼津・三島にいながら、全国・世界基準の S クラス WEB を提供するため、
-非同期で効率的なコミュニケーションを基本としています。
-```
-
-### 予約制ビデオ会議リンク
-
-代表が **Calendly** または **Google カレンダー予約スケジュール**で予約ページを作成 → URL を ② に共有。② が CTA に組込。
-
-### 完了条件（5 件 AND）
-1. `node spec-checker.js` → FAIL=0（電話 telephone 維持により §4.2 #1.1 PASS）
-2. `node verify-all.js` exit 0
-3. `curl -s https://tcharton.com/contact/` で「問合せフォーム」CTA が「電話」より先に表示される（HTML 順序確認）
-4. about / contact に Deep Work ナラティブが配置されている
-5. scanner 再判定で S クラス維持（`格付け: S` 維持）
-
-**コミット**: `feat: tcharton contact narrative — form/booking primary, phone retained per Deep Work approach`
-
----
-
-## 待ち合わせ
-
-- **#3 push 後の scanner 再判定**: ④ #1 完了待ち（`REPORT-TO-ROOT-FROM-SCANNER.md` を ② が定期確認）
-- **#4 GBP**: 代表 CID URL 共有待ち
 
 ---
 
@@ -239,4 +86,39 @@ print('致命的NG:', res['致命的NG件数'])
 - 3 法規（`SPEC.md` / `GOOGLE-STANDARDS.md` / `GEO-STANDARDS.md`）編集
 - `scanner/` 配下編集
 - `--no-verify` push
-- 「ローカル PASS」のみで「S クラス取得」と称する報告
+- ローカル PASS のみで「S クラス取得」を称する報告（実 scanner 再判定が必須）
+
+---
+
+## 【追記 2026-04-30 / v1.12】ブランド戦略 v1.1.7（① HARTON 総合責任者 確定）
+
+> **出典**: `HARTON/CRITICAL-ISSUES-REPORT.md` §23.3（v1.1.16）/ Gemini 提言書 `_archive/2026-04-28-skill-mandatory-cleanup/Project_Michelin_Strategy_v1.md` ① 批判的継承
+
+### ブランド戦略 3 行サマリ（暗記必須）
+
+```
+[実体]    沼津 = HARTON Certified 評価基準の「自己実証体 第 1 号」誕生地
+[物語]    地方都市から AI 時代の WEB 品質を再定義する
+[証明]    自分が ★★★ を取れない基準で、他者を測ることはしない（dogfooding 倫理）
+```
+
+### ② tcharton への実装指示（メインサイト IA 改訂）
+
+| # | 改訂項目 | 着手内容 |
+|---|---|---|
+| 1 | **ヒーロー副題**「沼津の WEB 制作」→「沼津で証明し、全国へ。AI 時代の WEB 品質を再定義する。」 | `index.html` ヒーロー差替 + scanner ★★★ 結果へのディープリンク |
+| 2 | **「Why Numazu?」セクション新設** | 地方都市での ★★★ 取得 = 「機械評価は資本に依存しない」証明として明記。隣接市（三島・富士）ではなく類似地方都市（倉敷・四日市）展開根拠も明示 |
+| 3 | **制作実績 二軸分離** | 「Local（地域貢献）」/「National（全国・高難度）」カテゴリ化 |
+| 4 | **certification.tcharton.com への自然導線** | 評価機関（サブ）→ 自己実証体（メイン）の循環構造を 1 セクション化 |
+| 5 | **★★★ 自己取得バッジ表示** | scanner 再判定結果の verbatim hash 公開（dogfooding 証跡）|
+
+### 実装着手前の必須事項
+
+1. ⑤ certification の MASTER-PLAN v1.1.7 草案受領を**待たず先行可**（戦略は ① で確定済）
+2. 改修着手前に `node verify-all.js` で S-RANK 維持を再確認
+3. 完了後 4 Skill 必須化（v1.1.11）適用 — `/feature-dev:feature-dev` + `/requesting-code-review` 並列複数 reviewer + `/gstack` 本番実機 + `/receiving-code-review`
+4. ★ 表記は ★ / ★★ / ★★★（v3.4.1 整合化済 / 旧 ★3〜★5 / S・A・B・C・D は使用禁止 / retro-compat 内部 ID のみ）
+
+### ★★ 厳格化（v1.1.15 §22）周知
+
+② tcharton には影響なし（★★★ 取得済）。ただし MASTER-PLAN §3.4 / SPEC §8.5.2 表現が「★★ = 80 点以上 + 致命的 NG ゼロ + 必須条件 **4 件以上**」に厳格化された旨、報告書 / 顧客説明資料で言及する場合は最新表記を使用すること。
