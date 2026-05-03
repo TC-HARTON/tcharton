@@ -1,3 +1,4 @@
+// v1.15.1: asset cache refresh (Cloudflare wrangler hash 再計算トリガー / 6 .js 強制 re-upload)
 /**
  * /dist/scripts/trusted-types.js
  * 外部化元: 新規（全ページ共通 Trusted Types default ポリシー）

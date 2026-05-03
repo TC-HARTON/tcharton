@@ -1,3 +1,4 @@
+// v1.15.1: asset cache refresh (Cloudflare wrangler hash 再計算トリガー / 6 .js 強制 re-upload)
 /**
  * /dist/scripts/thanks.js
  * 外部化元: thanks.html line 243-268（IntersectionObserver fade-in + 10 秒 countdown 自動遷移）

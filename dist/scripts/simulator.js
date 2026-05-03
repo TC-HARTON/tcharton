@@ -1,3 +1,4 @@
+// v1.15.1: asset cache refresh (Cloudflare wrangler hash 再計算トリガー / 6 .js 強制 re-upload)
 /**
  * /dist/scripts/simulator.js
  * 外部化元: index.html line 940-1065（無料診断シミュレーター simAdvance/showSimResult/simReset）

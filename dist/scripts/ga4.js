@@ -1,3 +1,4 @@
+// v1.15.1: asset cache refresh (Cloudflare wrangler hash 再計算トリガー / 6 .js 強制 re-upload)
 /**
  * /dist/scripts/ga4.js
  * 外部化元: index.html line 255-269 等（GA4 DNT-aware loader）/ 全 21 HTML 同一内容

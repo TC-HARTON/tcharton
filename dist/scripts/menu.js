@@ -1,3 +1,4 @@
+// v1.15.1: asset cache refresh (Cloudflare wrangler hash 再計算トリガー / 6 .js 強制 re-upload)
 /**
  * /dist/scripts/menu.js
  * 外部化元: about/index.html line 528-558 等（mobile menu + IntersectionObserver fade-in）

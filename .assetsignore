@@ -11,6 +11,7 @@ package.json
 package-lock.json
 tailwind.config.js
 src/
+wrangler.jsonc
 
 # サーバー側スクリプト（配信不要）
 spec-checker.js
