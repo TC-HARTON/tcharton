@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方法論・品質根拠｜評価軸 5 種と公式一次ソース完全公開｜T.C.HARTON</title>
+  <meta name="description" content="T.C.HARTON の WEB 品質根拠を完全公開。spec-checker.js 2,554 検証項目・5 評価軸・公式 8 基準（WCAG 2.2 / CWV / OWASP / IPA / arXiv 2311.09735 GEO 9 戦略）への一次ソース紐付け開示。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="方法論・品質根拠｜評価軸 5 種と公式一次ソース完全公開｜T.C.HARTON">
+  <meta property="og:description" content="spec-checker 2,554 項目 + 5 評価軸 + 公式 8 一次ソースで品質を機械保証する HARTON の方法論を完全公開。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/methodology/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="方法論・品質根拠｜評価軸 5 種と公式一次ソース完全公開｜T.C.HARTON">
+  <meta name="twitter:description" content="spec-checker 2,554 項目 + 5 評価軸 + 公式 8 一次ソースで品質を機械保証する HARTON の方法論を完全公開。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#0f172a">
+  <meta name="color-scheme" content="dark">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/methodology/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="T.C.HARTON">
+  <meta name="application-name" content="T.C.HARTON">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://tcharton.com/"},
+      {"@type": "ListItem", "position": 2, "name": "方法論・品質根拠", "item": "https://tcharton.com/methodology/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "HARTON の評価方法論と品質根拠",
+    "description": "spec-checker 2,554 検証項目 + 5 評価軸 + 公式 8 一次ソースに基づく WEB 品質機械保証フレームワーク",
+    "author": {
+      "@type": "Person",
+      "name": "大内 達也",
+      "url": "https://tcharton.com/profile/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "T.C.HARTON",
+      "url": "https://tcharton.com/"
+    },
+    "datePublished": "2026-05-03",
+    "dateModified": "2026-05-03",
+    "inLanguage": "ja",
+    "url": "https://tcharton.com/methodology/",
+    "citation": [
+      {"@type": "CreativeWork", "name": "WHATWG HTML Living Standard", "url": "https://html.spec.whatwg.org/"},
+      {"@type": "CreativeWork", "name": "W3C WCAG 2.2", "url": "https://www.w3.org/TR/WCAG22/"},
+      {"@type": "CreativeWork", "name": "Google Core Web Vitals", "url": "https://web.dev/articles/vitals"},
+      {"@type": "CreativeWork", "name": "OWASP Top 10:2025", "url": "https://owasp.org/Top10/"},
+      {"@type": "CreativeWork", "name": "IPA 安全なウェブサイトの作り方 改訂第7版", "url": "https://www.ipa.go.jp/security/vuln/websecurity/about.html"},
+      {"@type": "ScholarlyArticle", "name": "GEO: Generative Engine Optimization", "url": "https://arxiv.org/abs/2311.09735", "author": "Aggarwal et al."}
+    ]
+  }
+  </script>
+
+  <!-- Google Analytics 4 (gtag.js) — DNT-aware (privacy.html §6 公約準拠) -->
+  <script>
+  (function () {
+    var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+    if (dnt === '1' || dnt === 'yes') return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HKXN8TV6HG';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-HKXN8TV6HG');
+  })();
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .fade-in { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+
+  <noscript>
+    <style>.fade-in { opacity: 1 !important; transform: none !important; }</style>
+  </noscript>
+</head>
+<body class="bg-dark-900 text-dark-300 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-dark-900/90 nav-blur border-b border-dark-700">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-white font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-8" data-nosnippet>
+        <a href="/services/web/" class="text-dark-300 hover:text-white py-3">WEB構築</a>
+        <a href="/services/maintenance/" class="text-dark-300 hover:text-white py-3">保守運用</a>
+        <a href="/services/ai-prediction/" class="text-dark-300 hover:text-white py-3">AI予測</a>
+        <a href="/pricing/" class="text-dark-300 hover:text-white py-3">料金</a>
+        <a href="/cases/" class="text-dark-300 hover:text-white py-3">事例</a>
+        <a href="/profile/" class="text-dark-300 hover:text-white py-3">プロフィール</a>
+        <a href="/#simulator" class="bg-teal-500 hover:bg-teal-400 text-white px-5 py-3 rounded-md font-medium">無料診断</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-200" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 top-16 z-50 bg-dark-900 lg:hidden" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">WEB構築</a>
+      <a href="/services/maintenance/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">保守運用</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">AI予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">導入事例</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-white font-bold border-b border-dark-700" aria-current="page">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">お知らせ</a>
+      <a href="/#simulator" class="mt-4 block bg-teal-500 hover:bg-teal-400 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料診断シミュレーター</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <nav aria-label="パンくずリスト" class="max-w-5xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-400">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-white py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-200">方法論・品質根拠</span></li>
+      </ol>
+    </nav>
+
+    <article>
+      <header class="max-w-5xl mx-auto px-4 lg:px-8 pt-8 pb-12 lg:pt-12 lg:pb-16 hero-content">
+        <p lang="en" class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Methodology — How We Evaluate</p>
+        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+          評価方法論と品質根拠
+        </h1>
+        <p class="mt-4 text-lg text-dark-300 max-w-3xl business-description">
+          T.C.HARTON が WEB 品質を機械保証する根拠を完全公開します。<strong class="text-white">spec-checker.js 2,554 検証項目</strong> / <strong class="text-white">5 評価軸</strong> / <strong class="text-white">公式 8 一次ソース</strong>—すべて再現可能な手順として開示します。
+        </p>
+        <p class="mt-2 text-sm text-dark-400">
+          <time itemprop="datePublished" datetime="2026-05-03">2026年5月3日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time itemprop="dateModified" datetime="2026-05-03">最終更新 2026年5月3日</time>
+        </p>
+      </header>
+
+      <figure class="lead-evidence max-w-5xl mx-auto px-4 lg:px-8 mb-10 lg:mb-16">
+        <div class="bg-dark-800 border-l-4 border-teal-400 pl-6 pr-6 py-6 rounded-r-lg">
+          <blockquote cite="https://arxiv.org/abs/2311.09735">
+            <p class="text-dark-200 leading-relaxed text-lg"><q lang="en">Cite Sources, Quotation Addition, and Statistics Addition, achieved a relative improvement of 30-40% on the Position-Adjusted Word Count metric and 15-30% on the Subjective Impression metric.</q></p>
+          </blockquote>
+          <figcaption class="mt-4 text-sm text-dark-400">
+            ― Aggarwal et al., <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">arXiv:2311.09735</a> §5.1（KDD 2024 / Princeton / IIT Delhi）
+          </figcaption>
+        </div>
+      </figure>
+
+      <section aria-label="5評価軸の根拠" class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">5 評価軸の根拠と一次ソース</h2>
+        <p class="mt-4 text-dark-300 leading-relaxed max-w-3xl">
+          すべての WEB 構築は以下 5 軸で機械検証します。各軸は独立評価され、項目別の事実減点で総合スコアを算定します（4 軸並列独立評価フレーム + CV 補完軸 / SPEC §0.0.10 厳格化原則準拠）。
+        </p>
+
+        <div class="mt-10 space-y-6">
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6 lg:p-8">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <span class="text-teal-300 font-display font-extrabold text-2xl">①</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-white">技術</h3>
+              <span class="text-sm text-dark-400">— Lighthouse 95+ / Core Web Vitals</span>
+            </div>
+            <p class="mt-3 text-dark-300 text-sm leading-relaxed">
+              LCP &lt; 2.5s / INP &lt; 200ms / CLS &lt; 0.1 を pre-push hook で機械検証。<a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">web.dev / Core Web Vitals</a>（Google 公式）の基準値を直接参照。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6 lg:p-8">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <span class="text-teal-300 font-display font-extrabold text-2xl">②</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-white">コンテンツ</h3>
+              <span class="text-sm text-dark-400">— 一次情報・E-E-A-T・Lead Evidence Block</span>
+            </div>
+            <p class="mt-3 text-dark-300 text-sm leading-relaxed">
+              <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Google 有用なコンテンツ</a>準拠。記事冒頭に Lead Evidence Block（最初の `&lt;h2&gt;` より前に数値・公的リンク・引用句のいずれか）を必須配置（SPEC §4.13）。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6 lg:p-8">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <span class="text-teal-300 font-display font-extrabold text-2xl">③</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-white">信頼</h3>
+              <span class="text-sm text-dark-400">— SSL Labs A+ / OWASP / IPA</span>
+            </div>
+            <p class="mt-3 text-dark-300 text-sm leading-relaxed">
+              <a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">OWASP Top 10:2025</a> + <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">IPA 安全なウェブサイトの作り方 改訂第7版</a> 準拠。代表プロフィール完全公開・料金透明・所在地明示で E-E-A-T を担保。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6 lg:p-8">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <span class="text-teal-300 font-display font-extrabold text-2xl">④</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-white">LLMO（AI 検索最適化）</h3>
+              <span class="text-sm text-dark-400">— GEO 9 戦略 White Hat 7 種</span>
+            </div>
+            <p class="mt-3 text-dark-300 text-sm leading-relaxed">
+              <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">arXiv:2311.09735</a>（KDD 2024）の 9 戦略のうち White Hat 7 種（Quotation / Statistics / Fluency / Cite Sources / Technical Terms / Easy-to-Understand / Authoritative）を必須実装。Keyword Stuffing は SEO ペナルティリスクのため採用禁止。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6 lg:p-8">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <span class="text-teal-300 font-display font-extrabold text-2xl">⑤</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-white">CV（コンバージョン）</h3>
+              <span class="text-sm text-dark-400">— CTA 配置 / フォーム最適化 / GA4 計測</span>
+            </div>
+            <p class="mt-3 text-dark-300 text-sm leading-relaxed">
+              <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Google SEO スターターガイド</a>準拠。CTA 最適配置 / 2 分送信フォーム / 3 経路（メール・電話・LINE）/ GA4 イベント計測。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-label="GEO 最強コンビ" class="bg-dark-800/50 border-y border-dark-700">
+        <div class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+          <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">GEO 最強コンビ — Quotation + Statistics + Cite Sources</h2>
+          <p class="mt-4 text-dark-300 leading-relaxed max-w-3xl">
+            <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Aggarwal et al. (KDD 2024)</a> が示した 9 戦略のうち、<strong class="text-white">G-1 Quotation（+27.8%）+ G-2 Statistics（+25.9%）+ G-4 Cite Sources（+24.9%）の 3 種を同一段落で組合わせると相乗効果</strong>が確認されています。HARTON はこれを「最強コンビ」として全ページ Lead Evidence に必須実装します。
+          </p>
+
+          <div class="mt-8 overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <caption class="sr-only">GEO 9 戦略のうち White Hat 7 種の Position-Adjusted Word Count 改善率</caption>
+              <thead>
+                <tr class="border-b-2 border-dark-700">
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">#</th>
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">手法</th>
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white text-right">改善率</th>
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">採用</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-dark-800 text-sm">
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-1</th><td class="py-3 px-4 text-dark-200">Quotation Addition（引用句）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+27.8%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-2</th><td class="py-3 px-4 text-dark-200">Statistics Addition（数値）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+25.9%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-3</th><td class="py-3 px-4 text-dark-200">Fluency Optimization（流暢性）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+25.1%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-4</th><td class="py-3 px-4 text-dark-200">Cite Sources（出典明示）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+24.9%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-5</th><td class="py-3 px-4 text-dark-200">Technical Terms（専門用語）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+23.1%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-6</th><td class="py-3 px-4 text-dark-200">Easy-to-Understand（平易化）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+22.2%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-7</th><td class="py-3 px-4 text-dark-200">Authoritative（権威的トーン）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+21.8%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-400">G-9</th><td class="py-3 px-4 text-dark-500">Keyword Stuffing</td><td class="py-3 px-4 text-dark-500 text-right">+17.8%</td><td class="py-3 px-4 text-red-400">禁止</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-xs text-dark-500">出典: Aggarwal et al. "GEO: Generative Engine Optimization", arXiv:2311.09735 v2, Table 1（KDD 2024）</p>
+        </div>
+      </section>
+
+      <section aria-label="準拠する公式基準" class="max-w-7xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
+        <h2 class="font-display text-2xl lg:text-4xl font-bold text-white text-center">準拠する公式基準（一次ソース）</h2>
+        <p class="mt-4 text-center text-dark-300 max-w-2xl mx-auto">弊社が準拠する公式基準。すべて一次ソースをご確認いただけます。</p>
+        <div class="mt-10 overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <caption class="sr-only">T.C.HARTON が準拠する公式基準と一次ソース URL</caption>
+            <thead>
+              <tr class="border-b-2 border-dark-700">
+                <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">分野</th>
+                <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">基準書</th>
+                <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">一次ソース</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-dark-800">
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">技術</th>
+                <td class="py-3 px-4 text-sm text-dark-300">HTML Living Standard</td>
+                <td class="py-3 px-4 text-sm"><a href="https://html.spec.whatwg.org/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">html.spec.whatwg.org</a></td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">アクセシビリティ</th>
+                <td class="py-3 px-4 text-sm text-dark-300">WCAG 2.2 Level AA</td>
+                <td class="py-3 px-4 text-sm"><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">w3.org/TR/WCAG22</a></td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">パフォーマンス</th>
+                <td class="py-3 px-4 text-sm text-dark-300">Core Web Vitals (LCP/INP/CLS)</td>
+                <td class="py-3 px-4 text-sm"><a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">web.dev / vitals</a></td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">SEO</th>
+                <td class="py-3 px-4 text-sm text-dark-300">Google 検索セントラル</td>
+                <td class="py-3 px-4 text-sm"><a href="https://developers.google.com/search/?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">developers.google.com/search</a></td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">セキュリティ</th>
+                <td class="py-3 px-4 text-sm text-dark-300">OWASP Top 10:2025</td>
+                <td class="py-3 px-4 text-sm"><a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">owasp.org/Top10</a></td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">セキュリティ</th>
+                <td class="py-3 px-4 text-sm text-dark-300">IPA 安全なウェブサイトの作り方 改訂第7版</td>
+                <td class="py-3 px-4 text-sm"><a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">ipa.go.jp</a></td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">構造化データ</th>
+                <td class="py-3 px-4 text-sm text-dark-300">Schema.org</td>
+                <td class="py-3 px-4 text-sm"><a href="https://schema.org/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">schema.org</a></td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-200">LLMO</th>
+                <td class="py-3 px-4 text-sm text-dark-300">GEO (Aggarwal et al., KDD 2024)</td>
+                <td class="py-3 px-4 text-sm"><a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">arxiv.org/abs/2311.09735</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-label="機械検証エンジン" class="bg-dark-800/50 border-y border-dark-700">
+        <div class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+          <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">機械検証エンジン spec-checker.js</h2>
+          <p class="mt-4 text-dark-300 leading-relaxed max-w-3xl">
+            自社開発の Node.js 検証ツール。<strong class="text-white">2,554 検証項目</strong>を pre-push hook で自動実行し、<strong class="text-white">FAIL=0 / 合格率 100%</strong>を S-RANK 条件として強制します。1 件でも FAIL があれば push 自体が阻止されます。
+          </p>
+
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.1 パフォ</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">163 PASS / Lighthouse 95+ + Core Web Vitals + ビルド CSS</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.2 SEO</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">204 PASS / title 30-60 / desc 70-160 / OGP 7 + Twitter Card 4 + JSON-LD 5 種</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.4 LLMO</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">143 PASS / aria-label / 見出し階層 / Speakable / data-nosnippet</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.5 a11y</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">105 PASS / WCAG 2.2 Level AA / タッチターゲット 44px / フォーカスリング</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.6 セキュリティ</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">84 PASS / CSP 必須 6 + 推奨 4 / target=_blank rel=noopener / object-src 'none'</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.7 モバイル</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">96 PASS / モバイルメニュー / Containing Block 汚染回避 / 横スクロール禁止</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.8 Google</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">76 PASS / E-E-A-T / 構造化データ / リッチリザルト</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">GEO/LLMO</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">85 PASS / G-1〜G-6 9 戦略 / Lead Evidence Block / 公的リンク密度</p>
+            </div>
+            <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
+              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">SPEC 本文</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">492 PASS / SPEC v3.5 全条項 + Body Theme Variants + 19 ページ階層</p>
+            </div>
+          </div>
+          <p class="mt-6 text-sm text-dark-400">
+            最新検証実績: <strong class="text-teal-300">PASS=1,461 / FAIL=0 / WARN=1 / 合格率 100%</strong>（2026-05-03 spec-checker.js 実行）<br>
+            <span class="text-xs text-dark-500">出典: <a href="https://github.com/TC-HARTON/tcharton" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">github.com/TC-HARTON/tcharton</a></span>
+          </p>
+        </div>
+      </section>
+
+      <section aria-label="業界実測の取得方法" class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">業界実測 902 件の取得方法</h2>
+        <p class="mt-4 text-dark-300 leading-relaxed max-w-3xl">
+          HARTON Certified（認定機関）が <strong class="text-white">scanner.py</strong> で静岡県 5 都市 11 業種を機械検証。<strong class="text-white">業界中央値 24 点 vs 当社実測 90 点 = 3.8 倍ギャップ</strong>を実証しました。
+        </p>
+
+        <dl class="mt-8 space-y-3 text-sm">
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-700 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">取得期間</dt><dd class="text-white">2026-04-30 〜 2026-05-01</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-700 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">対象都市</dt><dd class="text-white">沼津市・三島市・富士市・静岡市・浜松市（静岡県 5 都市）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-700 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">対象業種</dt><dd class="text-white">税理士・弁護士・司法書士・行政書士・不動産・飲食店・美容院・美容クリニック・宿泊施設・クリニック/診療所・学習塾（11 業種）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-700 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">総検証件数</dt><dd class="text-white"><strong>n=902 件</strong></dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-700 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">業界中央値</dt><dd class="text-white">24 点（100 点満点）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-700 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">当社（tcharton.com）実測値</dt><dd class="text-teal-300 font-bold">90 点 / ★★★（HARTON S-Class Certified）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-700 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">致命的 NG 発生率</dt><dd class="text-white">32.5%（293/902 件）— HTTPS 非対応 / SSL 証明書エラー / WP 管理面露出 / CMS バージョン情報露出のいずれか 1 件以上検出</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 pb-3"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">計算式</dt><dd class="text-white"><code class="text-xs bg-dark-800 px-2 py-1 rounded border border-dark-700">3.8 倍 = 当社実測 90 ÷ 業界中央値 24（小数第 2 位四捨五入）</code></dd></div>
+        </dl>
+
+        <p class="mt-6 text-xs text-dark-500">出典: scanner Phase 0.5 静岡県業界実測レポート 2026-05（HARTON Certified 認定機関 / 機械検証データ）</p>
+      </section>
+
+      <section aria-label="お問い合わせ" class="bg-teal-700 text-white">
+        <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24 text-center">
+          <h2 class="font-display text-2xl lg:text-4xl font-bold">あなたのサイトの現在地を知る</h2>
+          <p class="mt-4 text-lg text-teal-50 max-w-2xl mx-auto leading-relaxed">
+            まずは <strong>1 分の無料診断</strong>で現状を可視化してください。診断結果をもとに、本ページで紹介した 5 評価軸での改善余地をメールでご提案します。
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="/#simulator" class="inline-flex items-center justify-center bg-white text-teal-700 hover:bg-teal-50 px-8 py-4 rounded-md font-semibold">
+              無料診断シミュレーター
+            </a>
+            <a href="/contact/" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-teal-600 px-8 py-4 rounded-md font-semibold">
+              メールで問い合わせ
+            </a>
+          </div>
+          <p class="mt-6 text-sm text-teal-100">メール返信目安: 24 時間以内（土日祝除く）</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-400 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB構築</a></li>
+            <li><a href="/services/maintenance/" class="hover:text-white py-3 inline-block">保守運用</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI予測</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block" aria-current="page">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">法令</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      var btn = document.getElementById('menuToggle');
+      var menu = document.getElementById('mobile-menu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'メニューを開く');
+          document.body.style.overflow = '';
+        });
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.fade-in').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>

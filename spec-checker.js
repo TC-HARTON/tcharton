@@ -47,6 +47,7 @@ const STATIC_TARGETS = [
   'pricing/index.html',
   'cases/index.html',
   'faq/index.html',
+  'methodology/index.html',
   'profile/index.html',
 
   // 必須情報
@@ -87,6 +88,7 @@ const PAGE_TYPE = {
   'pricing/index.html': 'subpage',
   'cases/index.html': 'subpage',
   'faq/index.html': 'subpage',
+  'methodology/index.html': 'subpage',
   'profile/index.html': 'profile',
 
   'about/index.html': 'subpage',
@@ -1070,6 +1072,46 @@ function cGlobal() {
       ? PASS('gl-ct', S, `コントラスト ${c.lbl}`, `${cr.toFixed(1)}:1`)
       : FAIL('gl-ct', S, `コントラスト ${c.lbl}`, `${cr.toFixed(1)}:1 (必要${c.min}:1)`));
   });
+
+  // SPEC §1.5 5 項目同時更新ルール — STATIC_TARGETS ↔ PAGE_TYPE 整合性チェック
+  // 案 B 取り込み: validatePageTypeConsistency() machine gate（v1.1.16 / 2026-05-03）
+  // 新規ページ追加時にディレクトリ図 / §1.2 / sitemap.xml / STATIC_TARGETS / llms.txt の
+  // 同時更新が漏れないよう、配列とマッピングの双方向整合を機械検証する。
+  const targetsSet = new Set(STATIC_TARGETS);
+  const pageTypeKeys = new Set(Object.keys(PAGE_TYPE));
+  const missingInPageType = [...targetsSet].filter(t => !pageTypeKeys.has(t));
+  const missingInTargets = [...pageTypeKeys].filter(k => !targetsSet.has(k));
+  if (missingInPageType.length === 0 && missingInTargets.length === 0) {
+    r.push(PASS('gl-pt-consistency', S, 'STATIC_TARGETS ↔ PAGE_TYPE 整合性 (SPEC §1.5)', `${STATIC_TARGETS.length} ページ完全整合`));
+  } else {
+    const issues = [];
+    if (missingInPageType.length > 0) issues.push(`PAGE_TYPE 欠落: ${missingInPageType.join(',')}`);
+    if (missingInTargets.length > 0) issues.push(`STATIC_TARGETS 欠落: ${missingInTargets.join(',')}`);
+    r.push(FAIL('gl-pt-consistency', S, 'STATIC_TARGETS ↔ PAGE_TYPE 整合性 (SPEC §1.5)', issues.join(' / ')));
+  }
+
+  // sitemap.xml ↔ STATIC_TARGETS 整合性チェック（§1.5 連動）
+  // STATIC_TARGETS の全 HTML ページが sitemap.xml に登録されているか機械検証
+  // 例外: 404.html / thanks.html は noindex のため sitemap 登録対象外
+  const smPath = path.join(ROOT, 'sitemap.xml');
+  if (fs.existsSync(smPath)) {
+    const smContent = fs.readFileSync(smPath, 'utf-8');
+    const NO_SITEMAP = new Set(['404.html', 'thanks.html']);
+    const sitemapMissing = STATIC_TARGETS
+      .filter(t => !NO_SITEMAP.has(t))
+      .filter(t => {
+        // index.html → / 、その他 'foo/index.html' → /foo/
+        const url = t === 'index.html'
+          ? `${DOMAIN}/`
+          : `${DOMAIN}/${t.replace(/index\.html$/, '')}`;
+        return !smContent.includes(url);
+      });
+    if (sitemapMissing.length === 0) {
+      r.push(PASS('gl-sm-consistency', S, 'sitemap.xml ↔ STATIC_TARGETS 整合性 (SPEC §1.5)'));
+    } else {
+      r.push(FAIL('gl-sm-consistency', S, 'sitemap.xml ↔ STATIC_TARGETS 整合性 (SPEC §1.5)', `sitemap 未登録: ${sitemapMissing.join(',')}`));
+    }
+  }
 
   return r;
 }
