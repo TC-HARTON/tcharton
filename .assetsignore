@@ -17,7 +17,7 @@ wrangler.jsonc
 spec-checker.js
 sync-spec.js
 verify-all.js
-scripts/
+/scripts/
 
 # 3 法規（gitignored だが二重に防御）
 SPEC.md
