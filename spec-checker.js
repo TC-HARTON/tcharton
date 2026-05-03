@@ -1196,6 +1196,73 @@ function cGlobal() {
     }
   }
 
+  // ─── .assetsignore glob anchor 整合性 machine gate (v1.16 / DEPLOY-3 拡張 / ① v1.22 採用) ───
+  // ② v1.16 commit f825ff7 push 後の dist/scripts/*.js 6 件 404 真因:
+  //   .assetsignore line 20 'scripts/' (anchor 不在) → gitignore 構文で全深度マッチ
+  //   → ルート scripts/ + dist/scripts/ 両方を Cloudflare upload から除外
+  // 再発防止: 非 anchor dir パターン × 同名 dir が depth ≥ 2 に存在 → FAIL
+  // 既知の意図的 any-depth (node_modules / .wrangler / .git 等) は collision なしで PASS
+  // HSCEL §0.0.10 厳格化原則 + §6.3 Tier 3 machine gate 精神準拠
+  //
+  // 設計上の限界 (Reviewer B v1.16 H-1 / H-3 受領):
+  //   - trailing-slash 必須: 'foo' (slash なし) は dir/file 区別不能のため対象外。
+  //     .assetsignore に dir 排除を書く際は必ず 'foo/' 形式で書くプロジェクト規約とする
+  //   - '**/foo/' / '*/foo/' 等の glob 接頭辞付きパターンは line.startsWith('*') で対象外
+  //     これらが必要な場合は手動レビュー要 (実用ケース極稀)
+  {
+    const aiPath = path.join(ROOT, '.assetsignore');
+    if (!fs.existsSync(aiPath)) {
+      // Reviewer B-1 CRITICAL / C-2 HIGH: 不在は 4-state invariant 違反 + 実害大
+      // (.assetsignore なし = node_modules/.wrangler 等が全件 upload 試行 / 25 MiB per-file 上限抵触)
+      r.push(FAIL('gl-ai-anchor', S, '.assetsignore glob anchor 整合性 (DEPLOY-3 / v1.16)',
+        '.assetsignore が存在しない — Cloudflare Workers Static Assets 除外設定が失われている'));
+    } else {
+      const lines = fs.readFileSync(aiPath, 'utf-8').split(/\r?\n/);
+      const SKIP_WALK = new Set(['.git', 'node_modules', '.wrangler', '.claude', '.vscode', '.idea']);
+
+      function findCollisions(dirname) {
+        const hits = [];
+        function walk(dir, depth) {
+          let entries;
+          try { entries = fs.readdirSync(dir, { withFileTypes: true }); }
+          catch { return; }
+          for (const e of entries) {
+            if (!e.isDirectory()) continue;
+            if (SKIP_WALK.has(e.name)) continue;
+            const rel = path.relative(ROOT, path.join(dir, e.name)).replace(/\\/g, '/');
+            if (depth >= 1 && e.name === dirname) hits.push(rel);
+            walk(path.join(dir, e.name), depth + 1);
+          }
+        }
+        walk(ROOT, 0);
+        return hits;
+      }
+
+      const collisions = [];
+      for (const raw of lines) {
+        const line = raw.trim();
+        if (!line || line.startsWith('#')) continue;
+        if (!line.endsWith('/')) continue;
+        if (line.startsWith('/') || line.startsWith('*') || line.startsWith('!')) continue;
+        const dirname = line.replace(/\/$/, '');
+        if (!dirname || dirname.includes('/')) continue;
+        const hits = findCollisions(dirname);
+        if (hits.length > 0) collisions.push({ pattern: line, hits });
+      }
+
+      if (collisions.length === 0) {
+        r.push(PASS('gl-ai-anchor', S, '.assetsignore glob anchor 整合性 (DEPLOY-3 / v1.16)',
+          '非 anchor dir パターン × depth≥2 同名 dir 衝突なし'));
+      } else {
+        const detail = collisions
+          .map(c => `${c.pattern}→[${c.hits.join(',')}]`)
+          .join(' ; ');
+        r.push(FAIL('gl-ai-anchor', S, '.assetsignore glob anchor 整合性 (DEPLOY-3 / v1.16)',
+          `非 anchor パターンが意図外 dir に衝突: ${detail} — root anchor (/前置) を検討`));
+      }
+    }
+  }
+
   return r;
 }
 

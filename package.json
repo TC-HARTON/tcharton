@@ -11,7 +11,8 @@
     "build:ogp": "node scripts/build-ogp.js",
     "build:icons": "node scripts/build-icons.js",
     "watch:css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "verify": "node spec-checker.js"
+    "verify": "node spec-checker.js",
+    "deploy:check": "node scripts/post-push-deploy-check.js"
   },
   "devDependencies": {
     "sharp": "^0.34.5",
