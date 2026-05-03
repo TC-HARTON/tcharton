@@ -145,7 +145,7 @@
         <p class="mt-2 text-sm text-dark-400">
           <time itemprop="datePublished" datetime="2026-04-25">2026年4月25日</time>
           <span class="mx-2" aria-hidden="true">/</span>
-          <time itemprop="dateModified" datetime="2026-04-25">最終更新 2026年4月25日</time>
+          <time itemprop="dateModified" datetime="2026-05-03">最終更新 2026年5月3日</time>
         </p>
       </header>
 
@@ -192,9 +192,12 @@
         </div>
       </section>
 
-      <section aria-label="自社サイト事例" class="bg-dark-800/50 border-y border-dark-700">
+      <section aria-label="自社サイト事例 詳細" class="bg-dark-800/50 border-y border-dark-700">
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
           <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">公開済み事例（1 件）</h2>
+          <p class="mt-3 text-dark-400 text-sm max-w-3xl leading-relaxed">
+            以下は <strong class="text-dark-200">課題 → 思考プロセス → 解決</strong> の 3 段構成で記述。「何をしたか」だけでなく「<strong class="text-white">なぜそう判断したか</strong>」を言語化することで、再現性のある制作プロセスとして公開します。
+          </p>
 
           <article class="mt-10 bg-dark-800 border border-teal-500/30 rounded-2xl p-8 lg:p-10">
             <nav aria-label="事例カテゴリ" class="flex flex-wrap gap-2 text-xs">
@@ -207,34 +210,113 @@
               <span class="bg-dark-700 text-dark-200 px-3 py-1 rounded-full">個人事業主</span>
             </nav>
 
-            <h3 class="mt-4 font-display text-xl lg:text-2xl font-bold text-white">tcharton.com 構築（2026-04 公開）</h3>
+            <h3 class="mt-4 font-display text-xl lg:text-2xl font-bold text-white">tcharton.com 構築 — 「自分が達成できない基準で、他者を測ることはしない」</h3>
+            <p class="mt-2 text-dark-400 text-sm">2026-04 公開 / 個人事業主 / 期間 約 3 週間 / 制作 大内 達也（単独）</p>
 
-            <h4 class="mt-8 font-display font-bold text-white text-sm uppercase tracking-wider">課題</h4>
-            <p class="mt-2 text-dark-300 text-sm leading-relaxed">
-              T.C.HARTON 事業立上げに伴う公式サイト新規構築。SPEC v3.2 / 2,554 検証項目への完全準拠が要件。事業内容（旧 harton/site-builder → 新 3 本柱: WEB構築 / 保守運用 / AI予測）の刷新を反映。
-            </p>
+            <!-- ─── 第 1 段: 課題 ─── -->
+            <div class="mt-10 pl-5 border-l-2 border-teal-500/50">
+              <p class="font-display text-teal-300 text-xs tracking-widest uppercase">Stage 1 / Challenge</p>
+              <h4 class="mt-2 font-display font-bold text-white text-lg lg:text-xl">課題: 認定機関を設計するなら、自社が真っ先に基準を満たす必要があった</h4>
+              <p class="mt-3 text-dark-300 text-sm leading-relaxed">
+                T.C.HARTON は 4 つの事業（WEB構築 / 保守運用 / AI予測 / HARTON Certified 認定）を提供する事業者であり、なかでも HARTON Certified（ <a href="https://certification.tcharton.com" class="text-teal-300 underline hover:text-teal-200">certification.tcharton.com</a>）は他社の WEB サイトを ★ / ★★ / ★★★ で評価する <strong class="text-white">第三者認定機関</strong>。ここで根本的な問いに直面した:
+              </p>
+              <blockquote class="mt-4 bg-dark-900/60 border-l-4 border-teal-400 p-4 rounded-r">
+                <p class="text-dark-200 text-sm leading-relaxed italic">
+                  「他社を ★★★ で評価する以上、自社サイトが <strong class="text-white not-italic">★★★ を取得していなければ倫理的に矛盾する</strong>。しかも、評価基準は AI 検索時代を踏まえた次世代水準であり、世の WEB 制作の中央値からは遠い位置にある。」
+                </p>
+              </blockquote>
+              <p class="mt-4 text-dark-300 text-sm leading-relaxed">
+                さらに静岡県 5 都市 902 件の業界実測（2026-05 自社調査）では、業界中央値スコアは 24 点（100 点満点）。当社が設計した HARTON Certified ★★★ の閾値は 90 点 + 致命的 NG 0 件 + 必須条件 5 件全件達成。<strong class="text-white">業界中央値の 3.8 倍の水準を、自社で先行達成する</strong>必要があった。
+              </p>
+            </div>
 
-            <h4 class="mt-6 font-display font-bold text-white text-sm uppercase tracking-wider">施策</h4>
-            <ul class="mt-2 space-y-2 text-dark-300 text-sm">
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>SPEC v3.2 完全準拠の 18 ページ静的サイト構築</li>
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>spec-checker.js（自社製・2,554 検証項目）+ pre-push hook で S-RANK ゲート</li>
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>Body Theme Variants（marketing / reading）使い分け</li>
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>無料診断シミュレーター実装（5 質問 × 3 軸スコア）</li>
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>GEO 9 戦略のうち White Hat 7 種を全ページ適用</li>
-            </ul>
+            <!-- ─── 第 2 段: 思考プロセス ─── -->
+            <div class="mt-10 pl-5 border-l-2 border-amber-400/50">
+              <p class="font-display text-amber-300 text-xs tracking-widest uppercase">Stage 2 / Thinking Process</p>
+              <h4 class="mt-2 font-display font-bold text-white text-lg lg:text-xl">思考プロセス: 4 つの判断と、それぞれの「なぜ」</h4>
 
-            <h4 class="mt-6 font-display font-bold text-white text-sm uppercase tracking-wider">効果（2026-04-25 時点）</h4>
-            <ul class="mt-2 space-y-2 text-dark-300 text-sm">
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>spec-checker FAIL = 0 / 合格率 100% を全 18 ページで達成</li>
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>dist/output.css 14.9 KB（目標 40 KB 以下を大幅クリア）</li>
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>JSON-LD 5 種完備（ProfessionalService / WebSite / FAQPage / BreadcrumbList / Person）</li>
-              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">▶</span>本番公開後の Lighthouse / CWV / SSL Labs / Mozilla Observatory スコアは公開時に追記予定</li>
-            </ul>
+              <div class="mt-6 space-y-6">
+                <div>
+                  <p class="font-display font-bold text-white text-base">判断 1: なぜ静的サイトか — 「動的機能 = 攻撃面」と捉えた</p>
+                  <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+                    一般的な選択肢は WordPress（CMS 市場で約 4 割の<a href="https://w3techs.com/technologies/details/cm-wordpress" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">業界シェア / W3Techs 公開統計</a>）。だが当社が静岡県 902 件を機械検証した結果（参考値: 32.5% で致命的脆弱性 = 管理画面公開等を検出）、「公開し続ける限りパッチを当て続ける運用前提」は、HARTON Certified の「<strong class="text-white">致命的 NG ゼロを構造的に保証する</strong>」哲学と矛盾する。<strong class="text-white">そもそも管理画面を持たない</strong>＝攻撃面（=ハッキング経路）そのものを構造的に消す = 静的サイト + Cloudflare Workers Static Assets を選択。
+                  </p>
+                </div>
 
-            <h4 class="mt-6 font-display font-bold text-white text-sm uppercase tracking-wider">技術スタック</h4>
-            <p class="mt-2 text-dark-300 text-sm">
-              HTML Living Standard / Tailwind CSS 3.4 / Cloudflare Pages / Node.js（spec-checker.js, sync-spec.js, verify-all.js）
-            </p>
+                <div>
+                  <p class="font-display font-bold text-white text-base">判断 2: なぜ自社製 spec-checker.js か — 「規範と検証は同一エンジニアが書くべき」</p>
+                  <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+                    Lighthouse / WAVE / pa11y 等の汎用ツールは存在する。だが当社の評価基準（SPEC v3.5 + GOOGLE-STANDARDS v2.0 + GEO-STANDARDS v2.1）は、汎用ツールが扱う共通項を超え、独自の <strong class="text-white">2,554 検証項目</strong>に体系化されている。<strong class="text-white">規範を書く担当が、その検証エンジンも自分で書く</strong>ことで「機械検証可能でない規範は書かない」という強制力が働く。これは <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">dogfooding</a> の最深層適用。
+                  </p>
+                </div>
+
+                <div>
+                  <p class="font-display font-bold text-white text-base">判断 3: なぜ pre-push hook で S-RANK ゲートを敷くか — 「人間の判断を信用しない」</p>
+                  <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+                    どれほど厳格な規範を書いても、実装時の「ちょっと急ぎだから後で直す」「軽微だから例外」が積み上がるのが現場の実態。これを構造的に排除するため、git の push 直前に走るスクリプト（<code class="bg-dark-900 px-1.5 py-0.5 rounded text-teal-300 text-xs">.git/hooks/pre-push</code>）で機械検証エンジンを強制実行し、FAIL > 0 または合格率 &lt; 100% で <strong class="text-white">物理的に push を拒否</strong>。これは CSP（= ブラウザがどのスクリプトを許可するかを決めるセキュリティ設定）の規範違反解消事案（2026-05-03）でも作動 — 危険なインラインスクリプトが混入した瞬間 FAIL し、本番デプロイ前に発見できた。
+                  </p>
+                </div>
+
+                <div>
+                  <p class="font-display font-bold text-white text-base">判断 4: なぜ AI 検索 (GEO) を最優先軸に置いたか — 「Google だけでは負ける時代」</p>
+                  <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+                    ChatGPT / Perplexity / Gemini が「直接回答」を返す時代、ユーザーは Google 検索結果ページを経由しなくなる。 <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Aggarwal et al. (KDD 2024)</a> によれば、AI に引用される確率は「Quotation + Statistics + Cite Sources」3 戦略の組み合わせで <strong class="text-white">最大 +40.6%</strong>向上。当社は GEO 9 戦略のうち White Hat 7 種を全ページに適用 — これは SEO の延長ではなく、<strong class="text-white">「AI に正確に引用される」ための情報設計</strong>として再定義したもの。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ─── 第 3 段: 解決 ─── -->
+            <div class="mt-10 pl-5 border-l-2 border-emerald-400/50">
+              <p class="font-display text-emerald-300 text-xs tracking-widest uppercase">Stage 3 / Resolution</p>
+              <h4 class="mt-2 font-display font-bold text-white text-lg lg:text-xl">解決: HARTON Certified ★★★ を、自社が業界に先駆けて取得</h4>
+              <p class="mt-3 text-dark-300 text-sm leading-relaxed">
+                結果、当社は <strong class="text-white">HARTON Certified ★★★ を自社で取得した最初の制作事業者</strong>となり、Stage 1 で立てた「自分が達成できない基準で他者を測ることはしない」を物理的に証明。以下の数値はすべて第三者機関の API / 自社製機械検証エンジンの出力で再現可能な値のみ掲載しており、「自社測定」「特定期間」を併記し一般化された主張を避けています（SPEC §0.0 H-2 準拠）。
+              </p>
+
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-dark-900/60 border border-emerald-400/30 rounded-lg p-4">
+                  <p class="text-emerald-300 text-xs font-display uppercase tracking-wider">セキュリティ</p>
+                  <p class="mt-1 font-display text-2xl font-extrabold text-white">A+ <span class="text-emerald-300 text-base font-bold">/ 125 点</span></p>
+                  <p class="mt-1 text-dark-400 text-xs">Mozilla Observatory（公式 API / 2026-05-03 / 10/10 全件 PASS）</p>
+                </div>
+                <div class="bg-dark-900/60 border border-emerald-400/30 rounded-lg p-4">
+                  <p class="text-emerald-300 text-xs font-display uppercase tracking-wider">機械検証</p>
+                  <p class="mt-1 font-display text-2xl font-extrabold text-white">1,537 <span class="text-emerald-300 text-base font-bold">/ 1,537</span></p>
+                  <p class="mt-1 text-dark-400 text-xs">spec-checker.js（自社製・FAIL=0 / WARN=0 / 100%）</p>
+                </div>
+                <div class="bg-dark-900/60 border border-emerald-400/30 rounded-lg p-4">
+                  <p class="text-emerald-300 text-xs font-display uppercase tracking-wider">業界比較</p>
+                  <p class="mt-1 font-display text-2xl font-extrabold text-white">3.8 倍</p>
+                  <p class="mt-1 text-dark-400 text-xs">業界中央値 24 点 vs 当社 90 点（静岡県 902 件 / 2026-05 自社調査）</p>
+                </div>
+                <div class="bg-dark-900/60 border border-emerald-400/30 rounded-lg p-4">
+                  <p class="text-emerald-300 text-xs font-display uppercase tracking-wider">CSS 重量</p>
+                  <p class="mt-1 font-display text-2xl font-extrabold text-white">14.9 <span class="text-emerald-300 text-base font-bold">KB</span></p>
+                  <p class="mt-1 text-dark-400 text-xs">dist/output.css（minified / 目標 40KB 以下を大幅クリア）</p>
+                </div>
+                <div class="bg-dark-900/60 border border-emerald-400/30 rounded-lg p-4">
+                  <p class="text-emerald-300 text-xs font-display uppercase tracking-wider">構造化データ</p>
+                  <p class="mt-1 font-display text-2xl font-extrabold text-white">5 種</p>
+                  <p class="mt-1 text-dark-400 text-xs">JSON-LD（ProfessionalService / WebSite / FAQPage / BreadcrumbList / Person）</p>
+                </div>
+                <div class="bg-dark-900/60 border border-emerald-400/30 rounded-lg p-4">
+                  <p class="text-emerald-300 text-xs font-display uppercase tracking-wider">スクリプト注入防御</p>
+                  <p class="mt-1 font-display text-2xl font-extrabold text-white">Trusted Types</p>
+                  <p class="mt-1 text-dark-400 text-xs">悪意あるスクリプト混入経路を構造的に遮断（Chromium 系最高水準のブラウザ標準 API）</p>
+                </div>
+              </div>
+
+              <h4 class="mt-8 font-display font-bold text-white text-sm uppercase tracking-wider">技術スタック（一次ソース併記）</h4>
+              <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+                HTML Living Standard / <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Tailwind CSS 3.4</a> / <a href="https://developers.cloudflare.com/workers/static-assets/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Cloudflare Workers Static Assets</a> / Node.js（自社製 spec-checker.js / sync-spec.js / verify-all.js / post-push-deploy-check.js）
+              </p>
+
+              <h4 class="mt-6 font-display font-bold text-white text-sm uppercase tracking-wider">学び（再現性のために）</h4>
+              <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+                v1.15 CSP 解消過程で、<code class="bg-dark-900 px-1.5 py-0.5 rounded text-teal-300 text-xs">.assetsignore</code> の <code class="bg-dark-900 px-1.5 py-0.5 rounded text-teal-300 text-xs">scripts/</code> パターン（gitignore 構文）が <code class="bg-dark-900 px-1.5 py-0.5 rounded text-teal-300 text-xs">dist/scripts/</code> も意図せず除外していた事案を経験。1 文字（root anchor <code class="bg-dark-900 px-1.5 py-0.5 rounded text-teal-300 text-xs">/</code>）で解消する単純なバグだったが、これを <strong class="text-white">spec-checker.js に新たな機械検証ゲート（<code class="bg-dark-900 px-1.5 py-0.5 rounded text-teal-300 text-xs">gl-ai-anchor</code>）として恒久化</strong>。同じバグは構造的に二度と発生しない。— これが「機械検証で保証する」の意味。
+              </p>
+            </div>
           </article>
         </div>
       </section>

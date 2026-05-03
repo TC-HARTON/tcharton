@@ -387,6 +387,65 @@
         </ol>
       </section>
 
+      <section aria-label="制作背景" id="design-decisions" class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        <p class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Design Decisions / Intent</p>
+        <h2 class="mt-3 font-display text-2xl lg:text-3xl font-bold text-white">制作背景 — なぜ、このサイトはこう作られたか</h2>
+        <p class="mt-4 text-dark-300 text-sm leading-relaxed">
+          このサイトの構造・配色・配置はすべて、<strong class="text-white">明確な意図に基づいた判断</strong>の結果です。「なんとなく」「業界標準だから」では作っていません。設計判断を言語化しておくことで、お客様の WEB サイト制作時にも「<strong class="text-white">なぜこうするのか</strong>」を一緒に考えながら進めることができます。
+        </p>
+
+        <div class="mt-8 space-y-6">
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6">
+            <h3 class="font-display font-bold text-white text-base">なぜ「無料診断」が主 CTA で、お問い合わせは副なのか</h3>
+            <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+              新規訪問者が最初に求める情報は「<strong class="text-white">自分のサイトは今どの位置にいるのか</strong>」。問い合わせは判断材料が揃った後の行動です。よって <strong class="text-white">teal-500 背景の主 CTA = 1 分無料診断</strong>、outline secondary CTA = 「事例を見る」/「お問い合わせ」の二段構造とし、ファーストビューでの心理的ハードルを下げています。WEB 業界で多用される「お問い合わせはこちら」一本主 CTA は、訪問者の準備状態を考慮していない設計だと判断しました。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6">
+            <h3 class="font-display font-bold text-white text-base">なぜ teal（青緑系）を主要色にしたか</h3>
+            <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+              候補は紺色（信頼感）・赤（情熱）・緑（安全）でした。最終的に <strong class="text-white">teal（#14b8a6 系）</strong>を選んだのは、「<strong class="text-white">論理性と信頼性の両立</strong>」を視覚的に表現するため。深い青系のみだと「保守的」、緑のみだと「安心だが先進性が弱い」。teal は <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">WCAG 2.2 AA</a> のコントラスト比 4.5:1 以上を dark-900 背景で達成しつつ、医療・金融・テックの「冷静な専門家」イメージを担保。AI 予測事業も扱う当社にとって最適な選択と判断しました。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6">
+            <h3 class="font-display font-bold text-white text-base">なぜダークテーマを基調にしたか</h3>
+            <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+              一般的な制作会社サイトは白基調が多数。意図的に外しています。理由は 3 つ:
+              <strong class="text-white">①</strong> ダークモード選好を持つ tech 系ユーザー層への配慮（参考値として、<a href="https://www.statista.com/statistics/1334486/dark-mode-usage/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">Statista 2024 調査</a>では一部ユーザー集団でダークモード選好が高水準と報告）、
+              <strong class="text-white">②</strong> 富士山ヒーロー写真の視認性最大化（白背景では空の青と被る）、
+              <strong class="text-white">③</strong> 「ライト基調 = 親しみやすさ」「ダーク基調 = 専門性」というブランド差別化。当社はカジュアル系ではなく <strong class="text-white">機械検証で信頼を保証する事業者</strong>として、技術的厳格さを表現したかった。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6">
+            <h3 class="font-display font-bold text-white text-base">なぜ富士山ヒーロー画像を維持しているか</h3>
+            <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+              「沼津起点 = 地方都市から AI 時代の WEB 品質を再定義する」というブランド戦略 v1.1.7 に基づく判断。沼津市内から富士山を見上げる視点は <strong class="text-white">地理的事実と志を同時に表現</strong>します。世界中の WEB 制作会社が抽象画像・パターン背景を使うなか、「実在の地理的拠点」を映すことで、「<strong class="text-white">資本に依存せず地方からでも頂点を目指せる</strong>」という当社の思想を視覚的に伝えています。なお画像は本番で WebP 圧縮 + LCP &lt; 2.5s の Core Web Vitals 基準を維持。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6">
+            <h3 class="font-display font-bold text-white text-base">なぜフォーム主導で、電話番号を表に出していないか</h3>
+            <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+              代表 1 名運営のため、電話対応中はコード作成・機械検証作業が中断されます。Deep Work 時間の確保は <strong class="text-white">アウトプット品質の前提</strong>。当社の競争優位は「素早い電話応対」ではなく「<strong class="text-white">機械検証で保証された WEB 品質</strong>」。お問い合わせは原則フォーム経由で 24 時間以内（土日祝除く）にメール返信、必要に応じてビデオ会議をご提案します。電話対応を諦めた事業者ではなく、「<strong class="text-white">最も品質に貢献する集中時間を守る</strong>」事業者だとご理解ください。
+            </p>
+          </article>
+
+          <article class="bg-dark-800 border border-dark-700 rounded-xl p-6">
+            <h3 class="font-display font-bold text-white text-base">なぜ料金を完全公開しているか</h3>
+            <p class="mt-2 text-dark-300 text-sm leading-relaxed">
+              業界では「お見積りはお問い合わせください」が多数。これを意図的に避けました。<strong class="text-white">価格を隠すと、訪問者の最初の判断材料が「電話するかしないか」のハードル</strong>になり、本来検討すべき「品質基準」「契約条件」「サポート範囲」の比較が後回しになります。<a href="/pricing/" class="text-teal-300 underline hover:text-teal-200">/pricing/</a> で全プランの価格レンジ + 含まれるもの / 含まれないもの / 追加費用条件まで明記。「最初の問い合わせ前に、価格妥当性を独立検証できる」状態を提供しています。
+            </p>
+          </article>
+        </div>
+
+        <p class="mt-8 text-dark-400 text-sm leading-relaxed">
+          以上 6 項目以外の細部判断（タイポ階層 / 余白設計 / アニメーション速度 / アクセシビリティ実装等）は、<a href="/methodology/" class="text-teal-300 underline hover:text-teal-200">/methodology/</a> で機械検証可能な基準として記述しています。「設計の意図」と「機械検証の基準」が同一エンジニアの一貫した判断で書かれていることが、HARTON Certified の信頼根拠です。
+        </p>
+      </section>
+
       <section aria-label="準拠基準" class="bg-dark-800/50 border-y border-dark-700">
         <div class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
           <h2 class="font-display text-xl lg:text-2xl font-bold text-white">準拠する公式基準</h2>
