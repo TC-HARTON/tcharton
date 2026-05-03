@@ -28,7 +28,7 @@
 
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
 
   <link rel="canonical" href="https://tcharton.com/services/maintenance/plans/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -52,25 +52,7 @@
     ]
   }
   </script>
-
-  <!-- Google Analytics 4 (gtag.js) — DNT-aware (privacy.html §6 公約準拠) -->
-  <script>
-  (function () {
-    var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-    if (dnt === '1' || dnt === 'yes') return;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HKXN8TV6HG';
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-HKXN8TV6HG');
-  })();
-  </script>
-
-  <link rel="stylesheet" href="/dist/output.css">
+<link rel="stylesheet" href="/dist/output.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,6 +79,10 @@
   <noscript>
     <style>.fade-in { opacity: 1 !important; transform: none !important; }</style>
   </noscript>
+  <!-- GA4 DNT-aware (privacy.html §6 公約準拠) / v1.15 inline 外部化 -->
+  <script src="/dist/scripts/ga4.js" defer></script>
+  <script src="/dist/scripts/trusted-types.js"></script>
+
 </head>
 <body class="bg-white text-dark-700 font-sans antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
@@ -490,37 +476,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    (function () {
-      'use strict';
-      var btn = document.getElementById('menuToggle');
-      var menu = document.getElementById('mobile-menu');
-      if (!btn || !menu) return;
-      btn.addEventListener('click', function () {
-        var open = menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-        document.body.style.overflow = open ? 'hidden' : '';
-      });
-      menu.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () {
-          menu.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-          btn.setAttribute('aria-label', 'メニューを開く');
-          document.body.style.overflow = '';
-        });
-      });
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      document.querySelectorAll('.fade-in').forEach(function (el) { io.observe(el); });
-    })();
-  </script>
+  <script src="/dist/scripts/menu.js" defer></script>
 </body>
 </html>

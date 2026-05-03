@@ -735,9 +735,22 @@ function c11_7_mobile(html, pt) {
     r.push(WARN('11.7-overlay', S, 'モバイルメニュー', 'mobile-menu未検出'));
   }
 
-  // 2. スクロールロック
-  const hasScrollLock = /overflow\s*=\s*['"]hidden['"]|overflow\s*=\s*'hidden'/i.test(bd) ||
-                        /body\.style\.overflow/i.test(bd);
+  // 2. スクロールロック (v1.15: 外部 .js 参照も検査対象に拡張 / inline 外部化対応)
+  // HTML 内 inline + 参照される外部 .js (/dist/scripts/*.js) を結合して検査
+  let scrollLockSource = bd;
+  // <script src> で参照される /dist/scripts/*.js を読込結合
+  const scriptSrcMatches = bd.match(/<script\s[^>]*\bsrc=["']\/dist\/scripts\/([^"']+\.js)["'][^>]*>/gi) || [];
+  for (const m of scriptSrcMatches) {
+    const fileMatch = m.match(/src=["']\/dist\/scripts\/([^"']+\.js)["']/i);
+    if (fileMatch) {
+      const jsPath = path.join(ROOT, 'dist', 'scripts', fileMatch[1]);
+      if (fs.existsSync(jsPath)) {
+        scrollLockSource += '\n' + fs.readFileSync(jsPath, 'utf-8');
+      }
+    }
+  }
+  const hasScrollLock = /overflow\s*=\s*['"]hidden['"]|overflow\s*=\s*'hidden'/i.test(scrollLockSource) ||
+                        /body\.style\.overflow/i.test(scrollLockSource);
   r.push(hasScrollLock ? PASS('11.7-scroll', S, 'スクロールロック') : WARN('11.7-scroll', S, 'スクロールロック', 'JS未検出'));
 
   // 3. aria-expanded連動
@@ -1110,6 +1123,76 @@ function cGlobal() {
       r.push(PASS('gl-sm-consistency', S, 'sitemap.xml ↔ STATIC_TARGETS 整合性 (SPEC §1.5)'));
     } else {
       r.push(FAIL('gl-sm-consistency', S, 'sitemap.xml ↔ STATIC_TARGETS 整合性 (SPEC §1.5)', `sitemap 未登録: ${sitemapMissing.join(',')}`));
+    }
+  }
+
+  // ─── inline script ↔ CSP 'unsafe-inline' 整合性 machine gate (v1.15 ① 追加条件 3) ───
+  // SPEC §8.1.4「script-src 'unsafe-inline' 🔴 禁止」規範違反再発防止
+  // 4 象限判定: inline > 0 + 'unsafe-inline' あり → FAIL（規範違反）
+  //              inline > 0 + 'unsafe-inline' なし → FAIL（実行不能）
+  //              inline = 0 + 'unsafe-inline' あり → WARN（不要許容残置）
+  //              inline = 0 + 'unsafe-inline' なし → PASS（理想状態 / SPEC §8.1.4 完全遵守）
+  {
+    // JSON-LD ブロック先行除去 + 外部 src 付き script 除外 + inline script 検出
+    const RE_JSONLD  = /<script\s+type=["']application\/ld\+json["'][\s\S]*?<\/script>/gi;
+    const RE_EXT_SRC = /<script\s[^>]*\bsrc=["'][^"']*["'][^>]*>(?:<\/script>)?/gi;
+    const RE_INLINE  = /<script(?:\s+type=["']text\/javascript["'])?\s*>[\s\S]*?<\/script>/gi;
+
+    let totalInline = 0;
+    const inlineByFile = {};
+    for (const t of STATIC_TARGETS) {
+      const fp = path.join(ROOT, t);
+      if (!fs.existsSync(fp)) continue;
+      let html = fs.readFileSync(fp, 'utf-8');
+      html = html.replace(RE_JSONLD, '').replace(RE_EXT_SRC, '');
+      const matches = html.match(RE_INLINE) || [];
+      if (matches.length > 0) {
+        inlineByFile[t] = matches.length;
+        totalInline += matches.length;
+      }
+    }
+
+    // _headers + meta CSP の script-src で 'unsafe-inline' 検出
+    let headersUnsafe = false;
+    const headersPath = path.join(ROOT, '_headers');
+    if (fs.existsSync(headersPath)) {
+      const hContent = fs.readFileSync(headersPath, 'utf-8');
+      const cspLine = hContent.match(/Content-Security-Policy:\s*([^\n]+)/i);
+      if (cspLine) {
+        const ssMatch = cspLine[1].match(/script-src\s+([^;]+)/i);
+        if (ssMatch && /'unsafe-inline'/i.test(ssMatch[1])) headersUnsafe = true;
+      }
+    }
+    let metaUnsafeFiles = [];
+    for (const t of STATIC_TARGETS) {
+      const fp = path.join(ROOT, t);
+      if (!fs.existsSync(fp)) continue;
+      const html = fs.readFileSync(fp, 'utf-8');
+      const metaCsp = html.match(/<meta\s+http-equiv=["']Content-Security-Policy["']\s+content=["']([^"']*)["']/i);
+      if (metaCsp) {
+        const ssMatch = metaCsp[1].match(/script-src\s+([^;]+)/i);
+        if (ssMatch && /'unsafe-inline'/i.test(ssMatch[1])) metaUnsafeFiles.push(t);
+      }
+    }
+    const anyUnsafe = headersUnsafe || metaUnsafeFiles.length > 0;
+
+    if (totalInline === 0 && !anyUnsafe) {
+      r.push(PASS('gl-csp-inline', S, 'inline script ↔ CSP 整合性 (SPEC §8.1.4)',
+        `inline:0件 / _headers unsafe-inline:なし / meta unsafe-inline:0件 — 規範完全遵守`));
+    } else if (totalInline === 0 && anyUnsafe) {
+      const src = [];
+      if (headersUnsafe) src.push('_headers');
+      if (metaUnsafeFiles.length > 0) src.push(`meta(${metaUnsafeFiles.length}件)`);
+      r.push(WARN('gl-csp-inline', S, 'inline script ↔ CSP 整合性 (SPEC §8.1.4)',
+        `inline:0件 だが unsafe-inline 残置: ${src.join(' / ')} — CSP 強化推奨`));
+    } else if (totalInline > 0 && anyUnsafe) {
+      const files = Object.entries(inlineByFile).map(([f, n]) => `${f}(${n})`).join(',');
+      r.push(FAIL('gl-csp-inline', S, 'inline script ↔ CSP 整合性 (SPEC §8.1.4)',
+        `inline ${totalInline}件 [${files}] + unsafe-inline 許可 — §8.1.4 違反 / Mozilla Observatory -20 候補`));
+    } else {
+      const files = Object.entries(inlineByFile).map(([f, n]) => `${f}(${n})`).join(',');
+      r.push(FAIL('gl-csp-inline', S, 'inline script ↔ CSP 整合性 (SPEC §8.1.4)',
+        `inline ${totalInline}件 [${files}] だが unsafe-inline 未許可 — inline 実行不能`));
     }
   }
 

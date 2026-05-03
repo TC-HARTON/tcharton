@@ -19,9 +19,11 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 
 // 統一後の CSP 値（_headers の Content-Security-Policy から frame-ancestors を除いたもの）
+// v1.15 (2026-05-03): script-src 'unsafe-inline' 削除 + require-trusted-types-for 'script'; trusted-types default; 追加
+// 規範: SPEC §8.1.4 + GOOGLE-STANDARDS §11.3 + Mozilla Observatory A+ 達成 / inline 外部化に伴う必須改訂
 const NEW_CSP =
   "default-src 'self'; " +
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; " +
+  "script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; " +
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
   "font-src 'self' https://fonts.gstatic.com; " +
   "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; " +
@@ -30,6 +32,8 @@ const NEW_CSP =
   "object-src 'none'; " +
   "base-uri 'self'; " +
   "form-action 'self' https://api.web3forms.com; " +
+  "require-trusted-types-for 'script'; " +
+  "trusted-types default; " +
   "upgrade-insecure-requests";
 
 // content 属性は二重引用符 " で囲まれており、CSP 値内に ' が含まれるため

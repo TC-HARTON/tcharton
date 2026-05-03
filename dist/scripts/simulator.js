@@ -1,0 +1,140 @@
+/**
+ * /dist/scripts/simulator.js
+ * 外部化元: index.html line 940-1065（無料診断シミュレーター simAdvance/showSimResult/simReset）
+ *           ※ menu+IO は menu.js で別ロード
+ * v1.15 / 2026-05-03 / Mozilla Observatory CSP 'unsafe-inline' → A+ 解消
+ * 適用ページ: 1 件（index.html のみ）
+ * 依存: なし（IIFE 完結）/ DOM 操作: createElement + textContent + appendChild（innerHTML 不使用 / TT 違反なし）
+ * 規範: SPEC §7.3 prefers-reduced-motion 対応（CSS 側で transition-duration: 0.01ms 強制）
+ */
+(function () {
+  'use strict';
+  // 必須要素存在ガード（他ページ誤読込防止）
+  if (!document.getElementById('simBox')) return;
+
+  var simScores = {};
+  function simAdvance(q, val) {
+    simScores[q] = val;
+    var step = document.querySelector('.sim-step[data-step="' + q + '"]');
+    if (q < 5) {
+      step.classList.add('hidden');
+      document.querySelector('.sim-step[data-step="' + (q + 1) + '"]').classList.remove('hidden');
+      var pct = (q / 5) * 100;
+      document.getElementById('simBar').style.width = pct + '%';
+      document.getElementById('simProgress').textContent = '質問 ' + (q + 1) + ' / 5';
+      document.getElementById('simPercent').textContent = Math.round(pct) + '%';
+    } else {
+      document.getElementById('simBar').style.width = '100%';
+      document.getElementById('simProgress').textContent = '診断完了';
+      document.getElementById('simPercent').textContent = '100%';
+      step.classList.add('hidden');
+      showSimResult();
+    }
+  }
+  function showSimResult() {
+    var webScore = simScores[1] || 0;
+    var maintScore = ((simScores[2] || 0) + (3 - (simScores[4] || 0))) / 2;
+    var aiScore = simScores[3] || 0;
+    var sizeIdx = simScores[5] || 0;
+    var sizeMult = [1, 1.5, 2.5, 4][sizeIdx];
+
+    var webPct = Math.round((webScore / 3) * 100);
+    var maintPct = Math.round((maintScore / 3) * 100);
+    var aiPct = Math.round((aiScore / 3) * 100);
+    var totalPct = Math.round((webPct + maintPct + aiPct) / 3);
+
+    var baseLoss = (300 - totalPct * 2.5) * sizeMult;
+    var lossMin = Math.round(baseLoss * 0.8 / 10) * 10;
+    var lossMax = Math.round(baseLoss * 1.2 / 10) * 10;
+
+    document.getElementById('simResult').classList.remove('hidden');
+    document.getElementById('simScore').textContent = totalPct;
+
+    var labels = [
+      [0, '改善余地・大。大きなポテンシャルが眠っています。', 'text-amber-300'],
+      [30, '伸びしろ十分。仕組み化で大きく変われます。', 'text-amber-200'],
+      [60, '基盤はあり。さらなる最適化で差がつきます。', 'text-teal-300'],
+      [80, '優秀。ピンポイントの強化で更に上へ。', 'text-teal-200']
+    ];
+    var label = labels[0];
+    for (var i = 0; i < labels.length; i++) {
+      if (totalPct >= labels[i][0]) label = labels[i];
+    }
+    var labelEl = document.getElementById('simLabel');
+    labelEl.textContent = label[1];
+    labelEl.className = 'text-base lg:text-lg font-bold ' + label[2];
+
+    setTimeout(function () {
+      document.getElementById('simWebBar').style.width = webPct + '%';
+      document.getElementById('simAutoBar').style.width = maintPct + '%';
+      document.getElementById('simAIBar').style.width = aiPct + '%';
+      document.getElementById('simWeb').textContent = webPct + '%';
+      document.getElementById('simAuto').textContent = maintPct + '%';
+      document.getElementById('simAI').textContent = aiPct + '%';
+    }, 200);
+
+    var lossEl = document.getElementById('simLoss');
+    if (totalPct < 80) {
+      lossEl.textContent = '約 ' + lossMin + ' 万 〜 ' + lossMax + ' 万円 / 年';
+    } else {
+      lossEl.textContent = '低リスク';
+      lossEl.className = lossEl.className.replace('text-amber-300', 'text-teal-300');
+      document.getElementById('simLossNote').textContent = '※現在の仕組みは高い水準です。さらなる最適化をご提案できます。';
+    }
+
+    var advice = [];
+    if (webScore < 2) {
+      advice.push({ title: 'WEBサイト構築（Sクラス保証）', desc: '買い切り型 30〜80 万円。Lighthouse / WCAG 2.2 / OWASP / GEO の 5 評価軸を機械検証で保証し、24 時間働く営業チャネルへ。', href: '/services/web/', color: 'border-teal-400 text-teal-300' });
+    }
+    if (maintScore < 2) {
+      advice.push({ title: '保守運用プラン', desc: '月額 ' + Math.round(11 * sizeMult) + ',000 円 〜。セキュリティ脆弱性対応・速度モニタリング・SEO/LLMO 継続最適化。年間 ' + Math.round(60 * sizeMult) + ' 時間以上の運用工数削減見込み。', href: '/services/maintenance/', color: 'border-teal-300 text-teal-200' });
+    }
+    if (aiScore < 2) {
+      advice.push({ title: 'AI予測モデル開発', desc: '在庫・需要予測 / 売上・来客予測。3 段階導入(分析 30 万 → PoC 50 万 → 本番 100〜200 万)。勘と経験を統計でバックアップ。', href: '/services/ai-prediction/', color: 'border-amber-300 text-amber-200' });
+    }
+    if (advice.length === 0) {
+      advice.push({ title: '更なる飛躍へ', desc: '高い水準を維持しながら、AI 予測精度の向上や UI 改善で競合との差を広げましょう。', href: '/contact/', color: 'border-teal-200 text-teal-100' });
+    }
+
+    var adviceContainer = document.getElementById('simAdvice');
+    adviceContainer.textContent = '';
+    advice.forEach(function (a) {
+      var card = document.createElement('a');
+      card.href = a.href;
+      card.className = 'block bg-dark-700/50 rounded-xl p-4 border-l-4 ' + a.color + ' hover:bg-dark-700 transition-colors py-4';
+      var title = document.createElement('p');
+      title.className = 'font-bold text-white text-sm';
+      title.textContent = a.title + ' →';
+      var desc = document.createElement('p');
+      desc.className = 'text-dark-300 text-xs mt-1 leading-relaxed';
+      desc.textContent = a.desc;
+      card.appendChild(title);
+      card.appendChild(desc);
+      adviceContainer.appendChild(card);
+    });
+  }
+  function simReset() {
+    for (var k in simScores) delete simScores[k];
+    document.getElementById('simResult').classList.add('hidden');
+    var steps = document.querySelectorAll('.sim-step');
+    for (var i = 0; i < steps.length; i++) {
+      if (i === 0) steps[i].classList.remove('hidden');
+      else steps[i].classList.add('hidden');
+    }
+    document.getElementById('simBar').style.width = '0%';
+    document.getElementById('simProgress').textContent = '質問 1 / 5';
+    document.getElementById('simPercent').textContent = '0%';
+    document.getElementById('simWebBar').style.width = '0%';
+    document.getElementById('simAutoBar').style.width = '0%';
+    document.getElementById('simAIBar').style.width = '0%';
+  }
+  document.querySelectorAll('.sim-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var q = parseInt(b.dataset.q, 10);
+      var v = parseInt(b.dataset.v, 10);
+      simAdvance(q, v);
+    });
+  });
+  var simResetBtn = document.getElementById('simResetBtn');
+  if (simResetBtn) simResetBtn.addEventListener('click', simReset);
+})();

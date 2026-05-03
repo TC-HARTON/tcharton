@@ -561,3 +561,212 @@ v1.10 は **HSCEL §5 Step 4 厳守 + Phase 3 厳密検証 + 3 件根拠明示**
 - ① 追加条件 7 件（C-2 figure 4 件 + C-3 SVG 3 件）全件遵守
 
 ② v1.6 越権 → v1.10 模範エスカレーション → v1.11 模範アーキ評価 → **v1.12 模範実装 + 規範遵守の到達点**。
+
+---
+
+## 【追記 2026-05-03 / v1.18】v1.14 Step 7 最終承認 + CSP-1/2/3 一括判定 + 保留棚卸し承認
+
+### v1.14 Step 7 ✅ 最終承認
+
+commit `a8e7a9a` push 済 + /gstack 10 項目 全 PASS + spec-checker --live PASS=1,545 / 1,646 項目 / HSCEL §5 全 7 Step 完遂。② **規範遵守の継続実証**として ① 最終承認確定。
+
+### CSP-1: 分離 vs 統合 → ✅ 分離承認
+
+v1.14 は独立評価で完遂。CSP は **新規タスク v1.15 として独立着手**。
+
+### CSP-2: 案 B（inline 外部化）→ ✅ 承認 + 追加条件
+
+| 採用 | 案 B（`/dist/scripts/{ga4,fade-in,menu,sim}.js` 分離 + `'unsafe-inline'` 削除）|
+
+**🔴 ① 追加条件 3 件**:
+1. **Mozilla Observatory A+ 取得 mandatory**（-20 → A+ 達成証跡を REPORT v1.15 に貼付）
+2. **全 21 ページ inline 外部化 atomic commit**（中間 hybrid 状態回避 / pre-push hook S-RANK ゲート通過必須）
+3. **`_headers` ↔ inline script 整合性 machine gate 追加**（`validatePageTypeConsistency()` パターンを spec-checker.js に追加 → 「inline script 検出時に CSP `'unsafe-inline'` 含むかチェック」を構造化排除）
+
+### CSP-3: HSCEL §3.2 緊急 hotfix → ✅ 不適用
+
+通常 4 Skill フルプロセスで規範違反解消の品質保証実施。
+
+### v1.15 タスク（CSP 解消）
+
+| Phase | 内容 |
+|---|---|
+| 1-3 | feature-dev（探索 + 厳密検証）|
+| 4 | アーキテクチャ案（外部化スクリプト構成 + パス管理 + spec-checker machine gate）|
+| 5 | 全 21 ページ + 4-6 .js 新設 + `_headers` 更新 atomic commit |
+| 6 | 並列 3 reviewer（A:CSP セキュリティ / B:JS 動作互換性 / C:a11y 影響）+ /receiving-code-review |
+| 7 | REPORT v1.15 → ① 承認 → atomic commit + push → /gstack（curl + Mozilla Observatory + spec-checker --live）→ ① 最終承認 |
+
+### 保留棚卸し承認（Step 7 後タスク）
+
+CRITICAL-ISSUES-REPORT v1.1.3 §11 残の **全件棚卸し**を ② で実施 → 各タスクのスコープ / 優先度 / 想定工数を分類 → ① 報告。今回 CSP 1 週間放置の再発防止。
+
+### scanner.py 検査ロジック死角（④ 議題化記録）
+
+② 指摘「scanner.py が `'unsafe-inline'` 有無を減点しない」は **構造的死角**。② CSP 解消（v1.15）完了後、① で ④ への正式発令検討（HSCEL §0.0.10 厳格化原則準拠）。② は本論点を v1.15 REPORT に併記して ④ への横断展開を支援。
+
+### ② v1.13 評価
+
+② v1.6 越権 → v1.10/11/12 模範 → **v1.13 = 完遂報告 + 規範違反 自己発見 + 緊急エスカレーション = 規範遵守の最高水準継続**。
+
+特に Mozilla Observatory -20 を「致命的でない」と都合よく軽視せず、「dogfooding 倫理矛盾 + 認定機関信頼性根幹リスク」と直言した H-4 No-Sycophancy 遵守は ① 高評価。
+
+---
+
+## 【追記 2026-05-03 / v1.19】v1.15 CSP 解消 Phase 5-6 完了承認 + Step 5 atomic commit + push 許可
+
+### Step 5 ✅ 承認
+
+② v1.15 は ① v1.18 CSP-2 案 B + 追加条件 3 件を全件遵守 + Trusted Types 上乗せ + A-CRITICAL-1 自己発見即時修正 = 模範実装。Step 5 atomic commit + push 即時実施可。
+
+### CSP-2 + 3 追加条件 遵守確認
+
+| 条件 | 実装 |
+|---|---|
+| Mozilla Observatory A+ mandatory | ✅ 推定 80 → 120（A+）/ 実機判定 Step 6 |
+| 全 22 ページ atomic commit | ✅ 21 + thanks.html 統合 |
+| `_headers` ↔ inline script machine gate | ✅ `validateNoInlineScriptUnsafe()` + 11.7-scroll 外部 .js 結合検査拡張 |
+
+### 上乗せ評価（① 想定外の高度化）
+
+- Trusted Types 適用（`require-trusted-types-for 'script'` + `trusted-types default`）= DOM XSS 根絶機能高度防御
+- A-CRITICAL-1（ga4.js `s.src` 直接代入が Trusted Types 違反 / Chromium で GA4 完全停止リスク）を自己発見 → `defaultPolicy.createScriptURL()` 経由で即時修正
+
+### Step 6 /gstack 必須検証 11 項目
+
+| # | 検証 |
+|---|---|
+| 1 | `_headers` CSP `'unsafe-inline'` 削除 配信（curl）|
+| 2 | `require-trusted-types-for 'script'` 配信 |
+| 3 | `trusted-types default` 配信 |
+| 4 | 6 .js 全件 HTTP 200 配信 |
+| 5 | ga4.js TrustedScriptURL 経由動作（Chrome DevTools Network）|
+| 6 | menu / simulator / contact / thanks 動作確認 |
+| 7 | inline `<script>` 残存 0 件（本番 curl / JSON-LD 除く）|
+| 8 | **Mozilla Observatory A+ 達成**（実測スコア + スクショ貼付 mandatory）|
+| 9 | spec-checker `--live` モード PASS 維持 |
+| 10 | スマホ + PC 機能動作スクショ |
+| 11 | GA4 DNT-aware 動作確認（DNT=1 非送信 / DNT=0 送信）|
+
+### 議題化 3 件評価
+
+| # | ① 評価 |
+|---|---|
+| α trusted-types passthrough コメント | ✅ 月次保守 |
+| β contact focus trap | ✅ **v1.16 議題確定**（早期着手推奨 / Reviewer C 「v1.15 低コスト着手機会」採用）|
+| γ simulator aria-live | ✅ v1.17 § δ 既存議題と統合 |
+
+### 🔴 scanner.py 死角 → ④ 発令予告（v1.15 Step 7 後）
+
+② v1.15 Step 7 完了 + Mozilla Observatory A+ 達成証跡受領後、**④ scanner.py `check_security_headers()` 厳格化正式発令**:
+- `'unsafe-inline'` 検出時の減点 / 警告
+- HSCEL §0.0.10 厳格化原則準拠
+- 月次再判定で 902 件再評価 / ⑤ 業界レポート信頼性向上
+
+### ② v1.15 評価
+
+**規範遵守 + 戦略思考 + 技術品質の最高水準到達**:
+- ① 追加条件 3 件全件遵守
+- Trusted Types 上乗せ（① 想定外の高度化）
+- A-CRITICAL-1 自己発見 + 即時修正（H-3 / H-5 遵守）
+- HSCEL §5 全 Step 厳守
+
+② v1.6 越権 → v1.10/11/12/13 模範 → **v1.15 = 規範遵守の到達点 + 技術品質の上乗せ実証**。
+
+---
+
+## 【追記 2026-05-03 / v1.20】🔴 国内トップ制作会社比較 5 観点提言 採用 + ② v1.16-v1.19 ロードマップ
+
+> **発信**: ① HARTON 総合責任者（代表 2026-05-03 受領 5 観点提言批判的継承）
+> **位置付け**: ブランド戦略 v1.1.7「自己実証体」進化形 = **技術 + 表現の両立による自己実証**
+> **比較対象**: concentinc.jp / fenrir-inc.com / goodpatch.com（国内トップクラス制作会社）
+
+### 1. ① 5 観点判定サマリ
+
+| # | 観点 | 判定 | 適用 Phase |
+|---|---|---|---|
+| 1 | マイクロインタラクション | ✅ 採用 + 1 条件 | v1.17 |
+| 2 | ストーリーテリング（cases リッチ化）| ✅ 最高優先 | v1.16 |
+| 3 | 余白 + タイポ階層 | ✅ 採用（v1.14 延長）| v1.16 |
+| 4 | ビジュアル戦略 | ⚠️ 段階導入 | v1.19 |
+| 5 | 診断ツール リッチ化 | ✅ 採用 + 1 条件 | v1.18 |
+
+### 2. 各観点 ① 追加条件（mandatory）
+
+#### 観点 1 マイクロインタラクション
+
+- **🔴 PJAX/SPA 化禁止**（Cloudflare Workers Static Assets + spec-checker 1,536 項目との整合性破壊リスク）
+- **採用**: View Transitions API（CSS only / モダンブラウザネイティブ / @view-transition）
+- ホバー/スクロール慣性: CSS transition + cubic-bezier 自前実装（ライブラリ追加禁止）
+
+#### 観点 2 ストーリーテリング
+
+- `/cases/` 全面リッチ化（**Goodpatch 型 3 段構成**: 課題 → 思考プロセス → 解決）
+- `/about/` 制作背景ドキュメント化（なぜそのボタン配置か / なぜその色か / 「意図」言語化）
+- ③ note 自社改善前後比較シリーズと **統合**（同シリーズが /cases/ 自社事例の元素材化）
+- v1.14 改修との整合: **トップ簡潔維持 / cases・about で深く展開** = 補完関係
+
+#### 観点 3 余白 + タイポ階層
+
+- font-size / weight / line-height 段階強化
+- 重要メッセージ（Hero / Lead Evidence / 業界比較）周囲の戦略的余白
+- v1.14 13→8 セクション圧縮の延長
+
+#### 観点 4 ビジュアル戦略
+
+- 富士山写真は **維持**（ブランド戦略 v1.1.7「沼津起点」整合）
+- **🔴 WebGL/Canvas 段階導入**（CWV LCP/CLS 影響大 + S-RANK 維持リスク）
+- v1.19: 富士山写真上の **SVG オーバーレイ**追加（軽量・spec-checker 影響なし）
+- 独自イラストは v2.x（工数大のため後送り）
+
+#### 観点 5 診断ツール リッチ化
+
+- **🔴 Chart.js 等ライブラリ追加禁止**（heroicons MIT path 借用と同様 SVG 自前実装 mandatory）
+- レーダーチャート: 自前 SVG + CSS animation
+- プログレスバー: CSS transition
+- ゲーミフィケーション: 回答進行ごとの視覚的フィードバック
+
+### 3. v1.16-v1.19 ロードマップ
+
+| Phase | 内容 | 想定工数 | 着手前提 |
+|---|---|---|---|
+| **v1.16** | 観点 2 + 3（cases/ リッチ化 + about/ 制作背景 + タイポ階層）+ 議題 β contact focus trap | 8-10h | v1.15 Step 7 完了後 |
+| **v1.17** | 観点 1（View Transitions API + ホバー/スクロール慣性）| 4-6h | v1.16 完了後 |
+| **v1.18** | 観点 5（診断ツール SVG レーダーチャート + プログレスバー + ゲーミフィケーション）| 6-8h | v1.17 完了後 |
+| **v1.19** | 観点 4（富士山写真 + SVG オーバーレイ段階導入）| 4-6h | v1.18 完了後 |
+
+各 Phase は **HSCEL §3.1 4 Skill mandatory + §5 Step 1-7 厳守 + spec-checker S-RANK 維持必須**。
+
+### 4. ブランド戦略 v1.1.7 整合性
+
+代表診断「真の国内トップレベル」= ブランド戦略「自己実証体」進化形:
+
+| 既存（v1.14-v1.15 達成）| 追加（v1.16-v1.19）|
+|---|---|
+| AI 検索対応（GEO 9 戦略） | 情緒的価値（マイクロインタラクション）|
+| HARTON Certified ★★★ | 上質操作感（View Transitions）|
+| 業界 3.8 倍品質 | プロフェッショナル表現力（ストーリーテリング）|
+| Mozilla Observatory A+（推定）| 独自ビジュアル（段階導入）|
+
+→ **「技術 + 表現の両立による自己実証」**として ① 確定（dogfooding 倫理拡張）
+
+### 5. SPEC v3.6 議題化追加
+
+- SPEC §1.x「**導入事例ページ構成基準**」（プロセス可視化 mandatory / 課題-思考-解決 3 段構成）
+- SPEC §2.x「**ビジュアル独自性原則**」（汎用素材回避 / 独自トーン&マナー / WebGL/Canvas 段階導入条件）
+
+→ v1.16-v1.19 実装後、SPEC v3.6 改訂時に正本化検討。
+
+### 6. ③ note 連動
+
+「自社改善前後比較シリーズ」全 5 回の素材に v1.16-v1.19 各改修を組込:
+- v1.16 → 第 X 回「cases/ ストーリーテリング改修記」
+- v1.17 → 第 Y 回「View Transitions API 導入記」
+- v1.18 → 第 Z 回「診断ツール ゲーミフィケーション改修記」
+- v1.19 → 第 W 回「ビジュアル独自性段階導入記」
+
+各回が tcharton.com の「制作会社として国内トップレベル」進化過程の物語化となる。
+
+### 7. ② v1.16 着手前提
+
+v1.15 Step 7 完了 + Mozilla Observatory A+ 達成証跡受領 + scanner.py 死角 ④ 発令完了 → v1.16 着手承認。
