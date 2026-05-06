@@ -142,6 +142,8 @@ const CUSTOM_CLASSES = new Set([
   'mobile-menu','open','float','pulse-line','gradient-text',
   'cat-tab','active','sr-only','fade-in-delay-1','fade-in-delay-2',
   'fade-in-delay-3','check-circle','check-ring',
+  // v1.17 観点 1 マイクロインタラクション 追加 (Reviewer C-CRITICAL: 既存規約整合)
+  'intent-hover',
 ]);
 
 // ═══════════════════ 結果クラス ═══════════════════

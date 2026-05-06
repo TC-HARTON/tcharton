@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ─── v1.17 観点 1: マイクロインタラクション ───────────────────────────────────
+   ① v1.20 §3 制約遵守:
+     - PJAX/SPA 禁止 → View Transitions API ネイティブ採用
+     - ライブラリ追加禁止 → CSS のみで実装
+     - prefers-reduced-motion 既存 inline <style> fallback 継承
+   出典: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition
+*/
+
+/* 1. クロスドキュメント View Transitions（Chrome 126+ / Safari 18+ ネイティブ）
+   非対応ブラウザでは無視 = フォールバック不要 / SPA 化なし / spec-checker 影響なし */
+@view-transition {
+  navigation: auto;
+}
+
+/* 2. tactile easing 変数（自前 cubic-bezier / Apple HIG 系慣性曲線参考）*/
+:root {
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);   /* 軽いオーバーシュート（弾力）*/
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);    /* 滑らかな減速（高品質ユーティリティ）*/
+}
+
+/* 3. 既存 .card-hover の easing を spring 化（inline <style> を specificity で上書き）
+   既存挙動: transform 0.3s + box-shadow 0.3s（ease 既定）
+   新挙動: transform に spring カーブ（弾力）+ box-shadow を quart で連動 */
+html .card-hover {
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.35s var(--ease-out-quart);
+}
+
+/* 4. 既存 .fade-in の easing を quart-out 化（IntersectionObserver 連動）
+   既存: opacity/transform 0.8s ease
+   新: opacity/transform 0.8s quart-out（等速感の解消 / 上質感）*/
+html .fade-in {
+  transition: opacity 0.8s var(--ease-out-quart), transform 0.8s var(--ease-out-quart);
+}
+
+/* 5. CTA / インタラクティブ要素 用 hover 慣性ユーティリティ
+   1px lift + spring + filter brighten で押下前の予感を表現
+   Reviewer B-HIGH 対応: will-change は hover 中限定（compositor メモリ常時消費を回避）*/
+.intent-hover {
+  transition: transform 0.25s var(--ease-spring), filter 0.2s ease;
+}
+.intent-hover:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  will-change: transform;
+}
+.intent-hover:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+  transition-duration: 0.08s;
+}
+
+/* 6. prefers-reduced-motion 既存 inline <style> fallback と整合
+   念のため二重防御で本ファイル側も明示
+   Reviewer A-CRITICAL 対応: ::view-transition-* は inline <style> の transition: none で
+   抑止できない（独立した animation 軸）/ 明示的に animation: none を上書き
+   出典: WCAG 2.1 SC 2.3.3 / web.dev "View Transitions and reduced motion" */
+@media (prefers-reduced-motion: reduce) {
+  html .card-hover,
+  html .fade-in,
+  .intent-hover {
+    transition: none !important;
+  }
+  .intent-hover:hover,
+  .intent-hover:active {
+    transform: none !important;
+    filter: none !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
