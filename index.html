@@ -374,6 +374,23 @@
         <img src="/assets/hero-fuji.jpg" width="1920" height="1249" alt="富士山と忠霊塔(富士吉田市) — 静岡県東部のシンボル / 撮影 Manuel Cosentino (Unsplash)" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-br from-dark-900/85 via-dark-900/70 to-teal-900/85" aria-hidden="true"></div>
         <div class="absolute inset-0 hero-grid opacity-30" aria-hidden="true"></div>
+        <!-- v1.19 観点 4: SVG オーバーレイ（軽量段階導入 / WebGL/Canvas 不使用 / CWV 影響ゼロ）
+             3 scan line + 6 data node で「AI 時代の WEB」感を視覚補強 / aria-hidden 装飾 -->
+        <svg class="hero-overlay" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <g class="hero-overlay-lines">
+            <line x1="0" y1="180" x2="1200" y2="200" />
+            <line x1="0" y1="430" x2="1200" y2="410" />
+            <line x1="0" y1="660" x2="1200" y2="680" />
+          </g>
+          <g class="hero-overlay-nodes">
+            <circle cx="200" cy="190" r="3" />
+            <circle cx="600" cy="190" r="4" />
+            <circle cx="950" cy="195" r="3" />
+            <circle cx="350" cy="425" r="3" />
+            <circle cx="850" cy="415" r="3" />
+            <circle cx="500" cy="668" r="4" />
+          </g>
+        </svg>
         <div class="relative z-10 max-w-5xl mx-auto px-4 lg:px-8 pt-20 pb-20 lg:pt-32 lg:pb-32 hero-content" data-section="hero-v2">
           <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
             「探される Web」から<br><span class="bg-gradient-to-br from-teal-200 to-white bg-clip-text text-transparent">「AI に選ばれる Web」</span>へ。

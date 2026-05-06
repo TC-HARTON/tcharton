@@ -144,6 +144,8 @@ const CUSTOM_CLASSES = new Set([
   'fade-in-delay-3','check-circle','check-ring',
   // v1.17 観点 1 マイクロインタラクション 追加 (Reviewer C-CRITICAL: 既存規約整合)
   'intent-hover',
+  // v1.19 観点 4 Hero SVG オーバーレイ
+  'hero-overlay','hero-overlay-lines','hero-overlay-nodes',
 ]);
 
 // ═══════════════════ 結果クラス ═══════════════════
