@@ -72,6 +72,31 @@
       document.getElementById('simWeb').textContent = webPct + '%';
       document.getElementById('simAuto').textContent = maintPct + '%';
       document.getElementById('simAI').textContent = aiPct + '%';
+
+      // v1.18 観点 5: SVG レーダーチャート points 計算 + scale(0)→scale(1) アニメーション
+      // 三角形の 3 頂点 (center=(100,100) / 最大半径 80)
+      // WEB (12 o'clock): (cx, cy − r·webPct/100)
+      // 保守 (4 o'clock = +120°): (cx + r·sin120°·maintPct/100, cy + r·cos60°·maintPct/100)
+      //   = (cx + r·0.866·s, cy + r·0.5·s)  where s = maintPct/100
+      // AI (8 o'clock = +240°): (cx − r·0.866·s, cy + r·0.5·s)  where s = aiPct/100
+      var poly = document.getElementById('simRadarPoly');
+      if (poly) {
+        var R = 80, cx = 100, cy = 100;
+        var s1 = webPct / 100, s2 = maintPct / 100, s3 = aiPct / 100;
+        var v1 = cx + ',' + (cy - R * s1);
+        var v2 = (cx + R * 0.866 * s2).toFixed(2) + ',' + (cy + R * 0.5 * s2).toFixed(2);
+        var v3 = (cx - R * 0.866 * s3).toFixed(2) + ',' + (cy + R * 0.5 * s3).toFixed(2);
+        poly.setAttribute('points', v1 + ' ' + v2 + ' ' + v3);
+        // 反映タイミングを次フレームに分離 → CSS transition が起動
+        // Reviewer A-CRITICAL 対応: simReset → showSimResult 連続呼出で
+        // setAttribute と classList.remove が同 rendering frame に batch される問題を防止
+        // 二重 rAF で初期 scale(0) 状態が確実に commit されてから enter class を解除
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            poly.classList.remove('sim-radar-poly--enter');
+          });
+        });
+      }
     }, 200);
 
     var lossEl = document.getElementById('simLoss');
@@ -128,9 +153,24 @@
     document.getElementById('simWebBar').style.width = '0%';
     document.getElementById('simAutoBar').style.width = '0%';
     document.getElementById('simAIBar').style.width = '0%';
+    // v1.18: レーダー再 enter 状態へ (次回 showSimResult で再アニメーション)
+    var rp = document.getElementById('simRadarPoly');
+    if (rp) {
+      rp.classList.add('sim-radar-poly--enter');
+      rp.setAttribute('points', '100,100 100,100 100,100');
+    }
+  }
+  // v1.18 観点 5: ゲーミフィケーション (ボタン押下時の弾力 pulse / 0.5s 後 自動解除)
+  function celebrate(el) {
+    el.classList.remove('sim-btn-celebrate');
+    // reflow 強制 → 同 class 連続適用でも animation 再起動
+    void el.offsetWidth;
+    el.classList.add('sim-btn-celebrate');
+    setTimeout(function () { el.classList.remove('sim-btn-celebrate'); }, 550);
   }
   document.querySelectorAll('.sim-btn').forEach(function (b) {
     b.addEventListener('click', function () {
+      celebrate(b);
       var q = parseInt(b.dataset.q, 10);
       var v = parseInt(b.dataset.v, 10);
       simAdvance(q, v);

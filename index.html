@@ -683,6 +683,28 @@
                 <p class="text-dark-300" id="simLabel">診断中...</p>
               </div>
 
+              <!-- v1.18 観点 5: SVG レーダーチャート (3 軸: WEB / 保守 / AI / 自前 SVG / Chart.js 等不使用) -->
+              <figure class="mb-8" aria-label="3 軸スコア レーダーチャート">
+                <svg viewBox="0 0 200 200" class="w-full max-w-xs mx-auto block" role="img" aria-labelledby="simRadarTitle simRadarDesc">
+                  <title id="simRadarTitle">3 軸スコア レーダーチャート</title>
+                  <desc id="simRadarDesc">WEB信頼力・保守運用力・AI予測活用度の 3 軸を 0-100% で可視化します</desc>
+                  <!-- Grid (33% / 66% / 100%) -->
+                  <polygon class="sim-radar-grid" points="100,73 123,114 77,114" />
+                  <polygon class="sim-radar-grid" points="100,47 146,127 54,127" />
+                  <polygon class="sim-radar-grid" points="100,20 169,140 31,140" />
+                  <!-- Axis lines -->
+                  <line class="sim-radar-axis" x1="100" y1="100" x2="100" y2="20" />
+                  <line class="sim-radar-axis" x1="100" y1="100" x2="169" y2="140" />
+                  <line class="sim-radar-axis" x1="100" y1="100" x2="31" y2="140" />
+                  <!-- Data polygon (filled by JS via #simRadarPoly points attr) -->
+                  <polygon id="simRadarPoly" class="sim-radar-poly sim-radar-poly--enter" points="100,100 100,100 100,100" fill="rgba(45, 212, 191, 0.35)" stroke="#5eead4" stroke-width="2" stroke-linejoin="round" />
+                  <!-- Vertex labels -->
+                  <text class="sim-radar-label" x="100" y="14" text-anchor="middle">WEB</text>
+                  <text class="sim-radar-label" x="178" y="152" text-anchor="middle">保守</text>
+                  <text class="sim-radar-label" x="22" y="152" text-anchor="middle">AI</text>
+                </svg>
+              </figure>
+
               <div class="space-y-4 mb-8">
                 <div>
                   <div class="flex justify-between text-sm mb-1"><span class="text-dark-200 font-bold">WEB信頼力</span><span class="text-teal-300 font-bold" id="simWeb">0%</span></div>
