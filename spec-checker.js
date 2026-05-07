@@ -1423,7 +1423,12 @@ function cGlobal() {
       // ─── gl-no-old-cert-url: certification.tcharton.com 残存禁止 (v1.23 / Stella ブランド統一) ───
       // 代表確定 UX-UI-DIRECTIVE-V1 line 4/7: certification.tcharton.com → stella.tcharton.com
       // ② tcharton 側で旧ドメイン参照が残存していないかリグレッション防止
-      // 例外: brandHistory 言及部 (transitionPolicy で許容) は旧称併記可だが URL 自体は禁止
+      //
+      // 検証範囲 (v1.28 LOW 整合修正で明示化):
+      //   - HTML 全 STATIC_TARGETS (= 25 ページ) 走査
+      //   - sitemap.xml も走査対象に追加（旧 URL の lastmod が残存するリグレッション防止）
+      //   - canonical.json は labels.certificationDomainNote で stella 表記済 (走査対象外)
+      //   - brandHistory.originalName で「HARTON Certified」テキスト言及は許容 / URL は許容しない
       {
         const OLD_DOMAIN = 'certification.tcharton.com';
         const offenders = [];
@@ -1433,9 +1438,15 @@ function cGlobal() {
           const html = fs.readFileSync(fp, 'utf-8');
           if (html.includes(OLD_DOMAIN)) offenders.push(t);
         }
+        // sitemap.xml も検証
+        const smPath2 = path.join(ROOT, 'sitemap.xml');
+        if (fs.existsSync(smPath2)) {
+          const sm = fs.readFileSync(smPath2, 'utf-8');
+          if (sm.includes(OLD_DOMAIN)) offenders.push('sitemap.xml');
+        }
         r.push(offenders.length === 0
           ? PASS('gl-no-old-cert-url', S, '旧 certification.tcharton.com 残存禁止 (v1.23 Stella 統一)',
-            `全 ${STATIC_TARGETS.length} ページ で旧ドメイン参照なし`)
+            `全 ${STATIC_TARGETS.length} ページ + sitemap.xml で旧ドメイン参照なし`)
           : FAIL('gl-no-old-cert-url', S, '旧 certification.tcharton.com 残存禁止 (v1.23 Stella 統一)',
             `残存: ${offenders.join(',')} — stella.tcharton.com（準備中）に置換`));
       }
