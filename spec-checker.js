@@ -45,6 +45,7 @@ const STATIC_TARGETS = [
 
   // 単発系商品 LP（v1.24-v1.26 追加）
   'services/audit/index.html',
+  'services/refurbish/index.html',
 
   // 信頼形成
   'pricing/index.html',
@@ -92,6 +93,7 @@ const PAGE_TYPE = {
 
   // 単発系商品 LP（v1.24-v1.26 追加）
   'services/audit/index.html': 'subpage',
+  'services/refurbish/index.html': 'subpage',
 
   'pricing/index.html': 'subpage',
   'cases/index.html': 'subpage',
@@ -139,6 +141,7 @@ function getVariant(relPath) {
     'services/ai-prediction/inventory/index.html',
     'services/ai-prediction/sales/index.html',
     'services/audit/index.html',
+    'services/refurbish/index.html',
     'pricing/index.html',
     'contact/index.html',
   ]);
