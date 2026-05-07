@@ -3,8 +3,8 @@
   "_purpose": "数値 + テキスト + メタ情報の正規版を集中管理。spec-checker.js 新 gate 群が本ファイルを読み、全 HTML との verbatim 一致を検証する。HSCEL §0.0.10 厳格化原則の構造実装。",
   "_canonical_owner": "① HARTON 総合責任者",
   "_update_policy": "代表承認なしに値を変更しない。変更時は spec-checker FAIL → 全 HTML 同期修正で解消する dogfooding ループ。",
-  "version": "1.20",
-  "lastSynced": "2026-05-04",
+  "version": "1.21",
+  "lastSynced": "2026-05-07",
   "specVersion": "3.5",
   "geoVersion": "2.1",
   "googleVersion": "2.0",
@@ -20,7 +20,7 @@
     "ownHypothesis": "当社仮説: 3 種戦略の組み合わせは個別効果より高い相乗効果を生むと推測"
   },
   "numbers": {
-    "specCheckerPass": 1537,
+    "specCheckerPass": 1540,
     "specCheckerFail": 0,
     "specCheckerWarn": 0,
     "specCheckerTotal": 1646,
