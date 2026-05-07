@@ -1,26 +1,32 @@
 {
-  "_comment": "tcharton.com Single Source of Truth (v1.20 / 2026-05-04)",
+  "_comment": "tcharton.com Single Source of Truth (v1.23 / 2026-05-07)",
   "_purpose": "数値 + テキスト + メタ情報の正規版を集中管理。spec-checker.js 新 gate 群が本ファイルを読み、全 HTML との verbatim 一致を検証する。HSCEL §0.0.10 厳格化原則の構造実装。",
   "_canonical_owner": "① HARTON 総合責任者",
   "_update_policy": "代表承認なしに値を変更しない。変更時は spec-checker FAIL → 全 HTML 同期修正で解消する dogfooding ループ。",
-  "version": "1.21",
+  "version": "1.23",
   "lastSynced": "2026-05-07",
   "specVersion": "3.5",
   "geoVersion": "2.1",
   "googleVersion": "2.0",
   "labels": {
-    "certificationOrg": "HARTON Certified（自社運営の認定機関 / 機械検証で第三者性を確保）",
-    "certificationOrgShort": "HARTON Certified",
+    "certificationOrg": "HARTON Stella（自社運営の認定機関 / 機械検証で第三者性を確保）",
+    "certificationOrgShort": "HARTON Stella",
+    "certificationOrgLegacy": "HARTON Certified",
+    "certificationDomainNote": "stella.tcharton.com（準備中）",
     "partnerLabel": "S クラス制作パートナー",
     "regionLabel": "静岡県東部",
     "providerType": "個人事業主 / 沼津拠点・全国対応",
     "starsTop": "★★★",
+    "starsMid": "★★",
+    "starsLow": "★",
+    "monthlyMandatoryClause": "★★★ 維持には月額保守契約が必須",
+    "cancelPolicyClause": "保守は解約自由 / ただし解約時点で ★★★ 維持責任は終了し、★ または ★★ にダウングレード自然失効",
     "arxivCitation": "Aggarwal et al. KDD 2024 (arXiv:2311.09735)",
     "arxivRangeClaim": "論文が示す範囲（PAWC で 30-40%）",
     "ownHypothesis": "当社仮説: 3 種戦略の組み合わせは個別効果より高い相乗効果を生むと推測"
   },
   "numbers": {
-    "specCheckerPass": 1540,
+    "specCheckerPass": 1542,
     "specCheckerFail": 0,
     "specCheckerWarn": 0,
     "specCheckerTotal": 1646,
@@ -31,12 +37,62 @@
     "numazuSampleN": 134,
     "numazuMultiple": 4.1,
     "criticalNgRatePct": 32.5,
+    "industryCspRatePct": 8.8,
+    "cspVulnRatePct": 70,
     "geoStrategiesCount": 9,
     "industriesCount": 11,
     "citiesCount": 5,
     "mozillaObservatoryGrade": "A+",
     "mozillaObservatoryScore": 125,
     "verifiedPagesCount": 22
+  },
+  "products": [
+    {
+      "id": "sclass-package",
+      "name": "★★★ S クラス保証パッケージ",
+      "type": "primary",
+      "construction": "30-80 万円",
+      "monthly": "11,000-33,000 円",
+      "minPeriod": "12 ヶ月",
+      "annualTotal": "65-115 万円",
+      "description": "★★★ 機械検証 + 月次再判定 + 維持保守 = dogfooding 完全整合"
+    },
+    {
+      "id": "stella-audit",
+      "name": "HARTON Stella 評価レポート 単発",
+      "type": "entry",
+      "price": "3-10 万円",
+      "description": "他社サイトを scanner.py で機械診断 → ★/★★/★★★ 認定書納品"
+    },
+    {
+      "id": "sclass-refurbish",
+      "name": "既存サイトの ★★★ 化 改修",
+      "type": "lift",
+      "price": "50-100 万円 + 月額保守 mandatory",
+      "description": "他社制作サイトを HARTON Stella 基準でリフト改修 + 月次再判定"
+    },
+    {
+      "id": "lp-microsite",
+      "name": "LP / マイクロサイト 単発",
+      "type": "single",
+      "price": "5-30 万円",
+      "grade": "★ または ★★",
+      "description": "採用 LP / イベント LP / キャンペーン用（保証グレード明示販売 / ★★★ 不可）"
+    },
+    {
+      "id": "ai-prediction",
+      "name": "AI 予測モデル開発",
+      "type": "advanced",
+      "price": "100-300 万円",
+      "description": "需要・在庫・売上予測の機械学習モデル（代表 15 年経験）"
+    }
+  ],
+  "brandHistory": {
+    "originalName": "HARTON Certified",
+    "renameDate": "2026-05-04",
+    "newName": "HARTON Stella",
+    "renameDirective": "代表確定 UX-UI-DIRECTIVE-V1 line 4/7",
+    "transitionPolicy": "歴史的言及部は『HARTON Stella（旧: HARTON Certified）』形式で継続"
   },
   "person": {
     "name": "大内 達也",

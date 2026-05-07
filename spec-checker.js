@@ -1406,6 +1406,59 @@ function cGlobal() {
           : FAIL('gl-canonical-text', S, 'canonical テキスト ↔ index.html 整合性 (v1.20)',
             `不一致: ${labelMissing.map(([k]) => k).join(',')} — canonical.json と同期`));
       }
+
+      // ─── gl-no-old-cert-url: certification.tcharton.com 残存禁止 (v1.23 / Stella ブランド統一) ───
+      // 代表確定 UX-UI-DIRECTIVE-V1 line 4/7: certification.tcharton.com → stella.tcharton.com
+      // ② tcharton 側で旧ドメイン参照が残存していないかリグレッション防止
+      // 例外: brandHistory 言及部 (transitionPolicy で許容) は旧称併記可だが URL 自体は禁止
+      {
+        const OLD_DOMAIN = 'certification.tcharton.com';
+        const offenders = [];
+        for (const t of STATIC_TARGETS) {
+          const fp = path.join(ROOT, t);
+          if (!fs.existsSync(fp)) continue;
+          const html = fs.readFileSync(fp, 'utf-8');
+          if (html.includes(OLD_DOMAIN)) offenders.push(t);
+        }
+        r.push(offenders.length === 0
+          ? PASS('gl-no-old-cert-url', S, '旧 certification.tcharton.com 残存禁止 (v1.23 Stella 統一)',
+            `全 ${STATIC_TARGETS.length} ページ で旧ドメイン参照なし`)
+          : FAIL('gl-no-old-cert-url', S, '旧 certification.tcharton.com 残存禁止 (v1.23 Stella 統一)',
+            `残存: ${offenders.join(',')} — stella.tcharton.com（準備中）に置換`));
+      }
+
+      // ─── gl-monthly-mandatory-text: ★★★ 表記近傍に月額契約 mandatory 併記検証 (v1.23 dogfooding 倫理) ───
+      // ① v1.24 C-1/C-6 確定: ★★★ 保証 = 月額保守契約 mandatory (HSCEL §0.0.10 最大適用)
+      // 「★★★ 保証」「★★★ 取得」表記を持つページで「月額」併記がない場合 = 看板倒れリスク = FAIL
+      // 例外: 「★★★ 自社取得済」(自社実績言及) や cases/ の事例記述は 自動 PASS
+      {
+        const STAR_PROMISE_RE = /★★★\s*(保証|基準|パッケージ|維持|取得|級|認定)/;
+        const MONTHLY_CONTEXT_RE = /月額|月次|保守|maintenance|サブスクリプション/;
+        // Reviewer B-C-1 採用: g フラグで全マッチ削除しないと SELF_REFERENCE が部分残しで判定不能
+        const SELF_REFERENCE_RE = /★★★\s*自社取得|★★★\s*取得済|自社で.*★★★|★★★\s*を自社/g;
+        const SCAN_TARGETS = STATIC_TARGETS.filter(t => {
+          const pt = PAGE_TYPE[t] || 'minimal';
+          return pt !== 'minimal'; // 404/thanks/legal/privacy 除外
+        });
+        const offenders = [];
+        for (const t of SCAN_TARGETS) {
+          const fp = path.join(ROOT, t);
+          if (!fs.existsSync(fp)) continue;
+          const html = fs.readFileSync(fp, 'utf-8');
+          // ページ内で ★★★ 商品保証言及があるか
+          if (!STAR_PROMISE_RE.test(html)) continue;
+          // 月額言及があれば PASS
+          if (MONTHLY_CONTEXT_RE.test(html)) continue;
+          // 自社実績言及を全件除去後に商品保証言及が残らなければ PASS
+          if (!STAR_PROMISE_RE.test(html.replace(SELF_REFERENCE_RE, ''))) continue;
+          offenders.push(t);
+        }
+        r.push(offenders.length === 0
+          ? PASS('gl-monthly-mandatory-text', S, '★★★ 表記近傍に月額契約 mandatory 併記 (v1.23 / HSCEL §0.0.10)',
+            `★★★ 商品保証言及ページ全件で「月額/保守」併記あり`)
+          : FAIL('gl-monthly-mandatory-text', S, '★★★ 表記近傍に月額契約 mandatory 併記 (v1.23 / HSCEL §0.0.10)',
+            `併記欠落: ${offenders.join(',')} — dogfooding 倫理矛盾 / canonical.labels.monthlyMandatoryClause 反映必要`));
+      }
     }
   }
 
