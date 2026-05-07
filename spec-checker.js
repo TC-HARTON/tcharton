@@ -65,8 +65,10 @@ const STATIC_TARGETS = [
 const TARGET_FILES = [...STATIC_TARGETS];
 
 // ページ種別 → 検証強度のマッピング
-// full    : TOP（5 種 JSON-LD: ProfessionalService/WebSite/FAQPage/BreadcrumbList/Person）
-// service : 3 ハブ（3 種 JSON-LD: ProfessionalService/WebSite/BreadcrumbList）
+// full    : TOP（4 種 JSON-LD: ProfessionalService/WebSite/BreadcrumbList/Person）
+//           v1.20: FAQPage は /faq/ のみに集約（重複コンテンツシグナル排除 / Google Q-A 表示縮小対応）
+// service : 3 ハブ（2 種 JSON-LD: WebSite/BreadcrumbList）
+//           v1.20: ProfessionalService は index.html のみで定義し、他は @id reference に集約
 // subpage : 階層下位ページ（BreadcrumbList のみ必須・モバイル品質検証あり）
 // profile : 代表プロフィール（subpage 相当・モバイル品質はスキップ）
 // minimal : 法務/エラー/確認（最小チェック）
@@ -413,21 +415,29 @@ function c11_2(html, pt) {
   else {
     const types = jsonldTypes(jsonld(html));
     const need = pt === 'full'
-      ? ['ProfessionalService', 'WebSite', 'FAQPage', 'BreadcrumbList', 'Person']
+      ? ['ProfessionalService', 'WebSite', 'BreadcrumbList', 'Person']      // v1.20: FAQPage 削除
       : (pt === 'subpage' || pt === 'profile') ? ['BreadcrumbList']
-      : ['ProfessionalService', 'WebSite', 'BreadcrumbList'];
+      : ['WebSite', 'BreadcrumbList'];                                       // v1.20: ProfessionalService 削除
     need.forEach(t => r.push(types.has(t)
       ? PASS(`11.2-${t}`, S, `JSON-LD: ${t}`)
       : FAIL(`11.2-${t}`, S, `JSON-LD: ${t}`, '未定義')));
     // ProfessionalService プロパティ
+    // v1.20: @id reference 化した schema は必須プロパティチェックをスキップ
+    // (集約先 = index.html "https://tcharton.com/#professional-service" 側で完全定義済)
     if (types.has('ProfessionalService')) {
       const schemas = jsonld(html);
       const ps = schemas.find(s => hasType(s, 'ProfessionalService')) ||
                  schemas.flatMap(s => s['@graph'] || []).find(i => hasType(i, 'ProfessionalService'));
       if (ps) {
-        const need2 = ['name','description','url','telephone','address','geo','knowsAbout','areaServed'];
-        const miss = need2.filter(p => !ps[p]);
-        r.push(miss.length === 0 ? PASS('11.2-ps', S, 'PS必須プロパティ') : FAIL('11.2-ps', S, 'PS必須プロパティ', `不足: ${miss.join(',')}`));
+        const isIdReference = ps['@id'] && Object.keys(ps).filter(k => k !== '@context' && k !== '@type' && k !== '@id').length === 0;
+        if (isIdReference) {
+          r.push(PASS('11.2-ps', S, 'PS必須プロパティ',
+            `@id reference (集約元 = ${ps['@id']}) / v1.20 SoT 構造`));
+        } else {
+          const need2 = ['name','description','url','telephone','address','geo','knowsAbout','areaServed'];
+          const miss = need2.filter(p => !ps[p]);
+          r.push(miss.length === 0 ? PASS('11.2-ps', S, 'PS必須プロパティ') : FAIL('11.2-ps', S, 'PS必須プロパティ', `不足: ${miss.join(',')}`));
+        }
       }
     }
   }
@@ -1263,6 +1273,138 @@ function cGlobal() {
           .join(' ; ');
         r.push(FAIL('gl-ai-anchor', S, '.assetsignore glob anchor 整合性 (DEPLOY-3 / v1.16)',
           `非 anchor パターンが意図外 dir に衝突: ${detail} — root anchor (/前置) を検討`));
+      }
+    }
+  }
+
+  // ═══════════════════ v1.20 canonical SoT 整合性 7 gate ═══════════════════
+  // 「検証の度に問題が出続ける」構造を断つ machine gate 群（HSCEL §0.0.10 §6.3 整合）
+  // config/canonical.json を Single Source of Truth とし、全 HTML との verbatim 一致を検証
+  {
+    const canonicalPath = path.join(ROOT, 'config', 'canonical.json');
+    if (!fs.existsSync(canonicalPath)) {
+      r.push(FAIL('gl-canonical', S, 'config/canonical.json 存在 (v1.20 SoT)',
+        'config/canonical.json が存在しない — Single Source of Truth が失われている'));
+    } else {
+      let canonical;
+      try {
+        canonical = JSON.parse(fs.readFileSync(canonicalPath, 'utf-8'));
+      } catch (e) {
+        r.push(FAIL('gl-canonical', S, 'config/canonical.json パース', e.message));
+        return r;
+      }
+      r.push(PASS('gl-canonical', S, 'config/canonical.json 存在 (v1.20 SoT)',
+        `version=${canonical.version} / lastSynced=${canonical.lastSynced}`));
+
+      // ─── 共有: index.html を 1 回読込（Reviewer A-C-2 / C-I-1: I/O 重複排除） ───
+      const indexPath = path.join(ROOT, 'index.html');
+      const indexHtml = fs.existsSync(indexPath) ? fs.readFileSync(indexPath, 'utf-8') : null;
+
+      // ─── gl-numbers-sync: 全 22 ページ で旧数値 (陳腐化) 残存禁止 (Reviewer C-C-1 採用) ───
+      // index.html だけでなく STATIC_TARGETS 全件で「自社サイトの過去数値文字列」が残存していないか検証
+      // 例: 旧 PASS 数値 "1,461" / WARN 残存 "1 件" 等が methodology や services 残置されているケース
+      {
+        const n = canonical.numbers;
+        const STALE_NUMBERS = [
+          // 過去 PASS 数値群（v1.14: 1,461 / v1.15: 1,536 / 現在: 1,537 / 1,540）
+          { stale: '1,461', label: '旧 PASS 数値' },
+          { stale: '1,536', label: '旧 PASS 数値' },
+          // 旧 WARN 状態 (現在 0)
+          { stale: 'WARN=1', label: '旧 WARN 残存' }
+        ];
+        // 現行値はチェック対象外
+        const currentPassStr = n.specCheckerPass.toLocaleString();
+        const stalehits = [];
+        for (const t of STATIC_TARGETS) {
+          const fp = path.join(ROOT, t);
+          if (!fs.existsSync(fp)) continue;
+          const html = fs.readFileSync(fp, 'utf-8');
+          STALE_NUMBERS.forEach(({ stale, label }) => {
+            if (stale === currentPassStr) return;
+            if (html.includes(stale)) stalehits.push(`${t}: "${stale}" (${label})`);
+          });
+        }
+        // index.html の verbatim 値も併せ確認
+        const indexChecks = indexHtml ? [
+          ['specCheckerPass', `${n.specCheckerPass.toLocaleString()}/0`],
+          ['industrySampleN', `${n.industrySampleN}`],
+          ['qualityMultiple', `${n.qualityMultiple}`],
+          ['mozillaObservatoryGrade', `${n.mozillaObservatoryGrade}`]
+        ] : [];
+        const indexMissing = indexChecks.filter(([k, v]) => !indexHtml.includes(v));
+        if (stalehits.length === 0 && indexMissing.length === 0) {
+          r.push(PASS('gl-numbers-sync', S, 'canonical 数値 ↔ 全 22 ページ 整合性 (v1.20)',
+            `index.html ${indexChecks.length} 件 verbatim 一致 / 全ページ 旧数値残存 0`));
+        } else {
+          const detail = [];
+          if (indexMissing.length > 0) detail.push(`index 不一致: ${indexMissing.map(([k]) => k).join(',')}`);
+          if (stalehits.length > 0) detail.push(`旧数値残存: ${stalehits.slice(0, 5).join(' / ')}${stalehits.length > 5 ? ` 他 ${stalehits.length - 5}` : ''}`);
+          r.push(FAIL('gl-numbers-sync', S, 'canonical 数値 ↔ 全 22 ページ 整合性 (v1.20)',
+            detail.join(' ; ')));
+        }
+      }
+
+      // ─── gl-searchaction: index.html に SearchAction 残存禁止 ───
+      if (indexHtml !== null) {
+        const hasSearchAction = /["']@type["']\s*:\s*["']SearchAction["']/.test(indexHtml)
+          || /potentialAction/.test(indexHtml);
+        r.push(hasSearchAction
+          ? FAIL('gl-searchaction', S, 'index.html SearchAction 削除 (v1.20)',
+            'SearchAction / potentialAction 残存 — 検索機能未実装のため削除（Google スパム判定リスク）')
+          : PASS('gl-searchaction', S, 'index.html SearchAction 削除 (v1.20)',
+            'WebSite SearchAction 不在 / Google Sitelinks Searchbox 仕様準拠'));
+      }
+
+      // ─── gl-faqpage-top: index.html に FAQPage 残存禁止（/faq/ に集約） ───
+      if (indexHtml !== null) {
+        const hasFAQPage = /["']@type["']\s*:\s*["']FAQPage["']/.test(indexHtml);
+        r.push(hasFAQPage
+          ? FAIL('gl-faqpage-top', S, 'index.html FAQPage 削除 (v1.20)',
+            'FAQPage 残存 — /faq/ と重複 / Google Q-A 表示縮小対応で削除')
+          : PASS('gl-faqpage-top', S, 'index.html FAQPage 削除 (v1.20)',
+            'FAQPage は /faq/ のみ / index 重複なし'));
+      }
+
+      // ─── gl-menu-js-ref: marketing variant 全ページが menu.js 参照 ───
+      // Reviewer B-C-2: NO_MENU_JS と MENU_PAGES の交差を正確に算出
+      const NO_MENU_JS = new Set(['contact/index.html', 'thanks.html', '404.html']);
+      const MENU_PAGES = STATIC_TARGETS.filter(t => (PAGE_TYPE[t] || 'minimal') !== 'minimal');
+      const MENU_PAGES_REQUIRED = MENU_PAGES.filter(t => !NO_MENU_JS.has(t));
+      const menuJsMissing = MENU_PAGES_REQUIRED.filter(t => {
+        const fp = path.join(ROOT, t);
+        if (!fs.existsSync(fp)) return false;
+        const html = fs.readFileSync(fp, 'utf-8');
+        return !/<script[^>]+src=["'][^"']*\/dist\/scripts\/menu\.js["']/.test(html);
+      });
+      r.push(menuJsMissing.length === 0
+        ? PASS('gl-menu-js-ref', S, 'menu.js 参照整合性 (v1.20)',
+          `${MENU_PAGES_REQUIRED.length} ページ全件 menu.js 参照あり`)
+        : FAIL('gl-menu-js-ref', S, 'menu.js 参照整合性 (v1.20)',
+          `参照欠落: ${menuJsMissing.join(',')}`));
+
+      // ─── gl-sameAs-github: index.html sameAs に GitHub 含まれる ───
+      if (indexHtml !== null) {
+        const hasGitHub = /sameAs[\s\S]*?github\.com\/TC-HARTON/.test(indexHtml);
+        r.push(hasGitHub
+          ? PASS('gl-sameAs-github', S, 'Person/Org sameAs に GitHub URL (v1.20)',
+            'https://github.com/TC-HARTON 含有 / E-E-A-T 強化')
+          : FAIL('gl-sameAs-github', S, 'Person/Org sameAs に GitHub URL (v1.20)',
+            'GitHub URL なし — canonical.organization.sameAs と同期'));
+      }
+
+      // ─── gl-canonical-text: 主要テキスト ラベルが index.html に verbatim 出現 ───
+      if (indexHtml !== null) {
+        const labelChecks = [
+          ['certificationOrgShort', canonical.labels.certificationOrgShort],
+          ['partnerLabel', canonical.labels.partnerLabel],
+          ['regionLabel', canonical.labels.regionLabel]
+        ];
+        const labelMissing = labelChecks.filter(([k, v]) => !indexHtml.includes(v));
+        r.push(labelMissing.length === 0
+          ? PASS('gl-canonical-text', S, 'canonical テキスト ↔ index.html 整合性 (v1.20)',
+            `${labelChecks.length} ラベル verbatim 一致`)
+          : FAIL('gl-canonical-text', S, 'canonical テキスト ↔ index.html 整合性 (v1.20)',
+            `不一致: ${labelMissing.map(([k]) => k).join(',')} — canonical.json と同期`));
       }
     }
   }

@@ -99,14 +99,29 @@
       }
     }, 200);
 
+    // v1.20 P6-C-1 + Reviewer A-Important-1 / B-H-2: classList API で べき等性確保
+    // (className.replace は重複追加 / 部分一致 / 失敗 silent のリスクあり)
     var lossEl = document.getElementById('simLoss');
+    var lossNoteEl = document.getElementById('simLossNote');
+    var DEFAULT_LOSS_NOTE = '※業界平均値に基づく概算（中小企業庁・経産省統計を参考）。実際の数値はヒアリングで個別算定します。';
+    lossEl.classList.remove('text-amber-300', 'text-teal-300');
     if (totalPct < 80) {
+      lossEl.classList.add('text-amber-300');
       lossEl.textContent = '約 ' + lossMin + ' 万 〜 ' + lossMax + ' 万円 / 年';
+      if (lossNoteEl) lossNoteEl.textContent = DEFAULT_LOSS_NOTE;
     } else {
+      lossEl.classList.add('text-teal-300');
       lossEl.textContent = '低リスク';
-      lossEl.className = lossEl.className.replace('text-amber-300', 'text-teal-300');
-      document.getElementById('simLossNote').textContent = '※現在の仕組みは高い水準です。さらなる最適化をご提案できます。';
+      if (lossNoteEl) lossNoteEl.textContent = '※現在の仕組みは高い水準です。さらなる最適化をご提案できます。';
     }
+
+    // v1.20 Q9: 診断スコアを sessionStorage に保存 (contact ページで読み出し / プライバシー優先 = same-tab のみ)
+    try {
+      sessionStorage.setItem('hartonDiagScore', JSON.stringify({
+        totalPct: totalPct, webPct: webPct, maintPct: maintPct, aiPct: aiPct,
+        timestamp: Date.now()
+      }));
+    } catch (e) { /* private mode 等で sessionStorage 利用不可 → silent fallback */ }
 
     var advice = [];
     if (webScore < 2) {

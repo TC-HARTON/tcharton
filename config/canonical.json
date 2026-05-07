@@ -1,0 +1,58 @@
+{
+  "_comment": "tcharton.com Single Source of Truth (v1.20 / 2026-05-04)",
+  "_purpose": "数値 + テキスト + メタ情報の正規版を集中管理。spec-checker.js 新 gate 群が本ファイルを読み、全 HTML との verbatim 一致を検証する。HSCEL §0.0.10 厳格化原則の構造実装。",
+  "_canonical_owner": "① HARTON 総合責任者",
+  "_update_policy": "代表承認なしに値を変更しない。変更時は spec-checker FAIL → 全 HTML 同期修正で解消する dogfooding ループ。",
+  "version": "1.20",
+  "lastSynced": "2026-05-04",
+  "specVersion": "3.5",
+  "geoVersion": "2.1",
+  "googleVersion": "2.0",
+  "labels": {
+    "certificationOrg": "HARTON Certified（自社運営の認定機関 / 機械検証で第三者性を確保）",
+    "certificationOrgShort": "HARTON Certified",
+    "partnerLabel": "S クラス制作パートナー",
+    "regionLabel": "静岡県東部",
+    "providerType": "個人事業主 / 沼津拠点・全国対応",
+    "starsTop": "★★★",
+    "arxivCitation": "Aggarwal et al. KDD 2024 (arXiv:2311.09735)",
+    "arxivRangeClaim": "論文が示す範囲（PAWC で 30-40%）",
+    "ownHypothesis": "当社仮説: 3 種戦略の組み合わせは個別効果より高い相乗効果を生むと推測"
+  },
+  "numbers": {
+    "specCheckerPass": 1537,
+    "specCheckerFail": 0,
+    "specCheckerWarn": 0,
+    "specCheckerTotal": 1646,
+    "industrySampleN": 902,
+    "industryMedian": 24,
+    "ownScore": 90,
+    "qualityMultiple": 3.8,
+    "numazuSampleN": 134,
+    "numazuMultiple": 4.1,
+    "criticalNgRatePct": 32.5,
+    "geoStrategiesCount": 9,
+    "industriesCount": 11,
+    "citiesCount": 5,
+    "mozillaObservatoryGrade": "A+",
+    "mozillaObservatoryScore": 125,
+    "verifiedPagesCount": 22
+  },
+  "person": {
+    "name": "大内 達也",
+    "jobTitle": "代表 / 個人事業主",
+    "sameAs": [
+      "https://note.com/harton_official",
+      "https://github.com/TC-HARTON"
+    ]
+  },
+  "organization": {
+    "sameAs": [
+      "https://www.google.com/maps/place/?cid=16606425942373165010",
+      "https://maps.google.com/?cid=16606425942373165010",
+      "https://note.com/harton_official",
+      "https://github.com/TC-HARTON"
+    ]
+  },
+  "professionalServiceId": "https://tcharton.com/#professional-service"
+}
