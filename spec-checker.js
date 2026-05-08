@@ -1451,6 +1451,85 @@ function cGlobal() {
             `残存: ${offenders.join(',')} — stella.tcharton.com（準備中）に置換`));
       }
 
+      // ─── gl-no-anti-competitive: 営業妨害表現 残存禁止 (v1.29 / Phase E 法令 gate) ───
+      // 出典: 不正競争防止法 2 条 1 項 21 号 (営業誹謗) + 景表法 5 条 (優良誤認 / 比較対象貶め禁止)
+      // canonical.phaseE.prohibitedAntiCompetitivePhrases を全 STATIC_TARGETS 走査で残存検出
+      if (canonical.phaseE && canonical.phaseE.prohibitedAntiCompetitivePhrases) {
+        const phrases = canonical.phaseE.prohibitedAntiCompetitivePhrases;
+        const offenders = [];
+        for (const t of STATIC_TARGETS) {
+          const fp = path.join(ROOT, t);
+          if (!fs.existsSync(fp)) continue;
+          const html = fs.readFileSync(fp, 'utf-8');
+          for (const phrase of phrases) {
+            if (html.includes(phrase)) {
+              offenders.push(`${t}: "${phrase}"`);
+              break;
+            }
+          }
+        }
+        r.push(offenders.length === 0
+          ? PASS('gl-no-anti-competitive', S, '営業妨害表現 残存禁止 (v1.29 / Phase E 法令)',
+            `全 ${STATIC_TARGETS.length} ページ で禁止表現 ${phrases.length} 件残存なし`)
+          : FAIL('gl-no-anti-competitive', S, '営業妨害表現 残存禁止 (v1.29 / Phase E 法令)',
+            `残存: ${offenders.slice(0, 3).join(' / ')} — 不正競争防止法 2 条 1 項 21 号 + 景表法 5 条 抵触リスク`));
+      }
+
+      // ─── gl-no-corp-name: Phase E 関連ページで個別企業名残存禁止 (v1.29 / 個別企業名完全非公開原則) ───
+      // 出典: ① v1.34 / CRITICAL §47 「個別企業名完全非公開 / 業種別集計のみ」
+      // 検証範囲: cases/index.html + methodology/index.html (Phase E 言及ページ)
+      // 検出: 「プライム」「3 段階比較」近傍に「株式会社 [a-zA-Z0-9]+」等の固有名詞パターン
+      {
+        const PHASE_E_TARGETS = ['cases/index.html', 'methodology/index.html'];
+        const CORP_PATTERNS = [
+          /株式会社\s*[A-Z][a-zA-Z]+/,        // 株式会社 Sony 等
+          /\b(?:Sony|Toyota|Honda|Nissan|Toshiba|Hitachi|Panasonic|Mitsubishi|Sumitomo|Mizuho|Nomura|Rakuten|SoftBank|NTT|KDDI)\b/,
+          /[A-Z][a-zA-Z]+\s*Holdings/,         // XXX Holdings 等
+        ];
+        const offenders = [];
+        for (const t of PHASE_E_TARGETS) {
+          const fp = path.join(ROOT, t);
+          if (!fs.existsSync(fp)) continue;
+          const html = fs.readFileSync(fp, 'utf-8');
+          // Phase E 言及があるページのみ厳格判定
+          if (!/プライム|3 段階比較|業界 3 段階|機械検証の社会的証明/.test(html)) continue;
+          for (const re of CORP_PATTERNS) {
+            const m = html.match(re);
+            if (m) { offenders.push(`${t}: "${m[0]}"`); break; }
+          }
+        }
+        r.push(offenders.length === 0
+          ? PASS('gl-no-corp-name', S, 'Phase E ページ 個別企業名 残存禁止 (v1.29)',
+            'プライム企業名パターン残存なし / 業種別集計のみ公開原則 整合')
+          : FAIL('gl-no-corp-name', S, 'Phase E ページ 個別企業名 残存禁止 (v1.29)',
+            `残存: ${offenders.join(' / ')} — ① v1.34 個別企業名完全非公開原則違反`));
+      }
+
+      // ─── gl-neutrality-clause: Phase E ページに中立性条項配置検証 (v1.29 / 法令遵守 positive 検証) ───
+      // canonical.phaseE.requiredNeutralityLabels の全件存在確認
+      if (canonical.phaseE && canonical.phaseE.requiredNeutralityLabels) {
+        const labels = canonical.phaseE.requiredNeutralityLabels;
+        const PHASE_E_TARGETS = ['cases/index.html', 'methodology/index.html'];
+        const missing = [];
+        for (const t of PHASE_E_TARGETS) {
+          const fp = path.join(ROOT, t);
+          if (!fs.existsSync(fp)) continue;
+          const html = fs.readFileSync(fp, 'utf-8');
+          // Phase E 言及があるページのみ厳格判定
+          if (!/プライム|3 段階比較|業界 3 段階|機械検証の社会的証明/.test(html)) continue;
+          for (const label of labels) {
+            if (!html.includes(label)) {
+              missing.push(`${t}: "${label}"`);
+            }
+          }
+        }
+        r.push(missing.length === 0
+          ? PASS('gl-neutrality-clause', S, 'Phase E ページ 中立性条項配置 (v1.29)',
+            'Phase E 言及ページで中立性ラベル全件 verbatim 配置')
+          : FAIL('gl-neutrality-clause', S, 'Phase E ページ 中立性条項配置 (v1.29)',
+            `欠落: ${missing.slice(0, 3).join(' / ')} — canonical.phaseE.requiredNeutralityLabels 全件配置必須`));
+      }
+
       // ─── gl-monthly-mandatory-text: ★★★ 表記近傍に月額契約 mandatory 併記検証 (v1.23 dogfooding 倫理) ───
       // ① v1.24 C-1/C-6 確定: ★★★ 保証 = 月額保守契約 mandatory (HSCEL §0.0.10 最大適用)
       // 「★★★ 保証」「★★★ 取得」表記を持つページで「月額」併記がない場合 = 看板倒れリスク = FAIL

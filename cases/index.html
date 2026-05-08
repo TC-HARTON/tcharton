@@ -465,6 +465,49 @@
         </div>
       </section>
 
+      <!-- Phase E 事前枠組み (v1.29 / TBD 値は ④ Phase E スキャン完了 + ⑤ 業界レポート公開後に挿入) -->
+      <section aria-label="業界 3 段階比較（プライム市場 vs 中央値 vs 当社）" class="bg-dark-900 border-y border-dark-700">
+        <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
+          <p lang="en" class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">3-Stage Industry Benchmark</p>
+          <h2 class="mt-3 font-display text-2xl lg:text-3xl font-bold text-white text-center">業界 3 段階比較: プライム市場 / 業界中央値 / tcharton</h2>
+          <p class="mt-4 text-center text-dark-300 max-w-3xl mx-auto leading-relaxed">
+            HARTON Stella 認定機関は <strong class="text-white">東証プライム市場 全 1,830 社</strong>を半年〜年 1 回の頻度で機械検証し、業界中央値（静岡県 902 件 / 沼津周辺）と当社実測（90 点）の 3 段階で <strong class="text-white">中立評価</strong>を公開します。
+          </p>
+
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <article class="bg-dark-800 border border-dark-700 rounded-xl p-6">
+              <div class="text-dark-400 font-display font-bold text-xs tracking-wider uppercase">業界中央値</div>
+              <div class="mt-2 font-display text-5xl font-extrabold text-dark-300">24<span class="text-base font-bold ml-1">/100</span></div>
+              <p class="mt-3 text-dark-400 text-sm leading-relaxed">静岡県 5 都市 11 業種 902 件の機械実測（2026-05）。地域中小企業の標準水準。</p>
+            </article>
+
+            <article class="bg-dark-800 border-2 border-amber-400 rounded-xl p-6">
+              <div class="text-amber-300 font-display font-bold text-xs tracking-wider uppercase">プライム市場 平均</div>
+              <div class="mt-2 font-display text-5xl font-extrabold text-amber-200">TBD<span class="text-base font-bold ml-1">/100</span></div>
+              <p class="mt-3 text-dark-300 text-sm leading-relaxed">東証プライム上場 全 1,830 社の機械検証平均（東証 33 業種分類で集計 / 個別企業名は完全非公開）。次回更新: ④ Phase E スキャン + ⑤ 業界レポート公開後。</p>
+            </article>
+
+            <article class="bg-dark-800 border-2 border-teal-400 rounded-xl p-6">
+              <div class="text-teal-300 font-display font-bold text-xs tracking-wider uppercase">tcharton.com</div>
+              <div class="mt-2 font-display text-5xl font-extrabold text-teal-200">90<span class="text-base font-bold ml-1">/100</span></div>
+              <p class="mt-3 text-dark-300 text-sm leading-relaxed">自社サイト機械検証実測。HARTON Stella ★★★ 取得（dogfooding 倫理整合）。pre-push hook + 月次再判定で常時維持。</p>
+            </article>
+          </div>
+
+          <div class="mt-10 bg-dark-800/50 border border-dark-700 rounded-lg p-6">
+            <h3 class="font-display font-bold text-white text-base">公開ポリシー（中立評価）</h3>
+            <ul class="mt-3 space-y-2 text-sm text-dark-300">
+              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">✓</span><strong class="text-white">個別企業名は完全非公開</strong>（東証 33 業種分類による業種別集計のみ公開）</li>
+              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">✓</span><strong class="text-white">業種別集計のみ公開</strong>（個別比較ランキングなし / 営業妨害禁止）</li>
+              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">✓</span><strong class="text-white">中立評価</strong>（公開技術仕様のみ検証 / Place API 不使用 / max-pages=1 で最小負荷）</li>
+              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">✓</span>出典: <a href="https://www.jpx.co.jp/markets/statistics-equities/misc/01.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">JPX 公式銘柄一覧（東証プライム）</a></li>
+              <li class="flex gap-2"><span class="text-teal-300 flex-shrink-0">✓</span>頻度: 半年〜年 1 回（CVE / GEO 仕様変動への追随）</li>
+            </ul>
+            <p class="mt-4 text-xs text-dark-500">本セクションは Phase E 事前枠組み。プライム市場平均 TBD は ④ scanner.py プライム全 1,830 社スキャン完了 + ⑤ HARTON Stella 業界レポート公開後に確定値挿入予定。</p>
+          </div>
+        </div>
+      </section>
+
       <section aria-label="お問い合わせ" class="bg-teal-700 text-white">
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24 text-center">
           <h2 class="font-display text-2xl lg:text-4xl font-bold">事例の品質を、あなたのサイトでも</h2>

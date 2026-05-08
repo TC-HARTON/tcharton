@@ -87,6 +87,33 @@
       "description": "需要・在庫・売上予測の機械学習モデル（代表 15 年経験）"
     }
   ],
+  "phaseE": {
+    "_purpose": "Phase E プライム市場全 1,830 社スキャン関連の SoT (① v1.34 / HANDOVER §43.4 / CRITICAL §47 確定)",
+    "scanScope": "東証プライム市場 全 1,830 社",
+    "industryClassification": "東証 33 業種分類",
+    "sourceOfTruth": "JPX 公式銘柄一覧 (https://www.jpx.co.jp/markets/statistics-equities/misc/01.html)",
+    "scanFrequency": "半年〜年 1 回",
+    "publicationPolicy": "個別企業名完全非公開 / 業種別集計のみ公開",
+    "primeAverageScore": "TBD",
+    "primeAverageNote": "④ Phase E スキャン完了 + ⑤ 業界レポート公開後に挿入",
+    "report3Stage": {
+      "industryMedian": 24,
+      "ourScore": 90,
+      "primeAverage": "TBD"
+    },
+    "prohibitedAntiCompetitivePhrases": [
+      "他社は劣る",
+      "業界最低",
+      "より遥かに優れる",
+      "業界の問題児",
+      "他社の WEB は危険"
+    ],
+    "requiredNeutralityLabels": [
+      "個別企業名は完全非公開",
+      "業種別集計のみ公開",
+      "中立評価"
+    ]
+  },
   "brandHistory": {
     "originalName": "HARTON Certified",
     "renameDate": "2026-05-04",
