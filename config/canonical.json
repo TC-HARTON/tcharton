@@ -5,7 +5,7 @@
   "_update_policy": "代表承認なしに値を変更しない。変更時は spec-checker FAIL → 全 HTML 同期修正で解消する dogfooding ループ。",
   "version": "1.23",
   "lastSynced": "2026-05-07",
-  "specVersion": "3.5",
+  "specVersion": "3.6",
   "geoVersion": "2.1",
   "googleVersion": "2.0",
   "labels": {
