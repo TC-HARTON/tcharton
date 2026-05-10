@@ -39,10 +39,10 @@
     "ownHypothesis": "当社仮説: 3 種戦略の組み合わせは個別効果より高い相乗効果を生むと推測"
   },
   "numbers": {
-    "specCheckerPass": 1758,
+    "specCheckerPass": 1170,
     "specCheckerFail": 0,
-    "specCheckerWarn": 0,
-    "specCheckerTotal": 1646,
+    "specCheckerWarn": 49,
+    "specCheckerTotal": 1322,
     "industrySampleN": 902,
     "industryMedian": 24,
     "ownScore": 90,

@@ -116,7 +116,7 @@
 
   <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
     <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2 text-white font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
         <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
           <rect width="28" height="28" rx="6" fill="#1B4965"/>
           <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
@@ -130,7 +130,7 @@
         <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
         <a href="/vision/" class="text-dark-700 hover:text-teal-700 py-3">想い</a>
         <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
-        <a href="/contact/" class="bg-teal-500 hover:bg-teal-400 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
       </div>
       <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-800" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -142,17 +142,20 @@
 
   <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
     <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
       <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
       <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
       <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">料金</a>
       <a href="/cases/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">導入事例</a>
       <a href="/vision/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
       <a href="/faq/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">FAQ</a>
-      <a href="/methodology/" class="block py-4 px-2 text-lg text-white font-bold border-b border-dark-100" aria-current="page">方法論・品質根拠</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-900 font-bold border-b border-dark-100" aria-current="page">方法論・品質根拠</a>
       <a href="/profile/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
       <a href="/about/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">会社情報</a>
       <a href="/news/" class="block py-4 px-2 text-lg text-dark-100 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
-      <a href="/contact/" class="mt-4 block bg-teal-500 hover:bg-teal-400 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
     </div>
   </nav>
 
@@ -167,12 +170,12 @@
 
     <article>
       <header class="max-w-5xl mx-auto px-4 lg:px-8 pt-8 pb-12 lg:pt-12 lg:pb-16 hero-content">
-        <p lang="en" class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Methodology — How We Evaluate</p>
-        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+        <p lang="en" class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Methodology — How We Evaluate</p>
+        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">
           評価方法論と品質根拠
         </h1>
         <p class="mt-4 text-lg text-dark-700 max-w-3xl business-description">
-          T.C.HARTON が WEB 品質を機械保証する根拠を完全公開します。<strong class="text-white">spec-checker.js 2,554 検証項目（最新は spec-checker 直走行で確認）</strong> / <strong class="text-white">5 評価軸</strong> / <strong class="text-white">公式 8 一次ソース</strong>—すべて再現可能な手順として開示します。
+          T.C.HARTON が WEB 品質を機械保証する根拠を完全公開します。<strong class="text-dark-900">spec-checker.js 2,554 検証項目（最新は spec-checker 直走行で確認）</strong> / <strong class="text-dark-900">5 評価軸</strong> / <strong class="text-dark-900">公式 8 一次ソース</strong>—すべて再現可能な手順として開示します。
         </p>
         <p class="mt-2 text-sm text-dark-600">
           <time itemprop="datePublished" datetime="2026-05-03">2026年5月3日</time>
@@ -187,13 +190,13 @@
             <p class="text-dark-800 leading-relaxed text-lg"><q lang="en">Cite Sources, Quotation Addition, and Statistics Addition, achieved a relative improvement of 30-40% on the Position-Adjusted Word Count metric and 15-30% on the Subjective Impression metric.</q></p>
           </blockquote>
           <figcaption class="mt-4 text-sm text-dark-600">
-            ― Aggarwal et al., <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">arXiv:2311.09735</a> §5.1（KDD 2024 / Princeton / IIT Delhi）
+            ― Aggarwal et al., <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">arXiv:2311.09735</a> §5.1（KDD 2024 / Princeton / IIT Delhi）
           </figcaption>
         </div>
       </figure>
 
       <section aria-label="5評価軸の根拠" class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
-        <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">5 評価軸の根拠と一次ソース</h2>
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5 評価軸の根拠と一次ソース</h2>
         <p class="mt-4 text-dark-700 leading-relaxed max-w-3xl">
           すべての WEB 構築は以下 5 軸で機械検証します。各軸は独立評価され、項目別の事実減点で総合スコアを算定します（4 軸並列独立評価フレーム + CV 補完軸 / .10 厳格化原則準拠）。
         </p>
@@ -201,56 +204,56 @@
         <div class="mt-10 space-y-6">
           <article class="bg-dark-50 border border-dark-100 rounded-xl p-6 lg:p-8">
             <div class="flex flex-wrap items-baseline gap-3">
-              <span class="text-teal-300 font-display font-extrabold text-2xl">①</span>
-              <h3 class="font-display text-lg lg:text-xl font-bold text-white">技術</h3>
+              <span class="text-teal-700 font-display font-extrabold text-2xl">①</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-dark-900">技術</h3>
               <span class="text-sm text-dark-600">— Lighthouse 95+ / Core Web Vitals</span>
             </div>
             <p class="mt-3 text-dark-700 text-sm leading-relaxed">
-              LCP &lt; 2.5s / INP &lt; 200ms / CLS &lt; 0.1 を 公開前自動検証 で機械検証。<a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">web.dev / Core Web Vitals</a>（Google 公式）の基準値を直接参照。
+              LCP &lt; 2.5s / INP &lt; 200ms / CLS &lt; 0.1 を 公開前自動検証 で機械検証。<a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">web.dev / Core Web Vitals</a>（Google 公式）の基準値を直接参照。
             </p>
           </article>
 
           <article class="bg-dark-50 border border-dark-100 rounded-xl p-6 lg:p-8">
             <div class="flex flex-wrap items-baseline gap-3">
-              <span class="text-teal-300 font-display font-extrabold text-2xl">②</span>
-              <h3 class="font-display text-lg lg:text-xl font-bold text-white">コンテンツ</h3>
+              <span class="text-teal-700 font-display font-extrabold text-2xl">②</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-dark-900">コンテンツ</h3>
               <span class="text-sm text-dark-600">— 一次情報・E-E-A-T・</span>
             </div>
             <p class="mt-3 text-dark-700 text-sm leading-relaxed">
-              <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Google 有用なコンテンツ</a>準拠。記事冒頭に （最初の `&lt;h2&gt;` より前に数値・公的リンク・引用句のいずれか）を必須配置（SPEC §4.13）。
+              <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">Google 有用なコンテンツ</a>準拠。記事冒頭に （最初の `&lt;h2&gt;` より前に数値・公的リンク・引用句のいずれか）を必須配置（SPEC §4.13）。
             </p>
           </article>
 
           <article class="bg-dark-50 border border-dark-100 rounded-xl p-6 lg:p-8">
             <div class="flex flex-wrap items-baseline gap-3">
-              <span class="text-teal-300 font-display font-extrabold text-2xl">③</span>
-              <h3 class="font-display text-lg lg:text-xl font-bold text-white">信頼</h3>
+              <span class="text-teal-700 font-display font-extrabold text-2xl">③</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-dark-900">信頼</h3>
               <span class="text-sm text-dark-600">— SSL Labs A+ / OWASP / IPA</span>
             </div>
             <p class="mt-3 text-dark-700 text-sm leading-relaxed">
-              <a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">OWASP Top 10:2025</a> + <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">IPA 安全なウェブサイトの作り方 改訂第7版</a> 準拠。代表プロフィール完全公開・料金透明・所在地明示で E-E-A-T を担保。
+              <a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">OWASP Top 10:2025</a> + <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">IPA 安全なウェブサイトの作り方 改訂第7版</a> 準拠。代表プロフィール完全公開・料金透明・所在地明示で E-E-A-T を担保。
             </p>
           </article>
 
           <article class="bg-dark-50 border border-dark-100 rounded-xl p-6 lg:p-8">
             <div class="flex flex-wrap items-baseline gap-3">
-              <span class="text-teal-300 font-display font-extrabold text-2xl">④</span>
-              <h3 class="font-display text-lg lg:text-xl font-bold text-white">LLMO（AI 検索最適化）</h3>
+              <span class="text-teal-700 font-display font-extrabold text-2xl">④</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-dark-900">LLMO（AI 検索最適化）</h3>
               <span class="text-sm text-dark-600">— AI 検索対応戦略 White Hat 7 種</span>
             </div>
             <p class="mt-3 text-dark-700 text-sm leading-relaxed">
-              <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">arXiv:2311.09735</a>（KDD 2024）の 9 戦略のうち White Hat 7 種（Quotation / Statistics / Fluency / Cite Sources / Technical Terms / Easy-to-Understand / Authoritative）を必須実装。Keyword Stuffing は SEO ペナルティリスクのため採用禁止。
+              <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">arXiv:2311.09735</a>（KDD 2024）の 9 戦略のうち White Hat 7 種（Quotation / Statistics / Fluency / Cite Sources / Technical Terms / Easy-to-Understand / Authoritative）を必須実装。Keyword Stuffing は SEO ペナルティリスクのため採用禁止。
             </p>
           </article>
 
           <article class="bg-dark-50 border border-dark-100 rounded-xl p-6 lg:p-8">
             <div class="flex flex-wrap items-baseline gap-3">
-              <span class="text-teal-300 font-display font-extrabold text-2xl">⑤</span>
-              <h3 class="font-display text-lg lg:text-xl font-bold text-white">CV（コンバージョン）</h3>
+              <span class="text-teal-700 font-display font-extrabold text-2xl">⑤</span>
+              <h3 class="font-display text-lg lg:text-xl font-bold text-dark-900">CV（コンバージョン）</h3>
               <span class="text-sm text-dark-600">— CTA 配置 / フォーム最適化 / GA4 計測</span>
             </div>
             <p class="mt-3 text-dark-700 text-sm leading-relaxed">
-              <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Google SEO スターターガイド</a>準拠。CTA 最適配置 / 2 分送信フォーム / 2 経路（メール・LINE）/ GA4 イベント計測。
+              <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">Google SEO スターターガイド</a>準拠。CTA 最適配置 / 2 分送信フォーム / 2 経路（メール・LINE）/ GA4 イベント計測。
             </p>
           </article>
         </div>
@@ -258,9 +261,9 @@
 
       <section aria-label="GEO 最強コンビ" class="bg-dark-50 border-y border-dark-100">
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
-          <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">GEO 最強コンビ — Quotation + Statistics + Cite Sources</h2>
+          <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">GEO 最強コンビ — Quotation + Statistics + Cite Sources</h2>
           <p class="mt-4 text-dark-700 leading-relaxed max-w-3xl">
-            <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Aggarwal et al. (KDD 2024)</a> は <strong class="text-white">PAWC（Position-Adjusted Word Count）で 30〜40%、Subjective Impression で 15〜30%</strong>の改善を 9 戦略個別の評価で報告しています（論文 Table 1）。HARTON は <strong class="text-white">G-1 Quotation / G-2 Statistics / G-4 Cite Sources</strong> を「最強コンビ」と呼称し全ページ Lead Evidence に必須実装します（<em>3 種の組み合わせによる相乗効果は当社仮説であり、論文に直接の実証はありません</em>）。
+            <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">Aggarwal et al. (KDD 2024)</a> は <strong class="text-dark-900">PAWC（Position-Adjusted Word Count）で 30〜40%、Subjective Impression で 15〜30%</strong>の改善を 9 戦略個別の評価で報告しています（論文 Table 1）。HARTON は <strong class="text-dark-900">G-1 Quotation / G-2 Statistics / G-4 Cite Sources</strong> を「最強コンビ」と呼称し全ページ Lead Evidence に必須実装します（<em>3 種の組み合わせによる相乗効果は当社仮説であり、論文に直接の実証はありません</em>）。
           </p>
 
           <div class="mt-8 overflow-x-auto">
@@ -268,20 +271,20 @@
               <caption class="sr-only">AI 検索対応戦略のうち White Hat 7 種の Position-Adjusted Word Count 改善率</caption>
               <thead>
                 <tr class="border-b-2 border-dark-100">
-                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">#</th>
-                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">手法</th>
-                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white text-right">改善率</th>
-                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">採用</th>
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-dark-900">#</th>
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-dark-900">手法</th>
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-dark-900 text-right">改善率</th>
+                  <th scope="col" class="py-3 px-4 text-sm font-semibold text-dark-900">採用</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-dark-800 text-sm">
-                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-1</th><td class="py-3 px-4 text-dark-800">Quotation Addition（引用句）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+27.8%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
-                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-2</th><td class="py-3 px-4 text-dark-800">Statistics Addition（数値）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+25.9%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
-                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-3</th><td class="py-3 px-4 text-dark-800">Fluency Optimization（流暢性）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+25.1%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
-                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-4</th><td class="py-3 px-4 text-dark-800">Cite Sources（出典明示）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+24.9%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
-                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-5</th><td class="py-3 px-4 text-dark-800">Technical Terms（専門用語）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+23.1%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
-                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-6</th><td class="py-3 px-4 text-dark-800">Easy-to-Understand（平易化）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+22.2%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
-                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-7</th><td class="py-3 px-4 text-dark-800">Authoritative（権威的トーン）</td><td class="py-3 px-4 text-teal-300 text-right font-semibold">+21.8%</td><td class="py-3 px-4 text-teal-300">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-1</th><td class="py-3 px-4 text-dark-800">Quotation Addition（引用句）</td><td class="py-3 px-4 text-teal-700 text-right font-semibold">+27.8%</td><td class="py-3 px-4 text-teal-700">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-2</th><td class="py-3 px-4 text-dark-800">Statistics Addition（数値）</td><td class="py-3 px-4 text-teal-700 text-right font-semibold">+25.9%</td><td class="py-3 px-4 text-teal-700">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-3</th><td class="py-3 px-4 text-dark-800">Fluency Optimization（流暢性）</td><td class="py-3 px-4 text-teal-700 text-right font-semibold">+25.1%</td><td class="py-3 px-4 text-teal-700">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-4</th><td class="py-3 px-4 text-dark-800">Cite Sources（出典明示）</td><td class="py-3 px-4 text-teal-700 text-right font-semibold">+24.9%</td><td class="py-3 px-4 text-teal-700">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-5</th><td class="py-3 px-4 text-dark-800">Technical Terms（専門用語）</td><td class="py-3 px-4 text-teal-700 text-right font-semibold">+23.1%</td><td class="py-3 px-4 text-teal-700">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-6</th><td class="py-3 px-4 text-dark-800">Easy-to-Understand（平易化）</td><td class="py-3 px-4 text-teal-700 text-right font-semibold">+22.2%</td><td class="py-3 px-4 text-teal-700">必須</td></tr>
+                <tr><th scope="row" class="py-3 px-4 text-dark-600">G-7</th><td class="py-3 px-4 text-dark-800">Authoritative（権威的トーン）</td><td class="py-3 px-4 text-teal-700 text-right font-semibold">+21.8%</td><td class="py-3 px-4 text-teal-700">必須</td></tr>
                 <tr><th scope="row" class="py-3 px-4 text-dark-600">G-9</th><td class="py-3 px-4 text-dark-500">Keyword Stuffing</td><td class="py-3 px-4 text-dark-500 text-right">+17.8%</td><td class="py-3 px-4 text-red-400">禁止</td></tr>
               </tbody>
             </table>
@@ -291,58 +294,58 @@
       </section>
 
       <section aria-label="準拠する公式基準" class="max-w-7xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
-        <h2 class="font-display text-2xl lg:text-4xl font-bold text-white text-center">準拠する公式基準（一次ソース）</h2>
+        <h2 class="font-display text-2xl lg:text-4xl font-bold text-dark-900 text-center">準拠する公式基準（一次ソース）</h2>
         <p class="mt-4 text-center text-dark-700 max-w-2xl mx-auto">弊社が準拠する公式基準。すべて一次ソースをご確認いただけます。</p>
         <div class="mt-10 overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <caption class="sr-only">T.C.HARTON が準拠する公式基準と一次ソース URL</caption>
             <thead>
               <tr class="border-b-2 border-dark-100">
-                <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">分野</th>
-                <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">基準書</th>
-                <th scope="col" class="py-3 px-4 text-sm font-semibold text-white">一次ソース</th>
+                <th scope="col" class="py-3 px-4 text-sm font-semibold text-dark-900">分野</th>
+                <th scope="col" class="py-3 px-4 text-sm font-semibold text-dark-900">基準書</th>
+                <th scope="col" class="py-3 px-4 text-sm font-semibold text-dark-900">一次ソース</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-dark-800">
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">技術</th>
                 <td class="py-3 px-4 text-sm text-dark-700">HTML Living Standard</td>
-                <td class="py-3 px-4 text-sm"><a href="https://html.spec.whatwg.org/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">html.spec.whatwg.org</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://html.spec.whatwg.org/" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">html.spec.whatwg.org</a></td>
               </tr>
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">アクセシビリティ</th>
                 <td class="py-3 px-4 text-sm text-dark-700">WCAG 2.2 Level AA</td>
-                <td class="py-3 px-4 text-sm"><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">w3.org/TR/WCAG22</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">w3.org/TR/WCAG22</a></td>
               </tr>
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">パフォーマンス</th>
                 <td class="py-3 px-4 text-sm text-dark-700">Core Web Vitals (LCP/INP/CLS)</td>
-                <td class="py-3 px-4 text-sm"><a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">web.dev / vitals</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">web.dev / vitals</a></td>
               </tr>
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">SEO</th>
                 <td class="py-3 px-4 text-sm text-dark-700">Google 検索セントラル</td>
-                <td class="py-3 px-4 text-sm"><a href="https://developers.google.com/search/?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">developers.google.com/search</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://developers.google.com/search/?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">developers.google.com/search</a></td>
               </tr>
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">セキュリティ</th>
                 <td class="py-3 px-4 text-sm text-dark-700">OWASP Top 10:2025</td>
-                <td class="py-3 px-4 text-sm"><a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">owasp.org/Top10</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">owasp.org/Top10</a></td>
               </tr>
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">セキュリティ</th>
                 <td class="py-3 px-4 text-sm text-dark-700">IPA 安全なウェブサイトの作り方 改訂第7版</td>
-                <td class="py-3 px-4 text-sm"><a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">ipa.go.jp</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">ipa.go.jp</a></td>
               </tr>
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">構造化データ</th>
                 <td class="py-3 px-4 text-sm text-dark-700">Schema.org</td>
-                <td class="py-3 px-4 text-sm"><a href="https://schema.org/" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">schema.org</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://schema.org/" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">schema.org</a></td>
               </tr>
               <tr>
                 <th scope="row" class="py-3 px-4 text-sm font-medium text-dark-800">AI 検索対応</th>
                 <td class="py-3 px-4 text-sm text-dark-700">GEO (Aggarwal et al., KDD 2024)</td>
-                <td class="py-3 px-4 text-sm"><a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">arxiv.org/abs/2311.09735</a></td>
+                <td class="py-3 px-4 text-sm"><a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">arxiv.org/abs/2311.09735</a></td>
               </tr>
             </tbody>
           </table>
@@ -351,71 +354,71 @@
 
       <section aria-label="機械検証エンジン" class="bg-dark-50 border-y border-dark-100">
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
-          <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">機械検証エンジン spec-checker.js</h2>
+          <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">機械検証エンジン spec-checker.js</h2>
           <p class="mt-4 text-dark-700 leading-relaxed max-w-3xl">
-            自社開発の Node.js 検証ツール。<strong class="text-white">2,554 検証項目（最新は spec-checker 直走行で確認）</strong>を 公開前自動検証 で自動実行し、<strong class="text-white">FAIL=0 / 合格率 100%</strong>を S-RANK 条件として強制します。1 件でも FAIL があれば push 自体が阻止されます。
+            自社開発の Node.js 検証ツール。<strong class="text-dark-900">2,554 検証項目（最新は spec-checker 直走行で確認）</strong>を 公開前自動検証 で自動実行し、<strong class="text-dark-900">FAIL=0 / 合格率 100%</strong>を S-RANK 条件として強制します。1 件でも FAIL があれば push 自体が阻止されます。
           </p>
 
           <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.1 パフォ</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">11.1 パフォ</p>
               <p class="mt-2 text-dark-700 leading-relaxed">163 PASS / Lighthouse 95+ + Core Web Vitals + ビルド CSS</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.2 SEO</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">11.2 SEO</p>
               <p class="mt-2 text-dark-700 leading-relaxed">204 PASS / title 30-60 / desc 70-160 / OGP 7 + Twitter Card 4 + JSON-LD 5 種</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.4 AI 検索対応</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">11.4 AI 検索対応</p>
               <p class="mt-2 text-dark-700 leading-relaxed">143 PASS / aria-label / 見出し階層 / Speakable / data-nosnippet</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.5 a11y</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">11.5 a11y</p>
               <p class="mt-2 text-dark-700 leading-relaxed">105 PASS / WCAG 2.2 Level AA / タッチターゲット 44px / フォーカスリング</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.6 セキュリティ</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">11.6 セキュリティ</p>
               <p class="mt-2 text-dark-700 leading-relaxed">84 PASS / CSP 必須 6 + 推奨 4 / target=_blank rel=noopener / object-src 'none'</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.7 モバイル</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">11.7 モバイル</p>
               <p class="mt-2 text-dark-700 leading-relaxed">96 PASS / モバイルメニュー / Containing Block 汚染回避 / 横スクロール禁止</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">11.8 Google</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">11.8 Google</p>
               <p class="mt-2 text-dark-700 leading-relaxed">76 PASS / E-E-A-T / 構造化データ / リッチリザルト</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">AI 検索対応</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">AI 検索対応</p>
               <p class="mt-2 text-dark-700 leading-relaxed">85 PASS / G-1〜G-6 9 戦略 /  / 公的リンク密度</p>
             </div>
             <div class="bg-dark-50 border border-dark-100 rounded-lg p-5">
-              <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">SPEC 本文</p>
+              <p class="text-teal-700 font-display font-bold text-xs uppercase tracking-wider">SPEC 本文</p>
               <p class="mt-2 text-dark-700 leading-relaxed">492 PASS /  全条項 +  + 19 ページ階層</p>
             </div>
           </div>
           <p class="mt-6 text-sm text-dark-600">
-            最新検証実績: <strong class="text-teal-300">PASS=1,758 / FAIL=0 / WARN=0 / 合格率 100%</strong>（2026-05-04 spec-checker.js 実行）<br>
-            <span class="text-xs text-dark-500">出典: <a href="https://github.com/TC-HARTON/tcharton" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">github.com/TC-HARTON/tcharton</a></span>
+            最新検証実績: <strong class="text-teal-700">PASS=1,758 / FAIL=0 / WARN=0 / 合格率 100%</strong>（2026-05-04 spec-checker.js 実行）<br>
+            <span class="text-xs text-dark-500">出典: <a href="https://github.com/TC-HARTON/tcharton" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500 py-3 inline-block">github.com/TC-HARTON/tcharton</a></span>
           </p>
         </div>
       </section>
 
       <section aria-label="業界実測の取得方法" class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
-        <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">業界実測 902 件の取得方法</h2>
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">業界実測 902 件の取得方法</h2>
         <p class="mt-4 text-dark-700 leading-relaxed max-w-3xl">
-          （認定機関）が <strong class="text-white">品質検証ツール</strong> で静岡県 5 都市 11 業種を機械検証。<strong class="text-white">業界中央値 24 点 vs 当社実測 90 点 = 3.8 倍ギャップ</strong>を実証しました。
+          （認定機関）が <strong class="text-dark-900">品質検証ツール</strong> で静岡県 5 都市 11 業種を機械検証。<strong class="text-dark-900">業界中央値 24 点 vs 当社実測 90 点 = 3.8 倍ギャップ</strong>を実証しました。
         </p>
 
         <dl class="mt-8 space-y-3 text-sm">
-          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">取得期間</dt><dd class="text-white">2026-04-30 〜 2026-05-01</dd></div>
-          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">対象都市</dt><dd class="text-white">沼津市・三島市・富士市・静岡市・浜松市（静岡県 5 都市）</dd></div>
-          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">対象業種</dt><dd class="text-white">税理士・弁護士・司法書士・行政書士・不動産・飲食店・美容院・美容クリニック・宿泊施設・クリニック/診療所・学習塾（11 業種）</dd></div>
-          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">総検証件数</dt><dd class="text-white"><strong>n=902 件</strong></dd></div>
-          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">業界中央値</dt><dd class="text-white">24 点（100 点満点）</dd></div>
-          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">当社（tcharton.com）実測値</dt><dd class="text-teal-300 font-bold">90 点 / ★★★（ S-Class）</dd></div>
-          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">致命的 NG 発生率</dt><dd class="text-white">32.5%（293/902 件）— HTTPS 非対応 / SSL 証明書エラー / WP 管理面露出 / CMS バージョン情報露出のいずれか 1 件以上検出</dd></div>
-          <div class="flex flex-col sm:flex-row sm:gap-6 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">計算式</dt><dd class="text-white"><code class="text-xs bg-dark-50 px-2 py-1 rounded border border-dark-100">3.8 倍 = 当社実測 90 ÷ 業界中央値 24（小数第 2 位四捨五入）</code></dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">取得期間</dt><dd class="text-dark-900">2026-04-30 〜 2026-05-01</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">対象都市</dt><dd class="text-dark-900">沼津市・三島市・富士市・静岡市・浜松市（静岡県 5 都市）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">対象業種</dt><dd class="text-dark-900">税理士・弁護士・司法書士・行政書士・不動産・飲食店・美容院・美容クリニック・宿泊施設・クリニック/診療所・学習塾（11 業種）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">総検証件数</dt><dd class="text-dark-900"><strong>n=902 件</strong></dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">業界中央値</dt><dd class="text-dark-900">24 点（100 点満点）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">当社（tcharton.com）実測値</dt><dd class="text-teal-700 font-bold">90 点（当社実測 / 100 点満点）</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 border-b border-dark-100 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">致命的 NG 発生率</dt><dd class="text-dark-900">32.5%（293/902 件）— HTTPS 非対応 / SSL 証明書エラー / WP 管理面露出 / CMS バージョン情報露出のいずれか 1 件以上検出</dd></div>
+          <div class="flex flex-col sm:flex-row sm:gap-6 pb-3"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">計算式</dt><dd class="text-dark-900"><code class="text-xs bg-dark-50 px-2 py-1 rounded border border-dark-100">3.8 倍 = 当社実測 90 ÷ 業界中央値 24（小数第 2 位四捨五入）</code></dd></div>
         </dl>
 
         <p class="mt-6 text-xs text-dark-500">出典: scanner Phase 0.5 静岡県業界実測レポート 2026-05（ 認定機関 / 機械検証データ）</p>
@@ -424,20 +427,20 @@
       <!-- 事業展開 事前枠組み (v1.29 / 未確定 値は ④/⑤ 完了後挿入) -->
       <section aria-label="機械検証の社会的証明（プライム市場 全 1,830 社）" class="bg-dark-50 border-y border-dark-100">
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
-          <p lang="en" class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Social Proof — Prime Market Benchmark</p>
-          <h2 class="mt-3 font-display text-2xl lg:text-3xl font-bold text-white">機械検証の社会的証明: プライム市場全 1,830 社実測</h2>
+          <p lang="en" class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Social Proof — Prime Market Benchmark</p>
+          <h2 class="mt-3 font-display text-2xl lg:text-3xl font-bold text-dark-900">機械検証の社会的証明: プライム市場全 1,830 社実測</h2>
           <p class="mt-4 text-dark-700 max-w-3xl leading-relaxed">
-             認定機関は <strong class="text-white">東証プライム市場 全 1,830 社</strong>を半年〜年 1 回スキャンし、東証 33 業種分類による業種別集計を業界レポートとして公開します。<strong class="text-white">中立評価</strong>を担保するため、<strong class="text-white">個別企業名は完全非公開</strong> / <strong class="text-white">業種別集計のみ公開</strong>を厳守します。
+             認定機関は <strong class="text-dark-900">東証プライム市場 全 1,830 社</strong>を半年〜年 1 回スキャンし、東証 33 業種分類による業種別集計を業界レポートとして公開します。<strong class="text-dark-900">中立評価</strong>を担保するため、<strong class="text-dark-900">個別企業名は完全非公開</strong> / <strong class="text-dark-900">業種別集計のみ公開</strong>を厳守します。
           </p>
 
           <div class="mt-10 bg-dark-50 border-l-4 border-teal-400 rounded-r-lg p-6">
-            <h3 class="font-display font-bold text-white text-base">スキャン仕様（公開技術仕様のみ / 過剰負荷ゼロ）</h3>
+            <h3 class="font-display font-bold text-dark-900 text-base">スキャン仕様（公開技術仕様のみ / 過剰負荷ゼロ）</h3>
             <dl class="mt-4 space-y-3 text-sm">
-              <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">対象</dt><dd class="text-dark-800">東証プライム市場 全 1,830 社（出典: <a href="https://www.jpx.co.jp/markets/statistics-equities/misc/01.html" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200">JPX 公式銘柄一覧</a>）</dd></div>
+              <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">対象</dt><dd class="text-dark-800">東証プライム市場 全 1,830 社（出典: <a href="https://www.jpx.co.jp/markets/statistics-equities/misc/01.html" target="_blank" rel="noopener noreferrer" class="text-teal-700 underline hover:text-teal-500">JPX 公式銘柄一覧</a>）</dd></div>
               <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">分類</dt><dd class="text-dark-800">東証 33 業種分類（業種別集計のみ公開）</dd></div>
               <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">頻度</dt><dd class="text-dark-800">半年〜年 1 回（CVE / GEO 仕様変動への追随）</dd></div>
               <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">負荷</dt><dd class="text-dark-800">max-pages=1 / 公開トップページのみ機械検証 / Place API 等の追加 API 一切使用せず</dd></div>
-              <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">公開ポリシー</dt><dd class="text-dark-800"><strong class="text-white">個別企業名は完全非公開</strong> / <strong class="text-white">業種別集計のみ公開</strong> / <strong class="text-white">中立評価</strong>（営業妨害表現の使用なし）</dd></div>
+              <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">公開ポリシー</dt><dd class="text-dark-800"><strong class="text-dark-900">個別企業名は完全非公開</strong> / <strong class="text-dark-900">業種別集計のみ公開</strong> / <strong class="text-dark-900">中立評価</strong>（営業妨害表現の使用なし）</dd></div>
               <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-600 uppercase tracking-wider text-xs sm:pt-1">プライム平均</dt><dd class="text-amber-200 font-extrabold">未確定<span class="text-dark-600 text-xs ml-2 font-normal">（④ 品質検証ツール 全 1,830 社スキャン完了 + ⑤  業界レポート公開後に確定値挿入）</span></dd></div>
             </dl>
           </div>
@@ -482,7 +485,7 @@
             <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
             <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
             <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
-            <li><a href="/methodology/" class="hover:text-white py-3 inline-block" aria-current="page">方法論・品質根拠</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
             <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
           </ul>
         </div>
