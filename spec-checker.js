@@ -591,20 +591,30 @@ function c11_5(html) {
   }
   r.push(focusFail ? FAIL('11.5-focus', S, 'フォーカスリング不透明') : PASS('11.5-focus', S, 'フォーカスリング不透明'));
 
-  // 3. prefers-reduced-motion
-  const motionBlock = html.match(/@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{([\s\S]*?)\}\s*\}/i);
-  if (!motionBlock) r.push(FAIL('11.5-motion', S, 'prefers-reduced-motion'));
+  // 3. prefers-reduced-motion (v1.34: HTML inline OR 外部 CSS で許容 / CSP 'unsafe-inline' 解消対応)
+  const inlineMotion = html.match(/@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{([\s\S]*?)\}\s*\}/i);
+  const externalCss = (() => {
+    const m = html.match(/<link[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/i);
+    if (!m) return '';
+    let href = m[1].split('?')[0];
+    if (href.startsWith('/')) href = href.slice(1);
+    try { return fs.readFileSync(path.join(ROOT, href), 'utf-8'); } catch { return ''; }
+  })();
+  const cssMotion = externalCss.match(/@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{([\s\S]*?)\}\s*\}/i);
+  const motionContent = (inlineMotion && inlineMotion[1]) || (cssMotion && cssMotion[1]) || '';
+  if (!motionContent) r.push(FAIL('11.5-motion', S, 'prefers-reduced-motion'));
   else {
-    const c = motionBlock[1];
-    r.push(/animation-duration/i.test(c) && /transition-duration/i.test(c) && /scroll-behavior/i.test(c)
+    r.push(/animation-duration/i.test(motionContent) && /transition-duration/i.test(motionContent) && /scroll-behavior/i.test(motionContent)
       ? PASS('11.5-motion', S, 'prefers-reduced-motion')
       : FAIL('11.5-motion', S, 'prefers-reduced-motion', '必須プロパティ不足'));
   }
 
-  // 4. noscript
-  r.push(/<noscript>[\s\S]*?\.fade-in[\s\S]*?<\/noscript>/i.test(html)
-    ? PASS('11.5-nosc', S, 'noscript')
-    : FAIL('11.5-nosc', S, 'noscript'));
+  // 4. noscript / JS 無効時 fallback (v1.34: html.no-js 経由 + js-marker.js も許容)
+  const noscFallback =
+    /<noscript>[\s\S]*?\.fade-in[\s\S]*?<\/noscript>/i.test(html) ||
+    (/<html[^>]*class=["'][^"']*\bno-js\b[^"']*["']/i.test(html) && /html\.no-js\s+\.fade-in/i.test(externalCss));
+  r.push(noscFallback ? PASS('11.5-nosc', S, 'noscript / no-js fallback')
+                      : FAIL('11.5-nosc', S, 'noscript / no-js fallback'));
 
   // 5. スキップリンク
   r.push(/href=["']#main["'][^>]*>.*スキップ/is.test(bd) || /sr-only[^>]*href=["']#main["']/is.test(bd) || /href=["']#main["'][^>]*class=["'][^"']*sr-only/is.test(bd)

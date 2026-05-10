@@ -2,6 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── v1.34 / 2026-05-10 inline <style> 撤去・CSP 'unsafe-inline' 解消 ───
+   全 18 HTML から inline <style> ブロック削除、外部化により style-src 'self' のみで動作
+   出典: OWASP Top 10:2025 A03 Injection / web.dev Strict CSP / MDN CSP style-src */
+
+/* 1. 基本リセット系（旧 inline <style> から） */
+html { scroll-behavior: smooth; }
+
+/* 2. fade-in（IntersectionObserver 連動 / JS 環境） */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in-delay-1 { transition-delay: 0.15s; }
+.fade-in-delay-2 { transition-delay: 0.3s; }
+.fade-in-delay-3 { transition-delay: 0.45s; }
+
+/* 3. ナビ blur（backdrop-filter） */
+.nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+/* 4. モバイルメニュー（slide-in drawer） */
+.mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+.mobile-menu.open { transform: translateX(0); }
+
+/* 5. hero-grid 背景（contact / index 等） */
+.hero-grid { background-image: radial-gradient(circle at 1px 1px, rgba(27,73,101,0.12) 1px, transparent 0); background-size: 40px 40px; }
+
+/* 6. グラフィック装飾（thanks.html / 404.html 等） */
+.glow { box-shadow: 0 0 60px rgba(27,73,101,0.2); }
+.gradient-text {
+  background: linear-gradient(135deg, #1B4965 0%, #2c6e8c 50%, #1B4965 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 7. アニメーション系 keyframes（thanks 等） */
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.float { animation: float 3s ease-in-out infinite; }
+@keyframes pulse-line { 0%{opacity:0.4} 50%{opacity:1} 100%{opacity:0.4} }
+.pulse-line { animation: pulse-line 2s infinite; }
+@keyframes check-draw { 0% { stroke-dashoffset: 24; } 100% { stroke-dashoffset: 0; } }
+@keyframes circle-pop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes ring-expand { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+.check-circle { animation: circle-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards; opacity: 0; }
+.check-circle svg path { stroke-dasharray: 24; stroke-dashoffset: 24; animation: check-draw 0.4s ease-out 0.7s forwards; }
+.check-ring { animation: ring-expand 1s ease-out 0.5s forwards; opacity: 0; }
+
+/* 8. prefers-reduced-motion（旧 inline <style> 統合 / 二重防御は §12 で別途継続） */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-in { opacity: 1 !important; transform: none !important; }
+  .check-circle { opacity: 1; }
+  .check-circle svg path { stroke-dashoffset: 0; }
+}
+
+/* 9. JS 無効時 fallback（旧 <noscript><style>）→ html.no-js 経由で発動 */
+html.no-js .fade-in { opacity: 1 !important; transform: none !important; }
+
+
 /* ─── v1.17 観点 1: マイクロインタラクション ───────────────────────────────────
    ① v1.20 §3 制約遵守:
      - PJAX/SPA 禁止 → View Transitions API ネイティブ採用

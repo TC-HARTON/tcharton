@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#FFFFFF">
   <meta name="color-scheme" content="light">
   <meta name="robots" content="noindex, nofollow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
   <link rel="canonical" href="https://tcharton.com/thanks.html">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -48,55 +48,9 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-  <style>
-    html { scroll-behavior: smooth; }
-    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .fade-in-delay-1 { transition-delay: 0.15s; }
-    .fade-in-delay-2 { transition-delay: 0.3s; }
-    .fade-in-delay-3 { transition-delay: 0.45s; }
-    .hero-grid {
-      background-image: radial-gradient(circle at 1px 1px, rgba(27,73,101,0.15) 1px, transparent 0);
-      background-size: 40px 40px;
-    }
-    .glow { box-shadow: 0 0 60px rgba(27,73,101,0.2); }
-    .gradient-text {
-      background: linear-gradient(135deg, #1B4965 0%, #2c6e8c 50%, #1B4965 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-    .float { animation: float 3s ease-in-out infinite; }
-    @keyframes pulse-line { 0%{opacity:0.4} 50%{opacity:1} 100%{opacity:0.4} }
-    .pulse-line { animation: pulse-line 2s infinite; }
-    @keyframes check-draw { 0% { stroke-dashoffset: 24; } 100% { stroke-dashoffset: 0; } }
-    @keyframes circle-pop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
-    @keyframes ring-expand { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
-    .check-circle { animation: circle-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards; opacity: 0; }
-    .check-circle svg path { stroke-dasharray: 24; stroke-dashoffset: 24; animation: check-draw 0.4s ease-out 0.7s forwards; }
-    .check-ring { animation: ring-expand 1s ease-out 0.5s forwards; opacity: 0; }
-    .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      .fade-in { opacity: 1 !important; transform: none !important; }
-      .check-circle { opacity: 1; }
-      .check-circle svg path { stroke-dashoffset: 0; }
-    }
-  </style>
-
-  <noscript>
-    <style>.fade-in { opacity: 1 !important; transform: none !important; }</style>
-  </noscript>
   <!-- GA4 DNT-aware (privacy.html §6 公約準拠) / v1.15 inline 外部化 -->
   <script src="/dist/scripts/ga4.js?v=202605101240" defer></script>
-  <script src="/dist/scripts/trusted-types.js?v=202605101240"></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605101240"></script>  <script src="/dist/scripts/js-marker.js?v=202605101700"></script>
 
 </head>
 <body class="bg-white text-dark-700 font-sans antialiased min-h-screen flex flex-col">
