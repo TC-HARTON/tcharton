@@ -119,3 +119,49 @@ v1.33 §94-106「完全保留事項」と直前の代表チャット指示の関
 ### 次 Step 着手指示
 
 新 Step 2 (お問い合わせフォーム + ボット防御) から着手 mandatory。HSCEL §3.1 4 Skill 厳守。
+
+## v1.33 Step 4 + TECHNICAL-FIX-V1 §2.2 #2/#4 完了報告 (2026-05-10 18:00)
+
+### 実装サマリ
+
+| Phase | 内容 | commit |
+|---|---|---|
+| 5-A | CSP `style-src 'unsafe-inline'` 解消（22 HTML から inline `<style>` 全撤去 / `html.no-js` + js-marker.js / `_headers` + meta CSP 同期） | `cb04c8b` |
+| 5-B | JSON-LD `@id` グラフ統一（services 4 ページの provider を `#professional-service` 参照に） | `034b61c` |
+| 5-C | og:image:alt 全 22 ページ + Twitter Card 4 ページ補完 (legal/privacy/thanks/404) + DNS prefetch (GTM/GA4) | `034b61c` |
+| review fb | 3 軸 review (CSP 87 / SEO 91 / UI 78) Critical 7 件解消: js-marker.js 先頭配置 / font preload 6 ページ補完 / cache busting `?v=202605101800` 全統一 / ai-prediction Service @id 参照 / lp+refurbish Service schema 新設 / og:image:alt 6 ページ追加 | `60e4459` |
+
+### 達成項目
+
+- TECHNICAL-FIX §2.2 #4 CSP source 脆弱性（style-src 'unsafe-inline'）**解消** → ヘッダースコア 97 → 100 見込み
+- TECHNICAL-FIX §2.2 #2 JSON-LD score 50 → 70+ 見込み（@id グラフ統一 / Service.provider 統一 / OfferCatalog / priceRange / openingHoursSpec / additionalType Wikidata Q）
+- v1.33 Step 1（HTML edge cache）+ Step 4（CSP unsafe-inline）= 完了
+
+### 検証
+
+- spec-checker: **PASS 1149 / FAIL 0 / 100% S-RANK**
+- pre-push hook: 全検証 PASS
+- push: `bea501e..60e4459 main -> main` deploy 完了
+
+### scanner 実測再依頼（① への要請）
+
+`https://tcharton.com/` に対し ④ scanner v3.7 再実行し以下を ② にフィードバック願います:
+
+| 観測対象 | 期待 | 現状 |
+|---|---|---|
+| TTFB（連続 5 回平均）| ≤ 200ms | 1,883ms |
+| `cf-cache-status` ヒット率 | HIT 主体 | unknown |
+| ヘッダースコア | 100 | 97 |
+| JSON-LD score | 70+ | 50 |
+| 必須条件達成数 | 5/5（★★★） | 1/5（★） |
+| 総合スコア | 90+ | 77 |
+| 致命的 NG | 0 維持 | 0 |
+
+実測結果次第で残課題（CWV USE_PLAYWRIGHT=1 / GEO score 70+ / Bot 防御フォーム + Turnstile）の優先順位を ① エスカレーション要件 A/B/E と併せて判断します。
+
+### 並行待機事項（② 単独実行不可）
+
+- GA4 bot フィルタ / CV 設定 / Search Console リンク（① / 代表）
+- scanner v3.7 月次再判定（① 権限）
+- Cloudflare Turnstile site key 取得（代表）
+- `aggregateRating`：実顧客 5 件確保まで保留（現「1 号客募集中」状態のため虚偽記載回避）
