@@ -364,3 +364,135 @@ https://tcharton.com/
 ### 着手前提
 
 代表 GO 受領済 (2026-05-10) → **v1.34 Week 1 並行で v1.34.1 着手**
+
+---
+
+## v1.34.1 (改訂版): PDF 統合 + 一発応募 + プロ印象 (2026-05-10 / 代表 OK 連動)
+
+### 経緯
+
+旧 v1.34.1 (ZIP + 個別 6 ファイル DL) は **代表より「ド素人臭い」指摘で全廃**。
+PDF 統合 1 ファイル + 一発応募 (応募 = 5 点セット提出時点) に変更。
+
+### 変更内容
+
+#### 廃止
+
+- `templates.zip` (ZIP 配布)
+- 個別 6 ファイル DL (README + 01-05.md)
+- 「応募意向 → 後日提出」2 段階フロー
+
+#### 新設
+
+- **`/recruit/HARTON-recruitment-guide.pdf`** (PDF 統合 1 ファイル / A4 / 推定 12-15 ページ)
+- 一発応募フロー (応募 = 5 点セット完備 + 共有 URL 送信時点)
+- /recruit/ ページに PDF DL リンク 1 つだけ配置
+- 共有 URL 必須項目フォーム
+
+### タスク (Week 1 並行 / 工数 2-3 時間)
+
+#### タスク 1: PDF 生成 (1 時間)
+
+ソース: `HARTON/note-content/assets/recruit-templates/HARTON-recruitment-guide.html` (① 起草済 / 約 800 行)
+
+PDF 生成方法:
+
+```bash
+# 案 A: Puppeteer (推奨)
+npm install --save-dev puppeteer
+node -e "
+const puppeteer = require('puppeteer');
+(async () => {
+  const browser = await puppeteer.launch({headless: 'new'});
+  const page = await browser.newPage();
+  await page.goto('file://[absolute-path]/HARTON-recruitment-guide.html', {waitUntil: 'networkidle0'});
+  await page.pdf({
+    path: 'tcharton/recruit/HARTON-recruitment-guide.pdf',
+    format: 'A4',
+    printBackground: true,
+    preferCSSPageSize: true,
+  });
+  await browser.close();
+})();
+"
+
+# 案 B: Chromium 直接 CLI
+chromium --headless --disable-gpu --print-to-pdf=output.pdf input.html
+
+# 案 C: Playwright (既に scanner.py で使用済 = 環境あり)
+npx playwright install chromium
+python -c "
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
+    page.goto('file:///[absolute-path]/HARTON-recruitment-guide.html')
+    page.pdf(path='tcharton/recruit/HARTON-recruitment-guide.pdf', format='A4', print_background=True)
+    browser.close()
+"
+```
+
+推奨: **案 C (Playwright)** = scanner で既に環境あり / Python 制御 / 安定
+
+#### タスク 2: /recruit/ ページ新設 (30 分)
+
+`tcharton/recruit/index.html` 新設:
+
+- ヒーロー: 「制作実績キャンペーン」+ サブコピー
+- PDF DL ボタン (大型 / 1 つだけ): `📥 応募ガイド (PDF / A4 / 12-15 ページ) ダウンロード`
+- 概要 (10 業種 × 1 社 / 全国対応 / 必須条件 8 項目 サマリ)
+- 応募フォーム (共有 URL 必須項目)
+- HARTON SPEC §8.5.1 準拠 (CWV / セキュリティ / JSON-LD)
+- canonical / OGP 完備
+
+#### タスク 3: 応募フォーム共有 URL 必須化 (30 分)
+
+`tcharton/recruit/index.html` または `tcharton/contact/index.html` のフォームに:
+
+```html
+<label>
+  オンラインストレージ共有 URL (必須)
+  <input type="url" name="application_url" required
+         placeholder="https://drive.google.com/... or https://www.dropbox.com/...">
+</label>
+<small>
+  Google Drive / Dropbox / OneDrive 等で 5 点セット + 画像をアップ
+  → 共有 URL を生成してご記入ください (閲覧可能設定)
+</small>
+```
+
+#### タスク 4: Web3Forms 自動返信メール文言訂正 (15 分)
+
+```html
+<input type="hidden" name="from_name" value="T.C.HARTON 制作実績キャンペーン">
+<input type="hidden" name="autoresponse_subject" value="【T.C.HARTON】応募受領しました / 1-3 営業日内に採否連絡">
+<input type="hidden" name="autoresponse_body" value="この度は T.C.HARTON 制作実績キャンペーンへの応募ありがとうございます。共有 URL を確認させていただきました。1-3 営業日以内に採否をメールにてご連絡いたします。採用の場合は併せて簡易現状診断レポート + 制作スケジュールをお送りします。T.C.HARTON 大内 達也 / https://tcharton.com/">
+```
+
+#### タスク 5: 動作確認 + REPORT 追記 (15 分)
+
+- /recruit/ ページ ブラウザ表示確認
+- PDF DL 動作確認 (ファイルサイズ / ページ数 / レイアウト崩れなし)
+- フォーム送信 → 自動返信メール受信確認
+- HARTON-recruitment-guide.pdf を `tcharton/recruit/HARTON-recruitment-guide.pdf` に配置確認
+
+完遂報告は `tcharton/REPORT-TO-ROOT-FROM-TCHARTON.md` v1.34.1 (改訂版) として追記。
+
+### Week 1 タスク順序 (再更新)
+
+| 順序 | タスク | 工数 |
+|---|---|---|
+| 1 | §1.1 JSON-LD 改修 (v1.34) | 1 日 |
+| 2 | §1.4 GEO 改修 (v1.34) | 1 日 |
+| 3 | **/recruit/ + PDF + 自動応答 (v1.34.1 改訂版)** | 2-3 時間 |
+
+### 期待効果
+
+- プロ印象訴求 (PDF 統合 / ブランドカラー / 印刷品質)
+- 応募者対応の手動工数ゼロ化
+- 5 点セット完備時点での本気応募のみ通過 (確実フィルタ)
+- Web3Forms 自動返信で受領通知
+
+### 着手前提
+
+代表 OK 受領済 (2026-05-10) → **v1.34 Week 1 並行で v1.34.1 改訂版着手**

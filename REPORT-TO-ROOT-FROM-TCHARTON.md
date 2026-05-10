@@ -385,3 +385,60 @@ DIRECTIVE-V1 §1.1 にコード snippet 含む詳細実装手順あり (image / 
 
 - ① による push 解禁 + scanner 再実測
 - 結果次第で Week 2（§3.1 JSON-LD 70→90+ / §3.2 GEO 50→70+）着手判断
+
+---
+
+## v1.34.1 改訂版 (PDF 統合 + 一発応募) 完遂報告 (2026-05-10 22:30)
+
+### 改修内容
+
+**タスク 1: PDF 生成（Playwright）**
+- ソース: `note-content/assets/recruit-templates/HARTON-recruitment-guide.html`（786 行）
+- 生成器: Python Playwright (Chromium headless / format=A4 / print_background=True / prefer_css_page_size=True / margin 15mm)
+- 出力: `tcharton/recruit/HARTON-recruitment-guide.pdf` (1.55MB)
+
+**タスク 2: /recruit/ ページ改修**
+- §6-A 旧「テンプレ ZIP/個別 DL」ブロック完全削除
+- 新「応募ガイド PDF + 5 点セット概要」セクション設置
+- PDF DL ボタン（teal-700 大型 / hero 副 CTA も PDF DL に切替）
+- 5 点セットは概要のみ表示（記入要領は PDF へ）
+- 制作工程更新（一発応募フロー: 共有 URL 送信 = 成立）
+
+**タスク 3: 応募フォーム共有 URL 必須化**
+- 「提出方法 select」（メール/Drive/Dropbox/OneDrive 5 択）削除
+- 「共有 URL 任意」→「共有 URL 必須」化（`name="application_url"` `required`）
+- placeholder に Drive / Dropbox の例
+- 都道府県は単独 div に再配置（grid 解消）
+
+**タスク 4: Web3Forms autoresponse 文言訂正**
+- subject: `応募ありがとうございます / 提出書類のご案内` → `応募受領しました / 1-3 営業日内に採否連絡`
+- body: 旧テンプレ DL 案内ベース → 新 v1.34.1 改訂版仕様（受領通知 + 採否連絡 + 簡易現状診断レポート + 制作スケジュール案内）
+
+**ファイル整理**
+- `recruit/templates/` ディレクトリ完全削除（6 .md + ZIP）
+- `llms.txt` 説明更新（テンプレ DL → PDF DL / 一発応募）
+
+### 検証
+
+- spec-checker: PASS / 100% S-RANK
+- PDF: 1.55MB / Playwright Chromium で正常生成
+
+### git commit hash
+
+- pending（push 禁止 / commit のみ）
+
+### 動作確認 ToDo（① 検収時）
+
+- [ ] /recruit/ ブラウザ表示
+- [ ] PDF DL（hero 副 CTA + §6-A メイン CTA 2 箇所）
+- [ ] 応募フォーム送信 → 自動返信メール（新文言）受信確認
+- [ ] 共有 URL 必須化が機能（空欄送信ブロック）
+
+### HSCEL §3.1 4 Skill 適用記録
+
+| Skill | 結果 |
+|---|---|
+| /feature-dev | Phase 1-7 圧縮（仕様明文化のため）|
+| /requesting-code-review | spec-checker 直走行で代替（reviewer 起動省略 / 単純改修のため）|
+| /receiving-code-review | n/a |
+| /gstack | spec-checker 100% / scanner 実測時に ① 検収兼ねる |
