@@ -216,7 +216,7 @@
   ]}
   </script>
 
-<link rel="stylesheet" href="/dist/output.css">
+<link rel="stylesheet" href="/dist/output.css?v=20260510a">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -383,8 +383,8 @@
               <line x1="470" y1="200" x2="430" y2="232" stroke="#7A6A52" stroke-width="2"/>
             </g>
 
-            <!-- ━━━ 第 2 幕: 粒子（1.3-2.7s） ━━━ -->
-            <g class="anim-particles" opacity="0">
+            <!-- ━━━ 第 2 幕: 粒子（0.8-1.7s / opacity は CSS で制御） ━━━ -->
+            <g class="anim-particles">
               <circle class="particle p1" cx="300" cy="260" r="2.5" fill="#1B4965"/>
               <circle class="particle p2" cx="300" cy="260" r="2" fill="#1B4965"/>
               <circle class="particle p3" cx="300" cy="260" r="2.5" fill="#1B4965"/>
@@ -399,8 +399,8 @@
               <circle class="particle p12" cx="300" cy="260" r="2.5" fill="#1B4965"/>
             </g>
 
-            <!-- ━━━ 第 3 幕: 高品質 WEB（2.5s 〜 永続 / 古い WEB より大きく） ━━━ -->
-            <g class="anim-new" opacity="0">
+            <!-- ━━━ 第 3 幕: 高品質 WEB（1.5s 〜 永続 / opacity は CSS で制御） ━━━ -->
+            <g class="anim-new">
               <!-- 新ブラウザ枠（角丸 / 古より大型 440×320） -->
               <rect x="80" y="100" width="440" height="320" rx="14" fill="#FFFFFF"
                     stroke="#1B4965" stroke-width="2.5" class="new-frame"/>
