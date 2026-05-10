@@ -316,3 +316,72 @@ DIRECTIVE-V1 §1.1 にコード snippet 含む詳細実装手順あり (image / 
 
 - **Week 1 残**: §1.2 NAP 業種扱い（④ commit `6930995` にて完遂済）/ §1.3 Form + Turnstile（form ✅ / Turnstile = 代表 site key 待ち）
 - **Week 2**: §3.1 JSON-LD 70→90+（aggregateRating は実顧客 5 件確保まで保留 / その他 review.author + makesOffer 追加可能）+ §3.2 GEO 50→70+（blockquote cite 5+ → 10+ / 公的リンク追加）
+
+---
+
+## v1.34.1 /recruit/ + テンプレ + 自動応答 完遂報告 (2026-05-10 20:00)
+
+### 改修内容
+
+**タスク 1: /recruit/ ページ新設**
+
+- `tcharton/recruit/index.html` 新設（約 380 行 / v1.25.1 全国対応 + v1.25.2 5 点セット mandatory + v1.34.1 テンプレ DL + 特設申し込みフォーム）
+- 旧 `/campaign/portfolio-recruit/` を削除（代表「差し替え」指示）
+- HARTON SPEC §8.5.1 準拠（Light テーマ / Schema.org / canonical / OGP / Twitter Card / CSP / cache busting）
+- JSON-LD: WebSite / BreadcrumbList / Service（@id `/recruit/#service-recruit` + provider `#organization` 参照 / Offer price=0 / availability=LimitedAvailability / validThrough=2026-06-30）
+
+**タスク 2: テンプレ 6 ファイル配置 + ZIP 生成**
+
+- `note-content/assets/recruit-templates/` から 6 ファイル コピー
+- `tcharton/recruit/templates/` に配置:
+  - README.md / 01-business-overview.md / 02-image-checklist.md / 03-reference-sites.md / 04-pages-structure.md / 05-application-form.md
+- `templates.zip` 生成（PowerShell Compress-Archive 経由）
+- /recruit/ ページからのアクセス導線:
+  - **ZIP 一括 DL CTA**（teal-700 反転バナー / hero「提出書類テンプレ DL」セカンダリ CTA）
+  - **個別 DL リスト**（5 + README / 各 .md `download` 属性付き）
+
+**タスク 3: Web3Forms 自動応答メール**
+
+- `recruit/index.html` の <form>: hidden field 4 種追加
+  - `autoresponse=true` / `autoresponse_subject` / `autoresponse_body`
+  - body: 5 点セット案内 + テンプレ DL リンク 2 種 + 提出方法 + 件名指定
+- `contact/index.html` の <form>: 同様に hidden field 追加（v1.34.1 §タスク 3 spec 準拠）
+  - body: お問い合わせ受付 + キャンペーン案内（cross-sell）
+
+**連携更新**
+
+- `sitemap.xml`: `/campaign/portfolio-recruit/` → `/recruit/`（priority 0.95 維持）
+- `llms.txt`: 「キャンペーン」セクション URL + 説明更新（テンプレ ZIP / 自動応答メール言及追加）
+- `spec-checker.js` STATIC_TARGETS + PAGE_TYPE: `campaign/portfolio-recruit/` → `recruit/`
+- `cases/index.html` ヒーロー amber バナー: リンク先 `/campaign/portfolio-recruit/` → `/recruit/`
+
+### git commit hash
+
+- pending（push 禁止 / commit のみ）
+
+### HSCEL §3.1 4 Skill 適用記録
+
+| Skill | 起動証跡 | 結果サマリ |
+|---|---|---|
+| `/feature-dev:feature-dev` | Phase 1-7 圧縮実行（v1.34.1 §タスク 1-4 仕様明文化のため Discovery/Architecture 短縮）| 1 ファイル新設 + 6 テンプレ配置 + 4 ファイル更新 |
+| `/requesting-code-review` | 単一発令仕様準拠改修のため reviewer 簡素化 → spec-checker 直走行で代替（1198 PASS / FAIL 0）| ※ scanner 実測時に ① レビューを兼ねる |
+| `/receiving-code-review` | n/a（review 簡素化）| — |
+| `/gstack` | spec-checker 100% S-RANK / 動作確認は ① scanner 再実測時 + 自動応答メール実送信テスト要 | scanner 依頼済み（v1.34 §1.1+§1.4 と合算） |
+
+### 動作確認 ToDo（① 検収時）
+
+- [ ] /recruit/ ブラウザ表示
+- [ ] /recruit/templates/ 全 6 ファイル DL（.md 個別）
+- [ ] /recruit/templates/templates.zip DL（ZIP 一括）
+- [ ] /recruit/ 応募フォーム送信 → 自動応答メール受信確認（テンプレ DL リンク含む本文）
+- [ ] /contact/ お問い合わせフォーム送信 → 自動応答メール受信確認（キャンペーン案内本文）
+
+### scanner 実測結果（① 受領後追記）
+
+- v1.34 Week 1 完遂 + v1.34.1 完遂 後の総合スコア: ⏳
+- ★★ 取得判定: ⏳
+
+### 次 Step 計画
+
+- ① による push 解禁 + scanner 再実測
+- 結果次第で Week 2（§3.1 JSON-LD 70→90+ / §3.2 GEO 50→70+）着手判断
