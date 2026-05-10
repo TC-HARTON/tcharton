@@ -196,8 +196,139 @@
         </div>
       </section>
 
+      <!-- セクション 2.5: 静岡 WEB サイトの実態（数字で示す） -->
+      <section aria-label="静岡 WEB サイトの実態" class="px-6 lg:px-12 py-20 lg:py-32 bg-white">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <p class="text-sm text-teal-700 font-semibold tracking-widest uppercase">The Reality</p>
+            <h2 class="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-dark-900">静岡の WEB サイトの<br class="sm:hidden">実態</h2>
+            <p class="mt-6 text-base sm:text-lg text-dark-600 leading-relaxed">
+              代表が静岡県東部の中小企業 <strong class="text-dark-900">902 社</strong>の WEB サイトを<br class="sm:hidden">機械検証で実測しました。<br>
+              結果は、想像以上に深刻でした。
+            </p>
+          </div>
+
+          <!-- 大数字 3 つ -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-dark-50 border border-dark-200 rounded-2xl p-8 text-center">
+              <p class="font-display text-6xl font-extrabold text-dark-900">902<span class="text-2xl ml-1 font-bold">件</span></p>
+              <p class="mt-3 text-sm text-dark-600 font-medium">調査対象</p>
+              <p class="mt-2 text-xs text-dark-500">静岡県東部の中小企業 WEB サイト</p>
+            </div>
+            <div class="bg-dark-50 border border-dark-200 rounded-2xl p-8 text-center">
+              <p class="font-display text-6xl font-extrabold text-amber-600">24<span class="text-2xl ml-1 font-bold">点</span></p>
+              <p class="mt-3 text-sm text-dark-600 font-medium">業界中央値</p>
+              <p class="mt-2 text-xs text-dark-500">100 点満点中（速度 + SEO + 安全 + a11y）</p>
+            </div>
+            <div class="bg-dark-50 border border-dark-200 rounded-2xl p-8 text-center">
+              <p class="font-display text-6xl font-extrabold text-red-600">32.5<span class="text-2xl ml-1 font-bold">%</span></p>
+              <p class="mt-3 text-sm text-dark-600 font-medium">致命的問題あり</p>
+              <p class="mt-2 text-xs text-dark-500">293 件 / 902 件</p>
+            </div>
+          </div>
+
+          <!-- 品質レベル別件数 -->
+          <div class="bg-white border border-dark-200 rounded-2xl p-8 lg:p-10 mb-10">
+            <h3 class="font-display font-bold text-xl text-dark-900 mb-6">品質レベル別の内訳（902 社中）</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-semibold text-dark-900">高品質（90 点以上）</span>
+                  <span class="text-sm text-dark-700"><strong>9 件</strong> / 1.0%</span>
+                </div>
+                <div class="h-3 bg-dark-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-green-600" style="width:1%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-semibold text-dark-900">良好（70-89 点）</span>
+                  <span class="text-sm text-dark-700"><strong>54 件</strong> / 6.0%</span>
+                </div>
+                <div class="h-3 bg-dark-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-teal-500" style="width:6%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-semibold text-dark-900">標準（40-69 点）</span>
+                  <span class="text-sm text-dark-700"><strong>235 件</strong> / 26.1%</span>
+                </div>
+                <div class="h-3 bg-dark-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-blue-500" style="width:26.1%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-semibold text-dark-900">要改善（20-39 点）</span>
+                  <span class="text-sm text-dark-700"><strong>311 件</strong> / 34.5%</span>
+                </div>
+                <div class="h-3 bg-dark-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-amber-500" style="width:34.5%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-semibold text-dark-900">緊急対応必要（20 点未満）</span>
+                  <span class="text-sm text-dark-700"><strong>293 件</strong> / 32.5%</span>
+                </div>
+                <div class="h-3 bg-dark-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-red-500" style="width:32.5%"></div>
+                </div>
+              </div>
+            </div>
+            <p class="mt-6 text-xs text-dark-500 leading-relaxed">
+              ※ 評価軸: 表示速度（Core Web Vitals）/ SEO（構造化データ・タイトル・モバイル対応）/ セキュリティ（HTTPS・CSP・改ざん検知）/ アクセシビリティ（WCAG 2.2）/ AI 検索対応 の 5 軸合計 100 点満点で機械検証。
+            </p>
+          </div>
+
+          <!-- 危機的状況の指摘 -->
+          <div class="bg-red-50 border border-red-200 rounded-2xl p-8 lg:p-10 mb-10">
+            <h3 class="font-display font-bold text-xl text-red-800 mb-4">特に深刻な実態</h3>
+            <ul class="space-y-3 text-sm sm:text-base text-dark-800">
+              <li class="flex gap-3">
+                <span class="text-red-600 font-bold flex-shrink-0">▶</span>
+                <span><strong>902 社中 81 社（9.0%）</strong>が SSL（HTTPS 暗号化）未対応 — 検索順位下落 + Chrome で警告表示</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-red-600 font-bold flex-shrink-0">▶</span>
+                <span><strong>902 社中 823 社（91.2%）</strong>が CSP（コンテンツセキュリティポリシー）未設定 — 改ざん攻撃に対し脆弱</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-red-600 font-bold flex-shrink-0">▶</span>
+                <span><strong>902 社中 627 社（69.5%）</strong>がモバイル表示で 3 秒以上の読み込み遅延 — Google 検索順位で不利</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-red-600 font-bold flex-shrink-0">▶</span>
+                <span><strong>902 社中 758 社（84.0%）</strong>が AI 検索（ChatGPT・Perplexity）で引用されない構造</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-red-600 font-bold flex-shrink-0">▶</span>
+                <span><strong>902 社中 412 社（45.7%）</strong>が WCAG 2.2 アクセシビリティ違反 — 高齢者・視覚障害者に届かない</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 沼津特化データ -->
+          <div class="bg-dark-50 border-l-4 border-teal-600 rounded-r-xl p-6 lg:p-8">
+            <h3 class="font-display font-bold text-base sm:text-lg text-dark-900 mb-3">沼津市内（134 社）に絞ると</h3>
+            <p class="text-sm sm:text-base text-dark-700 leading-relaxed">
+              沼津市内 134 社の中央値は <strong class="text-dark-900">22 点</strong>（県平均 24 点をさらに下回る）。
+              地元の中小企業は、東京の大手企業の WEB サイトと比べ、<strong class="text-dark-900">品質で 4.1 倍の差</strong>がついています。
+            </p>
+          </div>
+
+          <!-- 結論メッセージ -->
+          <div class="mt-12 text-center">
+            <p class="text-lg sm:text-xl lg:text-2xl text-dark-900 font-display font-bold leading-relaxed">
+              この実態を変えたくて、<br>静岡から始めることにしました。
+            </p>
+          </div>
+        </div>
+      </section>
+
       <!-- セクション 3: なぜそう思うか（物語） -->
-      <section aria-label="なぜそう思うか" class="px-6 lg:px-12 py-20 lg:py-32 bg-white">
+      <section aria-label="なぜそう思うか" class="px-6 lg:px-12 py-20 lg:py-32 bg-dark-50">
         <div class="max-w-3xl mx-auto">
           <div class="text-center mb-16">
             <p class="text-sm text-teal-700 font-semibold tracking-widest uppercase">Why</p>
