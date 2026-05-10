@@ -321,7 +321,7 @@ https://tcharton.com/recruit/templates/templates.zip
 提出方法:
 - メール添付 (1MB 以下)
 - オンラインストレージ共有 URL (Google Drive / Dropbox 等)
-- 提出先: contact@tcharton.com
+- 提出先: info@tcharton.com
 - 件名: 「【制作実績キャンペーン応募】[業種名] / [屋号 or 社名]」
 
 5 点セット完備時点で先着順判定が確定します。
