@@ -1,11 +1,24 @@
 {
-  "_comment": "tcharton.com Single Source of Truth (v1.23 / 2026-05-07)",
+  "_comment": "tcharton.com Single Source of Truth (v1.24 / 2026-05-08)",
   "_purpose": "数値 + テキスト + メタ情報の正規版を集中管理。spec-checker.js 新 gate 群が本ファイルを読み、全 HTML との verbatim 一致を検証する。HSCEL §0.0.10 厳格化原則の構造実装。",
   "_canonical_owner": "① HARTON 総合責任者",
   "_update_policy": "代表承認なしに値を変更しない。変更時は spec-checker FAIL → 全 HTML 同期修正で解消する dogfooding ループ。",
-  "version": "1.23",
-  "lastSynced": "2026-05-07",
-  "specVersion": "3.6",
+  "version": "1.24",
+  "lastSynced": "2026-05-08",
+  "specVersion": "3.7",
+  "scannerPyVersion": "v3.7",
+  "webPerformanceStandard": {
+    "_purpose": "SPEC v3.7 §8.5.1 / §0.0.15 公正性原則準拠。SSG/Jamstack 必須を撤廃し『Web Performance Standard 達成』を技術中立で評価。",
+    "principle": "技術手段非問わず Core Web Vitals + TTFB の達成を以て判定（Google 公式基準）",
+    "ttfbThresholdMs": 600,
+    "ttfbSource": "Google web.dev Core Web Vitals 公式基準",
+    "lcpThresholdMs": 2500,
+    "inpThresholdMs": 200,
+    "clsThreshold": 0.1,
+    "technologyNeutrality": "SSG / Jamstack / SSR / 動的 CMS いずれの実装でも基準達成すれば評価対象",
+    "industrySpecificFairness": "業種特性により NAP 等の評価軸を業種別に suspension 可能",
+    "noSelfOptimization": "scanner.py は HARTON 自社最適評価ではなく業界横断の公式標準準拠"
+  },
   "geoVersion": "2.1",
   "googleVersion": "2.0",
   "labels": {

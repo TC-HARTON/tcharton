@@ -108,6 +108,11 @@
     if (menu.classList.contains('open')) closeMenu();
     else openMenu();
   });
+  // v1.31 内部閉じるボタン対応（toggle が inert 化される問題の解消）
+  var closeBtn = document.getElementById('menuClose');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () { closeMenu(); });
+  }
   menu.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () {
       // リンククリックによる遷移は menu close で a11y 状態をクリア

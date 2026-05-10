@@ -186,3 +186,202 @@ html .fade-in {
     animation: none !important;
   }
 }
+
+/* ─── v1.31 Old/New/AI ヒーローアニメーション ─────────────────────────────────
+   コンセプト: 古い WEB → 新 WEB → AI 予測 = 3 サービス全部を 1 つの物語で表現
+   実装: pure CSS / GPU only / 60FPS / lib 追加なし / 5 秒 3 幕シーケンス
+   a11y: prefers-reduced-motion で完成形を即時表示
+*/
+
+/* 第 1 幕 古い WEB（0.0-1.5s）*/
+.anim-old {
+  opacity: 1;
+  transform-origin: 50% 50%;
+  animation: anim-old-out 0.6s ease-in 1.4s forwards;
+}
+.anim-old .old-frame {
+  animation: anim-old-shake 0.4s ease-in-out 0.3s 3;
+  transform-origin: 50% 50%;
+}
+@keyframes anim-old-shake {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(-1.5px, 1px); }
+  50%      { transform: translate(1.5px, -1px); }
+  75%      { transform: translate(-1px, -1px); }
+}
+@keyframes anim-old-out {
+  0%   { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
+  100% { opacity: 0; transform: scale(0.85) rotate(-2deg); filter: blur(2px); }
+}
+
+/* 第 2 幕 粒子分散 → 集合（1.3-2.7s）*/
+.anim-particles {
+  animation: anim-particles-fade 1.4s ease-in-out 1.3s forwards;
+}
+@keyframes anim-particles-fade {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+.particle {
+  animation-duration: 1.4s;
+  animation-timing-function: ease-out;
+  animation-delay: 1.3s;
+  animation-fill-mode: forwards;
+}
+.p1  { animation-name: pf1; }
+.p2  { animation-name: pf2; }
+.p3  { animation-name: pf3; }
+.p4  { animation-name: pf4; }
+.p5  { animation-name: pf5; }
+.p6  { animation-name: pf6; }
+.p7  { animation-name: pf7; }
+.p8  { animation-name: pf8; }
+.p9  { animation-name: pf9; }
+.p10 { animation-name: pf10; }
+.p11 { animation-name: pf11; }
+.p12 { animation-name: pf12; }
+@keyframes pf1  { 0%{transform:translate(0,0);} 50%{transform:translate(-120px,-80px);} 100%{transform:translate(-80px,-30px);} }
+@keyframes pf2  { 0%{transform:translate(0,0);} 50%{transform:translate(110px,-90px);} 100%{transform:translate(60px,-40px);} }
+@keyframes pf3  { 0%{transform:translate(0,0);} 50%{transform:translate(-90px,100px);} 100%{transform:translate(-50px,50px);} }
+@keyframes pf4  { 0%{transform:translate(0,0);} 50%{transform:translate(130px,80px);} 100%{transform:translate(70px,40px);} }
+@keyframes pf5  { 0%{transform:translate(0,0);} 50%{transform:translate(0,-130px);} 100%{transform:translate(0,-60px);} }
+@keyframes pf6  { 0%{transform:translate(0,0);} 50%{transform:translate(0,130px);} 100%{transform:translate(0,60px);} }
+@keyframes pf7  { 0%{transform:translate(0,0);} 50%{transform:translate(-150px,0);} 100%{transform:translate(-80px,0);} }
+@keyframes pf8  { 0%{transform:translate(0,0);} 50%{transform:translate(150px,0);} 100%{transform:translate(80px,0);} }
+@keyframes pf9  { 0%{transform:translate(0,0);} 50%{transform:translate(-70px,-110px);} 100%{transform:translate(-30px,-60px);} }
+@keyframes pf10 { 0%{transform:translate(0,0);} 50%{transform:translate(80px,110px);} 100%{transform:translate(40px,60px);} }
+@keyframes pf11 { 0%{transform:translate(0,0);} 50%{transform:translate(-100px,90px);} 100%{transform:translate(-40px,40px);} }
+@keyframes pf12 { 0%{transform:translate(0,0);} 50%{transform:translate(100px,-100px);} 100%{transform:translate(50px,-40px);} }
+
+/* 第 3 幕 新 WEB（2.5-3.0s で fade-in + 永続）*/
+.anim-new {
+  animation: anim-new-in 0.6s ease-out 2.5s forwards;
+}
+@keyframes anim-new-in {
+  0%   { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.new-card {
+  opacity: 0;
+  transform-origin: 50% 50%;
+  animation: anim-card-up 0.5s ease-out forwards;
+}
+.nc-1 { animation-delay: 2.7s; }
+.nc-2 { animation-delay: 2.85s; }
+.nc-3 { animation-delay: 2.95s; }
+.nc-4 { animation-delay: 3.05s; }
+.nc-5 { animation-delay: 3.15s; }
+.nc-6 { animation-delay: 3.20s; }
+@keyframes anim-card-up {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.health-pulse {
+  transform-origin: 345px 126px;
+  animation: anim-health-pulse 1.4s ease-in-out 3.5s infinite;
+}
+@keyframes anim-health-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.5); opacity: 1; }
+}
+
+/* モバイルメニュー サイズ調整 — PC ドロワー / モバイル全画面 */
+@media (min-width: 768px) {
+  #mobile-menu {
+    left: auto;
+    width: 380px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* 高品質 WEB 内のテキスト要素 — カード出現後に段階的に fade-in */
+.new-text {
+  animation: anim-card-up 0.5s ease-out forwards;
+}
+.nt-1 { animation-delay: 2.7s; }
+.nt-2 { animation-delay: 3.0s; }
+.nt-3 { animation-delay: 3.2s; }
+.nt-4 { animation-delay: 3.4s; }
+
+.hero-anim-svg {
+  animation: hero-anim-float 6s ease-in-out 5.5s infinite;
+}
+@keyframes hero-anim-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* ヒーローテキスト reveal */
+.hero-line-1, .hero-line-2, .hero-subtitle, .hero-evidence, .hero-cards, .hero-cta, .hero-meta {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: hero-text-reveal 0.7s ease-out forwards;
+}
+.hero-line-1   { animation-delay: 0.4s; }
+.hero-line-2   { animation-delay: 0.7s; }
+.hero-subtitle { animation-delay: 1.1s; }
+.hero-evidence { animation-delay: 1.3s; }
+.hero-cards    { animation-delay: 1.6s; }
+.hero-cta      { animation-delay: 1.9s; }
+.hero-meta     { animation-delay: 2.2s; }
+@keyframes hero-text-reveal {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* サービスカード ホバー */
+.service-card {
+  transition: transform 0.35s cubic-bezier(.2,.8,.2,1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(27, 73, 101, 0.12);
+}
+.service-card .card-icon {
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
+}
+.service-card:hover .card-icon {
+  transform: rotate(8deg) scale(1.08);
+}
+
+/* 背景 微細グラデアニメ */
+.hero-bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(27, 73, 101, 0.05) 0%, transparent 60%);
+  animation: hero-bg-drift 24s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes hero-bg-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(20px, 12px) scale(1.05); }
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .anim-old, .anim-particles, .anim-new,
+  .new-card, .new-text,
+  .particle, .old-frame, .hero-anim-svg {
+    animation: none !important;
+  }
+  .anim-old { opacity: 0 !important; }
+  .anim-particles { opacity: 0 !important; }
+  .anim-new { opacity: 1 !important; transform: none !important; }
+  .new-card { opacity: 1 !important; transform: none !important; }
+  .new-text { opacity: 1 !important; transform: none !important; }
+  .hero-line-1, .hero-line-2, .hero-subtitle, .hero-evidence,
+  .hero-cards, .hero-cta, .hero-meta {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hero-bg-glow { animation: none !important; }
+  .service-card:hover { transform: none !important; }
+  .service-card:hover .card-icon { transform: none !important; }
+}

@@ -106,6 +106,14 @@
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HowTo","name":"AI 予測モデル開発の流れ","description":"T.C.HARTON で AI 予測モデルを導入する 3 段階","totalTime":"PT90D","estimatedCost":{"@type":"MonetaryAmount","currency":"JPY","value":"1500000"},"step":[
+    {"@type":"HowToStep","position":1,"name":"Phase 1: データ分析・要件定義","text":"既存データ（POS/会計/問合せログ等）を分析し、予測対象指標を明確化。約 4 週間。"},
+    {"@type":"HowToStep","position":2,"name":"Phase 2: PoC（概念実証）","text":"小規模モデルで予測精度を検証。継続/改善/中止を意思決定。約 4 週間。"},
+    {"@type":"HowToStep","position":3,"name":"Phase 3: 本番モデル + 既存システム連携","text":"本番モデル構築。WEB/POS/会計ソフト連携。月次精度レポート + 再学習開始。約 4-8 週間。"}
+  ]}
+  </script>
 <link rel="stylesheet" href="/dist/output.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -160,7 +168,7 @@
       </a>
       <div class="hidden lg:flex items-center gap-8" data-nosnippet>
         <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB構築</a>
-        <a href="/services/maintenance/" class="text-dark-700 hover:text-teal-700 py-3">保守運用</a>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">保守運用</a>
         <a href="/services/ai-prediction/" class="text-teal-700 font-medium py-3" aria-current="page">AI予測</a>
         <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
         <a href="/methodology/" class="text-dark-300 hover:text-white py-3">方法論</a>
@@ -179,7 +187,7 @@
   <nav id="mobile-menu" class="mobile-menu fixed inset-0 top-16 z-50 bg-white lg:hidden" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
     <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
       <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB構築</a>
-      <a href="/services/maintenance/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">保守運用</a>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">保守運用</a>
       <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-teal-700 font-bold border-b border-dark-100" aria-current="page">AI予測</a>
       <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
       <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
@@ -224,7 +232,7 @@
           <p class="mt-6 text-sm text-dark-500">
             <time itemprop="datePublished" datetime="2026-04-25">2026年4月25日</time>
             <span class="mx-2" aria-hidden="true">/</span>
-            <time itemprop="dateModified" datetime="2026-05-07">最終更新 2026年5月7日</time>
+            <time itemprop="dateModified" datetime="2026-05-10">最終更新 2026年5月10日</time>
           </p>
         </div>
       </header>
@@ -278,7 +286,7 @@
               <p class="mt-3 text-dark-600 leading-relaxed flex-1">
                 小売 / 飲食 / 製造 / 食品関連の在庫最適化。過剰在庫の倉庫コスト・欠品の機会損失・廃棄ロスを統計で削減します。
               </p>
-              <a href="/services/ai-prediction/inventory/" class="mt-6 inline-flex items-center gap-1 text-teal-700 hover:text-teal-600 font-medium py-3">
+              <a href="/services/ai-prediction/" class="mt-6 inline-flex items-center gap-1 text-teal-700 hover:text-teal-600 font-medium py-3">
                 在庫予測の詳細
                 <span aria-hidden="true">→</span>
               </a>
@@ -290,7 +298,7 @@
               <p class="mt-3 text-dark-600 leading-relaxed flex-1">
                 飲食 / サービス / 小売 / イベント業の人員配置最適化。天候・曜日・季節性・キャンペーン効果を統合して予測します。
               </p>
-              <a href="/services/ai-prediction/sales/" class="mt-6 inline-flex items-center gap-1 text-teal-700 hover:text-teal-600 font-medium py-3">
+              <a href="/services/ai-prediction/" class="mt-6 inline-flex items-center gap-1 text-teal-700 hover:text-teal-600 font-medium py-3">
                 売上予測の詳細
                 <span aria-hidden="true">→</span>
               </a>
@@ -428,15 +436,15 @@
     <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
       <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
         <div>
-          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h2>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
           <ul class="mt-4 space-y-2 text-sm">
             <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB構築</a></li>
-            <li><a href="/services/maintenance/" class="hover:text-white py-3 inline-block">保守運用</a></li>
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">保守運用</a></li>
             <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block" aria-current="page">AI予測</a></li>
           </ul>
         </div>
         <div>
-          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h2>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
           <ul class="mt-4 space-y-2 text-sm">
             <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
             <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
@@ -445,7 +453,7 @@
           </ul>
         </div>
         <div>
-          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h2>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
           <ul class="mt-4 space-y-2 text-sm">
             <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
             <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
@@ -453,7 +461,7 @@
           </ul>
         </div>
         <div>
-          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">法令</h2>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">法令</h3>
           <ul class="mt-4 space-y-2 text-sm">
             <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
             <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>

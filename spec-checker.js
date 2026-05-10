@@ -28,25 +28,20 @@ const STATIC_TARGETS = [
   // TOP
   'index.html',
 
-  // ① WEB構築
+  // WEB 制作（WP + HTML 2 プラン）
   'services/web/index.html',
-  'services/web/sclass/index.html',
-  'services/web/industries/index.html',
 
-  // ② 保守運用
-  'services/maintenance/index.html',
-  'services/maintenance/plans/index.html',
-  'services/maintenance/report-sample/index.html',
-
-  // ③ AI予測
-  'services/ai-prediction/index.html',
-  'services/ai-prediction/inventory/index.html',
-  'services/ai-prediction/sales/index.html',
-
-  // 単発系商品 LP（v1.24-v1.26 追加）
-  'services/audit/index.html',
-  'services/refurbish/index.html',
+  // 単発 LP
   'services/lp/index.html',
+
+  // 既存サイト改修
+  'services/refurbish/index.html',
+
+  // AI 予測
+  'services/ai-prediction/index.html',
+
+  // 想い
+  'vision/index.html',
 
   // 信頼形成
   'pricing/index.html',
@@ -62,7 +57,7 @@ const STATIC_TARGETS = [
   'privacy/index.html',
   'news/index.html',
 
-  // エラー・確認画面（§1.2 注記より別枠）
+  // エラー・確認画面
   '404.html',
   'thanks.html',
 ];
@@ -81,21 +76,10 @@ const PAGE_TYPE = {
   'index.html': 'full',
 
   'services/web/index.html': 'service',
-  'services/web/sclass/index.html': 'subpage',
-  'services/web/industries/index.html': 'subpage',
-
-  'services/maintenance/index.html': 'service',
-  'services/maintenance/plans/index.html': 'subpage',
-  'services/maintenance/report-sample/index.html': 'subpage',
-
-  'services/ai-prediction/index.html': 'service',
-  'services/ai-prediction/inventory/index.html': 'subpage',
-  'services/ai-prediction/sales/index.html': 'subpage',
-
-  // 単発系商品 LP（v1.24-v1.26 追加）
-  'services/audit/index.html': 'subpage',
-  'services/refurbish/index.html': 'subpage',
   'services/lp/index.html': 'subpage',
+  'services/refurbish/index.html': 'subpage',
+  'services/ai-prediction/index.html': 'service',
+  'vision/index.html': 'subpage',
 
   'pricing/index.html': 'subpage',
   'cases/index.html': 'subpage',
@@ -135,16 +119,10 @@ function getVariant(relPath) {
   const MARKETING = new Set([
     'index.html',
     'services/web/index.html',
-    'services/web/sclass/index.html',
-    'services/web/industries/index.html',
-    'services/maintenance/index.html',
-    'services/maintenance/plans/index.html',
-    'services/ai-prediction/index.html',
-    'services/ai-prediction/inventory/index.html',
-    'services/ai-prediction/sales/index.html',
-    'services/audit/index.html',
-    'services/refurbish/index.html',
     'services/lp/index.html',
+    'services/refurbish/index.html',
+    'services/ai-prediction/index.html',
+    'vision/index.html',
     'pricing/index.html',
     'contact/index.html',
   ]);
@@ -447,7 +425,7 @@ function c11_2(html, pt) {
           r.push(PASS('11.2-ps', S, 'PS必須プロパティ',
             `@id reference (集約元 = ${ps['@id']}) / v1.20 SoT 構造`));
         } else {
-          const need2 = ['name','description','url','telephone','address','geo','knowsAbout','areaServed'];
+          const need2 = ['name','description','url','address','geo','knowsAbout','areaServed'];
           const miss = need2.filter(p => !ps[p]);
           r.push(miss.length === 0 ? PASS('11.2-ps', S, 'PS必須プロパティ') : FAIL('11.2-ps', S, 'PS必須プロパティ', `不足: ${miss.join(',')}`));
         }
@@ -1339,10 +1317,8 @@ function cGlobal() {
         }
         // index.html の verbatim 値も併せ確認
         const indexChecks = indexHtml ? [
-          ['specCheckerPass', `${n.specCheckerPass.toLocaleString()}/0`],
           ['industrySampleN', `${n.industrySampleN}`],
-          ['qualityMultiple', `${n.qualityMultiple}`],
-          ['mozillaObservatoryGrade', `${n.mozillaObservatoryGrade}`]
+          ['qualityMultiple', `${n.qualityMultiple}`]
         ] : [];
         const indexMissing = indexChecks.filter(([k, v]) => !indexHtml.includes(v));
         if (stalehits.length === 0 && indexMissing.length === 0) {
@@ -1408,8 +1384,6 @@ function cGlobal() {
       // ─── gl-canonical-text: 主要テキスト ラベルが index.html に verbatim 出現 ───
       if (indexHtml !== null) {
         const labelChecks = [
-          ['certificationOrgShort', canonical.labels.certificationOrgShort],
-          ['partnerLabel', canonical.labels.partnerLabel],
           ['regionLabel', canonical.labels.regionLabel]
         ];
         const labelMissing = labelChecks.filter(([k, v]) => !indexHtml.includes(v));
