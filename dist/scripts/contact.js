@@ -127,6 +127,9 @@
     return wrap;
   }
 
+  var interestError = document.getElementById('interest-error');
+  var interestGroup = document.getElementById('interest-group');
+
   confirmBtn.addEventListener('click', function () {
     if (!form.checkValidity()) {
       form.reportValidity();
@@ -135,15 +138,20 @@
     var fd = new FormData(form);
     var interests = fd.getAll('interest[]');
     if (interests.length === 0) {
-      alert('ご相談内容を 1 つ以上選択してください');
+      if (interestError) interestError.classList.remove('hidden');
+      if (interestGroup) {
+        interestGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        var firstCb = interestGroup.querySelector('input[type="checkbox"]');
+        if (firstCb) firstCb.focus();
+      }
       return;
     }
+    if (interestError) interestError.classList.add('hidden');
     body.textContent = '';
     var rows = [
       ['お名前', fd.get('name')],
       ['会社名・屋号', fd.get('company')],
       ['メールアドレス', fd.get('email')],
-      ['電話番号', fd.get('phone')],
       ['ご相談内容', interests.join('、')],
       ['詳細', fd.get('message')]
     ];

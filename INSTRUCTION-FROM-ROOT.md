@@ -1,1386 +1,166 @@
-# ⚠️ 強制法規 HSCEL v1（HARTON Skill Compliance Enforcement Law）— 最高位優先
+# ② tcharton 現役指示書 (2026-05-10 / v1.33 単一最終)
 
-> **本書冒頭に配置 / 全条項より上位適用 / 違反は機械的不承認**
-> **全文**: [`HARTON/ENFORCEMENT-LAW-V1.md`](../ENFORCEMENT-LAW-V1.md)（必読 / 起動時 自動 Read 1 番目に追加）
-> **SPEC 正本化**: SPEC §0.0.11（v3.4.2 / 2026-04-30 制定）
+> **重要**: 過去版 (v1.0-v1.32) は `INSTRUCTION-HISTORY-ARCHIVE.md` に全文保管。
+> **本書のみが現役有効指示**。混乱時は本書 v1.33 を参照。
 
-## §3.1 mandatory Skill（違反 = 自動不承認 / 全件 redo）
+---
 
-| # | Skill | 適用契機 |
-|---|---|---|
-| 1 | `/feature-dev:feature-dev` | 新規ページ / 大規模実装 / 戦略仕様改訂 |
-| 2 | `/requesting-code-review` | **完了報告前 全件**（草案・本番問わず）/ **並列 2+ reviewer 必須** |
-| 3 | `/receiving-code-review` | review feedback 受領時 |
-| 4 | `/gstack` | 本番デプロイ後 / 視覚変更時 |
+## ⚠️ 強制法規 HSCEL v1 (最高位優先)
 
-## §3.2 例外（緊急 hotfix のみ）
+| Skill | 適用契機 |
+|---|---|
+| `/feature-dev:feature-dev` | 各 Step 実装着手時 |
+| `/requesting-code-review` | Step 完了報告前 / 並列 reviewer 3+ 必須 |
+| `/receiving-code-review` | review feedback 受領時 |
+| `/gstack` | 動作確認時 |
 
-致命的 NG / セキュリティ脆弱性 への即時対応 + ① 事前明示承認 の AND 達成時のみ免除。24 時間以内に §3.1 遡及完遂義務。
+§3.3 事実確認 mandatory: TTFB 達成証明は **必ず ④ scanner.py 実測** (① が実行 / ② 自社判定不可)
 
-## §4 REPORT 様式 強制（必須セクション / 空欄 = 完了未達）
+全文: [`HARTON/ENFORCEMENT-LAW-V1.md`](../ENFORCEMENT-LAW-V1.md)
 
-REPORT-TO-ROOT-FROM-{担当}.md に以下を必ず記載:
+---
 
-```markdown
-## §HSCEL-V1 §3 Skill 適用証跡（必須）
+## 単一最優先命令
 
-| Skill | 起動証跡 | 結果サマリ | 該当 commit / file |
+**tcharton.com TTFB を 829ms → ≤600ms に下げ、★★★ HARTON Certified に復帰させよ**
+
+期限: **2026-05-24** (本日 5/10 から 14 日)
+
+---
+
+## 達成必達条件 (④ scanner v3.7 実測で判定)
+
+| # | 条件 | 現状 (v3.7 実測) | 必達 |
 |---|---|---|---|
-| /feature-dev:feature-dev | {Phase 1-7 進捗 / 起動時刻} | {成果物パス} | {hash} |
-| /requesting-code-review | {並列 reviewer 数 / 起動時刻} | {CRITICAL / HIGH / 解消件数} | {hash} |
-| /receiving-code-review | {feedback 受領時刻} | {対応件数 / 撤回件数} | {hash} |
-| /gstack | {本番 URL / 起動時刻} | {スクリーンショット / curl 実測パス} | {hash} |
-```
-
-## §5 commit 前順序 厳格固定
-
-```
-[Step 1] 実装 / 編集
-[Step 2] §3.1 全 Skill 完遂
-[Step 3] REPORT に §HSCEL-V1 §3 セクション記載
-[Step 4] ① 承認待ち（disk artifact + REPORT のみ提示、commit はまだしない）
-[Step 5] ① 承認後、commit + push
-[Step 6] push 後、本番実機検証（/gstack 等）+ REPORT 更新
-[Step 7] ① 最終承認
-```
-
-「草案」「ドラフト」「α 版」「軽微」「ちょっとした」「急ぎ」を理由に Step 2-3 を省略することは **§8.1 禁止用語**として全件不適用。
-
-## §6 違反時処分
-
-| Tier | 内容 |
-|---|---|
-| Tier 1 | ① 機械的不承認 / 内容に言及せず差戻し / 全件 redo（デフォルト）|
-| Tier 2 | CRITICAL-ISSUES-REPORT に違反記録 → 次セッション trust scope 縮小 |
-| Tier 3 | `.claude/settings.json` hook で commit / push 物理拒否（次フェーズ）|
-| Tier 4 | 同 § を 3 回違反 → 担当変更（① 権限）|
+| 1 | **TTFB** | **829ms** | **≤600ms** |
+| 2 | 必須条件達成数 | 1/5 | **5/5** |
+| 3 | 総合スコア | 77 | **≥85** |
+| 4 | 格付け | ★ | **★★★ HARTON Certified** |
+| 5 | 致命的NG | 0 | 0 維持 |
+| 6 | ヘッダースコア | 97 | 100 (CSP unsafe-inline 除去) |
 
 ---
 
-# ② tcharton 指示書（S クラスサイト構築責任者）
+## 着手順序 (固定 / 逸脱禁止)
 
-**最終更新**: 2026-04-27 / ① HARTON 総合責任者
-**現状**: 🏆 **scanner で S クラス取得確定**（格付け S / 総合 90 / 必須 4/4 + 1 保留 / 致命的 NG 0）
-**目標達成**: SPEC v3.4 §8.5 必須 5 条件 + spec-checker S-RANK + scanner S クラスの**両層達成**
+### Step 1: Cloudflare cache hit rate 改善 (1-2 時間 / 効果最大)
+- cache-control header 最適化 (`public, max-age=31536000, immutable` for static)
+- `_headers` ファイル (Cloudflare Pages) 見直し
+- HTML レスポンスに適切な `Cache-Control` 追加
+- 完了後 ① に scanner 実測依頼
 
----
+### Step 2: Cloudflare Workers cold start 解消 (2-4 時間)
+- Workers ルーティング簡素化
+- 不要な動的処理除去
+- `_worker.js` の依存削減
+- 完了後 ① に scanner 実測依頼
 
-## 起動時 自動 Read（上から順に Read ツールで全件読み込め。担当判断不要、無条件実行）
+### Step 3: Critical CSS / preload 徹底 (半日)
+- LCP 要素のフォント / 画像 preload
+- Critical CSS インライン化 (above-the-fold)
+- 不要 CSS 削減
+- 完了後 ① に scanner 実測依頼
 
-1. 本書（既読）
-2. **Read** `C:\Users\ohuch\Desktop\HARTON\REPORT-TO-ROOT-FROM-TCHARTON.md` — ② 自身の完了報告（v1.5）
-3. **Read** `C:\Users\ohuch\Desktop\HARTON\tcharton\SPEC.md` — §4.2 #1 / §8.1 / §8.5 / §8.9
-4. **Read** `C:\Users\ohuch\Desktop\HARTON\CRITICAL-ISSUES-REPORT.md` — §13（S 取得）+ §15-§18（最新統制 + 4 Skill 必須化）
-5. **Read** `C:\Users\ohuch\Desktop\HARTON\CLAUDE.md` — §1
+### Step 4: CSP `style-src 'unsafe-inline'` 除去 (1-2 時間)
+- インライン style 全除去 → 外部 CSS 化 or nonce 適用
+- ヘッダースコア 97 → 100 達成
+- 完了後 ① に scanner 実測依頼
 
----
-
-## 🔴 実装 必須プロセス（2026-04-28 ① 確定 / ②④⑤ 共通 / 単独実装厳禁）
-
-代表確定（2026-04-28）— ② / ④ / ⑤ 全担当は **単独実装を禁止**。以下 4 Skill を構造的に組込:
-
-| Skill | 用途 | 適用タイミング |
-|---|---|---|
-| `/feature-dev:feature-dev` | Phase 1-7 構造化実装（codebase understanding + architecture focus）| 新規機能 / 大規模修正の着手時 |
-| `/gstack` | 実機ブラウザテスト + dogfooding（ローカル PASS / 本番 FAIL ドリフト防止）| 機能実装後 + 本番デプロイ後 |
-| `/requesting-code-review` | 完了前の自己レビュー要請（タスク完了 / 主要機能 / マージ前必須）| 完了報告前 mandatory |
-| `/receiving-code-review` | 受信した review feedback の技術的厳格処理（performative 禁止）| review 受領時 mandatory |
-
-**禁止**: 上記 Skill を経ずに「完了」「合格」「PASS」「達成」を称すること（§0.0.1 narrow-scope claim 一般化 / 背任）。
-
-**完了条件 AND 化**:
-1. spec-checker FAIL=0
-2. `/requesting-code-review` 並列複数 reviewer の CRITICAL/HIGH 全件解消
-3. `/gstack` で本番実機検証 PASS
-4. ① 報告
-
-⑤ v1.4 第二次厳格検証完遂（並列 5 エージェント自己レビュー）が standard。
+### Step 5: 追加チューニング (Step 1-4 で TTFB ≤600ms 未達時のみ)
+- ② 判断で追加施策実施
+- 上限 4 サイクル / 2 週間以内
 
 ---
 
-## 完了タスク（履歴）
+## 各 Step 後の必須プロセス
 
-| # | タスク | commit | 状態 |
-|---|---|---|---|
-| 1 | spec-checker.js バグ修正（`@type` 配列対応 + `hasType()` ヘルパ）| `a12f686` | ✅ |
-| 2 | JSON-LD `@type` 配列化 5 ファイル | `a12f686` | ✅ |
-| 3 | `_headers` X-Hosting honest signaling | `a12f686` | ✅ |
-| 改善#1 | spec-checker.js `--live` モード（HTTP ヘッダ実測 machine gate）| `a4d34de` | ✅ |
-| 4 | GBP 作成 + sameAs に GBP URL 配置 | `a3113d1` | ✅ CID `16606425942373165010` |
-| 5 | scanner で S クラス取得確認 | `36d4328` | ✅ **S/90** |
-| 6 | Deep Work ナラティブ + 連絡導線再設計（Form 主 CTA / Phone 補助）| `06c3d1c` → `68b0f8b`（ビデオ会議 CTA 撤回 → フォーム経由）| ✅ |
-
-**達成基準**: spec-checker FAIL=0 維持 / verify-all exit 0 / scanner で S/90 + 致命的 NG 0 / NAP 100
+1. ② 改修実装 → git commit (push 前)
+2. ② から ① に「Step N 完了 / scanner 実測依頼」報告 (REPORT 追記)
+3. ① が `_tcharton_scan.py` 実行 → JSON 出力 → ② にフィードバック
+4. ② が次 Step 着手 (or 改修反復)
+5. 全 Step 完遂 + ★★★ 確認 → ① 検収 → push 解禁
 
 ---
 
-## 継続タスク（運用）
+## 並行作業 (TTFB 改修と独立 / 任意)
 
-### 月次
+- 1.2.2 form_submit 実発火確認 (受動)
+- 1.4 米国流入実態確認 (GA4 探索レポート)
 
-- 月初: scanner で再判定 → S 維持確認 → ① 報告（変動あれば即報）
-- 月中: SPEC / GOOGLE / GEO 更新時、`node sync-spec.js --check` で同期確認
-
-### 随時（追加要請が来たら）
-
-- ① / 代表からの追加実装要請を本書に追記して着手
+**禁止**: 上記以外の旧 v1.30 タスク
 
 ---
 
-## 報告
+## 完全保留事項 (⑤ Stella 復活判断まで一切着手禁止)
 
-`HARTON/REPORT-TO-ROOT-FROM-TCHARTON.md` に末尾追記:
+旧 v1.31 で発令された以下は **完全保留**:
 
-```markdown
-## YYYY-MM-DD タスク#N 完了
-- commit: {hash}
-- 検証: {コマンド} → {出力 1 行}
-- 残: {残課題 / 「なし」}
-```
+- HARTON Stella / ★★★ / S クラス 全除去
+- 22 → 16-18 ページ削減
+- ナビ 11 → 6 項目削減
+- 沼津・東部地域 SEO 主軸転換
+- 顔出し / 地域性
+- canonical.json v1.25 改訂
+- 業界実態調査レポート公開
 
----
-
-## 禁止
-
-- 3 法規（`SPEC.md` / `GOOGLE-STANDARDS.md` / `GEO-STANDARDS.md`）編集
-- `scanner/` 配下編集
-- `--no-verify` push
-- ローカル PASS のみで「S クラス取得」を称する報告（実 scanner 再判定が必須）
+理由: ⑥ Phase A + ② v1.33 両達成 → ⑤ 復活判断材料化 → Stella 撤廃方針自体が動く可能性 → 逆作業回避。
 
 ---
 
-## 【追記 2026-04-30 / v1.12】ブランド戦略 v1.1.7（① HARTON 総合責任者 確定）
+## 完遂報告フォーマット (固定)
 
-> **出典**: `HARTON/CRITICAL-ISSUES-REPORT.md` §23.3（v1.1.16）/ Gemini 提言書 `_archive/2026-04-28-skill-mandatory-cleanup/Project_Michelin_Strategy_v1.md` ① 批判的継承
-
-### ブランド戦略 3 行サマリ（暗記必須）
+`REPORT-TO-ROOT-FROM-TCHARTON.md` に追記:
 
 ```
-[実体]    沼津 = HARTON Certified 評価基準の「自己実証体 第 1 号」誕生地
-[物語]    地方都市から AI 時代の WEB 品質を再定義する
-[証明]    自分が ★★★ を取れない基準で、他者を測ることはしない（dogfooding 倫理）
+## v1.30.X Step N 完了報告 (YYYY-MM-DD)
+
+### 改修内容
+- [具体的な変更ファイル + 行数]
+
+### git commit hash
+- [hash]
+
+### scanner 実測依頼
+- ① への実測依頼 (依頼時刻)
+
+### scanner 実測結果 (① 受領後追記)
+- TTFB: XXXms / 必須条件達成: X/5 / 総合スコア: XX/100 / 格付け: ★X
+
+### HSCEL §3.1 4 Skill 適用記録
+- /feature-dev / /requesting-code-review (reviewer 3+) / /receiving / /gstack
+
+### 次 Step 計画
+- Step (N+1) 着手予定
 ```
 
-### ② tcharton への実装指示（メインサイト IA 改訂）
-
-| # | 改訂項目 | 着手内容 |
-|---|---|---|
-| 1 | **ヒーロー副題**「沼津の WEB 制作」→「沼津で証明し、全国へ。AI 時代の WEB 品質を再定義する。」 | `index.html` ヒーロー差替 + scanner ★★★ 結果へのディープリンク |
-| 2 | **「Why Numazu?」セクション新設** | 地方都市での ★★★ 取得 = 「機械評価は資本に依存しない」証明として明記。隣接市（三島・富士）ではなく類似地方都市（倉敷・四日市）展開根拠も明示 |
-| 3 | **制作実績 二軸分離** | 「Local（地域貢献）」/「National（全国・高難度）」カテゴリ化 |
-| 4 | **certification.tcharton.com への自然導線** | 評価機関（サブ）→ 自己実証体（メイン）の循環構造を 1 セクション化 |
-| 5 | **★★★ 自己取得バッジ表示** | scanner 再判定結果の verbatim hash 公開（dogfooding 証跡）|
-
-### 実装着手前の必須事項
-
-1. ⑤ certification の MASTER-PLAN v1.1.7 草案受領を**待たず先行可**（戦略は ① で確定済）
-2. 改修着手前に `node verify-all.js` で S-RANK 維持を再確認
-3. 完了後 4 Skill 必須化（v1.1.11）適用 — `/feature-dev:feature-dev` + `/requesting-code-review` 並列複数 reviewer + `/gstack` 本番実機 + `/receiving-code-review`
-4. ★ 表記は ★ / ★★ / ★★★（v3.4.1 整合化済 / 旧 ★3〜★5 / S・A・B・C・D は使用禁止 / retro-compat 内部 ID のみ）
-
-### ★★ 厳格化（v1.1.15 §22）周知
-
-② tcharton には影響なし（★★★ 取得済）。ただし MASTER-PLAN §3.4 / SPEC §8.5.2 表現が「★★ = 80 点以上 + 致命的 NG ゼロ + 必須条件 **4 件以上**」に厳格化された旨、報告書 / 顧客説明資料で言及する場合は最新表記を使用すること。
-
----
-
-## 【追記 2026-04-30 / v1.12.2】「現状診断を依頼する」CTA 追加（分離レーン）+ 認定機関中立性維持
-
-> **発信**: ① HARTON 総合責任者（2026-04-30 / ④ Phase 0 完了 + ① 戦略 (b)+(a) ハイブリッド確定）
-> **連動**: CRITICAL-ISSUES-REPORT v1.1.18 §25 / ⑤ INSTRUCTION v1.12.2 (B)
-
-### ② への 2 件指示
-
-#### 1. 「現状診断を依頼する」CTA 追加（既存 apply / contact とは別レーン）
-
-| 配置 | 内容 |
-|---|---|
-| ヒーロー直下 secondary CTA | 「あなたのサイトを HARTON Certified 機関で現状診断する（無料）」→ `https://certification.tcharton.com/diagnosis/` |
-| Why Numazu? セクション末 | 「沼津 83 件業界実測（→ certification 業界レポート）+ あなたのサイトも診断可能」リンク |
-| 既存 apply / contact | **触らない**（制作受任の別レーンとして維持）|
-
-理由: 「認定機関の現状診断」と「制作受任」は**異なる動機の問合せ**のため、入口を分離。tcharton.com は両方の窓口になるが、CTA とフォームを分離することで認定機関の中立性を視覚的に担保。
-
-#### 2. 認定機関中立性維持の表現原則
-
-② tcharton 本文中で certification.tcharton.com を言及する際の規範:
-
-| ✅ 推奨 | ❌ 禁止 |
-|---|---|
-| 「HARTON Certified 認定機関の業界レポート」 | 「弊社の認定機関」「弊社運営の HARTON Certified」（資本系列の自慢化）|
-| 「機械検証で 業界実測を可視化」 | 「業界 worst をあぶり出す」（煽り）|
-| 「自己実証体として ★★★ 取得」 | 「業界唯一の ★★★」（過剰主張）|
-| 「沼津 5 業界 83 件中、★ 0 件という業界実測」 | 「沼津の制作会社は弊社が圧倒的」（敵視構造）|
-
-**根拠**: 認定機関の信頼性は中立性に依存。② tcharton（制作実務）が認定機関を「自社の権威付け」として誇示すると、認定の客観性に疑念が生じる（CRITICAL-ISSUES-REPORT v1.1.18 §25 (c) 不採用理由）。
-
-### 完了条件 AND
-
-1. spec-checker FAIL=0 維持
-2. `/requesting-code-review` 並列 reviewer 1 名（中立性表現の整合性）
-3. `/gstack` 本番実機 CTA 動作確認
-4. ① 報告
-
----
-
-## 【追記 2026-05-01 / v1.13】② v1.8 報告 ① 承認 + 経過措置適用
-
-**判定**: ② v1.8 報告書 全件承認
-
-| commit | HSCEL 適用 | 判定 |
-|---|---|---|
-| `dc196c4`（2026-04-30 08:42:10 / IA #1-4）| **§10.2 経過措置**（HSCEL 発効より 5h13m 前）| **追認 / Tier 適用なし** |
-| `779df0e`（2026-05-01 / GEO 戦略強化 9 件 + review 全件解消）| §3.1 4 Skill 完備 + §4.1 REPORT 証跡 + §5 順序遵守 | **承認** |
-
-### ① エスカレーション議題受領
-
-| 議題 | 取扱 |
-|---|---|
-| Aggarwal et al. 所属表記「Princeton/IIT Delhi」共著者 6 名中 2 名 Independent 欠落 | **GEO-STANDARDS v2.2 議題化**（次回 v3.5 SPEC 改訂時に処理）|
-
-### 次タスク
-
-- IA #5 ★★★ バッジ + verbatim hash 公開: ④ scanner 正規実行 SHA-256 受領後（待機）
-- 「現状診断を依頼する」CTA 追加（v1.12.2 (B) 連動）: ⑤ certification 診断ページ完成後に実装可
-- HSCEL v1.1 §3.3 事実確認 mandatory 遵守: 次回以降の REPORT に「事実確認証跡」行追加必須
-
----
-
-## 【追記 2026-05-03 / v1.14】🔴🔴 トップページ大改修指示書 v1（最優先）
-
-> **発信**: ① HARTON 総合責任者（代表 2026-05-03 直接 GO）
-> **背景**: 代表診断「現状トップは細かなウンチクが羅列され、ユーザーが付加価値を一目で理解できず離脱懸念」/ ① 同意確定
-> **位置付け**: ② 最優先タスク（GEO 強化 / IA #5 等の保留タスクより上位）
-
-### 1. 改修目的（ユーザー視点 First）
-
-「**自社が誇りたい指標（★★★ / dogfooding / 沼津起点）**」と「**ユーザーが知りたい価値（自分は何を得るのか）**」の乖離を解消。Above the fold で「何屋・誰向け・何が違う・どう動く」を完結させる。
-
-### 2. 真の付加価値 4 軸（コピー設計の原典 / 改変禁止）
-
-| # | ユーザー深層ニーズ | 提供価値 |
-|---|---|---|
-| 1 | AI 検索時代に取り残されたくない | **AI 検索（GEO）対応の次世代 SEO** |
-| 2 | ChatGPT/Perplexity に推薦されたい | **機械検証で「AI が引用する」構造を保証** |
-| 3 | 第三者から信頼を保証されたい | **HARTON Certified ★★★ 基準で構築（業界唯一）** |
-| 4 | WordPress 漏洩リスクを避けたい | **業界 32.5% の致命的脆弱性を構造的にゼロ化** |
-
-### 3. ヒーロー再構成（verbatim 採用 / 改変は ① エスカレーション必須）
+最終 Step 完遂時:
 
 ```
-[H1（最大）]
-「探される Web」から「AI に選ばれる Web」へ。
+## v1.30.FINAL ★★★ 復帰達成報告
 
-[サブコピー（H1 直下 / 2 行）]
-ChatGPT・Perplexity が真っ先に引用するサイトには、明確な技術基準があります。
-HARTON は第三者認定機関 HARTON Certified の ★★★ 基準で WEB を構築する、
-静岡県東部唯一の制作集団です。
+### 必達条件 達成状況
+| # | 条件 | 必達 | 実測 | 判定 |
+|---|---|---|---|---|
+| 1 | TTFB | ≤600ms | XXXms | ✅/❌ |
+...
 
-[CTA 2 つ]
-[ ▸ 無料診断する ]（プライマリ / teal-700 背景）
-[   事例を見る  ]（セカンダリ / outline）
-
-[信頼補強行（小さく / 1 行 / dark-300）]
-★★★ 自社取得済 | 静岡県 902 件業界平均の 3.8 倍品質 | spec-checker PASS 1,461/0
+### 全 Step 累計 commit hash
+### push 承認要請
 ```
 
-**注**:
-- 「Sクラス保証で未来基準に」「buy-out 型 WEB 構築・保守運用・AI 予測モデル開発」等の現コピーは **全削除**
-- 「Numazu / Mishima / Fuji — Shizuoka East」等の英字 Eyebrow も **削除**（ユーザー価値訴求と無関係）
-- 富士山ヒーロー画像は **維持可**（地域信頼 + 視覚的インパクト）
+---
 
-### 4. セクション順序 厳守（13 → 8 圧縮）
+## 越境禁止 (HSCEL §0.0.7)
 
-| 新順 | セクション | 役割 | 旧位置 |
-|---|---|---|---|
-| 1 | **Hero**（上記 §3 verbatim）| 価値 1 行で離脱防止 | 1 |
-| 2 | **「あなたが得る 3 つの成果」** 新設 | What you get | — |
-| 3 | **3 本柱の事業** | What we do（WEB / 保守 / AI 予測）| 5 |
-| 4 | **業界実測との比較** 新設 | Why us（902 件中央値 24 vs 当社 90 = 3.8 倍を 1 グラフ）| — |
-| 5 | **無料診断 CTA** | Conversion 1 | 6 |
-| 6 | **導入事例 3 件** | Proof | 10 |
-| 7 | **代表メッセージ + FAQ 抜粋** | 人格信頼 + 不安解消 | 7 + 11 |
-| 8 | **お問い合わせ CTA** | Conversion 2 | 13 |
-
-### 5. 「あなたが得る 3 つの成果」セクション 設計（§4 #2）
-
-3 カード構成（H2「あなたが得る 3 つの成果」/ aria-label="3 つの成果"）:
-
-| カード | アイコン | 見出し | 本文（80 字以内）|
-|---|---|---|---|
-| 1 | AI / 検索 | **AI 検索で見つかる** | ChatGPT・Perplexity が引用するための GEO 9 戦略を全件実装。Google だけでなく次世代 AI 検索からの流入を獲得。 |
-| 2 | ★ / 認定 | **第三者機関が品質を保証** | HARTON Certified ★★★ 基準は全 11 業種共通の機械検証エンジン。「自分でいいと言う」のではなく「客観的に証明される」品質。 |
-| 3 | 盾 / セキュリティ | **致命的脆弱性ゼロ** | 静岡県 902 件中 32.5% で WordPress 管理面露出等の致命的 NG が発生。HARTON は構造的にゼロ化。 |
-
-### 6. 「業界実測との比較」セクション 設計（§4 #4）
-
-| 要素 | 内容 |
-|---|---|
-| H2 | 「業界平均の 3.8 倍の品質を、お客様のサイトに」 |
-| 数値ビジュアル | 棒グラフ or 大数字対比（業界中央値 **24** vs 当社実測 **90**）|
-| 出典 | 「scanner Phase 0.5 / 静岡県 5 都市 902 件 / 2026-05-01 実測」明記 |
-| サブテキスト | 「沼津 134 件（4.1 倍）と静岡県 902 件（3.8 倍）で **県全体規模の安定実証**」 |
-| CTA | 「あなたのサイトの現在地を知る → 無料診断」|
-
-### 7. ウンチク別ページ移管（必須）
-
-| 削除セクション（現 index.html）| 移管先 |
-|---|---|
-| Hero 下「★★★ Verified Evidence」4 KPI（line 420-445）| `/services/web/sclass/` 詳細セクションへ移植 |
-| 公式基準準拠 figure（line 447-460）| `/methodology/` 新設ページ or `/tech/` へ統合 |
-| Why Numazu?（民主化 / dogfooding / 構造実証 3 カード / line 462-505）| `/about/` 「私たちの使命」節へ移管 |
-| 評価機関と自己実証体の循環（line 861-902）| `/about/` 「HARTON Certified との関係」節へ移管 |
-| 日々の発信 note（line 696-714）| footer 内リンクのみに縮約（セクション削除）|
-| 技術品質の根拠（line 716-768 / 公式基準準拠と重複）| `/methodology/` へ統合（重複解消）|
-
-### 8. 完了条件 AND（HSCEL §3.1 4 Skill 完備 mandatory）
-
-1. spec-checker FAIL=0 維持
-2. **`/feature-dev:feature-dev`** Phase 1-7 完遂（大規模改修のため mandatory）
-3. **`/requesting-code-review` 並列 3 reviewer**（独立検証 / 1 名以上欠如は §6.1 Tier 1 適用）:
-   - **Reviewer A: UX / コピー精度**（ヒーロー B 案 verbatim 反映 + 訪問者視点での価値理解度評価）
-   - **Reviewer B: ブランド戦略整合**（v1.1.7 自己実証体 / dogfooding は別ページ移管されており、トップで「ユーザー価値」が前面化されているか）
-   - **Reviewer C: a11y / WCAG 2.2**（H1-H3 階層 / 色コントラスト / aria-label / タッチターゲット）
-4. **`/receiving-code-review`** 厳格処理（performative 同意禁止 / CRITICAL/HIGH 全件解消）
-5. **`/gstack` 本番実機検証** mandatory:
-   - tcharton.com 本番デプロイ後の curl 実測（コピー verbatim 配信確認）
-   - スマホ + PC 両方のスクリーンショット（Above the fold で価値 1 行が完結しているか）
-6. REPORT-TO-ROOT-FROM-TCHARTON.md に **§HSCEL-V1 §3 セクション完全記載**
-7. **HSCEL §5 順序遵守**: 実装 → Skill 完遂 → REPORT 証跡 → ① 承認待ち（disk + REPORT 提示）→ ① 承認 → commit + push → 本番実機検証 → ① 最終承認
-
-### 9. 着手前提
-
-- 即時着手（最優先 / 他保留タスクより上位）
-- HSCEL §5 Step 4 で disk artifact + REPORT 提示時、② は **commit 前に ① 承認を必ず受領**（独断 push 禁止）
-- 改修中も既存 ★★★ / S-RANK 維持必須（spec-checker FAIL=0）
-
-### 10. ロールバック条件
-
-以下のいずれか発生時、② は即座に ① にエスカレーション + 改修一時停止:
-
-| 発生条件 | 対応 |
-|---|---|
-| spec-checker FAIL > 0 | 即停止 / 原因解消後再着手 |
-| 並列 3 reviewer のうち 1 名以上が CRITICAL 提起 | 当該指摘解消まで commit 不可 |
-| 本番 curl 実測でコピー B 案 verbatim 不一致 | rollback + 再 deploy |
-| 訪問者離脱率 / 直帰率の劇的悪化（GA4 で観測 / 改修後 7 日経過時点）| ① 判断で部分 rollback 検討 |
-
-### 11. 期待効果（改修後 KPI 想定）
-
-| KPI | 現状想定 | 改修後目標 |
-|---|---|---|
-| Above the fold で「何屋」が分かる訪問者率 | 推定 < 30% | > 80% |
-| 「無料診断」CTA クリック率 | — | +50% |
-| 平均セッション時間 | — | +30% |
-| 「3 つの成果」セクション完読率 | — | > 60% |
-
-GA4 で改修前後 30 日比較を ② で取得し、③ note 自社改善前後比較シリーズの素材に活用。
-
-### 12. ② への評価コメント
-
-② v1.8（GEO 強化 9 件 + review 全件解消 / 2026-05-01 commit `779df0e`）は技術品質として優秀。**但し技術完成度の追求が、ユーザー価値訴求の希薄化を招いていた**ことを ① も同時認知（IA #1-4 改訂時に「自社目線」を見抜けなかった ① 設計責任）。本改修は技術後退ではなく、**情報設計の優先順位再構築**として位置付ける。
+- ④ scanner.py 改変禁止 (実行のみ ① 権限)
+- ⑥ wp-mastery / portfolio に触らない
+- 3 法規 (SPEC / GOOGLE / GEO) を編集しない
+- ⑤ certification archive に触らない
 
 ---
 
-## 【追記 2026-05-03 / v1.15】② v1.10 エスカレーション C-1/C-2/C-3 一括判定
+## 着手前提
 
-### C-1: /methodology/ 新設 → ✅ 案 X 承認（SPEC v3.5 改訂済）
+代表 GO 受領済 (2026-05-10) → **即時 Step 1 着手 mandatory**
 
-| 確定 | 内容 |
-|---|---|
-| SPEC | v3.4.3 → **v3.5** 改訂済（§1.1 ディレクトリ構造 + §1.2 ページ表 19 ページ化 + §1.6「19 ページ未満許容しない」+ ヘッダ改訂概要追記）|
-| sync 配布 | 完了（tcharton/SPEC.md / scanner/SPEC.md / certification/SPEC.md 全件 v3.5 配布済）|
-| verify-all | PASS=1461 / FAIL=0 / S-RANK 維持 |
-
-② Phase 5 実装範囲:
-1. `methodology/index.html` 新設（reading variant）— 公式基準準拠 + 技術品質根拠を統合
-2. `sitemap.xml` に `/methodology/` 追加
-3. `spec-checker.js` `STATIC_TARGETS` 配列に `/methodology/index.html` 追加
-4. `llms.txt` Core pages に `/methodology/` 追加
-
-→ Phase 5 atomic commit で全 4 件同期実装（中間状態 LLM クロール回避）
-
-### C-2: ヒーロー直下 Lead Evidence figure 新設 → ✅ 承認 + 1 条件
-
-② 解釈「ヒーロー本体 verbatim 維持 + 直下追加 = §3 改変に該当しない」は **正しい**。
-
-**① 追加条件**:
-- figure は **小サイズ厳守**（ヒーロー高さの 1/3 以下）
-- メイン主張は **「業界 3.8 倍品質」を大きく前面**（訪問者にとって意味のある数値）
-- arXiv 引用は **注記サイズ**（ウンチク化回避）
-- 配色は dark 系背景 + teal アクセント維持（ヒーローとの視覚連続性）
-
-### C-3: SVG inline icon → ✅ 承認 + 1 条件
-
-指示書 §5 verbatim 遵守 + Multimodal GEO 整合 + a11y 双方達成。
-
-**① 追加条件**:
-- 既存 line 340（T ロゴ）/ line 357（hamburger）SVG パターン踏襲
-- **外部依存追加禁止**（lucide / heroicons / fontawesome 等のライブラリ追加不可）
-- SVG `<title>` + `<desc>` mandatory（WCAG 2.2 + LLM 引用率向上）
-
-### Phase 4 着手承認
-
-② は即時 Phase 4 着手可:
-
-| Phase | 内容 |
-|---|---|
-| 4 | 並列 2-3 code-architect agent でアーキテクチャ実装案 3 案提示 → ① 推奨案選択 |
-| 5 | 実装（disk のみ / commit 未） — index.html / sclass / about / methodology 新設 / sitemap / spec-checker / llms.txt **atomic** |
-| 6 | HSCEL §3.1 並列 3 reviewer（A:UX / B:ブランド / C:a11y）+ /receiving-code-review 厳格処理 |
-| 7 | REPORT 起票 → ① 承認待ち → ① 承認後 atomic commit + push → /gstack 本番実機（curl + スマホ/PC スクショ）→ ① 最終承認 |
-
-### Phase 4 着手前提
-
-- spec-checker は現状 18 件配列で S-RANK 維持中。Phase 5 atomic commit で 19 件化と同時に /methodology/ 新設（中間状態回避）
-- SPEC v3.5 は配布済（次回 ②④⑤ セッション起動時に sync-spec.js --check で整合確認義務）
-- HSCEL §5 順序遵守（Step 4 で disk + REPORT 提示時、commit 前に ① 承認受領 mandatory）
-
-### ② 評価コメント
-
-v1.10 は **HSCEL §5 Step 4 厳守 + Phase 3 厳密検証 + 3 件根拠明示**で模範的エスカレーション。GEO §3.1「最強コンビ」の KDD 2024 verbatim 引用 + spec-checker G-6 line 855-871 verbatim 確認 + 既存 SVG パターン line 340/357 物理確認 = HSCEL §3.3 事実確認 mandatory 完全遵守。① はこの規範遵守を高評価。
-
----
-
-## 【追記 2026-05-03 / v1.16】② v1.11 エスカレーション ARCH-1/2/3/4 一括判定 + Phase 5 着手承認
-
-### ARCH-1: 案 C+ ハイブリッド → ✅ 承認
-
-② 並列 3 code-architect 受領後の 2 軸純粋評価（AI 検索 9.5/10 + ユーザー価値 9/10 + 総合 8.5/10）に基づく案 C+ 採用 ① 承認。
-
-### ARCH-2: heroicons MIT verbatim path → ✅ 解釈承認 + 1 条件
-
-② 解釈「npm/CDN 不使用 + inline 埋め込み = ① 追加条件『外部依存追加禁止』非該当」は **正しい**。
-
-**🔴 ① 追加条件**:
-- **MIT ライセンス表記** mandatory（HTML コメント or footer 明記 / Copyright (c) Tailwind Labs Inc.）
-- **取得日 + 一次ソース URL** を `<svg>` 隣の HTML コメントに記載
-
-```html
-<!-- heroicons MIT (https://github.com/tailwindlabs/heroicons) / 取得 2026-05-01 / commit-hash 等 -->
-<svg ...>
-  <title>AI 検索</title>
-  <desc>AI 検索エンジンが引用するための GEO 9 戦略実装済</desc>
-  <path d="..." />
-</svg>
-```
-
-- HSCEL §3.3 事実確認証跡として REPORT に併記
-
-### ARCH-3: コメント残置撤回（atomic commit 純度保持）→ ✅ 承認
-
-健全な判断。中間状態コメント残置は LLM クロール一貫性リスク。rollback は git revert で対応。
-
-### ARCH-4: 案 B 部分取り込み → ✅ 両方承認
-
-| 要素 | 承認理由 |
-|---|---|
-| class 命名規約（`lead-evidence` / `outcome-card` / `industry-meter`）| 全 21 ページ波及の足場 / 既存 Tailwind 併用 / 影響範囲ゼロ |
-| `validatePageTypeConsistency()` machine gate | **HSCEL §6.3 Tier 3 hook 配備の精神と整合** / 19→20 ページ拡張時の人間チェック漏れを構造的に排除 |
-
-**副次効果**（① 議題化記録）: machine gate は ⑤ certification 等他担当のミス検出にも転用可 → **全担当統一活用を v3.6 議題化候補**として ① で記録。② Phase 5 実装後、他担当への展開可否を ① で評価。
-
-### Phase 5 着手承認
-
-② 即時 Phase 5 atomic commit 実装着手可:
-
-| Phase 5 内訳 | 時間 | 内容 |
-|---|---|---|
-| 5a | 2:30 | 移管先ページ更新（sclass / about / methodology 新設）|
-| 5b | 2:00 | index.html 改修（Hero / Lead Evidence / 3 つの成果 / 業界比較 / セクション統合）|
-| 5c | 0:30 | ルート 3 ファイル（sitemap / spec-checker / llms.txt）|
-| 5d | 0:30 | 案 B 取り込み（class 命名 / `validatePageTypeConsistency()`）|
-| 最終 | 1:00 | spec-checker 実行・修正バッファ |
-| **合計** | **6:30** | |
-
-### Phase 6-7 進行条件
-
-| Phase | 条件 |
-|---|---|
-| 6 | HSCEL §3.1 並列 3 reviewer（A:UX/コピー / B:ブランド整合 / C:a11y/WCAG） + /receiving-code-review 厳格処理 / CRITICAL/HIGH 全件解消 |
-| 7 | REPORT v1.12 起票（§HSCEL-V1 §3 + 事実確認証跡 + ARCH-2 ライセンス記録）→ ① 承認待ち（Step 4）→ ① 承認後 atomic commit + push（Step 5）→ /gstack 本番実機（curl + スマホ/PC スクショ）（Step 6）→ ① 最終承認（Step 7）|
-
-### ② v1.11 評価
-
-**模範的アーキテクチャ評価**:
-- 並列 3 agent 受領後の 2 軸純粋評価（AI 検索 + ユーザー価値）
-- 統合スコア表で各案を客観定量化
-- B 案を「品質保証圧迫リスク」と直言（sycophancy なし）
-- 案 A 不採用 / 案 B 部分取り込み / 案 C+ 統合判断 各 verbatim 根拠
-
-② v1.10 模範エスカレーションに続き、v1.11 で **規範遵守 + 戦略思考** の質的飛躍を継続実証。
-
----
-
-## 【追記 2026-05-03 / v1.17】② v1.12 Phase 5-6 完了承認 + Step 5 atomic commit + push 許可
-
-### Step 5 ✅ 承認
-
-② は **HSCEL §5 Step 4 厳守 + 4 Skill 完遂 + 事実確認 13 項目 + S-RANK PASS=1,535（+74 / WARN=0 解消）** で模範遵守達成。Step 5 atomic commit + push 即時実施可。
-
-### Phase 7 進行条件
-
-| Step | 内容 |
-|---|---|
-| **5** | ✅ **atomic commit + push 即時可**（pre-push hook で verify-all 自動 S-RANK ゲート通過必須）|
-| 6 | push 後 30 秒 deploy → /gstack 本番実機検証（curl + スマホ/PC スクショ）|
-| 7 | /gstack 結果を REPORT v1.13 追記 → ① 最終承認 |
-
-### Step 6 /gstack 本番実機検証 必須項目
-
-| # | 検証対象 | 確認方法 |
-|---|---|---|
-| 1 | ヒーロー B 案 H1「『探される Web』から『AI に選ばれる Web』へ。」配信 | `curl -s https://tcharton.com/ \| grep verbatim` |
-| 2 | ヒーロー サブコピー 2 行配信 | curl 実測 verbatim |
-| 3 | Lead Evidence figure「3.8 倍」前面化 | スクショ（PC + スマホ）|
-| 4 | 「3 つの成果」3 SVG icon 描画（heroicons MIT）| スクショ |
-| 5 | 業界比較 industry-meter 横棒グラフ動作 | スクショ |
-| 6 | /methodology/ 新設ページ配信 | `curl -I https://tcharton.com/methodology/` 200 OK |
-| 7 | sitemap.xml に /methodology/ 含有 | curl 実測 |
-| 8 | llms.txt Core pages に /methodology/ 含有 | curl 実測 |
-| 9 | スマホ Above the fold で価値 1 行完結 | スマホスクショ |
-| 10 | spec-checker `--live` モード（旧 ② 虚偽再発防止 machine gate）| `node spec-checker.js --live https://tcharton.com/` |
-
-### 撤回 5 件 議題化（① 記録）
-
-| # | 議題 | スコープ |
-|---|---|---|
-| **β** | **role="dialog" + `<nav>` ロールコンフリクト統一改修** | **v3.6 全担当（②④⑤）統一改修候補** |
-| α | ブランド B 案キャッチコピー トップ配置 | 次回 IA 改修議題 |
-| γ | H1 主要キーワード追加 | 次回 IA 改修議題 |
-| δ | シミュレーター aria-live + aria-pressed | 月次保守 |
-| ε | about 絵文字 aria-hidden | 月次保守 |
-
-### ② v1.12 評価
-
-**規範遵守の最高水準実証**:
-- HSCEL §5 Step 4 厳守（commit 前 ① 承認待ち / 独断 push なし）
-- HSCEL §3.1 4 Skill 完備（feature-dev / requesting 並列 3 reviewer / receiving 厳格処理）
-- HSCEL §3.3 事実確認 13 項目（全件一次ソース verbatim）
-- /receiving-code-review 撤回 5 件全件 verbatim 根拠提示（performative 同意禁止）
-- ① 追加条件 7 件（C-2 figure 4 件 + C-3 SVG 3 件）全件遵守
-
-② v1.6 越権 → v1.10 模範エスカレーション → v1.11 模範アーキ評価 → **v1.12 模範実装 + 規範遵守の到達点**。
-
----
-
-## 【追記 2026-05-03 / v1.18】v1.14 Step 7 最終承認 + CSP-1/2/3 一括判定 + 保留棚卸し承認
-
-### v1.14 Step 7 ✅ 最終承認
-
-commit `a8e7a9a` push 済 + /gstack 10 項目 全 PASS + spec-checker --live PASS=1,545 / 1,646 項目 / HSCEL §5 全 7 Step 完遂。② **規範遵守の継続実証**として ① 最終承認確定。
-
-### CSP-1: 分離 vs 統合 → ✅ 分離承認
-
-v1.14 は独立評価で完遂。CSP は **新規タスク v1.15 として独立着手**。
-
-### CSP-2: 案 B（inline 外部化）→ ✅ 承認 + 追加条件
-
-| 採用 | 案 B（`/dist/scripts/{ga4,fade-in,menu,sim}.js` 分離 + `'unsafe-inline'` 削除）|
-
-**🔴 ① 追加条件 3 件**:
-1. **Mozilla Observatory A+ 取得 mandatory**（-20 → A+ 達成証跡を REPORT v1.15 に貼付）
-2. **全 21 ページ inline 外部化 atomic commit**（中間 hybrid 状態回避 / pre-push hook S-RANK ゲート通過必須）
-3. **`_headers` ↔ inline script 整合性 machine gate 追加**（`validatePageTypeConsistency()` パターンを spec-checker.js に追加 → 「inline script 検出時に CSP `'unsafe-inline'` 含むかチェック」を構造化排除）
-
-### CSP-3: HSCEL §3.2 緊急 hotfix → ✅ 不適用
-
-通常 4 Skill フルプロセスで規範違反解消の品質保証実施。
-
-### v1.15 タスク（CSP 解消）
-
-| Phase | 内容 |
-|---|---|
-| 1-3 | feature-dev（探索 + 厳密検証）|
-| 4 | アーキテクチャ案（外部化スクリプト構成 + パス管理 + spec-checker machine gate）|
-| 5 | 全 21 ページ + 4-6 .js 新設 + `_headers` 更新 atomic commit |
-| 6 | 並列 3 reviewer（A:CSP セキュリティ / B:JS 動作互換性 / C:a11y 影響）+ /receiving-code-review |
-| 7 | REPORT v1.15 → ① 承認 → atomic commit + push → /gstack（curl + Mozilla Observatory + spec-checker --live）→ ① 最終承認 |
-
-### 保留棚卸し承認（Step 7 後タスク）
-
-CRITICAL-ISSUES-REPORT v1.1.3 §11 残の **全件棚卸し**を ② で実施 → 各タスクのスコープ / 優先度 / 想定工数を分類 → ① 報告。今回 CSP 1 週間放置の再発防止。
-
-### scanner.py 検査ロジック死角（④ 議題化記録）
-
-② 指摘「scanner.py が `'unsafe-inline'` 有無を減点しない」は **構造的死角**。② CSP 解消（v1.15）完了後、① で ④ への正式発令検討（HSCEL §0.0.10 厳格化原則準拠）。② は本論点を v1.15 REPORT に併記して ④ への横断展開を支援。
-
-### ② v1.13 評価
-
-② v1.6 越権 → v1.10/11/12 模範 → **v1.13 = 完遂報告 + 規範違反 自己発見 + 緊急エスカレーション = 規範遵守の最高水準継続**。
-
-特に Mozilla Observatory -20 を「致命的でない」と都合よく軽視せず、「dogfooding 倫理矛盾 + 認定機関信頼性根幹リスク」と直言した H-4 No-Sycophancy 遵守は ① 高評価。
-
----
-
-## 【追記 2026-05-03 / v1.19】v1.15 CSP 解消 Phase 5-6 完了承認 + Step 5 atomic commit + push 許可
-
-### Step 5 ✅ 承認
-
-② v1.15 は ① v1.18 CSP-2 案 B + 追加条件 3 件を全件遵守 + Trusted Types 上乗せ + A-CRITICAL-1 自己発見即時修正 = 模範実装。Step 5 atomic commit + push 即時実施可。
-
-### CSP-2 + 3 追加条件 遵守確認
-
-| 条件 | 実装 |
-|---|---|
-| Mozilla Observatory A+ mandatory | ✅ 推定 80 → 120（A+）/ 実機判定 Step 6 |
-| 全 22 ページ atomic commit | ✅ 21 + thanks.html 統合 |
-| `_headers` ↔ inline script machine gate | ✅ `validateNoInlineScriptUnsafe()` + 11.7-scroll 外部 .js 結合検査拡張 |
-
-### 上乗せ評価（① 想定外の高度化）
-
-- Trusted Types 適用（`require-trusted-types-for 'script'` + `trusted-types default`）= DOM XSS 根絶機能高度防御
-- A-CRITICAL-1（ga4.js `s.src` 直接代入が Trusted Types 違反 / Chromium で GA4 完全停止リスク）を自己発見 → `defaultPolicy.createScriptURL()` 経由で即時修正
-
-### Step 6 /gstack 必須検証 11 項目
-
-| # | 検証 |
-|---|---|
-| 1 | `_headers` CSP `'unsafe-inline'` 削除 配信（curl）|
-| 2 | `require-trusted-types-for 'script'` 配信 |
-| 3 | `trusted-types default` 配信 |
-| 4 | 6 .js 全件 HTTP 200 配信 |
-| 5 | ga4.js TrustedScriptURL 経由動作（Chrome DevTools Network）|
-| 6 | menu / simulator / contact / thanks 動作確認 |
-| 7 | inline `<script>` 残存 0 件（本番 curl / JSON-LD 除く）|
-| 8 | **Mozilla Observatory A+ 達成**（実測スコア + スクショ貼付 mandatory）|
-| 9 | spec-checker `--live` モード PASS 維持 |
-| 10 | スマホ + PC 機能動作スクショ |
-| 11 | GA4 DNT-aware 動作確認（DNT=1 非送信 / DNT=0 送信）|
-
-### 議題化 3 件評価
-
-| # | ① 評価 |
-|---|---|
-| α trusted-types passthrough コメント | ✅ 月次保守 |
-| β contact focus trap | ✅ **v1.16 議題確定**（早期着手推奨 / Reviewer C 「v1.15 低コスト着手機会」採用）|
-| γ simulator aria-live | ✅ v1.17 § δ 既存議題と統合 |
-
-### 🔴 scanner.py 死角 → ④ 発令予告（v1.15 Step 7 後）
-
-② v1.15 Step 7 完了 + Mozilla Observatory A+ 達成証跡受領後、**④ scanner.py `check_security_headers()` 厳格化正式発令**:
-- `'unsafe-inline'` 検出時の減点 / 警告
-- HSCEL §0.0.10 厳格化原則準拠
-- 月次再判定で 902 件再評価 / ⑤ 業界レポート信頼性向上
-
-### ② v1.15 評価
-
-**規範遵守 + 戦略思考 + 技術品質の最高水準到達**:
-- ① 追加条件 3 件全件遵守
-- Trusted Types 上乗せ（① 想定外の高度化）
-- A-CRITICAL-1 自己発見 + 即時修正（H-3 / H-5 遵守）
-- HSCEL §5 全 Step 厳守
-
-② v1.6 越権 → v1.10/11/12/13 模範 → **v1.15 = 規範遵守の到達点 + 技術品質の上乗せ実証**。
-
----
-
-## 【追記 2026-05-03 / v1.20】🔴 国内トップ制作会社比較 5 観点提言 採用 + ② v1.16-v1.19 ロードマップ
-
-> **発信**: ① HARTON 総合責任者（代表 2026-05-03 受領 5 観点提言批判的継承）
-> **位置付け**: ブランド戦略 v1.1.7「自己実証体」進化形 = **技術 + 表現の両立による自己実証**
-> **比較対象**: concentinc.jp / fenrir-inc.com / goodpatch.com（国内トップクラス制作会社）
-
-### 1. ① 5 観点判定サマリ
-
-| # | 観点 | 判定 | 適用 Phase |
-|---|---|---|---|
-| 1 | マイクロインタラクション | ✅ 採用 + 1 条件 | v1.17 |
-| 2 | ストーリーテリング（cases リッチ化）| ✅ 最高優先 | v1.16 |
-| 3 | 余白 + タイポ階層 | ✅ 採用（v1.14 延長）| v1.16 |
-| 4 | ビジュアル戦略 | ⚠️ 段階導入 | v1.19 |
-| 5 | 診断ツール リッチ化 | ✅ 採用 + 1 条件 | v1.18 |
-
-### 2. 各観点 ① 追加条件（mandatory）
-
-#### 観点 1 マイクロインタラクション
-
-- **🔴 PJAX/SPA 化禁止**（Cloudflare Workers Static Assets + spec-checker 1,536 項目との整合性破壊リスク）
-- **採用**: View Transitions API（CSS only / モダンブラウザネイティブ / @view-transition）
-- ホバー/スクロール慣性: CSS transition + cubic-bezier 自前実装（ライブラリ追加禁止）
-
-#### 観点 2 ストーリーテリング
-
-- `/cases/` 全面リッチ化（**Goodpatch 型 3 段構成**: 課題 → 思考プロセス → 解決）
-- `/about/` 制作背景ドキュメント化（なぜそのボタン配置か / なぜその色か / 「意図」言語化）
-- ③ note 自社改善前後比較シリーズと **統合**（同シリーズが /cases/ 自社事例の元素材化）
-- v1.14 改修との整合: **トップ簡潔維持 / cases・about で深く展開** = 補完関係
-
-#### 観点 3 余白 + タイポ階層
-
-- font-size / weight / line-height 段階強化
-- 重要メッセージ（Hero / Lead Evidence / 業界比較）周囲の戦略的余白
-- v1.14 13→8 セクション圧縮の延長
-
-#### 観点 4 ビジュアル戦略
-
-- 富士山写真は **維持**（ブランド戦略 v1.1.7「沼津起点」整合）
-- **🔴 WebGL/Canvas 段階導入**（CWV LCP/CLS 影響大 + S-RANK 維持リスク）
-- v1.19: 富士山写真上の **SVG オーバーレイ**追加（軽量・spec-checker 影響なし）
-- 独自イラストは v2.x（工数大のため後送り）
-
-#### 観点 5 診断ツール リッチ化
-
-- **🔴 Chart.js 等ライブラリ追加禁止**（heroicons MIT path 借用と同様 SVG 自前実装 mandatory）
-- レーダーチャート: 自前 SVG + CSS animation
-- プログレスバー: CSS transition
-- ゲーミフィケーション: 回答進行ごとの視覚的フィードバック
-
-### 3. v1.16-v1.19 ロードマップ
-
-| Phase | 内容 | 想定工数 | 着手前提 |
-|---|---|---|---|
-| **v1.16** | 観点 2 + 3（cases/ リッチ化 + about/ 制作背景 + タイポ階層）+ 議題 β contact focus trap | 8-10h | v1.15 Step 7 完了後 |
-| **v1.17** | 観点 1（View Transitions API + ホバー/スクロール慣性）| 4-6h | v1.16 完了後 |
-| **v1.18** | 観点 5（診断ツール SVG レーダーチャート + プログレスバー + ゲーミフィケーション）| 6-8h | v1.17 完了後 |
-| **v1.19** | 観点 4（富士山写真 + SVG オーバーレイ段階導入）| 4-6h | v1.18 完了後 |
-
-各 Phase は **HSCEL §3.1 4 Skill mandatory + §5 Step 1-7 厳守 + spec-checker S-RANK 維持必須**。
-
-### 4. ブランド戦略 v1.1.7 整合性
-
-代表診断「真の国内トップレベル」= ブランド戦略「自己実証体」進化形:
-
-| 既存（v1.14-v1.15 達成）| 追加（v1.16-v1.19）|
-|---|---|
-| AI 検索対応（GEO 9 戦略） | 情緒的価値（マイクロインタラクション）|
-| HARTON Certified ★★★ | 上質操作感（View Transitions）|
-| 業界 3.8 倍品質 | プロフェッショナル表現力（ストーリーテリング）|
-| Mozilla Observatory A+（推定）| 独自ビジュアル（段階導入）|
-
-→ **「技術 + 表現の両立による自己実証」**として ① 確定（dogfooding 倫理拡張）
-
-### 5. SPEC v3.6 議題化追加
-
-- SPEC §1.x「**導入事例ページ構成基準**」（プロセス可視化 mandatory / 課題-思考-解決 3 段構成）
-- SPEC §2.x「**ビジュアル独自性原則**」（汎用素材回避 / 独自トーン&マナー / WebGL/Canvas 段階導入条件）
-
-→ v1.16-v1.19 実装後、SPEC v3.6 改訂時に正本化検討。
-
-### 6. ③ note 連動
-
-「自社改善前後比較シリーズ」全 5 回の素材に v1.16-v1.19 各改修を組込:
-- v1.16 → 第 X 回「cases/ ストーリーテリング改修記」
-- v1.17 → 第 Y 回「View Transitions API 導入記」
-- v1.18 → 第 Z 回「診断ツール ゲーミフィケーション改修記」
-- v1.19 → 第 W 回「ビジュアル独自性段階導入記」
-
-各回が tcharton.com の「制作会社として国内トップレベル」進化過程の物語化となる。
-
-### 7. ② v1.16 着手前提
-
-v1.15 Step 7 完了 + Mozilla Observatory A+ 達成証跡受領 + scanner.py 死角 ④ 発令完了 → v1.16 着手承認。
-
----
-
-## 【追記 2026-05-03 / v1.21】🚨 v1.16 緊急エスカレーション DEPLOY-1/2/3 一括判定
-
-### DEPLOY-1: ✅ 修正承認（3 分待機 → 即 B）
-
-② 推奨「5 分待機 → B」を **3 分に短縮**:
-
-- background `b75k9142o` ポーリング結果確認 → 200 OK なら Step 6 続行
-- 3 分（push 12:01 JST → 12:04 JST 上限）解消なければ **代表手動介入即時要請**
-
-#### 代表手動介入手順（② 要請テンプレ）
-
-```
-代表対応願い:
-Cloudflare ダッシュボード → tcharton.com → Workers/Pages → Deployments → Latest
-  → "Retry deployment" または "Purge Everything (cache)"
-または wrangler CLI: wrangler pages deploy tcharton/
-```
-
-### DEPLOY-2: ✅ rollback 不要
-
-② 推奨採用。HTML / CSP 新版は正常配信 / 規範違反復帰リスク大。
-
-### DEPLOY-3: ✅ 承認 + **即時実装格上げ**（v1.16 議題化 → 確定タスク）
-
-post-push 自動 curl 検査スクリプトを **v1.15 解消直後の v1.16 必須実装**:
-
-#### 設計案（① 提示）
-
-- ファイル: `scripts/post-push-deploy-check.js` 新設
-- ロジック: push 後 2 分待機 → sitemap.xml 列挙全 URL HTTP 200 確認
-- 失敗時: 5 分以内に解消しなければ stderr アラート + ① 通知
-- pre-push hook の補完: pre-push（local）+ post-push（本番）= 二段階 machine gate
-
-#### 整合性根拠
-
-- HSCEL §0.0.10 厳格化原則「判定基準は厳格化のみ可」
-- HSCEL §6.3 Tier 3「machine gate / hook 配備」精神
-- ② 自己反省「pre-push hook は local 検査のみ」の構造的死角解消
-
-### 副次論点: ④ scanner --live モード拡張（v3.6 議題化追加）
-
-scanner.py `--live` モードに「sitemap 列挙ファイル全件 HTTP 200 確認」検査追加:
-- 同種事案を ④ scanner 側でも検出可能化
-- ② v1.15 Step 7 完了 + v1.16 post-push 検査実装後、④ への正式発令検討
-
-### ② v1.16 評価
-
-② 自己反省「新規サブディレクトリの Cloudflare deploy 伝播ラグ予見ミス」+「pre-push 局所検査の構造的死角」 = **H-3/H-5 遵守模範指摘**。
-
-判断ミスは責めず、**再発防止策（DEPLOY-3 即時実装）で建設的解消**。
-
-### v1.16 タスクリスト更新
-
-| # | タスク | 出典 | 工数 |
-|---|---|---|---|
-| 1 | 観点 2 + 3（cases リッチ化 + about 制作背景 + タイポ階層）| v1.20 §3 | 8-10h |
-| 2 | 議題 β contact focus trap | v1.18 議題化 | 1-2h |
-| 3 | **post-push 自動 curl 検査スクリプト**（DEPLOY-3）| v1.21 即時実装 | 2-3h |
-
-→ v1.16 合計工数 11-15h（v1.15 Step 7 完了後着手）
-
-### 緊急対応プロセス継続
-
-② は background `b75k9142o` 結果報告 → 解消可否で次アクション決定。3 分上限超過時は ① 経由で代表に手動介入要請。
-
----
-
-## 【追記 2026-05-03 / v1.22】v1.15 CSP 解消 Step 7 ✅ 最終承認 + DEPLOY-3 拡張採用 + ④ scanner.py 死角発令
-
-### Step 7 ✅ 最終承認
-
-② v1.15 → v1.15.1 → v1.15.2 全工程完遂。**Mozilla Observatory A+ score=125（公式 API verbatim 実測）= 想定 120 を +5 上回る達成**。HSCEL §5 全 7 Step 完遂 + ① mandatory 条件全件達成。
-
-### DEPLOY-3 拡張採用（v1.16 タスク #3 統合）
-
-| 機能 | 判定 |
-|---|---|
-| post-push 自動 curl 検査（既存）| ✅ 既存採用維持 |
-| sitemap.xml 列挙全 URL HTTP 200 検査 | ✅ 新規採用 |
-| **`.assetsignore` glob anchor 検出**（`^[^/].*/$` 警告）| ✅ 新規採用 |
-| **`validateAssetsignoreAnchor()` machine gate**（spec-checker.js）| ✅ 採用（v1.20 §0.0.12 全担当 machine gate 展開原則整合）|
-
-→ v1.16 タスク #3 工数を **2-3h → 4-5h** に拡大（合計 13-17h）
-
-### DEPLOY 真因訂正評価
-
-② H-3 自己発見模範:
-- 当初推定「Cloudflare 伝播ラグ」を率直に「誤診断」認知
-- 真因「`.assetsignore` line 20 `scripts/` glob anchor」確定
-- 1 文字修正（`/scripts/`）で即解消
-
-**判断ミス記録**: 代表に Cache Purge 等の不要作業をさせた事実は HSCEL §6.2 Tier 2 永続記録対象（但し ② 自己認知 + 即時真因訂正のため Tier 1 不適用）。
-
-### ② v1.17 評価
-
-② v1.6 越権 → v1.10/11/12/13/15/16/**17 = 規範遵守 + 構造的死角の連続自己発見** 質的飛躍継続。
-
----
-
-## 【追記 2026-05-03 / v1.23】🔴🔴🔴 緊急是正発令: 5 観点 v1.16 即時最優先着手 mandatory
-
-### ① 設計欠陥 自己認知
-
-v1.20 §3 で「v1.16 = v1.15 Step 7 完了後」と条件付き発令した結果、② v1.15 → CSP 緊急 deploy 事案 → v1.17 完遂までの間に **5 観点が他タスクに埋もれた**。代表 2026-05-03 直接指示「真の国内トップレベルへ進化」が伝わっていない（代表「発令内容が伝わっていない」指摘 2026-05-03 事案）。
-
-### 是正発令
-
-| 項目 | 旧（v1.20）| **新（v1.23）** |
-|---|---|---|
-| 着手前提 | v1.15 Step 7 完了後 | **v1.15 完了済 = 即時最優先着手 mandatory** |
-| 優先度 | 通常 | **🔴🔴🔴 全タスク最上位**（CSP / GEO 強化 / 他改修より上位）|
-| 進捗報告 | 任意 | **次セッション disk artifact + REPORT で 5 観点進捗 必須併記** |
-| 完了期限 | 未指定 | **v1.16-v1.19 全 4 Phase 連続実行**（中断不可）|
-
-### 着手前提達成確認
-
-| 前提 | 状態 |
-|---|---|
-| v1.15 CSP 解消 | ✅ 完了（commit `7070367` / Mozilla Observatory A+ score=125）|
-| spec-checker S-RANK | ✅ 維持（PASS=1,536）|
-| ④/⑤ 連動完了 | ④ Wikidata git mv 待ちあるが **5 観点とは独立スコープ** = 並行進行可 |
-
-→ **着手前提は全件クリア**。v1.16 即時着手可能。
-
-### v1.16 即時タスク（13-17h / 中断不可）
-
-| # | タスク | 工数 | 出典 |
-|---|---|---|---|
-| 1 | **観点 2: cases/ リッチ化**（Goodpatch 型 3 段構成: 課題 → 思考プロセス → 解決）| 4-5h | v1.20 §3 |
-| 2 | **観点 2: about/ 制作背景ドキュメント化**（なぜそのボタン配置 / なぜその色 / 「意図」言語化）| 2-3h | v1.20 §3 |
-| 3 | **観点 3: タイポ階層強化**（font-size / weight / line-height 段階強化 + 戦略的余白）| 2h | v1.20 §3 |
-| 4 | 議題 β contact focus trap | 1-2h | v1.18 |
-| 5 | post-push 自動 curl 検査（DEPLOY-3 拡張）| 2-3h | v1.21 |
-| 6 | sitemap 全件 HTTP 200 + `.assetsignore` glob anchor 検出 + `validateAssetsignoreAnchor()` machine gate | 2h | v1.22 |
-
-### v1.17-v1.19 連続実行（中断不可 / v1.16 完了後即着手）
-
-| Phase | 内容 | 工数 |
-|---|---|---|
-| v1.17 | 観点 1（View Transitions API + ホバー/スクロール慣性）| 4-6h |
-| v1.18 | 観点 5（SVG レーダーチャート + プログレスバー + ゲーミフィケーション）| 6-8h |
-| v1.19 | 観点 4（富士山写真 + SVG オーバーレイ段階導入）| 4-6h |
-
-### 各 Phase の HSCEL §3.1 4 Skill mandatory（再強調）
-
-各 Phase で feature-dev + requesting-code-review 並列 3 reviewer + receiving-code-review + gstack（curl + Mozilla Observatory 維持確認）+ REPORT §HSCEL-V1 §3 セクション。
-
-### REPORT 様式追加要件
-
-次セッション以降、REPORT 冒頭に **「5 観点進捗一覧表」必須記載**:
-
-```markdown
-## 5 観点進捗（v1.20 §3 / 代表 2026-05-03 直接指示）
-
-| Phase | 観点 | 状態 | commit |
-|---|---|---|---|
-| v1.16 | 観点 2 cases リッチ化 | ⏸/🚧/✅ | hash |
-| v1.16 | 観点 2 about 制作背景 | ... | ... |
-| v1.16 | 観点 3 タイポ階層 | ... | ... |
-| v1.17 | 観点 1 View Transitions | ... | ... |
-| v1.18 | 観点 5 診断ツール | ... | ... |
-| v1.19 | 観点 4 ビジュアル | ... | ... |
-```
-
-5 観点進捗を毎報告で可視化 = 他タスクに埋もれない構造化排除。
-
----
-
-## 【追記 2026-05-07 / v1.24】🔴🔴 v1.22 事業構造改革 C-1〜C-6 全件承認 + v1.23-v1.27 ロードマップ確定
-
-### C-1〜C-6 全件 ✅ 承認
-
-| # | 確定 |
-|---|---|
-| **C-1** 月額 mandatory | ✅ HSCEL §0.0.10 + dogfooding 倫理整合 |
-| **C-2** コア 4 商品 + AI 副軸 | ✅ 5 観点 + 業界 CSP 8.8% 実測 + v1.1.7 全件整合 |
-| **C-3** 評価レポート単発事業化 | ✅ ⑤ MASTER-PLAN v1.2.0 統合 redo 組込 |
-| **C-4** ★★★ 化改修商品化 | ✅ リフォーム需要吸収 |
-| **C-5** AI トップ訴求削除 + 独立 LP | ✅ AI 副軸維持 |
-| **C-6** ★★★ = 月額契約者のみ規範化 | ✅ **SPEC v3.6 §8.5.5 議題化（① 専権で並行改訂）** |
-
-### v1.23-v1.27 ロードマップ確定
-
-| Phase | 内容 | 工数 | 着手前提 |
-|---|---|---|---|
-| **v1.23** | pricing/ + index.html + sclass/ で「月額 mandatory ★★★」表現一括反映 | 4-6h | **SPEC v3.6 §8.5.5 改訂受領後**（① 並行進行 / 約 1-2 セッション）|
-| **v1.24** | `/services/audit/` 新設（評価レポート単発 LP）| 6-8h | ④ API + ⑤ 商品化準備完了後 |
-| v1.25 | `/services/refurbish/` 新設 | 4-6h | v1.24 後 |
-| v1.26 | `/services/lp/` 新設 | 4-6h | v1.25 後 |
-| v1.27 | index.html「★★★ 主軸 + 4 副軸」再編 | 6-8h | v1.23-26 後の総まとめ |
-
-### ② への着手順序遵守
-
-- v1.23 着手前: ① SPEC v3.6 §8.5.5 改訂完了待ち（§5 順序遵守）
-- v1.16-v1.20 完了タスクは継続 / 5 観点進捗一覧表必須記載維持
-
-### 5 観点進捗連動
-
-v1.16-v1.20 完了済（観点 2 + 3 + post-push + machine gate + 35 件解消）/ v1.23 以降は観点 1 (View Transitions / v1.17) と並行可。但し dogfooding 矛盾解消（v1.23）が最優先 = 観点 1-5 より上位。
-
-### ② v1.22 評価
-
-**戦略思考の最高水準到達**: 代表指摘を 3 視点 + dogfooding 倫理で批判的検証 → 100% 妥当判定 + AI 予測継続を ② 逆評価（sycophancy なし）+ ②④⑤③ 連動議題全件明示 + SPEC v3.6 改訂候補 4 件整理。
-
-② v1.6 越権 → v1.10-v1.20 → **v1.22 = 規範遵守 + 戦略思考 + 構造的死角自己発見 + 事業構造改革提案 = 質的飛躍の継続実証**
-
----
-
-## 【追記 2026-05-08 / v1.25】v1.23-v1.27 全 5 phase atomic commit 完遂 ✅ Step 7 最終承認 + v1.28 着手承認
-
-### Step 7 ✅ 最終承認
-
-5 commit 全件 live / spec-checker PASS=**1,758**（過去最高）/ FAIL=0 / WARN=0 / 100% / 25 ページ / 30 URL deploy:check 全 PASS / 並列 reviewer 13 件 12 採用 + 1 LOW 後送り / 撤回 0。
-
-| Phase | commit |
-|---|---|
-| v1.23 dogfooding 矛盾解消 + Stella + CSP 8.8% | `85f5e48` |
-| v1.24 /services/audit/ 新設 | `b211d29` |
-| v1.25 /services/refurbish/ 新設 | `70b822c` |
-| v1.26 /services/lp/ 新設 | `3f082eb` |
-| v1.27 index.html 主軸+4 副軸再編 | `b0b8c95` |
-
-### 戦略的価値（HARTON ブランド戦略 v1.1.7 最大達成）
-
-- **HSCEL §0.0.10 dogfooding 倫理 構造強制**: `gl-monthly-mandatory-text` machine gate
-- 景表法 4 条 1 項 2 号 + 5 条 + 特商法 11 条 全件遵守
-- ファネル設計（audit 3 万 → refurbish 50-100 万 → ★★★ 65-115 万）
-- AI 副軸維持（代表 15 年機械学習経験 = 差別化資産保持）
-
-### ② v1.27 評価
-
-② v1.6 越権 → v1.10-v1.20 → v1.22 → **v1.27 = 5 phase atomic 1 セッション完遂 = 規範遵守 + 戦略思考 + 事業構造改革実装の最高水準到達**。1 セッションで 5 phase 連続実装 + 並列 reviewer + 撤回 0 + sycophancy 排除 = **スピード × 品質の両立**。
-
-### v1.28 着手承認
-
-| タスク | 工数 | 内容 |
-|---|---|---|
-| 残課題 #2 cases/ ファネル誘導 | 2-3h | audit → refurbish → ★★★ パッケージ動線強化 |
-| 残課題 #3 about/ Stella ブランド経歴 | 1-2h | 旧 HARTON Certified → HARTON Stella 沿革明記 |
-| 残課題 #1 gl-no-old-cert-url JSON コメント整合 | 0.5h | 月次保守時の軽微対応 |
-
-→ v1.28 は 3 件統合 atomic commit（合計 3-5h）/ HSCEL §3.1 4 Skill 必須継続。
-
-### 🔴 ① 次セッション最優先: SPEC v3.6 §8.5.5 規範改訂
-
-② v1.23 で「月額 mandatory」表現を**先行実装**したが、SPEC §8.5.5 規範改訂は未着手 = **規範と実装の乖離**（HSCEL §0.0.10 厳格化原則整合性確保のため ① 並行追認 mandatory）。
-
-次セッション ① で改訂:
-1. §8.5.5 新設「★★★ 保証 = 月額保守 mandatory」（最優先 / ② v1.23 実装の規範追認）
-2. §1.0/§1.6 19 → 25 ページ更新（② 25 ページ実装と整合）
-3. §2.x 商品定義 4 種 + AI 副軸
-4. Stella ブランド統一規範化
-
-### v1.27 評価記録（HSCEL §6.2 Tier 2 永続記録 / 高評価事案）
-
-⑤ data-integrity-checker.js 9 invariants（v3.6 §0.0.12 第一実装例）と並ぶ ② machine gate 文化の最高水準実装:
-- gl-monthly-mandatory-text = HSCEL §0.0.10 厳格化原則の構造強制
-- gl-no-old-cert-url = Stella ブランド統一の機械検証
-- v3.6 §0.0.12「全担当 machine gate 展開原則」② 側第二実装例として ① 公式記録
-
----
-
-## 【追記 2026-05-08 / v1.26】v1.28 着手承認 + audit LP E2E テスト + Phase E 連動
-
-### v1.28 残課題 着手承認
-
-| タスク | 工数 |
-|---|---|
-| #2 cases/ ファネル誘導 | 2-3h |
-| #3 about/ Stella ブランド経歴 | 1-2h |
-| #1 gl-no-old-cert-url JSON コメント | 0.5h |
-| **#4 NEW: /services/audit/ LP E2E テスト**（④ audit_api.py 連動）| 2-3h |
-
-### #4 audit LP E2E テスト
-
-④ Step C 完遂連動: ② audit LP → ⑤ stella.tcharton.com /audit/ → ④ audit_api.py → PDF 生成 → メール送付。本番実機は DNS 設定後 / ローカル疑似は即時可。
-
-### 🔴 Phase E プライム企業 3 段階比較 cases / methodology 追記（v1.29 候補）
-
-#### 着手前提
-
-④ Phase E.0 完了 + ⑤ 業界レポート公開後
-
-#### ② 連動
-
-- /cases/ 「業界 3 段階比較」セクション追加（業界中央値 24 / tcharton 90 / プライム X）
-- /methodology/ 「機械検証の社会的証明」セクション拡張
-
-#### 法令遵守 mandatory
-
-- 個別企業名 ② 側でも **完全非公開**
-- 業種別集計のみ
-- 中立性条項
-- 営業妨害表現禁止
-
----
-
-## 【追記 2026-05-08 / v1.26.1】Phase E 訂正: TOPIX 撤回 / プライム全 1,830 社（代表 2026-05-08 確定）
-
-### 訂正
-
-v1.26 §「Phase E プライム企業 3 段階比較 cases / methodology 追記」の「TOPIX 100」記述を **撤回** + 「**プライム市場全 1,830 社**」に訂正。
-
-### v1.29 候補 修正
-
-- /cases/ 「業界 3 段階比較」: 業界中央値 24（沼津 902 件）/ tcharton 90 / **プライム約 1,830 社平均 X**
-- /methodology/ 「機械検証の社会的証明」: プライム全件業種別集計（個別企業名完全非公開 mandatory）
-
-### 用語統制 訂正
-
-② tcharton 本文中:
-- ✅ 推奨: 「プライム市場」「プライム上場企業」「東証 33 業種分類」
-- ❌ 禁止: 「TOPIX 100」（指数概念）
-
----
-
-## 【追記 2026-05-08 / v1.27】scanner.py 公正化リリース 連動 + methodology 更新 + ★★★ 維持確認（SPEC v3.7 連動）
-
-### 経緯
-
-代表 2026-05-08 直接指摘 → ① SPEC v3.7 抜本改訂（scanner.py 必須 5 公正化）
-
-### ② への mandatory 連動
-
-#### 1. methodology 更新（v1.27 主タスク）
-
-`/methodology/` に **「scanner.py v3.7 公正化リリース」**セクション追加:
-
-| 内容 | 詳細 |
-|---|---|
-| 公正性原則 | SPEC §0.0.15 verbatim 引用 |
-| 必須 5 改訂 | 旧「SSG/Jamstack 必須」→ 新「Web Performance Standard」明示 |
-| NAP 業種別保留 | ローカル業種 mandatory / 全国企業保留 |
-| TTFB 600ms 現実化 | Google web.dev 公式基準準拠 |
-| 動的サイト ★ 取得可能性 | WordPress + 適切最適化（WP Rocket + Cloudflare 等）でも ★ 達成可能を明示 |
-
-#### 2. cases 改訂前後比較追加
-
-`/cases/` に「scanner.py v3.7 リリース前後の業界実態変化」セクション追加:
-
-| 旧（v3.6）| 新（v3.7）|
-|---|---|
-| プライム ★ 0/1,553 | プライム ★ 100-300 社（推定）|
-| 中小 ★ 0/902 | 中小 ★ 30-100 社（推定）|
-| tcharton ★★★ 90 点 維持 | tcharton ★★★ 90 点 維持 |
-
-→ 「scanner.py 公正化 = 認定機関の独立性証明」物語化
-
-#### 3. ★★★ 維持確認 mandatory
-
-scanner.py v3.7 改修後の tcharton.com 再判定で **★★★ 維持**を物理確認:
-- ④ Step D 完了後の再評価結果受領
-- 必須 5 改訂で tcharton ★★★ 維持確認（SSG → Web Performance Standard でも tcharton は CWV / TTFB / HTML 完全達成）
-- 維持確認後 ② cases / methodology に v3.7 結果反映
-
-#### 4. 既存サイト全件 grep mandatory
-
-旧基準記述「SSG 必須」「Jamstack 必須」「動的 CMS 不可」「TTFB ≤ 200ms」を全 25 ページから検出 + 訂正:
-
-```bash
-grep -rn "SSG.*必須\|Jamstack.*必須\|動的 CMS 不可\|TTFB.*200ms" tcharton/
-```
-
-検出件数を REPORT v1.30 に併記。
-
-#### 5. v1.30 着手前提
-
-- ④ Step D（scanner.py 公正性抜本改訂）完了 + tcharton 再判定 ★★★ 維持確認
-- ⑤ v2.9 Tier 2 遡及完遂（5/9 09:31 期限）
-
-### HSCEL §3.1 4 Skill mandatory
-
-v1.27 / v1.30 ともに **HSCEL §3.1 4 Skill 完備 + 並列 3+ reviewer**（旧基準記述残存検出 + ブランド戦略整合 + a11y）
-
-### canonical.json 更新
-
-`config/canonical.json` に v3.7 公正化 関連定数追加:
-- `webPerformanceStandard`: { cwv: "全項目合格", ttfb: "≤ 600ms", htmlAvailability: "AI クローラー取得可能" }
-- `scannerPyVersion`: "v3.7"
-
----
-
-## 【追記 2026-05-08 / v1.28】🚨 tcharton.com ★★★ → ★ 降格受容 + 公正性物語化（v3.7 連動 / 代表方針確定）
-
-### 経緯
-
-④ Step D 実装完遂（SPEC v3.7 公正性抜本改訂）→ tcharton.com 実機検証で **★★★ → ★（HARTON Certified）降格**:
-
-| 指標 | 旧 v3.6 | 新 v3.7 |
-|---|---|---|
-| 格付け | ★★★ | **★** |
-| 総合スコア | 90 | 85 |
-| TTFB | 180ms | **812ms（>600ms 厳格基準）**|
-| 必須条件 達成 | 1 / 2 / 5 | 1 のみ |
-| 必須条件 未達 | なし | **5. Web Performance Standard** |
-
-### ① 戦略確定: 案 A 受容（dogfooding 倫理進化形）
-
-**「自社にも一切の特例なし」** = HARTON Stella 究極の中立性証明として ★ 降格を受容。
-
-### v1.30 着手承認: 公正性物語化
-
-#### /cases/ 改訂
-
-| 旧物語 | 新物語 |
-|---|---|
-| 「tcharton.com ★★★ 自己実証体」| 「**tcharton.com ★ 降格を受容 ── 公正性原則の真価実証**」|
-| 7 commit timeline で ★★★ 取得経緯 | 「★★★ → ★ 降格物語」を追加（v3.7 公正化リリース連動）|
-
-新物語の核心:
-- 「業界唯一、自社にも特例を許さない認定機関」
-- 「★★★ 取得は永続保証ではない / 月次再判定で誰でも降格しうる」
-- 「★★★ 月額保守 mandatory（SPEC §8.5.5）の必然性 = tcharton.com 自身が実証」
-
-#### /methodology/ 改訂
-
-「scanner.py v3.7 公正化リリース」セクションに **tcharton 降格事例を verbatim 記載**:
-- TTFB 812ms（>600ms 基準）= 動的 SSR でも適切実装可能だが tcharton.com（純 SSG）でも cold-start で達成困難な現実
-- 「自社にも厳格判定 = HARTON Stella の社会的責任」
-
-#### Hero / 主要訴求の見直し
-
-| 旧 | 新 |
-|---|---|
-| 「★★★ S クラス」自己実証体ヒーロー | 「公正性原則」+「★ 取得（業界全体で達成可能な目標）」+「★★★ 月額保守 mandatory（SPEC §8.5.5）」 |
-| ★★★ score=90 主軸 | TTFB 改善ロードマップ + 月次再判定実証（dogfooding 倫理拡張）|
-
-### 着手前提
-
-- ④ Step D 全 2,589 件再評価完了 + tcharton ★ 確定
-- ① v1.30 改訂発令受領（本書）
-
-### gl-monthly-mandatory-text + 旧基準残存検出
-
-既存 `gl-monthly-mandatory-text` は維持（★★★ 表記文脈 = サービス商品名 / 月額契約必須）。
-新規 `gl-stale-rating-claim` machine gate 候補: 「★★★ 自己実証体」等の旧表記を検出（v1.28 残課題候補）
-
-### ② v1.30 評価視点
-
-② v1.6 越権 → v1.10-v1.27 → v1.30 = **「★★★ から ★ 降格を受容する物語化」= HARTON ブランド戦略 v1.1.7 進化形 + 公正性原則の真価実証 = 戦略的飛躍**
-
----
-
-## 【追記 2026-05-08 / v1.29】🔴🔴🔴 ② tcharton 抜本改修指示書 v1（④ ドラフト v1 採用 / GA4 実測 CV 0 緊急対応）
-
-### 経緯
-
-④ scanner ドラフト `HARTON/TCHARTON-SITE-REVAMP-DIRECTIVE-DRAFT-v1.md` v1 を ① 採用 → ② INSTRUCTION 化。
-
-### GA4 実測（事業継続危機）
-
-| 指標 | 値 |
-|---|---|
-| 週アクティブユーザー | 32 人（-47.5%）|
-| キーイベント（CV）| **0** |
-| Organic Search | 1（-95%）|
-| 米国 20 人（bot 疑い）/ 日本 6 人 | -70% |
-| お問い合わせ送信 | **0 件** |
-
-→ AI 評価（spec-checker 1,758 / Mozilla A+ / 規範遵守）vs 実マーケティング = **完全乖離**
-
-### 5 Phase ロードマップ（atomic 採用 / ④ ドラフト verbatim）
-
-#### Phase 1 緊急対応（🔴🔴🔴 即時 / 1-3 日）
-
-| # | タスク | 工数 |
-|---|---|---|
-| 1.1 | **GA4 bot フィルタ設定**（Internal traffic / Bot exclude）| 30 分 |
-| 1.2 | **キーイベント（CV）設定**: お問い合わせ送信 = CV / 電話タップ = CV | 1-2h |
-| 1.3 | **Search Console リンク**| 30 分 |
-| 1.4 | **米国流入実態確認**（IP / UA / Referrer 分析 → bot 確定 or 実顧客）| 2h |
-| 1.5 | フォーム障壁分析（項目数 / 必須要件 / プライバシー文言 / ボタン文言）| 2h |
-
-#### Phase 2 コンテンツマーケティング起点（1-2 週間 / 主軸）
-
-| # | タスク | 担当 |
-|---|---|---|
-| 2.1 | 「業界比較データ公開」を front line メッセージに（プライム 1,553 / 静岡 902 機械検証実証）| ② + ⑤ + ④ |
-| 2.2 | tcharton.com hero に「**業界中央値 17 vs HARTON ★★★ 90 = 5.3 倍ギャップ**」実証データ | ② |
-| 2.3 | cases / methodology「業界唯一の機械検証認定機関」位置付けを実データで証明 | ② |
-| 2.4 | ⑤ Stella 業界レポート公開（2,455 件機械検証）| ⑤ |
-| 2.5 | tcharton.com → ⑤ Stella レポート内部リンク強化 | ② |
-
-#### Phase 3 SEO キーワード戦略（2-4 週間）
-
-3 軸:
-- **ローカル SEO**: 「Web 制作 沼津」「ホームページ 静岡」「Web サイト 三島」
-- **ニッチ専門**: 「機械検証 Web サイト品質」「AI 検索対応 SEO 静岡」「★ 認定 Web 制作」
-- **トップオブファネル**: 「プライム企業 WEB 品質ベンチマーク」「業界比較 Web 品質」
-
-コンテンツ生産 月 4-8 本 / ② + ③ 連携。
-
-#### Phase 4 PR / 認知拡大（2-4 週間 / 代表主導）
-
-- プレスリリース #1: 「業界初の機械検証認定機関 HARTON Stella 公式リリース」
-- プレスリリース #2: 「プライム 1,553 社 WEB 品質実態調査公開」
-- 外部メディア: TechCrunch JP / Web 担当者 Forum / 日経 xTECH 等
-- 業界誌: Web Designing / 月刊事業構想 等
-
-#### Phase 5 CRO（並行）
-
-- CTA 配置最適化: Above the fold「**業界比較レポート無料受領**」（具体価値提案 / 「無料診断」より強い）
-- 信頼ファースト要素 above the fold（プライム 1,553 / Mozilla A+ / 5.3 倍ギャップ）
-- フォーム障壁削減
-- A/B テスト（Microsoft Clarity 等）
-
-### KPI 3 か月目標（ビジネス成果実数値）
-
-| 指標 | 現状 | 3 か月目標 |
-|---|---|---|
-| 月間流入（実顧客 / bot 除外）| ~25 | **800（32 倍）** |
-| Organic Search 月間 | ~4 | **200（50 倍）** |
-| 月間 CV（お問い合わせ送信）| 0 | **5 件**（顧客 1 号獲得）|
-| Search Console インプレッション | 未連携 | **5,000+/月** |
-| 外部メディア掲載 | 0 | **3-5 件** |
-
-### v1.30 残課題（v1.28 既発令）統合
-
-★ 降格物語化（cases / methodology / Hero 主訴求見直し）+ Phase 2.2 の「5.3 倍ギャップ」訴求は **同時実装**（5.3 倍 = ④ Step D 再評価後の確定値で更新）
-
-### HSCEL §3.1 4 Skill mandatory
-
-各 Phase で feature-dev + 並列 3 reviewer + receiving + gstack + REPORT §HSCEL-V1 §3。
-
-### KPI 評価原則（v3.7.2 §1.0.1 改訂連動）
-
-- ★★★ = **技術的健全性の自己実証**（限定）
-- マーケティング成果 = **GA4 実数値で評価**（AI 評価では完了とせず）
-- ② v1.27「規範遵守の最高水準」は ① narrow-scope claim 一般化 = 撤回
-
-### 着手前提
-
-代表 GO 受領後 即時 Phase 1 着手 mandatory（事業継続危機）
-
----
-
-## v1.30 代表最優先令（2026-05-08 / 上書き）
-
-> 代表直命: **「最優先で②を改修。他は後で良し」**
-
-### 単独優先指定
-
-② tcharton 5 Phase 改修は **HARTON 全体の単独最優先タスク**。④⑤③ は ② Phase 1 完遂まで **保留**（既発令 INSTRUCTION は無効化せず棚上げ）。① ルートは ② に集中支援。
-
-### Phase 1 緊急対応 即時着手命令（1-3 日 / 🔴🔴🔴）
-
-着手順序（barrier 低 → 高）:
-
-1. **1.1 GA4 bot フィルタ設定**（30 分 / 最低 barrier）— 推奨初手
-2. **1.2 キーイベント（CV）設定**（1-2 時間）— form_submit 等を CV 化
-3. **1.3 Search Console ↔ GA4 リンク**（30 分）
-4. **1.4 米国流入実態確認**（1 時間 / GA4 探索レポート）
-5. **1.5 フォーム障壁分析**（2 時間 / Clarity 等で離脱録画）
-
-### 完遂条件
-
-- 5 件全て disk artifact（screenshot / GA4 設定画面 / CV イベント発火確認）で証跡化
-- HSCEL §3.1 4 Skill mandatory 適用（feature-dev → 並列 reviewer 2+ → receiving → gstack）
-- 完遂報告は `REPORT-TO-ROOT-FROM-TCHARTON.md` に追記、① 確認後に Phase 2 着手承認
-
-### 注意
-
-GA4 設定変更は **本番反映に 24-48 時間遅延**あり。1.1-1.3 は同日中に完遂し、効果測定は 2-3 日後に行う運用前提。
-
----
-
-## v1.31 Q1=A 裁定発効 / Phase 2 着手承認（2026-05-08 / 上書き）
-
-> 代表直命: **「A。沼津拠点東部地域へ回帰」**
-> 正本: `HARTON/ROOT-DECISION-Q1-A-20260508.md`
-
-### 確定方針（Q1-Q5 全確定）
-
-- **Q1=A 完全撤廃**: HARTON Stella / ★★★ / S クラス を全廃
-- **Q2 採用**: ヒーロー mount.jp 構造 + 改訂案 C（エモーショナル）
-- **Q3 D+E 即時 / F 中期**: ⑤ Stella レポートは `app/_archive/` 凍結のため、② が **scanner Phase E 1,553 社データ**を業界実態調査レポートとして自前公開
-- **Q4 沼津・静岡県東部地域 SEO 主軸**: 全国 SEO 撤退
-- **Q5 「沼津で会える 1 人の WEB 屋」前面化**: 顔出し / 地域性 / 直接連絡可能性
-
-### Phase 2 着手承認タスク（HSCEL §3.1 4 Skill mandatory 厳守）
-
-1. **ヒーロー書き直し**: 105 字 → 42 字目標 / 改訂案 C 採用
-2. **自社造語全除去**: HARTON Stella / ★★★ / S クラス を全 25 HTML / canonical.json / メタデータから削除
-3. **ナビ削減**: 11 → 6 項目（/methodology/ /ratings/ /certification 系全削除）
-4. **ページ削減**: 22 → 推定 16-18 ページ（certification 関連ページ削除）
-5. **業界実態調査レポート公開**: scanner Phase E 1,553 社データを匿名集計形式で公開（プライム企業中央値 17 vs HARTON 90 の 5.3 倍ギャップ訴求）
-6. **沼津・静岡県東部地域 SEO**: 沼津 / 三島 / 富士 / 富士宮 / 御殿場 / 裾野 / 伊豆 + WEB 制作 / ホームページ ロングテール
-7. **顔出し / 地域性**: 代表写真 / 沼津での日常 / 地域コミュニティ証跡 / 直接連絡先強調
-
-### canonical.json v1.25 改訂
-
-- HARTON Stella / ★★★ / S クラス 関連 key 全削除
-- `serviceArea`: 「沼津・静岡県東部地域」明記
-- `scanScope`: 「全国 16 都市」を別 key に分離（業界調査範囲）
-- commit / push は SPEC v4.0 確定後
-
-### Phase 1 残タスク継続
-
-- 1.2.2 form_submit 実発火待ち
-- contact-form.js / phone_tap 実装
-- 旧基準 grep 検証維持
-
-### SPEC v4.0 待ち事項
-
-② で実装する内容のうち、SPEC §1.0 サービス範囲 / §1.0.1 ★★★ 削除 / §8.5.5 月額保守再構成 が確定後に push 解禁。① で改訂中（5/10 期限）。
-
-### 着手順序推奨
-
-1 → 2 → 3 → 4（HTML 大規模変更を一括）→ 5（業界実態調査レポート新規ページ）→ 6（SEO ストック型コンテンツ）→ 7（顔出し）
-
-各フェーズで feature-dev / 並列 reviewer 3+ / receiving / gstack 厳守。完遂報告は `REPORT-TO-ROOT-FROM-TCHARTON.md` v1.30 に追記し ① 検収待ち。
+迷ったら本書を Read。**過去発令の v1.30 / v1.31 / v1.32 は v1.33 に統合済 / 履歴は `INSTRUCTION-HISTORY-ARCHIVE.md` 参照**。
