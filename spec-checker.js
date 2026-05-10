@@ -116,18 +116,9 @@ const THEME_VARIANTS = {
 // marketing: 訴求・コンバージョン用途（明色）
 // reading  : 集中閲覧・長文用途（暗色）
 function getVariant(relPath) {
-  const MARKETING = new Set([
-    'index.html',
-    'services/web/index.html',
-    'services/lp/index.html',
-    'services/refurbish/index.html',
-    'services/ai-prediction/index.html',
-    'vision/index.html',
-    'pricing/index.html',
-    'cases/index.html',
-    'contact/index.html',
-  ]);
-  return MARKETING.has(relPath) ? 'marketing' : 'reading';
+  // 全ページ Light 統一（2026-05-10 ブランド一貫性確保）
+  // reading variant は廃止 — about/profile/faq/news/privacy/thanks/404 も marketing 化
+  return 'marketing';
 }
 
 // カスタムCSSクラス（output.css照合から除外）
