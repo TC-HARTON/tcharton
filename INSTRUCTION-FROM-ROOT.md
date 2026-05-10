@@ -164,3 +164,94 @@
 代表 GO 受領済 (2026-05-10) → **即時 Step 1 着手 mandatory**
 
 迷ったら本書を Read。**過去発令の v1.30 / v1.31 / v1.32 は v1.33 に統合済 / 履歴は `INSTRUCTION-HISTORY-ARCHIVE.md` 参照**。
+
+---
+
+## v1.34 TCHARTON-IMPROVEMENT-DIRECTIVE-V1 採用発令 (2026-05-10 / 代表 GO 受領)
+
+### 経緯
+
+- ② v1.33 Step 1 (TTFB 829→569ms) + Step 4 (CSP 97→100) 完遂 ✅
+- ④ commit `6930995` push 完遂: 要件 B (HARTON ローカル業種追加 16→22) + 案 W (多 URL フォーム検出) ✅
+- ④ scanner 再実測: ★ 維持 / 必須条件 2/4 達成 (案 W ✅) / **JSON-LD score 50 < 70 が NAP 達成の構造的ボトルネック判明**
+- ④ 起案 `HARTON/TCHARTON-IMPROVEMENT-DIRECTIVE-V1.md` (422 行 / コード snippet 含む詳細実装手順) を ① 採用承認 (代表 GO 5/10)
+
+### 本書 v1.34 の位置付け
+
+**v1.33 (Step 1-5) を継続 + DIRECTIVE-V1 採用で残ギャップ改修**。
+
+v1.33 Step 1+4 完遂 → DIRECTIVE-V1 で **★→★★→★★★ 段階改修** 着手。
+
+### 採用 DIRECTIVE-V1 の参照
+
+正本: `C:\Users\ohuch\Desktop\HARTON\TCHARTON-IMPROVEMENT-DIRECTIVE-V1.md` (422 行)
+
+② は本書 v1.34 + DIRECTIVE-V1 を Read して着手。
+
+### Week 1 (★★ 取得 / 工数 3-5 日 / 期限 5/17 目標)
+
+| # | 内容 | DIRECTIVE-V1 参照 | 工数 |
+|---|---|---|---|
+| 1 | **JSON-LD score 50→70+** (最優先) | §1.1 | 1 日 |
+| 2 | NAP 業種別保留解決 | §1.2 | ✅ ④ 完遂済 (要件 B) |
+| 3 | お問い合わせフォーム + Turnstile | §1.3 | ✅ ④ 完遂済 (案 W で代替) |
+| 4 | **GEO score 20→50+** | §1.4 | 1 日 |
+
+→ Week 1 完遂で **★★ HARTON 優良 取得見込み** (必須 4/5 + score 80+)
+
+### Week 2 (★★★ 取得 / 工数 2-3 日 / 期限 5/24 達成命令と整合)
+
+| # | 内容 | DIRECTIVE-V1 参照 | 工数 |
+|---|---|---|---|
+| 5 | **JSON-LD score 70→90+** | §3.1 | 0.5-1 日 |
+| 6 | **GEO score 50→70+** | §3.2 | 1 日 |
+| 7 | 必須 5/5 (CWV 本測定 USE_PLAYWRIGHT=1) | §3.3 | (月次再判定運用) |
+
+→ Week 2 完遂で **★★★ HARTON Certified 復帰** (必須 5/5 + score 90+)
+
+### v1.33 との関係
+
+| Step | 内容 | 状態 |
+|---|---|---|
+| v1.33 Step 1 (cache) | TTFB 829→569ms | ✅ 完遂 |
+| v1.33 Step 2 (Workers) | スキップ | ✅ |
+| v1.33 Step 3 (Critical CSS) | 部分実施 | 🟡 |
+| v1.33 Step 4 (CSP) | 100/100 | ✅ 完遂 |
+| **v1.34 Week 1** | JSON-LD + GEO ★★ 取得 | 🔵 着手 |
+| **v1.34 Week 2** | ★★★ 復帰 | 🔵 |
+
+### 必達条件 (v1.33 から維持 + DIRECTIVE-V1 ★★★ 基準)
+
+| # | 条件 | 必達 |
+|---|---|---|
+| 1 | TTFB | ≤600ms (連続計測平均 / 単発 730ms 揺らぎ許容) |
+| 2 | 必須条件達成 | 5/5 |
+| 3 | 総合スコア | ≥85 (★★★ ボーナス込み 90+ 推奨) |
+| 4 | 格付け | ★★★ HARTON Certified |
+| 5 | 致命的NG | 0 維持 |
+| 6 | ヘッダースコア | 100 維持 |
+| 7 | JSON-LD score | 90+ |
+| 8 | GEO score | 70+ |
+
+### HSCEL §3.1 4 Skill mandatory (継続)
+
+各改修 Step で feature-dev → 並列 reviewer 3+ → receiving → gstack 厳守。
+
+### 完遂報告 (継続)
+
+`tcharton/REPORT-TO-ROOT-FROM-TCHARTON.md` に追記。フォーマットは v1.33 §完遂報告フォーマット 参照。
+
+### 越境禁止 (HSCEL §0.0.7)
+
+- ④ scanner.py 改変禁止 (実行のみ ① 権限)
+- ⑥ wp-mastery / portfolio に触らない
+- 3 法規 (SPEC / GOOGLE / GEO) を編集しない
+- ⑤ certification archive に触らない
+
+### 着手前提
+
+代表 GO 受領済 (2026-05-10) → **即時 Week 1 §1.1 JSON-LD 改修 着手 mandatory**
+
+## 期限再確認
+
+**2026-05-24** (本日 5/10 から 14 日 / Week 1 = 5/17 目標 / Week 2 = 5/24 目標)

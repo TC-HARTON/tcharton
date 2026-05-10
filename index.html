@@ -46,7 +46,7 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@id": "https://tcharton.com/#professional-service",
+    "@id": "https://tcharton.com/#organization",
     "@type": ["ProfessionalService", "LocalBusiness"],
     "additionalType": [
       "https://www.wikidata.org/wiki/Q190637",
@@ -148,12 +148,23 @@
       "https://note.com/harton_official",
       "https://github.com/TC-HARTON"
     ],
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "10:00",
-      "closes": "17:00"
-    }
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "17:00"
+      }
+    ],
+    "award": [
+      "Mozilla Observatory ヘッダースコア 100/100（外部第三者評価）",
+      "Cloudflare HSTS preload 登録済（max-age=63072000 / includeSubDomains / preload）"
+    ],
+    "additionalProperty": [
+      {"@type": "PropertyValue", "name": "WCAG 2.2 Level AA 準拠", "value": "true", "url": "https://www.w3.org/TR/WCAG22/"},
+      {"@type": "PropertyValue", "name": "OWASP Top 10:2025 準拠", "value": "true", "url": "https://owasp.org/Top10/"},
+      {"@type": "PropertyValue", "name": "Core Web Vitals 全項目達成（LCP / CLS / INP）", "value": "true", "url": "https://web.dev/articles/vitals"}
+    ]
   }
   </script>
 

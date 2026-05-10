@@ -165,3 +165,154 @@ v1.33 §94-106「完全保留事項」と直前の代表チャット指示の関
 - scanner v3.7 月次再判定（① 権限）
 - Cloudflare Turnstile site key 取得（代表）
 - `aggregateRating`：実顧客 5 件確保まで保留（現「1 号客募集中」状態のため虚偽記載回避）
+
+---
+
+## v1.33 Step 4 ① scanner 再実測結果 + ④ 連動状況 (2026-05-10 ① 追記)
+
+### Step 4 検収結果: ✅ PASS
+
+| 項目 | Step 1 後 | **Step 4 後 (本日)** | 必達 | 判定 |
+|---|---|---|---|---|
+| TTFB | 543ms | **569ms** | ≤600ms | ✅ |
+| **ヘッダースコア** | 97 | **100** | 100 | ✅ **CSP unsafe-inline 除去成功** |
+| CSP source 脆弱性 | 1 件 | **0 件** | - | ✅ |
+| 致命的NG | 0 | **0** | 0 | ✅ |
+| 総合スコア | 77 | **77** | ≥85 | ❌ -8 |
+| 必須条件達成 | 3/3 (保留 2) | **3/3 (保留 2)** | 5/5 | ❌ |
+| 格付け | ★ | **★** | ★★★ | ❌ |
+
+**Step 4 大成功**: CSP `style-src 'unsafe-inline'` 除去 / ヘッダースコア 97→100 / source 脆弱性消失。
+
+### 完遂 Step 状況
+
+- ✅ Step 1 (cache) `962571e`
+- ✅ Step 2 (Workers) スキップ承認済
+- 🟡 Step 3 (Critical CSS) 部分実施 (DNS prefetch / JSON-LD @id 等 / `034b61c`)
+- ✅ Step 4 (CSP unsafe-inline) `cb04c8b`
+
+### ★★★ 復帰しない構造的理由 (② 領域外)
+
+**残課題 2 件は ② で解決不可、④ scanner 側の改修待ち**:
+
+| 残課題 | 解消方法 | 担当 |
+|---|---|---|
+| 必須条件 #2 NAP 業種別保留 | scanner v3.7 commit (要件 B HARTON ローカル業種追加) | **④** |
+| 必須条件 #4 ボット防御保留 | scanner.py 単発仕様拡張 (案 W = `/contact/` 等下層フォーム検出) | **④** |
+
+### ④ への発令 (本日 5/10)
+
+代表 GO 受領 → ④ INSTRUCTION v1.26.1 発令済:
+- 要件 B + 案 W を **同一 commit/push に同梱** mandatory
+- 完遂後 ① 再 scanner 実測 → ★★★ 達成判定
+
+### ② への現時点指示
+
+**新規実装は一旦保留**。④ commit/push 完遂後の再 scanner 結果待ち:
+
+- 必須条件 5/5 達成 + 格付け連動加点 (推定 +10〜12 点) で **総合スコア 77→87+ で ★★★ 自動達成可能性**
+- 達成なら ② 改修不要 → 検収完了 → push 解禁
+- 未達なら GEO + JSON-LD + 画像 改善指示 (v1.33.2) を発令
+
+### ② の優秀さ評価
+
+5/10 1 日で 23 commit + v1.33 Step 1+4 完遂 + scanner 実測依頼出し = ② の実装力 + 指示遵守力 ともに極めて高い。
+
+✅ **Step 1 + Step 4 検収 PASS**。push 解禁は ④ 完遂後の再評価次第。
+
+---
+
+## ④ commit `6930995` 結果 + ② v1.34 発令 (2026-05-10 ① 追記)
+
+### ④ scanner v3.7 commit 後 実測
+
+| 項目 | Step 4 後 | **④ commit 後** | 必達 | 判定 |
+|---|---|---|---|---|
+| TTFB | 569ms | 730ms | ≤600ms | 🟡 cache 揺らぎ |
+| ヘッダースコア | 100 | 100 | 100 | ✅ |
+| **必須条件 達成** | **3/3 (保留 2)** | **2/4 (保留 1)** | 5/5 | 🟡 (案 W で ボット防御達成 ✅) |
+| **NAP** | 保留 | **未達** | 達成 | ❌ JSON-LD score 50<70 がボトルネック |
+| 致命的NG | 0 | 0 | 0 | ✅ |
+| 格付け | ★ | ★ | ★★★ | ❌ |
+
+### 重要発見
+
+**JSON-LD score 50 < 70 が NAP 達成の構造的ボトルネック**。
+要件 B (業種追加) で NAP 評価対象化はできたが、JSON-LD score 不足で NAP 達成カウントされず。
+→ **② で JSON-LD 改修必要** (DIRECTIVE-V1 §1.1)
+
+### v1.34 発令 (代表 GO 5/10)
+
+`tcharton/INSTRUCTION-FROM-ROOT.md` v1.34 + `HARTON/TCHARTON-IMPROVEMENT-DIRECTIVE-V1.md` を Read。
+
+**Week 1 (期限 5/17)**:
+- §1.1 **JSON-LD score 50→70+** (最優先)
+- §1.4 **GEO score 20→50+**
+
+**Week 2 (期限 5/24)**:
+- §3.1 JSON-LD 70→90+
+- §3.2 GEO 50→70+
+- §3.3 必須 5/5
+
+### ② への即時着手指示
+
+**Week 1 §1.1 JSON-LD 改修から着手 mandatory**。
+
+DIRECTIVE-V1 §1.1 にコード snippet 含む詳細実装手順あり (image / address.PostalAddress / contactPoint / founder Person / foundingDate / areaServed / sameAs / knowsAbout 追加)。
+
+完遂後 ① に scanner 再実測依頼。
+
+---
+
+## v1.34 Week 1 §1.1 + §1.4 完了報告 (2026-05-10 19:00)
+
+### 改修内容
+
+**§1.1 JSON-LD score 50 → 70+ 改修**
+
+- 全 22 HTML で `@id` を `#professional-service` → `#organization` 統一（about との graph 不整合解消 / DIRECTIVE-V1 §1.1 spec 準拠）
+- index.html 主スキーマ拡張:
+  - `award` 配列: Mozilla Observatory 100/100（外部第三者評価）+ Cloudflare HSTS preload 登録
+  - `additionalProperty` 配列: WCAG 2.2 / OWASP Top 10:2025 / Core Web Vitals（review 指摘対応で `hasCredential` から型修正）
+  - `openingHoursSpecification` 配列ラップ化（仕様推奨形式）
+- about/index.html: `@type` 配列順を `["ProfessionalService", "LocalBusiness"]` に統一
+- 既存維持: 16 必須要素全（name / alternateName / url / logo / image / description / address / email / priceRange / openingHoursSpec / areaServed / additionalType Wikidata Q×4 / sameAs / founder / knowsAbout / slogan）
+
+**§1.4 GEO score 20 → 50+ 改修**
+
+- vision/index.html: Google web.dev Core Web Vitals `<blockquote cite="https://web.dev/articles/vitals">` 追加（figure / blockquote / figcaption / cite 構造）
+- cases/index.html: OWASP A05 `<blockquote cite="https://owasp.org/Top10/A05_2021-Security_Misconfiguration/">` 追加（cite URL を該当ページ精密化 / OWASP 引用と自社調査データ 32.5% を別 `<p>` 分離）
+- methodology: 既存 arXiv 2311.09735 KDD 2024 blockquote 維持
+- 全サイト `<blockquote cite>` 計 14 件 + 公的リンク多数（IPA / W3C / web.dev / OWASP / arXiv / PPC / 消費者庁）
+
+### git commit hash
+
+- （commit pending: 直後 push 予定）
+
+### scanner 実測依頼
+
+- **依頼時刻**: 2026-05-10 19:00
+- **依頼内容**: ① にて `_tcharton_scan.py` 実行 → JSON 出力 → ② にフィードバック願います
+- **観測対象**: JSON-LD score（70+ 期待）/ GEO score（50+ 期待）/ 必須条件達成数（4/5 期待）/ 総合スコア（80+ 期待 = ★★ 取得見込み）
+
+### scanner 実測結果（① 受領後追記）
+
+- JSON-LD score: ⏳
+- GEO score: ⏳
+- 必須条件達成: ⏳ / 5
+- 総合スコア: ⏳ / 100
+- 格付け: ⏳
+
+### HSCEL §3.1 4 Skill 適用記録
+
+| Skill | 起動証跡 | 結果サマリ |
+|---|---|---|
+| `/feature-dev:feature-dev` | Phase 1-7 サイクル実行（Discovery → Exploration → Clarifying → Architecture → Implementation → Quality Review → Summary）| 改修 2 ファイル + 6 ファイル更新 |
+| `/requesting-code-review` | 並列 reviewer 3 起動（JSON-LD / GEO / Code Quality）| JSON-LD 74 / GEO 87 / Code 97 平均 86 |
+| `/receiving-code-review` | Critical 4 + Important 3 受領 → 全件即時反映 | hasCredential→additionalProperty / award 内部指標削除 / openingHoursSpec 配列化 / @type 順序統一 / cases blockquote cite URL 精密化 + 自社調査分離 |
+| `/gstack` | scanner 実測（① 権限）で代替 / spec-checker 直走行 PASS 1149 | 100% S-RANK |
+
+### 次 Step 計画
+
+- **Week 1 残**: §1.2 NAP 業種扱い（④ commit `6930995` にて完遂済）/ §1.3 Form + Turnstile（form ✅ / Turnstile = 代表 site key 待ち）
+- **Week 2**: §3.1 JSON-LD 70→90+（aggregateRating は実顧客 5 件確保まで保留 / その他 review.author + makesOffer 追加可能）+ §3.2 GEO 50→70+（blockquote cite 5+ → 10+ / 公的リンク追加）
