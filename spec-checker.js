@@ -57,6 +57,9 @@ const STATIC_TARGETS = [
   'privacy/index.html',
   'news/index.html',
 
+  // キャンペーン LP
+  'campaign/portfolio-recruit/index.html',
+
   // エラー・確認画面
   '404.html',
   'thanks.html',
@@ -92,6 +95,7 @@ const PAGE_TYPE = {
   'legal/index.html': 'minimal',
   'privacy/index.html': 'minimal',
   'news/index.html': 'subpage',
+  'campaign/portfolio-recruit/index.html': 'subpage',
 
   '404.html': 'minimal',
   'thanks.html': 'minimal',
