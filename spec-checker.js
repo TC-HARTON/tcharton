@@ -124,6 +124,7 @@ function getVariant(relPath) {
     'services/ai-prediction/index.html',
     'vision/index.html',
     'pricing/index.html',
+    'cases/index.html',
     'contact/index.html',
   ]);
   return MARKETING.has(relPath) ? 'marketing' : 'reading';
