@@ -195,7 +195,7 @@
       <section aria-label="5評価軸の根拠" class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
         <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">5 評価軸の根拠と一次ソース</h2>
         <p class="mt-4 text-dark-300 leading-relaxed max-w-3xl">
-          すべての WEB 構築は以下 5 軸で機械検証します。各軸は独立評価され、項目別の事実減点で総合スコアを算定します（4 軸並列独立評価フレーム + CV 補完軸 / SPEC §0.0.10 厳格化原則準拠）。
+          すべての WEB 構築は以下 5 軸で機械検証します。各軸は独立評価され、項目別の事実減点で総合スコアを算定します（4 軸並列独立評価フレーム + CV 補完軸 / .10 厳格化原則準拠）。
         </p>
 
         <div class="mt-10 space-y-6">
@@ -206,7 +206,7 @@
               <span class="text-sm text-dark-400">— Lighthouse 95+ / Core Web Vitals</span>
             </div>
             <p class="mt-3 text-dark-300 text-sm leading-relaxed">
-              LCP &lt; 2.5s / INP &lt; 200ms / CLS &lt; 0.1 を pre-push hook で機械検証。<a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">web.dev / Core Web Vitals</a>（Google 公式）の基準値を直接参照。
+              LCP &lt; 2.5s / INP &lt; 200ms / CLS &lt; 0.1 を 公開前自動検証 で機械検証。<a href="https://web.dev/articles/vitals" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">web.dev / Core Web Vitals</a>（Google 公式）の基準値を直接参照。
             </p>
           </article>
 
@@ -214,10 +214,10 @@
             <div class="flex flex-wrap items-baseline gap-3">
               <span class="text-teal-300 font-display font-extrabold text-2xl">②</span>
               <h3 class="font-display text-lg lg:text-xl font-bold text-white">コンテンツ</h3>
-              <span class="text-sm text-dark-400">— 一次情報・E-E-A-T・Lead Evidence Block</span>
+              <span class="text-sm text-dark-400">— 一次情報・E-E-A-T・</span>
             </div>
             <p class="mt-3 text-dark-300 text-sm leading-relaxed">
-              <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Google 有用なコンテンツ</a>準拠。記事冒頭に Lead Evidence Block（最初の `&lt;h2&gt;` より前に数値・公的リンク・引用句のいずれか）を必須配置（SPEC §4.13）。
+              <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ja" target="_blank" rel="noopener noreferrer" class="text-teal-300 underline hover:text-teal-200 py-3 inline-block">Google 有用なコンテンツ</a>準拠。記事冒頭に （最初の `&lt;h2&gt;` より前に数値・公的リンク・引用句のいずれか）を必須配置（SPEC §4.13）。
             </p>
           </article>
 
@@ -353,7 +353,7 @@
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
           <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">機械検証エンジン spec-checker.js</h2>
           <p class="mt-4 text-dark-300 leading-relaxed max-w-3xl">
-            自社開発の Node.js 検証ツール。<strong class="text-white">2,554 検証項目（最新は spec-checker 直走行で確認）</strong>を pre-push hook で自動実行し、<strong class="text-white">FAIL=0 / 合格率 100%</strong>を S-RANK 条件として強制します。1 件でも FAIL があれば push 自体が阻止されます。
+            自社開発の Node.js 検証ツール。<strong class="text-white">2,554 検証項目（最新は spec-checker 直走行で確認）</strong>を 公開前自動検証 で自動実行し、<strong class="text-white">FAIL=0 / 合格率 100%</strong>を S-RANK 条件として強制します。1 件でも FAIL があれば push 自体が阻止されます。
           </p>
 
           <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
@@ -387,11 +387,11 @@
             </div>
             <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
               <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">AI 検索対応</p>
-              <p class="mt-2 text-dark-300 leading-relaxed">85 PASS / G-1〜G-6 9 戦略 / Lead Evidence Block / 公的リンク密度</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">85 PASS / G-1〜G-6 9 戦略 /  / 公的リンク密度</p>
             </div>
             <div class="bg-dark-800 border border-dark-700 rounded-lg p-5">
               <p class="text-teal-300 font-display font-bold text-xs uppercase tracking-wider">SPEC 本文</p>
-              <p class="mt-2 text-dark-300 leading-relaxed">492 PASS / SPEC v3.7 全条項 + Body Theme Variants + 19 ページ階層</p>
+              <p class="mt-2 text-dark-300 leading-relaxed">492 PASS /  全条項 +  + 19 ページ階層</p>
             </div>
           </div>
           <p class="mt-6 text-sm text-dark-400">
@@ -404,7 +404,7 @@
       <section aria-label="業界実測の取得方法" class="max-w-5xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
         <h2 class="font-display text-2xl lg:text-3xl font-bold text-white">業界実測 902 件の取得方法</h2>
         <p class="mt-4 text-dark-300 leading-relaxed max-w-3xl">
-          （認定機関）が <strong class="text-white">scanner.py</strong> で静岡県 5 都市 11 業種を機械検証。<strong class="text-white">業界中央値 24 点 vs 当社実測 90 点 = 3.8 倍ギャップ</strong>を実証しました。
+          （認定機関）が <strong class="text-white">品質検証ツール</strong> で静岡県 5 都市 11 業種を機械検証。<strong class="text-white">業界中央値 24 点 vs 当社実測 90 点 = 3.8 倍ギャップ</strong>を実証しました。
         </p>
 
         <dl class="mt-8 space-y-3 text-sm">
@@ -421,7 +421,7 @@
         <p class="mt-6 text-xs text-dark-500">出典: scanner Phase 0.5 静岡県業界実測レポート 2026-05（ 認定機関 / 機械検証データ）</p>
       </section>
 
-      <!-- Phase E 事前枠組み (v1.29 / TBD 値は ④/⑤ 完了後挿入) -->
+      <!-- 事業展開 事前枠組み (v1.29 / 未確定 値は ④/⑤ 完了後挿入) -->
       <section aria-label="機械検証の社会的証明（プライム市場 全 1,830 社）" class="bg-dark-800/50 border-y border-dark-700">
         <div class="max-w-5xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
           <p lang="en" class="text-teal-300 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Social Proof — Prime Market Benchmark</p>
@@ -438,11 +438,11 @@
               <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">頻度</dt><dd class="text-dark-200">半年〜年 1 回（CVE / GEO 仕様変動への追随）</dd></div>
               <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">負荷</dt><dd class="text-dark-200">max-pages=1 / 公開トップページのみ機械検証 / Place API 等の追加 API 一切使用せず</dd></div>
               <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">公開ポリシー</dt><dd class="text-dark-200"><strong class="text-white">個別企業名は完全非公開</strong> / <strong class="text-white">業種別集計のみ公開</strong> / <strong class="text-white">中立評価</strong>（営業妨害表現の使用なし）</dd></div>
-              <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">プライム平均</dt><dd class="text-amber-200 font-extrabold">TBD<span class="text-dark-400 text-xs ml-2 font-normal">（④ scanner.py 全 1,830 社スキャン完了 + ⑤  業界レポート公開後に確定値挿入）</span></dd></div>
+              <div class="flex flex-col sm:flex-row sm:gap-6"><dt class="sm:w-40 text-dark-400 uppercase tracking-wider text-xs sm:pt-1">プライム平均</dt><dd class="text-amber-200 font-extrabold">未確定<span class="text-dark-400 text-xs ml-2 font-normal">（④ 品質検証ツール 全 1,830 社スキャン完了 + ⑤  業界レポート公開後に確定値挿入）</span></dd></div>
             </dl>
           </div>
 
-          <p class="mt-6 text-xs text-dark-500">本セクションは Phase E 事前枠組み（v1.29）。法令準拠: 不正競争防止法 2 条 1 項 21 号（営業誹謗禁止）+ 景表法 5 条（優良誤認禁止 / 比較対象貶め禁止）+ 個別企業情報の取扱いに関する原則。</p>
+          <p class="mt-6 text-xs text-dark-500">本セクションは 事業展開 事前枠組み（v1.29）。法令準拠: 不正競争防止法 2 条 1 項 21 号（営業誹謗禁止）+ 景表法 5 条（優良誤認禁止 / 比較対象貶め禁止）+ 個別企業情報の取扱いに関する原則。</p>
         </div>
       </section>
 
@@ -473,7 +473,6 @@
           <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
           <ul class="mt-4 space-y-2 text-sm">
             <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
-            <li><a href="/services/web/" class="hover:text-white py-3 inline-block"</li>
             <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
           </ul>
         </div>
