@@ -91,12 +91,12 @@
       {"@type": "Question", "name": "既存システムと連携できますか？", "acceptedAnswer": {"@type": "Answer", "text": "API 連携・CSV 入出力・データベース直接読込み等で対応可能です。既存基幹システム（SAP / Oracle / kintone 等）との連携実績ベースで Phase 1 にて検証します。"}},
       {"@type": "Question", "name": "運用後のサポートはありますか？", "acceptedAnswer": {"@type": "Answer", "text": "Phase 3 完了後、月次のモデル再学習・精度モニタリング・改善提案を保守プラン（プレミアム枠の追加 or 別途月額契約）で対応します。"}},
       {"@type": "Question", "name": "ROI はどうなりますか？", "acceptedAnswer": {"@type": "Answer", "text": "投資対効果は事業規模・業種・現状の在庫精度等で大きく異なります。Phase 1 の実現可能性レポートで個別試算します。一律の数値は提示しません（誇張防止のため）。"}},
-      {"@type": "Question", "name": "スモールスタートは可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "Phase 1（30 万円・2 週間・分析のみ）からのスタートが可能です。Phase 1 だけで終了するご判断もできます。"}},
+      {"@type": "Question", "name": "スモールスタートは可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "Phase 1（30 万円・約 4 週間・分析のみ）からのスタートが可能です。Phase 1 だけで終了するご判断もできます。"}},
       {"@type": "Question", "name": "対応エリアは？", "acceptedAnswer": {"@type": "Answer", "text": "静岡県東部（沼津・三島・富士・富士宮・裾野・長泉・清水）を主軸に、静岡県全域および全国オンライン対応可能です。AI 予測は業種を問わず全国対応です。"}},
       {"@type": "Question", "name": "支払方法は？", "acceptedAnswer": {"@type": "Answer", "text": "銀行振込（ソニー銀行 / ゆうちょ銀行）が標準です。請求書発行・領収書発行・適格請求書（インボイス）対応可能です。"}},
       {"@type": "Question", "name": "領収書・請求書は発行されますか？", "acceptedAnswer": {"@type": "Answer", "text": "発行します。請求書は契約時または月初、領収書は入金確認後に発行します。インボイス（適格請求書）対応です。"}},
       {"@type": "Question", "name": "個人事業主でも依頼できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。当社自身が個人事業主であり、士業・飲食・建設・不動産など個人事業主様の事例にも対応します。料金プランは規模に応じて柔軟にご提案します。"}},
-      {"@type": "Question", "name": "相談だけでも可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。トップページの 1 分でできる無料診断シミュレーターで現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。"}},
+      {"@type": "Question", "name": "相談だけでも可能ですか？", "acceptedAnswer": {"@type": "Answer", "text": "可能です。トップページの 1 分でできる無料相談</a>で現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。"}},
       {"@type": "Question", "name": "中小企業の WEB サイトはどのくらいセキュリティ事故に遭っていますか？", "acceptedAnswer": {"@type": "Answer", "text": "IPA「情報セキュリティ10大脅威 2025（組織編）」では、ランサム攻撃・サプライチェーン攻撃・内部不正等が上位を占めており、中小企業の被害は近年増加傾向にあります。WEB サイト改ざん・情報漏洩は警察庁サイバー警察局でも継続的に報告されている事案です。具体的な事故率は業種・規模で異なるため、一律の数値は提示しません（誇張防止のため）。一次ソース: IPA「情報セキュリティ10大脅威」(https://www.ipa.go.jp/security/10threats/) / 警察庁サイバー警察局 (https://www.npa.go.jp/bureau/cyber/)。"}},
       {"@type": "Question", "name": "SSL（HTTPS）化していないとどんなリスクがありますか？", "acceptedAnswer": {"@type": "Answer", "text": "主に 3 つの実害があります。1. ブラウザ警告表示によるユーザー離脱（Chrome は HTTP サイトを「保護されていません」と表示）。2. Google 検索順位への影響（Google 検索セントラルが HTTPS をランキング要因として明言）。3. 通信内容の盗聴・改ざんリスク（公衆 WiFi 上の中間者攻撃に脆弱）。当社は構築時に Cloudflare 経由で TLS 1.3 + HSTS を標準実装します。一次ソース: Google Search Central HTTPS (https://developers.google.com/search/docs/advanced/security/https) / IPA TLS 暗号設定ガイドライン (https://www.ipa.go.jp/security/crypto/guideline/ssl_crypt_config.html)。"}},
       {"@type": "Question", "name": "日本の中小企業の WEB サイト保有率はどのくらいですか？", "acceptedAnswer": {"@type": "Answer", "text": "総務省「通信利用動向調査」では、企業のインターネット利用は普及している一方、ホームページ開設率は事業規模が小さいほど低下する傾向が継続的に報告されています。特に地方圏の小規模事業所で未開設率が高く、地域中小企業の WEB 活用余地は大きい状況です。当社が静岡県東部で重点的に活動するのもこの背景があります。一次ソース: 総務省 通信利用動向調査 (https://www.soumu.go.jp/johotsusintokei/statistics/statistics05.html)。"}},
@@ -166,15 +166,15 @@
   <nav id="mobile-menu" class="mobile-menu fixed inset-0 top-16 z-50 bg-dark-900 lg:hidden" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
     <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
       <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">WEB 制作</a>
-      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700"
       <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">AI 予測</a>
       <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">料金</a>
       <a href="/cases/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">私たちの想い</a>
       <a href="/faq/" class="block py-4 px-2 text-lg text-white font-bold border-b border-dark-700" aria-current="page">FAQ</a>
       <a href="/profile/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">代表プロフィール</a>
       <a href="/about/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">会社情報</a>
       <a href="/news/" class="block py-4 px-2 text-lg text-dark-100 hover:text-white border-b border-dark-700">お知らせ</a>
-      <a href="/contact/" class="mt-4 block bg-teal-500 hover:bg-teal-400 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料診断シミュレーター</a>
+      <a href="/contact/" class="mt-4 block bg-teal-500 hover:bg-teal-400 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
     </div>
   </nav>
 
@@ -278,7 +278,7 @@
           <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q32. 既存システムと連携できますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">API 連携・CSV 入出力・データベース直接読込み等で対応可能です。既存基幹システム（SAP / Oracle / kintone 等）との連携実績ベースで Phase 1 にて検証します。</dd></div>
           <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q33. 運用後のサポートはありますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">Phase 3 完了後、月次のモデル再学習・精度モニタリング・改善提案を保守プラン（プレミアム枠の追加 or 別途月額契約）で対応します。</dd></div>
           <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q34. ROI はどうなりますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">投資対効果は事業規模・業種・現状の在庫精度等で大きく異なります。Phase 1 の実現可能性レポートで個別試算します。一律の数値は提示しません（誇張防止のため）。</dd></div>
-          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q35. スモールスタートは可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">Phase 1（30 万円・2 週間・分析のみ）からのスタートが可能です。Phase 1 だけで終了するご判断もできます。</dd></div>
+          <div class="bg-dark-800 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q35. スモールスタートは可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">Phase 1（30 万円・約 4 週間・分析のみ）からのスタートが可能です。Phase 1 だけで終了するご判断もできます。</dd></div>
         </dl>
       </section>
 
@@ -290,7 +290,7 @@
             <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q37. 支払方法は？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">銀行振込（ソニー銀行 / ゆうちょ銀行）が標準です。請求書発行・領収書発行・適格請求書（インボイス）対応可能です。詳細は <a href="/pricing/" class="text-teal-300 underline hover:text-teal-200">/pricing/</a> をご覧ください。</dd></div>
             <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q38. 領収書・請求書は発行されますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">発行します。請求書は契約時または月初、領収書は入金確認後に発行します。インボイス（適格請求書）対応です。</dd></div>
             <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q39. 個人事業主でも依頼できますか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">はい。当社自身が個人事業主であり、士業・飲食・建設・不動産など個人事業主様の事例にも対応します。料金プランは規模に応じて柔軟にご提案します。</dd></div>
-            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q40. 相談だけでも可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">可能です。トップページの 1 分でできる無料診断シミュレーターで現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。</dd></div>
+            <div class="bg-dark-900 border-l-4 border-teal-400 rounded-r-lg p-5"><dt class="font-display font-bold text-white">Q40. 相談だけでも可能ですか？</dt><dd class="mt-2 text-dark-300 text-sm leading-relaxed">可能です。トップページの 1 分でできる無料相談</a>で現状を可視化したあと、メールでお問い合わせください。診断結果のご相談だけでも歓迎です。</dd></div>
           </dl>
         </div>
       </section>
@@ -380,7 +380,7 @@
           </p>
           <div class="mt-8 flex flex-wrap justify-center gap-4">
             <a href="/contact/" class="inline-flex items-center justify-center bg-white text-teal-700 hover:bg-teal-50 px-8 py-4 rounded-md font-semibold">
-              無料診断シミュレーター
+              無料相談</a>
             </a>
             <a href="/contact/" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-teal-600 px-8 py-4 rounded-md font-semibold">
               メールで問い合わせ
