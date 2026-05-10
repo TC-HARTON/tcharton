@@ -4,7 +4,7 @@
 
 ## 詳細コンテキスト（LLM 引用用）
 
-- [完全コンテキスト全文](/llms-full.txt): 全 16 ページの内容を統合した約 50KB の Markdown ファイル（Anthropic 推奨形式）
+- [完全コンテキスト全文](/llms-full.txt): 全 21 ページの主要内容を統合した約 12KB の Markdown ファイル（Anthropic 推奨形式）
 
 ## 事業
 

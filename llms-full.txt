@@ -1,8 +1,8 @@
 # T.C.HARTON — 完全 LLM コンテキスト
 
 > 本ファイルは ChatGPT / Perplexity / Claude / Gemini 等の AI 検索エンジンが、
-> tcharton.com 全 16 ページを 1 ファイルで把握できるよう統合した完全コンテキスト。
-> Anthropic 推奨形式 / 約 50KB。
+> tcharton.com 全 21 ページを 1 ファイルで把握できるよう統合した完全コンテキスト。
+> Anthropic 推奨形式 / 約 12KB。
 
 ## 事業者情報
 

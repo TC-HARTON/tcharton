@@ -1363,7 +1363,7 @@ function cGlobal() {
         const fp = path.join(ROOT, t);
         if (!fs.existsSync(fp)) return false;
         const html = fs.readFileSync(fp, 'utf-8');
-        return !/<script[^>]+src=["'][^"']*\/dist\/scripts\/menu\.js["']/.test(html);
+        return !/<script[^>]+src=["'][^"']*\/dist\/scripts\/menu\.js(\?[^"']*)?["']/.test(html);
       });
       r.push(menuJsMissing.length === 0
         ? PASS('gl-menu-js-ref', S, 'menu.js 参照整合性 (v1.20)',
