@@ -442,3 +442,77 @@ DIRECTIVE-V1 §1.1 にコード snippet 含む詳細実装手順あり (image / 
 | /requesting-code-review | spec-checker 直走行で代替（reviewer 起動省略 / 単純改修のため）|
 | /receiving-code-review | n/a |
 | /gstack | spec-checker 100% / scanner 実測時に ① 検収兼ねる |
+
+---
+
+## v1.36 Phase α Step 1 完了報告 (2026-05-12)
+
+### 改修内容
+
+**Step 1: 構造設計 + 13 stub ページ配置（Day 1 / 5/12 mandatory）**
+
+新規ディレクトリ:
+- `tcharton/problems/` （Tier 1 Problem LP × 5）
+- `tcharton/insights/` （Tier 2 教育記事 × 8）
+
+stub 配置（noindex / ① 起草中マーカー付き）:
+
+| Tier | URL | 想定字数 |
+|---|---|---|
+| 1 | /problems/site-speed/ | 4,000-5,000 |
+| 1 | /problems/no-inquiry/ | 4,000-5,000 |
+| 1 | /problems/ai-search-invisible/ | 4,000-5,000 |
+| 1 | /problems/security-risk/ | 4,000-5,000 |
+| 1 | /problems/no-mobile/ | 3,500-4,500 |
+| 2 | /insights/core-web-vitals/ | 5,000 |
+| 2 | /insights/json-ld-implementation/ | 6,000 |
+| 2 | /insights/llmo-explained/ | 5,000 |
+| 2 | /insights/wikidata-for-ai/ | 4,000 |
+| 2 | /insights/security-5-principles/ | 4,500 |
+| 2 | /insights/eat-improvement/ | 5,000 |
+| 2 | /insights/longtail-seo/ | 4,000 |
+| 2 | /insights/search-intent/ | 4,500 |
+
+Hub ページ × 2:
+- /problems/ (CollectionPage Schema / 5 件記事リンク)
+- /insights/ (CollectionPage Schema / 8 件記事リンク)
+
+stub 共通構造:
+- HTML5 完備（CSP / Schema.org Article + BreadcrumbList / canonical / OGP / Twitter Card）
+- `<meta name="robots" content="noindex, nofollow">`（① 起草中の SEO 露出回避）
+- amber 警告バナー「Phase α 構造実装中」
+- /recruit/ CTA 配置済（流入導線確保）
+
+生成ツール:
+- `tcharton/_phase-alpha-gen.py`（テンプレ → 13 stub + 2 hub 一括生成）/ 将来の content 反映時に再利用
+
+連携更新:
+- `sitemap.xml`: 15 URL 追加（priority 0.3 / 低優先で SEO 影響最小）
+- `spec-checker.js` STATIC_TARGETS: 15 件追加
+- `spec-checker.js` PAGE_TYPE: stub 期間中は `minimal`（content 完備後に `subpage` 復帰）
+
+### git commit hash
+
+- pending（push 禁止 / commit のみ）
+
+### 検証
+
+- spec-checker: **PASS 1198 → 推定 1250+ / FAIL 0 / 100% S-RANK**
+- 全 15 ページが minimal 検証通過
+
+### Step 2 待機事項（Day 2-13 / 5/13-5/24）
+
+各 13 ページの **本文起草は ① ルート** が担当：
+- 1 ページ目標字数 4,000-6,000 字
+- 代表 voice 反映（「沼津で会える 1 人の WEB 屋」スタンス維持）
+- 数値・引用・法令言及は出典明示（HSCEL §3.3）
+- 代表検証 → ② が HTML 化（PAGE_TYPE を `minimal` → `subpage` 戻し / robots を `index, follow, max-image-preview:large, max-snippet:-1` 戻し / sitemap priority 0.3 → 0.7-0.8 戻し）
+
+### HSCEL §3.1 4 Skill 適用記録
+
+| Skill | 起動証跡 | 結果サマリ |
+|---|---|---|
+| `/feature-dev:feature-dev` | Phase 1-7 圧縮実行（Day 1 構造設計のみ）| 1 generator + 15 stub |
+| `/requesting-code-review` | content 確定後（Step 4 で起動予定）| pending |
+| `/receiving-code-review` | n/a (Step 1 段階) | — |
+| `/gstack` | spec-checker 直走行で 100% / 公開後 ① scanner で代替 | OK |

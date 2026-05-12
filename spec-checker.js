@@ -60,6 +60,23 @@ const STATIC_TARGETS = [
   // 制作実績キャンペーン LP
   'recruit/index.html',
 
+  // Phase α: Problem LP × 5 (Tier 1) + 教育記事 × 8 (Tier 2) + Hub × 2 / 全 noindex（① 起草中）
+  'problems/index.html',
+  'problems/site-speed/index.html',
+  'problems/no-inquiry/index.html',
+  'problems/ai-search-invisible/index.html',
+  'problems/security-risk/index.html',
+  'problems/no-mobile/index.html',
+  'insights/index.html',
+  'insights/core-web-vitals/index.html',
+  'insights/json-ld-implementation/index.html',
+  'insights/llmo-explained/index.html',
+  'insights/wikidata-for-ai/index.html',
+  'insights/security-5-principles/index.html',
+  'insights/eat-improvement/index.html',
+  'insights/longtail-seo/index.html',
+  'insights/search-intent/index.html',
+
   // エラー・確認画面
   '404.html',
   'thanks.html',
@@ -96,6 +113,21 @@ const PAGE_TYPE = {
   'privacy/index.html': 'minimal',
   'news/index.html': 'subpage',
   'recruit/index.html': 'subpage',
+  'problems/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'problems/site-speed/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'problems/no-inquiry/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'problems/ai-search-invisible/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'problems/security-risk/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'problems/no-mobile/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/core-web-vitals/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/json-ld-implementation/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/llmo-explained/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/wikidata-for-ai/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/security-5-principles/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/eat-improvement/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/longtail-seo/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/search-intent/index.html': 'minimal',  // Phase α stub / ① 起草中
 
   '404.html': 'minimal',
   'thanks.html': 'minimal',
