@@ -156,3 +156,128 @@
 | ヘッダースコア | 100 ✅ |
 | 致命的NG | 0 ✅ |
 | 必須条件達成 | 2/4 + 1 保留 (Phase β で全達成見込み) |
+
+---
+
+## v1.37 ⑤→② 統合 + DESIGN.md 厳格参照 + /stella/ サブセクション (2026-05-12 / 代表 Q1+Q2 GO)
+
+### 経緯
+
+代表追加指示 (5/12):
+- Gemini 提言 → ⑤ を ② に統合 (「審判」ポジション宣言)
+- Q1 GO: ⑤→② 統合
+- Q2 GO: 優良サイトは公開 (適時判断 / 集計データ + オプトイン Sランク Badge)
+- Q3: ⑥ Phase A 再起動不要 (代表 5/12 ⑤⑥ 休止判断維持)
+
+### 新規追加事項
+
+#### 1. tcharton/DESIGN.md 採用 (案 C / awesome-design-md 準拠)
+
+正本: `tcharton/DESIGN.md` (新規策定 / 12 セクション)
+
+実装時 **厳格参照 mandatory**:
+- §1 Visual Theme & Atmosphere
+- §2 Color Palette & Semantic Roles (#1B4965 / #D4AF37 維持)
+- §3 Typography Hierarchy (Noto Sans JP / Noto Serif JP)
+- §4 Component Styling
+- §5 Layout & Spacing (8px base)
+- §6 Depth / Elevation
+- §7 Do's and Don'ts (ブランド禁止用語)
+- §8 Responsive Breakpoints
+- §9 Agent Prompt Guide
+- §10 HARTON 独自 (LLMO + SEO 必須)
+- §11 Validation Checklist (全 14 項目)
+- §12 Update Policy
+
+#### 2. tcharton/CLAUDE.md 採用 (② 固有ルール)
+
+正本: `tcharton/CLAUDE.md` (新規策定 / 11 セクション)
+
+主要ルール:
+- DESIGN.md 厳格参照 mandatory
+- AIO + SEO + UI/UX 統合厳格運用
+- Stella サブセクション (/stella/) 統合運用
+- HSCEL §3.1 4 Skill mandatory + §3.3 事実確認 mandatory
+- ブランド禁止用語 grep 0 件 mandatory
+- 越境禁止 (HSCEL §0.0.7)
+
+#### 3. /stella/ サブセクション統合 (5 ページ追加)
+
+| URL | 内容 |
+|---|---|
+| `/stella/` | 審判ポジション宣言 + Sランク基準明文化 |
+| `/stella/methodology/` | スキャン方法論 + 4 軸評価ロジック |
+| `/stella/ranking/` | 業界中央値・上位ランキング (集計のみ / 個別企業名なし) |
+| `/stella/badge/` | Sランク Badge (オプトイン制) |
+| `/stella/diagnose/` | 無料診断 (stella Scan) フォーム |
+
+### 修正された Phase α (Tier 1+2 + Stella 5 ページ = 計 18 ページ)
+
+| Tier | 内容 | ページ数 |
+|---|---|---|
+| Tier 1 | Problem 起点 LP (既存 v1.36) | 5 |
+| Tier 2 | 教育記事 (既存 v1.36) | 8 |
+| **Stella (新)** | **/stella/ サブセクション 5 ページ** | **5** |
+| **計** | | **18 ページ** |
+
+### Stella サブセクション法的リスク回避 (mandatory)
+
+- ✅ 集計データのみ公開 (個別企業名禁止)
+- ✅ Sランク Badge は希望企業オプトイン制 (事後同意)
+- ❌ 競合制作会社の名指しスキャン禁止
+- ❌ 個別企業の低スコア晒し禁止
+- ❌ 競合顧客横取り訴求禁止
+- ❌ 「業界 1 位」自称禁止 (景表法)
+
+### Stella ブランド色追加
+
+| ロール | HEX | 用途 |
+|---|---|---|
+| Stella Gold (richer) | `#D4AF37` | Sランク Badge メイン (既存) |
+| Stella Gold Dark | `#B8941F` | Sランク Badge ボーダー |
+| Stella Gold Light | `#F5E5A8` | Sランク Badge 背景 |
+| Stella Navy | `#0F2840` | 審判ポジション ヒーロー背景 |
+
+DESIGN.md §2 に追加済。
+
+### 期限延長
+
+旧 v1.36: 5/26 (2 週間 / Tier 1+2 = 13 ページ)
+新 v1.37: **6/9 (4 週間 / Tier 1+2+Stella = 18 ページ)**
+
+### ④ Phase F データ連動
+
+④ Gemini 提言反映改修完遂 + Phase F 全国スキャン完了後:
+- /stella/ranking/ で集計データ自動更新
+- /stella/methodology/ で 4 軸評価ロジック解説 (改修内容反映)
+
+② は ④ 出力 JSON を Read のみ。
+
+### 完遂フロー
+
+```
+Step 1: tcharton/CLAUDE.md + tcharton/DESIGN.md Read (起動時自動)
+Step 2: Tier 1 Problem LP 5 ページ実装 (Day 1-7)
+Step 3: Tier 2 教育記事 8 本実装 (Day 8-21)
+Step 4: /stella/ サブセクション 5 ページ実装 (Day 22-28)
+Step 5: 全 18 ページ §11 Validation Checklist 検証
+Step 6: ④ scanner 実測 (① 権限) → 結果反映
+Step 7: 公開 + ① 検収
+```
+
+### 担当分担
+
+- ① ルート (私): 各記事/LP 内容起草 + 代表検証 + ② への引渡
+- ② tcharton: HTML 化 + 配置 + Schema + DESIGN.md §11 Validation 検証
+- 代表: ブランドトーン調整 + 最終承認
+- ④ scanner: 実測協力 (① 経由)
+
+### HSCEL §3.1 4 Skill mandatory (継続)
+
+各ページ公開前: feature-dev → 並列 reviewer 2+ → receiving → gstack
+
+### 着手前提
+
+代表 GO 受領済 (2026-05-12) → **即時 Step 1 着手 mandatory**
+
+過去発令 v1.36 は v1.37 に統合 / 履歴は INSTRUCTION-HISTORY-ARCHIVE.md 参照

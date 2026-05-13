@@ -77,6 +77,13 @@ const STATIC_TARGETS = [
   'insights/longtail-seo/index.html',
   'insights/search-intent/index.html',
 
+  // Stella サブセクション (v1.37 Phase α / DESIGN.md §10)
+  'stella/index.html',
+  'stella/methodology/index.html',
+  'stella/ranking/index.html',
+  'stella/badge/index.html',
+  'stella/diagnose/index.html',
+
   // エラー・確認画面
   '404.html',
   'thanks.html',
@@ -128,6 +135,12 @@ const PAGE_TYPE = {
   'insights/eat-improvement/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/longtail-seo/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/search-intent/index.html': 'minimal',  // Phase α stub / ① 起草中
+  // Stella サブセクション (v1.37 Step 1 stub / ① 起草中)
+  'stella/index.html': 'minimal',
+  'stella/methodology/index.html': 'minimal',
+  'stella/ranking/index.html': 'minimal',
+  'stella/badge/index.html': 'minimal',
+  'stella/diagnose/index.html': 'minimal',
 
   '404.html': 'minimal',
   'thanks.html': 'minimal',

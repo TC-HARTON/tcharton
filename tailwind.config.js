@@ -33,10 +33,36 @@ module.exports = {
           800: '#1e293b',
           900: '#0f172a',
         },
+        // DESIGN.md §2 Stella Sub-brand (v1.37 追加)
+        gold: {
+          50:  '#fdfbf3',
+          100: '#fbf5e0',
+          200: '#f8ecc4',
+          300: '#F5E5A8',  // Stella Gold Light (Badge 背景)
+          400: '#e9ce72',
+          500: '#D4AF37',  // Stella Gold (Accent / Badge メイン)
+          600: '#c19a2a',
+          700: '#B8941F',  // Stella Gold Dark (Badge ボーダー)
+          800: '#8f7218',
+          900: '#664f10',
+        },
+        'stella-navy': {
+          DEFAULT: '#0F2840',  // /stella/ ヒーロー背景
+          dark: '#0a1c2e',
+        },
+        // Callout 色（DESIGN.md §4 Callouts）
+        'callout-info':      '#eff6fb',
+        'callout-highlight': '#fff8e6',
+        'callout-danger':    '#fef2f2',
+        'border-soft':       '#e0e6eb',
+        'bg-soft':           '#fafbfc',  // zebra stripe
       },
       fontFamily: {
-        sans: ['"Noto Sans JP"', '"Inter"', 'sans-serif'],
-        display: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
+        // DESIGN.md §3 Typography v1.37 採用
+        sans:    ['"Noto Sans JP"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif:   ['"Noto Serif JP"', 'serif'],
+        display: ['"Noto Serif JP"', '"Noto Sans JP"', 'serif'],  // 見出し
+        mono:    ['"JetBrains Mono"', '"Menlo"', 'monospace'],
       },
     },
   },
