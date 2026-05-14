@@ -4,7 +4,7 @@
 > **URL**: https://tcharton.com
 > **Format**: Google Stitch DESIGN.md / awesome-design-md 準拠
 > **Reference**: Linear (clarity) + Vercel (modern dev) + Stripe (trust + CTA) + HARTON 独自
-> **Last updated**: 2026-05-12
+> **Last updated**: 2026-05-14（§3 フォント Sans 統一改訂 / H1 実装基準明記）
 
 ---
 
@@ -91,28 +91,31 @@
 
 ### Font Families
 
-```css
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap');
+> **2026-05-14 改訂（代表指示）**: 全ページ・全要素を **Inter + Noto Sans JP の Sans 統一**。
+> 見出しも Serif（Noto Serif JP）を使わない。tcharton.com 本体・Stella サブセクション
+> 全 146 ページで同一フォントスタックに統一する。旧 Serif 見出し規定は廃止。
 
-font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
-font-family-serif: "Noto Serif JP", serif;
+```css
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
+font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
 font-family-mono: "JetBrains Mono", "Menlo", monospace;
 ```
 
 | 用途 | フォント |
 |---|---|
-| 本文 / UI | **Noto Sans JP** |
-| 見出し / ブランド | **Noto Serif JP** |
+| 本文 / UI | **Inter + Noto Sans JP** |
+| 見出し / ブランド | **Inter + Noto Sans JP**（Serif 不使用） |
 | コード / 数値強調 | **JetBrains Mono** |
-| 数値カード (Sランク値等) | Noto Serif JP 700 |
+| 数値カード (Sランク値等) | Inter + Noto Sans JP 700-900 |
 
 ### Scale (rem ベース)
 
 | 階層 | サイズ | 行高 | 太さ | フォント | 用途 |
 |---|---|---|---|---|---|
-| **H1** | 2.5-3.5rem | 1.2 | 700 | Serif | ページタイトル |
-| **H2** | 1.875-2.25rem | 1.3 | 700 | Serif | セクション見出し |
-| **H3** | 1.375-1.625rem | 1.4 | 700 | Serif | サブセクション |
+| **H1** | 2.5-3.5rem | 1.2 | 700-800 | Sans | ページタイトル |
+| **H2** | 1.875-2.25rem | 1.3 | 700-800 | Sans | セクション見出し |
+| **H3** | 1.375-1.625rem | 1.4 | 700 | Sans | サブセクション |
 | **H4** | 1.125-1.25rem | 1.5 | 700 | Sans | 小見出し |
 | **Body Large** | 1.125rem | 1.75 | 400 | Sans | LP リード |
 | **Body** | 1rem | 1.75 | 400 | Sans | 本文 |
@@ -120,6 +123,9 @@ font-family-mono: "JetBrains Mono", "Menlo", monospace;
 | **Caption** | 0.75rem | 1.5 | 400 | Sans | キャプション |
 | **Mono Large** | 1.5rem | 1.4 | 700 | Mono | 数値 (LCP値等) |
 | **Mono** | 0.875rem | 1.5 | 400 | Mono | コード |
+
+> **H1 実装基準**: Tailwind `text-4xl md:text-5xl`（2.25→3rem）+ `font-extrabold leading-tight tracking-tight`。
+> 全 146 ページで統一（2026-05-14 適用済み）。
 
 ### Reading Width
 
@@ -203,7 +209,7 @@ border-radius: 8px;
 text-align: center;
 
 .value {
-  font-family: "Noto Serif JP", serif;
+  font-family: "Inter", "Noto Sans JP", sans-serif;
   font-size: 3rem;
   font-weight: 700;
   color: #D4AF37;
@@ -357,7 +363,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Noto Serif JP", serif;
+  font-family: "Inter", "Noto Sans JP", sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
 }
@@ -496,7 +502,7 @@ code {
 - **AI 生成感丸出し** (テンプレ羅列 / 画一的)
 - **ストックフォト乱用** (リアル写真優先 / 沼津地域写真等)
 - **無意味なサイドバー / 装飾** (Linear 風 minimalism)
-- **複数フォント混在** (Noto Sans + Serif の 2 種のみ)
+- **複数フォント混在** (Inter + Noto Sans JP の 1 スタックのみ / Serif 不使用)
 - **過剰グラデーション** (Primary グラデは 1 ページ 1 箇所まで)
 - **モバイルでの極小タップ領域** (最小 44x44px)
 
@@ -576,7 +582,7 @@ HARTON tcharton.com の [ページ名] を実装してください。
 5. CWV 全 GOOD (LCP ≤ 2.5s / INP ≤ 200ms / CLS ≤ 0.1)
 6. JSON-LD: Article + (該当時) FAQPage + HowTo + LocalBusiness
 7. ブランド色: Primary #1B4965 / Accent #D4AF37
-8. フォント: Noto Sans JP (本文) / Noto Serif JP (見出し)
+8. フォント: Inter + Noto Sans JP (本文・見出し共通 / Serif 不使用)
 9. 余白: 8px base unit (全マージン 8 の倍数)
 10. Mobile First レスポンシブ (sm/md/lg/xl/2xl breakpoints)
 

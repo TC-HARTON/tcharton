@@ -830,107 +830,6 @@ time {
   letter-spacing: 0.02em;
 }
 
-/* ─── ヘッダー ────────────────────────────── */
-
-body > header {
-  background: var(--bg-page);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  backdrop-filter: saturate(180%) blur(8px);
-  -webkit-backdrop-filter: saturate(180%) blur(8px);
-}
-
-body > header > nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-/* ヘッダーブランドロゴ ── 唯一 serif (Playfair Display) を使用 */
-
-body > header > nav > a {
-  color: var(--fg-strong);
-  text-decoration: none;
-  font-family: var(--font-logo);
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-/* ヘッダロゴ ★: SVG コンポーネント化済 (UX-UI-DIRECTIVE Phase A Item 2)
-     旧 `::before { content: "★" }` は SVG (.star-svg-logo) に置換 */
-
-body > header > nav > a > .star-svg-logo {
-  color: var(--accent-strong);
-  width: 1em;
-  height: 1em;
-}
-
-body > header > nav > a > span {
-  color: var(--fg-strong);
-}
-
-body > header > nav > ul {
-  display: none;
-  gap: 1.75rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-body > header > nav > ul > li {
-  padding: 0;
-  margin: 0;
-}
-
-body > header > nav > ul > li::before {
-  content: none;
-}
-
-body > header > nav > ul > li > a {
-  color: var(--fg-body);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 0.4rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color .15s ease, color .15s ease;
-  font-family: var(--font-sans);
-}
-
-body > header > nav > ul > li > a:hover,
-  body > header > nav > ul > li > a[aria-current="page"] {
-  color: var(--accent-strong);
-  border-bottom-color: var(--accent);
-}
-
-@media (min-width: 768px) {
-  body > header > nav > ul {
-    display: flex;
-  }
-}
-
-body > header > #menuToggle {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--fg-strong);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0.5rem 0.75rem;
-}
-
 /* ─── メイン ───────────────────────────── */
 
 body > main {
@@ -964,90 +863,6 @@ body > main > article > section {
 body > main > article > section:first-child {
   margin-top: 0;
   padding-top: 0;
-}
-
-/* ─── フッター ──────────────────────────── */
-
-body > footer {
-  background: var(--bg-page);
-  color: var(--fg-body);
-  padding: 3.5rem 1.5rem 2rem;
-  margin-top: auto;
-  border-top: 3px solid var(--accent);
-}
-
-body > footer > nav {
-  max-width: 1200px;
-  margin: 0 auto 2rem;
-}
-
-body > footer > nav > ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 2rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-body > footer > nav > ul > li {
-  padding: 0;
-  margin: 0;
-}
-
-body > footer > nav > ul > li::before {
-  content: none;
-}
-
-body > footer > nav > ul > li > a {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-family: var(--font-sans);
-}
-
-body > footer > nav > ul > li > a:hover {
-  color: var(--accent-strong);
-  text-decoration: underline;
-}
-
-body > footer > p {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem 0 0;
-  border-top: 1px solid rgba(201, 169, 97, 0.2);
-  font-size: 0.875rem;
-  color: var(--fg-muted);
-  font-family: var(--font-sans);
-  font-variant-numeric: tabular-nums;
-}
-
-/* ─── モバイルメニュー ──────────────────── */
-
-body > header > #mobile-menu {
-  background: var(--bg-page);
-  color: var(--fg-body);
-  padding: 5rem 2rem 2rem;
-}
-
-body > header > #mobile-menu > nav > ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-body > header > #mobile-menu > nav > ul > li::before {
-  content: none;
-}
-
-body > header > #mobile-menu > nav > ul > li > a {
-  color: var(--fg-strong);
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  text-decoration: none;
 }
 
 /* ─── スクロールバー ───────────────────── */
@@ -3665,4 +3480,17 @@ footer.bg-dark-900 span {
 footer.bg-dark-900 .text-white,
 footer.bg-dark-900 p > span:first-child {
   color: #FFFFFF !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   v1.37.10 lg レスポンシブ utility 復元
+   stella.css 内蔵の .hidden が output.css の .lg:flex を後勝ちで打ち消し、
+   HARTON 共通ヘッダーの「hidden lg:flex」nav が常時 display:none になる問題を解消。
+   ═══════════════════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .lg\:flex { display: flex !important; }
+  .lg\:hidden { display: none !important; }
+  .lg\:block { display: block !important; }
+  .lg\:grid { display: grid !important; }
+  .lg\:inline-flex { display: inline-flex !important; }
 }
