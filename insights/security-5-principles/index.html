@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
-  <title>中小企業 WEB セキュリティ 5 原則｜T.C.HARTON</title>
-  <meta name="description" content="HTTPS / HSTS / CSP / SRI / 改ざん検知の 5 原則と中小企業での実装優先順位。">
+  <title>中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）｜T.C.HARTON</title>
+  <meta name="description" content="中小企業の WEB サイトを守る 5 原則を、OWASP Top 10:2025・Verizon 2025 DBIR・Patchstack 2025・IPA の一次出典つきで解説。アクセス制御・設定ミス対策・依存関係管理・Strict CSP・セキュリティヘッダーの優先順位を、限られた予算で何から手を付けるかの視点でまとめます。">
   <meta name="author" content="大内 達也">
 
-  <meta property="og:title" content="中小企業 WEB セキュリティ 5 原則｜T.C.HARTON">
-  <meta property="og:description" content="HTTPS / HSTS / CSP / SRI / 改ざん検知の 5 原則と中小企業での実装優先順位。">
+  <meta property="og:title" content="中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）｜T.C.HARTON">
+  <meta property="og:description" content="中小企業の WEB サイトを守る 5 原則を、OWASP Top 10:2025・Verizon 2025 DBIR・Patchstack 2025・IPA の一次出典つきで解説。アクセス制御・設定ミス対策・依存関係管理・Strict CSP・セキュリティヘッダーの優先順位を、限られた予算で何から手を付けるかの視点でまとめます。">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://tcharton.com/insights/security-5-principles/">
   <meta property="og:image" content="https://tcharton.com/ogp.png">
@@ -21,8 +21,8 @@
   <meta property="og:locale" content="ja_JP">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="中小企業 WEB セキュリティ 5 原則｜T.C.HARTON">
-  <meta name="twitter:description" content="HTTPS / HSTS / CSP / SRI / 改ざん検知の 5 原則と中小企業での実装優先順位。">
+  <meta name="twitter:title" content="中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）｜T.C.HARTON">
+  <meta name="twitter:description" content="中小企業の WEB サイトを守る 5 原則を、OWASP Top 10:2025・Verizon 2025 DBIR・Patchstack 2025・IPA の一次出典つきで解説。アクセス制御・設定ミス対策・依存関係管理・Strict CSP・セキュリティヘッダーの優先順位を、限られた予算で何から手を付けるかの視点でまとめます。">
   <meta name="twitter:image" content="https://tcharton.com/ogp.png">
 
   <meta name="theme-color" content="#FFFFFF">
@@ -47,7 +47,16 @@
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/security-5-principles/#article","headline":"中小企業 WEB セキュリティ 5 原則","description":"HTTPS / HSTS / CSP / SRI / 改ざん検知の 5 原則と中小企業での実装優先順位。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-12","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/security-5-principles/","mainEntityOfPage":"https://tcharton.com/insights/security-5-principles/","image":"https://tcharton.com/ogp.png"}
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/security-5-principles/#article","headline":"中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）","description":"中小企業の WEB サイトを守る 5 原則を、OWASP Top 10:2025・Verizon 2025 DBIR・Patchstack 2025・IPA の一次出典つきで解説。アクセス制御・設定ミス対策・依存関係管理・Strict CSP・セキュリティヘッダーの優先順位を、限られた予算で何から手を付けるかの視点でまとめます。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-14","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/security-5-principles/","mainEntityOfPage":"https://tcharton.com/insights/security-5-principles/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"小さな会社のサイトでも本当に狙われますか？","acceptedAnswer":{"@type":"Answer","text":"はい。Verizon 2025 DBIR では中小企業の侵害の 88% にランサムウェアが関与し、大企業の 39% を大きく上回りました。攻撃の多くは標的を選ばず自動化されており、規模の小ささは安全の理由になりません。"}},
+    {"@type":"Question","name":"5 原則は何から手を付けるべきですか？","acceptedAnswer":{"@type":"Answer","text":"OWASP Top 10:2025 で 1 位のアクセス制御と 2 位の設定ミス対策が最優先です。次に依存関係（プラグイン・ライブラリ）の管理、その上で Strict CSP とセキュリティヘッダーという順で、土台から固めます。"}},
+    {"@type":"Question","name":"X-Frame-Options はもう不要ですか？","acceptedAnswer":{"@type":"Answer","text":"新規実装では CSP の frame-ancestors ディレクティブを使うのが推奨で、X-Frame-Options は obsolete 扱いです。ただし古いブラウザとの互換のため、frame-ancestors と併記しても問題はありません。"}},
+    {"@type":"Question","name":"IPA の資料は古くないですか？","acceptedAnswer":{"@type":"Answer","text":"IPA「安全なウェブサイトの作り方」は 2026 年現在も第 7 版（2015 年公開）が現行です。SQL インジェクションやアクセス制御欠落など基礎的な脆弱性の解説は今も有効で、毎年更新される「情報セキュリティ 10 大脅威」と併せて参照します。"}},
+    {"@type":"Question","name":"セキュリティ対策は外注しないと無理ですか？","acceptedAnswer":{"@type":"Answer","text":"HTTPS の常時化や不要プラグインの削除など、運用者でもできる対策は多くあります。一方で CSP の設計やヘッダー構成は専門知識が要るため、初期構築時に制作者と一緒に決めておくのが現実的です。"}}
+  ]}
   </script>
 
   <link rel="stylesheet" href="/dist/output.css?v=202605141500">
@@ -123,31 +132,233 @@
 
     <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
       <header>
-        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight</p>
-        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">中小企業 WEB セキュリティ 5 原則</h1>
-        <p class="mt-6 text-base sm:text-lg text-dark-700 leading-relaxed business-description">HTTPS / HSTS / CSP / SRI / 改ざん検知の 5 原則と中小企業での実装優先順位。</p>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 安全なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）</h1>
         <p class="mt-4 text-xs text-dark-500">
-          <time datetime="2026-05-12">2026 年 5 月 12 日</time>
+          <time datetime="2026-05-14">2026 年 5 月 14 日 公開</time>
           <span class="mx-2" aria-hidden="true">/</span>
-          <time datetime="2026-05-12">最終更新 2026 年 5 月 12 日</time>
+          <time datetime="2026-05-14">最終更新 2026 年 5 月 14 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 9 分</span>
         </p>
       </header>
 
-      <div class="mt-10 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-6">
-        <p class="text-sm text-amber-900"><strong>📝 Phase α 構造実装中</strong>：本記事は ① ルートで起草中です。公開準備が整い次第、本文・図解・FAQ を順次反映します（Phase α 期限 2026-05-26）。</p>
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">中小企業の WEB セキュリティは、<strong class="text-dark-900">OWASP Top 10:2025 の上位</strong>から順に固めるのが合理的です。優先順位は <strong class="text-dark-900">①アクセス制御 ②設定ミス対策 ③依存関係の管理 ④Strict CSP ⑤セキュリティヘッダー</strong>。高価なツールよりも、土台の徹底が効きます。</p>
       </div>
 
-      <section aria-label="近日公開" class="mt-12 text-dark-700 leading-relaxed text-base lg:text-lg space-y-4">
-        <p>本記事は <strong class="text-dark-900">中小企業 WEB セキュリティ 5 原則</strong> をテーマに、原因分析・解決ステップ・実例・FAQ を体系的にまとめた記事です。</p>
-        <p>公開準備中です。まずは <a href="/recruit/" class="text-teal-700 underline hover:text-teal-500">制作実績キャンペーン</a> または <a href="/contact/" class="text-teal-700 underline hover:text-teal-500">お問い合わせフォーム</a> から、貴社の WEB サイトの現状についてご相談ください。</p>
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. なぜ「うちは小さいから」が通用しないのか</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 原則 1 — アクセス制御を最優先で固める</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. 原則 2 — 設定ミスをなくす（2025 年版で 2 位）</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 原則 3 — 依存関係（プラグイン・ライブラリ）を管理する</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 原則 4 — Strict CSP で XSS を抑える</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 原則 5 — セキュリティヘッダーで保険をかける</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 260" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="5 原則の優先順位ピラミッド。土台から順にアクセス制御、設定ミス対策、依存関係の管理、Strict CSP、セキュリティヘッダーの 5 層が積み上がっている。">
+          <rect width="680" height="260" fill="#FFFFFF"/>
+          <text x="340" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">5 原則は「土台から順に」固める</text>
+          <polygon points="290,52 390,52 420,90 260,90" fill="#9db8c4"/>
+          <text x="340" y="77" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">⑤ セキュリティヘッダー</text>
+          <polygon points="260,94 420,94 450,132 230,132" fill="#2a6a8a"/>
+          <text x="340" y="119" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">④ Strict CSP</text>
+          <polygon points="230,136 450,136 480,174 200,174" fill="#1B4965"/>
+          <text x="340" y="161" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">③ 依存関係の管理</text>
+          <polygon points="200,178 480,178 510,216 170,216" fill="#1B4965"/>
+          <text x="340" y="203" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">② 設定ミス対策（OWASP 2 位）</text>
+          <polygon points="170,220 510,220 540,252 140,252" fill="#8B6914"/>
+          <text x="340" y="243" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">① アクセス制御（OWASP 1 位）</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：5 原則は OWASP Top 10:2025 の優先度に沿って、土台のアクセス制御から順に積み上げる。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="なぜ小さいからが通用しないのか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. なぜ「うちは小さいから」が通用しないのか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「うちのような小さい会社のサイトは狙われない」という前提は、実データと合いません。Verizon の 2025 年 DBIR（Data Breach Investigations Report）は、<strong class="text-dark-900">中小企業の侵害の 88% にランサムウェアが関与</strong>したと報告しています。大企業の 39% と比べると、その差は明らかです。</p>
+          <p>理由は単純で、現代の攻撃の多くは標的を一つずつ選びません。脆弱性を持つサイトを機械的に探し、見つけ次第攻撃する自動化されたものが大半です。サイトの規模ではなく「穴があるかどうか」だけが判定基準になります。</p>
+          <p>だからこそ、限られた予算でも「何から手を付けるか」を間違えないことが重要です。次章からの 5 原則は、OWASP Top 10:2025 の優先度と中小企業の現実を踏まえた順番で並べています。</p>
+        </div>
       </section>
 
-      <section aria-label="CTA" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
-        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Recruitment</p>
-        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">10 業種 × 各 1 社限定 / 無料 WEB 構築</h2>
-        <p class="mt-3 text-dark-700 text-sm">全国の中小企業様向け制作実績キャンペーン。応募ガイド PDF + 5 点セットご提出で応募成立。</p>
-        <a href="/recruit/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
-          <span>キャンペーン詳細</span>
+      <section id="section-2" aria-label="原則 1 アクセス制御" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 原則 1 — アクセス制御を最優先で固める</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>OWASP Top 10:2025 で 1 位は <strong class="text-dark-900">A01 Broken Access Control（アクセス制御の不備）</strong>です。2021 年版から続けて首位で、2025 年版では SSRF（サーバーサイドリクエストフォージェリ）もこのカテゴリに統合されました。</p>
+          <p>アクセス制御とは「誰が何を見て・操作できるか」の境界です。管理画面が推測しやすい URL で公開されている、ログインしていなくても他人の情報ページが開ける、といった状態がここに当たります。IPA「安全なウェブサイトの作り方」第 7 版も、アクセス制御の欠落を基礎的な脆弱性の一つとして挙げています。</p>
+          <p>中小企業サイトでの実務対策はシンプルです。管理画面へのアクセスを限定する、権限は「必要な人に必要な分だけ」与える、ログイン後の操作も毎回サーバー側で権限を確認する。新しいツールを買う前に、まずこの境界を引き直します。</p>
+        </div>
+      </section>
+
+      <section id="section-3" aria-label="原則 2 設定ミス対策" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. 原則 2 — 設定ミスをなくす（2025 年版で 2 位）</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p><strong class="text-dark-900">A02 Security Misconfiguration（セキュリティ設定ミス）</strong>は、2021 年版の 5 位から 2025 年版で 2 位へ上昇しました。コードのバグではなく「設定の不備」で起きる侵害が、それだけ増えているということです。</p>
+          <p>典型例は、初期パスワードのまま運用している、不要な管理機能やデバッグ表示が公開されたまま、エラー画面にサーバー内部の情報が出ている、といったものです。どれも高度な攻撃技術を必要とせず、設定を直すだけで塞げます。</p>
+          <p>対策は「公開前チェックリスト」を持つことに尽きます。初期アカウントの無効化、不要機能の停止、エラー表示の抑制、HTTPS の常時化。一度作れば、サイト更新のたびに同じ基準で確認できます。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="OWASP Top 10 の 2021 年版と 2025 年版の比較。アクセス制御は 1 位で不変、設定ミス対策は 5 位から 2 位へ上昇、依存関係はソフトウェアサプライチェーン障害として 3 位に再定義された。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">OWASP Top 10:2021</text>
+            <text x="380" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">OWASP Top 10:2025（最新）</text>
+            <rect x="20" y="48" width="280" height="34" rx="6" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="36" y="70" font-family="Inter, sans-serif" font-size="12" fill="#666666">1 位　アクセス制御の不備</text>
+            <rect x="20" y="90" width="280" height="34" rx="6" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="36" y="112" font-family="Inter, sans-serif" font-size="12" fill="#666666">5 位　設定ミス</text>
+            <rect x="20" y="132" width="280" height="34" rx="6" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="36" y="154" font-family="Inter, sans-serif" font-size="12" fill="#666666">6 位　古い・脆弱なコンポーネント</text>
+            <rect x="380" y="48" width="280" height="34" rx="6" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="396" y="70" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">1 位　アクセス制御の不備（不変）</text>
+            <rect x="380" y="90" width="280" height="34" rx="6" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="396" y="112" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">2 位　設定ミス（5 位 → 2 位 ▲）</text>
+            <rect x="380" y="132" width="280" height="34" rx="6" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="396" y="154" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">3 位　サプライチェーン障害（再定義）</text>
+            <text x="20" y="198" font-family="Inter, sans-serif" font-size="11" fill="#666666">出典：OWASP Top 10:2025（第 8 版・4 年ぶり改訂）</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：OWASP Top 10:2025 では設定ミスが 2 位に上昇し、依存関係はサプライチェーン障害として再定義された。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="原則 3 依存関係の管理" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 原則 3 — 依存関係（プラグイン・ライブラリ）を管理する</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>OWASP Top 10:2025 では、旧「古い・脆弱なコンポーネント」が <strong class="text-dark-900">A03 Software Supply Chain Failures（ソフトウェアサプライチェーン障害）</strong>として再定義・拡張されました。自分で書いていない部品 — プラグイン、テーマ、外部ライブラリ — が侵入経路になるという考え方です。</p>
+          <p>WordPress を例にすると、その傾向は数字で見えます。Patchstack の 2025 年レポートによれば、WordPress エコシステムで報告された新規脆弱性 11,334 件のうち <strong class="text-dark-900">91% がプラグイン、9% がテーマ、コア本体はわずか 6 件</strong>でした。リスクはほぼサードパーティ起因です。</p>
+          <p>対策は「入れすぎない・更新を怠らない・出所を確認する」の 3 つです。使っていないプラグインは削除する、更新は放置しない、有料だからといって安全とは限らないと知っておく。これは <a href="/insights/wordpress-security-basics/" class="text-teal-700 underline hover:text-teal-500">WordPress のセキュリティ記事</a>でさらに具体的に扱います。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="2025 年に報告された WordPress エコシステムの新規脆弱性 11334 件の内訳。プラグインが 91 パーセント、テーマが 9 パーセント、コア本体は 6 件のみ。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">WordPress 脆弱性の内訳（2025 年・11,334 件）</text>
+            <rect x="20" y="56" width="600" height="40" rx="6" fill="#e0e6eb"/>
+            <rect x="20" y="56" width="546" height="40" rx="6" fill="#ef4444"/>
+            <rect x="566" y="56" width="54" height="40" fill="#D4AF37"/>
+            <rect x="614" y="56" width="6" height="40" rx="3" fill="#1B4965"/>
+            <text x="293" y="81" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">プラグイン 91%</text>
+            <text x="593" y="81" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">テーマ 9%</text>
+            <circle cx="36" cy="128" r="6" fill="#ef4444"/>
+            <text x="50" y="133" font-family="Inter, sans-serif" font-size="12" fill="#666666">プラグイン — リスクの大半はここに集中</text>
+            <circle cx="36" cy="154" r="6" fill="#D4AF37"/>
+            <text x="50" y="159" font-family="Inter, sans-serif" font-size="12" fill="#666666">テーマ — 有料テーマも安全とは限らない</text>
+            <circle cx="36" cy="180" r="6" fill="#1B4965"/>
+            <text x="50" y="185" font-family="Inter, sans-serif" font-size="12" fill="#666666">コア本体 — わずか 6 件、いずれも低優先度</text>
+            <text x="20" y="208" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">出典：Patchstack「State of WordPress Security in 2025」</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：WordPress のリスクはコア本体ではなく、プラグインとテーマというサードパーティ部品に集中している。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-5" aria-label="原則 4 Strict CSP" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 原則 4 — Strict CSP で XSS を抑える</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>CSP（Content Security Policy）は、ページが読み込んでよいスクリプトの出所を制限する仕組みです。XSS（クロスサイトスクリプティング）— 悪意あるスクリプトを他人のページで実行させる攻撃 — への中心的な防御になります。</p>
+          <p>かつて主流だった「許可ドメインのリスト方式」は回避策が多く、現在は推奨されません。web.dev は <strong class="text-dark-900">nonce ベースまたは hash ベースの <code class="text-sm bg-dark-100 px-2 py-1 rounded">script-src</code></strong> を使う Strict CSP を推奨しています。<code class="text-sm bg-dark-100 px-2 py-1 rounded">'strict-dynamic'</code> を組み合わせると、信頼済みスクリプトが読み込む子スクリプトも安全に許可できます。</p>
+          <p>さらに <code class="text-sm bg-dark-100 px-2 py-1 rounded">require-trusted-types-for</code> と <code class="text-sm bg-dark-100 px-2 py-1 rounded">trusted-types</code> による Trusted Types で、DOM ベースの XSS も防げます。ただし 2025〜2026 年時点で Trusted Types をフル対応しているのは Chrome のみで、Firefox と Safari は未対応のため、ポリフィルの併用を前提に設計します。</p>
+        </div>
+      </section>
+
+      <section id="section-6" aria-label="原則 5 セキュリティヘッダー" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 原則 5 — セキュリティヘッダーで保険をかける</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>セキュリティヘッダーは、ブラウザに「このサイトはこう扱ってほしい」と指示する設定です。2025 年に整えておきたいのは <code class="text-sm bg-dark-100 px-2 py-1 rounded">HSTS</code>、<code class="text-sm bg-dark-100 px-2 py-1 rounded">CSP</code>、<code class="text-sm bg-dark-100 px-2 py-1 rounded">X-Content-Type-Options</code>、<code class="text-sm bg-dark-100 px-2 py-1 rounded">Referrer-Policy</code>、<code class="text-sm bg-dark-100 px-2 py-1 rounded">Permissions-Policy</code>、Cross-Origin 系といったヘッダー群です。</p>
+          <p>一点、誤解されやすい変更があります。クリックジャッキング対策の <code class="text-sm bg-dark-100 px-2 py-1 rounded">X-Frame-Options</code> は、CSP の <code class="text-sm bg-dark-100 px-2 py-1 rounded">frame-ancestors</code> ディレクティブにより obsolete 扱いになりました。新規実装では <code class="text-sm bg-dark-100 px-2 py-1 rounded">frame-ancestors</code> を優先し、古いブラウザ互換のために X-Frame-Options を併記する形が無難です。</p>
+          <p>設定が正しいかは Mozilla HTTP Observatory や securityheaders.com で評価できます。「最初の構築時にまとめて入れて、評価ツールで確認する」のが、後から個別に足すよりはるかに楽です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="クリックジャッキング対策の世代交代。旧来の X-Frame-Options は obsolete 扱いとなり、新規実装では CSP の frame-ancestors ディレクティブが推奨される。互換のため併記は可能。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="340" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">クリックジャッキング対策の世代交代</text>
+            <rect x="40" y="58" width="240" height="90" rx="8" fill="#f7f9fa" stroke="#9db8c4" stroke-width="1.5"/>
+            <text x="160" y="86" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#9db8c4">X-Frame-Options</text>
+            <text x="160" y="110" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">obsolete 扱い</text>
+            <text x="160" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">互換のため併記は可</text>
+            <line x1="290" y1="103" x2="380" y2="103" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="380,103 370,98 370,108" fill="#D4AF37"/>
+            <rect x="390" y="58" width="250" height="90" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="515" y="86" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">CSP: frame-ancestors</text>
+            <text x="515" y="110" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">新規実装はこちらを優先</text>
+            <text x="515" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">CSP に一本化できる</text>
+            <text x="340" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">出典：OWASP Secure Headers Project / MDN Web Docs</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 4：X-Frame-Options は obsolete 扱い。新規実装は CSP の frame-ancestors に寄せる。</figcaption>
+        </figure>
+
+        <h3 class="mt-10 font-display text-xl font-bold text-dark-900">【Top 5】中小企業がまず固める 5 原則</h3>
+        <ol class="mt-5 space-y-3 text-dark-700 leading-relaxed">
+          <li><strong class="text-dark-900">1. アクセス制御</strong> — OWASP 1 位。管理画面と権限の境界を引き直す。</li>
+          <li><strong class="text-dark-900">2. 設定ミス対策</strong> — OWASP 2 位。公開前チェックリストで初期設定の穴を塞ぐ。</li>
+          <li><strong class="text-dark-900">3. 依存関係の管理</strong> — プラグイン・ライブラリは「入れすぎない・更新する・出所を確認」。</li>
+          <li><strong class="text-dark-900">4. Strict CSP</strong> — nonce / hash ベースの script-src で XSS を抑える。</li>
+          <li><strong class="text-dark-900">5. セキュリティヘッダー</strong> — HSTS・CSP・frame-ancestors 等を初期構築時にまとめて入れる。</li>
+        </ol>
+
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">この記事のページ自体も実演です。</strong>このページは HTTPS 常時化、Strict CSP（nonce / Trusted Types を含む）、各種セキュリティヘッダーを実装しています。T.C.HARTON は<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で、自社サイトのセキュリティ実装内容を公開しています。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">小さな会社のサイトでも本当に狙われますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">はい。Verizon 2025 DBIR では中小企業の侵害の 88% にランサムウェアが関与し、大企業の 39% を大きく上回りました。攻撃の多くは標的を選ばず自動化されており、規模の小ささは安全の理由になりません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">5 原則は何から手を付けるべきですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">OWASP Top 10:2025 で 1 位のアクセス制御と 2 位の設定ミス対策が最優先です。次に依存関係（プラグイン・ライブラリ）の管理、その上で Strict CSP とセキュリティヘッダーという順で、土台から固めます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">X-Frame-Options はもう不要ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">新規実装では CSP の frame-ancestors ディレクティブを使うのが推奨で、X-Frame-Options は obsolete 扱いです。ただし古いブラウザとの互換のため、frame-ancestors と併記しても問題はありません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">IPA の資料は古くないですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">IPA「安全なウェブサイトの作り方」は 2026 年現在も第 7 版（2015 年公開）が現行です。SQL インジェクションやアクセス制御欠落など基礎的な脆弱性の解説は今も有効で、毎年更新される「情報セキュリティ 10 大脅威」と併せて参照します。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">セキュリティ対策は外注しないと無理ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">HTTPS の常時化や不要プラグインの削除など、運用者でもできる対策は多くあります。一方で CSP の設計やヘッダー構成は専門知識が要るため、初期構築時に制作者と一緒に決めておくのが現実的です。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/are-you-really-safe/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">「うちは狙われない」は本当か — 中小企業とサイバー攻撃の現実</a></li>
+          <li><a href="/insights/wordpress-security-basics/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">WordPress のセキュリティで最低限やること</a></li>
+          <li><a href="/insights/core-web-vitals/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Core Web Vitals 完全ガイド — 表示速度と技術品質</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>OWASP, OWASP Top 10:2025 — <a href="https://owasp.org/Top10/2025/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">owasp.org/Top10/2025/</a></li>
+          <li>Verizon, 2025 Data Breach Investigations Report — <a href="https://www.verizon.com/business/resources/reports/dbir/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">verizon.com/business/resources/reports/dbir</a></li>
+          <li>Patchstack, State of WordPress Security in 2025 — <a href="https://patchstack.com/whitepaper/state-of-wordpress-security-in-2025/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">patchstack.com/whitepaper/state-of-wordpress-security-in-2025</a></li>
+          <li>web.dev, Mitigate cross-site scripting (XSS) with a strict Content Security Policy — <a href="https://web.dev/articles/strict-csp" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/strict-csp</a></li>
+          <li>OWASP, OWASP Secure Headers Project — <a href="https://owasp.org/www-project-secure-headers/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">owasp.org/www-project-secure-headers</a></li>
+          <li>MDN Web Docs, X-Frame-Options — <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options</a></li>
+          <li>IPA, 安全なウェブサイトの作り方（第 7 版） — <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">ipa.go.jp/security/vuln/websecurity/about.html</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトは 5 原則を満たしていますか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトのセキュリティヘッダーや HTTPS 設定を機械検証し、5 原則のどこに穴があるかをお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </section>

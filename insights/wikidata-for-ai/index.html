@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
-  <title>Wikidata Q コードを使った AI 検索対策｜T.C.HARTON</title>
-  <meta name="description" content="Schema.org additionalType に Wikidata Q コードを設定することで AI 検索エンジンの理解度を高める手法。">
+  <title>Wikidata Q コードで AI に正しく認識される｜T.C.HARTON</title>
+  <meta name="description" content="Wikidata の Q コード（QID）を Schema.org の additionalType に紐づけ、AI 検索エンジンに事業者を「同じ実体」として認識させる手法。Q コードはランキング要因ではなくエンティティ明確化のための識別子であることを、Wikidata 公式と Schema.org の知見をもとに一次出典付きで解説します。">
   <meta name="author" content="大内 達也">
 
-  <meta property="og:title" content="Wikidata Q コードを使った AI 検索対策｜T.C.HARTON">
-  <meta property="og:description" content="Schema.org additionalType に Wikidata Q コードを設定することで AI 検索エンジンの理解度を高める手法。">
+  <meta property="og:title" content="Wikidata Q コードで AI に正しく認識される｜T.C.HARTON">
+  <meta property="og:description" content="Wikidata の Q コード（QID）を Schema.org の additionalType に紐づけ、AI 検索エンジンに事業者を「同じ実体」として認識させる手法。Q コードはランキング要因ではなくエンティティ明確化のための識別子であることを、Wikidata 公式と Schema.org の知見をもとに一次出典付きで解説します。">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://tcharton.com/insights/wikidata-for-ai/">
   <meta property="og:image" content="https://tcharton.com/ogp.png">
@@ -21,8 +21,8 @@
   <meta property="og:locale" content="ja_JP">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Wikidata Q コードを使った AI 検索対策｜T.C.HARTON">
-  <meta name="twitter:description" content="Schema.org additionalType に Wikidata Q コードを設定することで AI 検索エンジンの理解度を高める手法。">
+  <meta name="twitter:title" content="Wikidata Q コードで AI に正しく認識される｜T.C.HARTON">
+  <meta name="twitter:description" content="Wikidata の Q コード（QID）を Schema.org の additionalType に紐づけ、AI 検索エンジンに事業者を「同じ実体」として認識させる手法。Q コードはランキング要因ではなくエンティティ明確化のための識別子であることを、Wikidata 公式と Schema.org の知見をもとに一次出典付きで解説します。">
   <meta name="twitter:image" content="https://tcharton.com/ogp.png">
 
   <meta name="theme-color" content="#FFFFFF">
@@ -43,11 +43,20 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
     {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
-    {"@type":"ListItem","position":3,"name":"Wikidata Q コードを使った AI 検索対策","item":"https://tcharton.com/insights/wikidata-for-ai/"}
+    {"@type":"ListItem","position":3,"name":"Wikidata Q コードで AI に正しく認識される","item":"https://tcharton.com/insights/wikidata-for-ai/"}
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/wikidata-for-ai/#article","headline":"Wikidata Q コードを使った AI 検索対策","description":"Schema.org additionalType に Wikidata Q コードを設定することで AI 検索エンジンの理解度を高める手法。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-12","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/wikidata-for-ai/","mainEntityOfPage":"https://tcharton.com/insights/wikidata-for-ai/","image":"https://tcharton.com/ogp.png"}
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/wikidata-for-ai/#article","headline":"Wikidata Q コードで AI に正しく認識される","description":"Wikidata の Q コード（QID）を Schema.org の additionalType に紐づけ、AI 検索エンジンに事業者を「同じ実体」として認識させる手法。Q コードはランキング要因ではなくエンティティ明確化のための識別子であることを、Wikidata 公式と Schema.org の知見をもとに一次出典付きで解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-14","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/wikidata-for-ai/","mainEntityOfPage":"https://tcharton.com/insights/wikidata-for-ai/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Q コードを設定すれば検索順位は上がりますか？","acceptedAnswer":{"@type":"Answer","text":"上がりません。Wikidata の Q コードは直接のランキング要因ではありません。効果は間接的で、AI と検索エンジンが「この事業者はどの実体か」を曖昧さなく特定できるようになることです。順位の魔法ではなく、正しく認識されるための識別子です。"}},
+    {"@type":"Question","name":"自社の Wikidata 項目がない場合はどうしますか？","acceptedAnswer":{"@type":"Answer","text":"無理に自社項目を作る必要はありません。多くの中小企業には専用の Wikidata 項目がなく、それが普通です。代わりに、業種・所在地・サービス分野など、すでに存在する一般概念の Q コードを additionalType や knowsAbout に紐づけます。"}},
+    {"@type":"Question","name":"Q コードはどこで調べますか？","acceptedAnswer":{"@type":"Answer","text":"wikidata.org の検索窓に業種名や地名を日本語で入力すると候補が出ます。項目ページの URL 末尾、または見出し横に表示される Q から始まる番号がその QID です。英語版と日本語版で同じ項目なら QID は共通です。"}},
+    {"@type":"Question","name":"additionalType と knowsAbout はどう使い分けますか？","acceptedAnswer":{"@type":"Answer","text":"additionalType は「その事業者そのものの種類」を示します。たとえば WEB 制作会社なら制作業の Q コード。knowsAbout は「その事業者が詳しい分野・扱うテーマ」を示します。両方を併用すると、機械はより立体的に事業内容を把握できます。"}},
+    {"@type":"Question","name":"Q コードを入れれば AI に引用されますか？","acceptedAnswer":{"@type":"Answer","text":"引用は保証されません。Q コードはエンティティの明確化に寄与する間接的な仕組みであり、引用を直接増やす実験的な裏付けはありません。正しく認識される土台にはなりますが、引用を約束するものではありません。"}}
+  ]}
   </script>
 
   <link rel="stylesheet" href="/dist/output.css?v=202605141500">
@@ -117,37 +126,259 @@
         <li aria-hidden="true">/</li>
         <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
         <li aria-hidden="true">/</li>
-        <li><span aria-current="page" class="text-dark-700">Wikidata Q コードを使った AI 検索対策</span></li>
+        <li><span aria-current="page" class="text-dark-700">Wikidata Q コードで AI に正しく認識される</span></li>
       </ol>
     </nav>
 
     <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
       <header>
-        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight</p>
-        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">Wikidata Q コードを使った AI 検索対策</h1>
-        <p class="mt-6 text-base sm:text-lg text-dark-700 leading-relaxed business-description">Schema.org additionalType に Wikidata Q コードを設定することで AI 検索エンジンの理解度を高める手法。</p>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 機械に伝わるデータ設計</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">Wikidata Q コードで AI に正しく認識される</h1>
         <p class="mt-4 text-xs text-dark-500">
-          <time datetime="2026-05-12">2026 年 5 月 12 日</time>
+          <time datetime="2026-05-14">2026 年 5 月 14 日 公開</time>
           <span class="mx-2" aria-hidden="true">/</span>
-          <time datetime="2026-05-12">最終更新 2026 年 5 月 12 日</time>
+          <time datetime="2026-05-14">最終更新 2026 年 5 月 14 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 8 分</span>
         </p>
       </header>
 
-      <div class="mt-10 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-6">
-        <p class="text-sm text-amber-900"><strong>📝 Phase α 構造実装中</strong>：本記事は ① ルートで起草中です。公開準備が整い次第、本文・図解・FAQ を順次反映します（Phase α 期限 2026-05-26）。</p>
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">Wikidata の Q コード</strong>は、事業者や業種に世界共通の一意な番号を与える識別子です。Schema.org の <code class="text-sm bg-dark-100 px-2 py-1 rounded">additionalType</code> に紐づければ、AI は「この事業者はどの実体か」を曖昧さなく特定できます。ただし Q コードは<strong class="text-dark-900">直接のランキング要因ではありません</strong>。効果は順位ではなく、機械に正しく認識されるという<strong class="text-dark-900">エンティティ明確化</strong>の側にあります。</p>
       </div>
 
-      <section aria-label="近日公開" class="mt-12 text-dark-700 leading-relaxed text-base lg:text-lg space-y-4">
-        <p>本記事は <strong class="text-dark-900">Wikidata Q コードを使った AI 検索対策</strong> をテーマに、原因分析・解決ステップ・実例・FAQ を体系的にまとめた記事です。</p>
-        <p>公開準備中です。まずは <a href="/recruit/" class="text-teal-700 underline hover:text-teal-500">制作実績キャンペーン</a> または <a href="/contact/" class="text-teal-700 underline hover:text-teal-500">お問い合わせフォーム</a> から、貴社の WEB サイトの現状についてご相談ください。</p>
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. Q コードとは — 実体に付ける世界共通の番号</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. なぜ AI に「番号」が要るのか — 名前の曖昧さ問題</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. additionalType に Q コードを紐づける</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 【Top 4】中小企業が紐づけるべき 4 種類の Q コード</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. Q コードは「順位の魔法」ではない — 正直な効果</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. Q コードの調べ方と設定手順</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="「沼津のWEB制作」という文字列は、人間には事業者名・業種・地域のどれを指すか文脈で分かるが、機械には曖昧。Wikidata の Q コードを付けると、業種は制作業の Q コード、地域は沼津市の Q コードとして一意に特定される。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#9db8c4">名前だけ（機械には曖昧）</text>
+          <rect x="20" y="50" width="290" height="46" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+          <text x="36" y="79" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#666666">「沼津の WEB 制作」</text>
+          <text x="20" y="128" font-family="Inter, sans-serif" font-size="12" fill="#666666">業種名？ 地域名？ 屋号？</text>
+          <text x="20" y="148" font-family="Inter, sans-serif" font-size="12" fill="#666666">同名の別物と混同されうる</text>
+          <line x1="350" y1="24" x2="350" y2="216" stroke="#e0e6eb" stroke-width="2"/>
+          <text x="380" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">Q コードを付ける（一意に特定）</text>
+          <rect x="380" y="50" width="280" height="40" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="396" y="68" font-family="Inter, sans-serif" font-size="11" fill="#8B6914">業種:</text>
+          <text x="440" y="68" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">ウェブデザイン → Q189210</text>
+          <text x="396" y="84" font-family="Inter, sans-serif" font-size="10" fill="#9db8c4">※ QID は調査の上で設定</text>
+          <rect x="380" y="100" width="280" height="40" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="396" y="118" font-family="Inter, sans-serif" font-size="11" fill="#8B6914">地域:</text>
+          <text x="440" y="118" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">沼津市 → Q379973</text>
+          <text x="396" y="134" font-family="Inter, sans-serif" font-size="10" fill="#9db8c4">※ QID は調査の上で設定</text>
+          <text x="380" y="170" font-family="Inter, sans-serif" font-size="12" fill="#666666">どの言語からでも「同じ実体」と分かる</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：名前は曖昧で混同されうる。Q コードは実体そのものに番号を与え、機械が一意に特定できるようにする。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="Q コードとは" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. Q コードとは — 実体に付ける世界共通の番号</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Wikidata は、Wikipedia の姉妹プロジェクトとして運営される、誰でも編集できる構造化データベースです。掲載されるすべての項目には、<code class="text-sm bg-dark-100 px-2 py-1 rounded">Q</code> に整数が続く一意の永続識別子が付きます。これが QID、通称「Q コード」です。</p>
+          <p>たとえば「東京都」にも「ウェブデザイン」にも、それぞれ固有の Q コードがあります。重要なのは、この番号が<strong class="text-dark-900">言語に依存しない</strong>ことです。日本語ページでも英語ページでも、同じ実体なら Q コードは 1 つ。名前の表記ゆれに左右されません。</p>
+          <p>Google の Knowledge Panel（検索結果の右側に出る情報枠）に表示される情報の多くは、この Wikidata 由来です。つまり Q コードは、機械が世界の事物を整理するための「背番号」のような役割を果たしています。</p>
+        </div>
       </section>
 
-      <section aria-label="CTA" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
-        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Recruitment</p>
-        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">10 業種 × 各 1 社限定 / 無料 WEB 構築</h2>
-        <p class="mt-3 text-dark-700 text-sm">全国の中小企業様向け制作実績キャンペーン。応募ガイド PDF + 5 点セットご提出で応募成立。</p>
-        <a href="/recruit/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
-          <span>キャンペーン詳細</span>
+      <section id="section-2" aria-label="なぜ AI に番号が要るのか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. なぜ AI に「番号」が要るのか — 名前の曖昧さ問題</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>名前は曖昧です。「沼津」は地名ですが、人名や商品名にもなりえます。「ハートン」という屋号も、同名の別事業者が世界のどこかに存在するかもしれません。人間は文脈でこれを解きほぐせますが、機械には難しい。</p>
+          <p>AI 検索エンジンは、回答の根拠を組み立てるとき「これとあれは同じ事業者か、別物か」を判断する必要があります。名前だけが手がかりだと、別の事業者の情報を混ぜてしまうリスクが残ります。</p>
+          <p>Q コードはこの曖昧さを断ち切ります。事業者の業種やサービス分野を Q コードで明示すれば、機械は「この事業者は、世界共通で定義されたこの概念に属する」と確定できます。これが<strong class="text-dark-900">エンティティの明確化</strong>であり、Q コードの本質的な価値です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="名前だけだと AI は同名の複数候補のどれかを取り違える可能性がある。Q コードを付けると、候補が 1 つに絞り込まれ、正しい実体に確定する。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">名前だけ — 候補が複数</text>
+            <rect x="20" y="48" width="120" height="36" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="80" y="71" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">候補 A</text>
+            <rect x="20" y="92" width="120" height="36" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="80" y="115" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">候補 B</text>
+            <rect x="20" y="136" width="120" height="36" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="80" y="159" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">候補 C</text>
+            <text x="20" y="196" font-family="Inter, sans-serif" font-size="11" fill="#666666">AI は取り違えるかもしれない</text>
+            <line x1="180" y1="110" x2="250" y2="110" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="250,110 240,105 240,115" fill="#D4AF37"/>
+            <text x="180" y="100" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">Q コードで絞る</text>
+            <text x="300" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">Q コードあり — 1 つに確定</text>
+            <rect x="300" y="78" width="320" height="60" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="320" y="104" font-family="Inter, sans-serif" font-size="12" fill="#8B6914">"additionalType": "wikidata.org/entity/Q…"</text>
+            <text x="320" y="126" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">→ 正しい実体に確定</text>
+            <text x="300" y="170" font-family="Inter, sans-serif" font-size="11" fill="#10b981" font-weight="700">同名の別物と混同されない</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：名前だけでは候補が割れる。Q コードは候補を 1 つに絞り、機械が正しい実体に確定できるようにする。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="additionalType に紐づける" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. additionalType に Q コードを紐づける</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>実装の入口は Schema.org の <code class="text-sm bg-dark-100 px-2 py-1 rounded">additionalType</code> プロパティです。Schema.org の型は数百ありますが、業種によっては「ぴったりの型」が存在しません。そんなとき、おおまかな型に Q コードで具体性を足します。</p>
+          <p>たとえば WEB 制作業に専用の Schema.org 型はありません。そこで <code class="text-sm bg-dark-100 px-2 py-1 rounded">LocalBusiness</code> という大枠の型を使い、<code class="text-sm bg-dark-100 px-2 py-1 rounded">additionalType</code> に Wikidata の Q コード URL を <code class="text-sm bg-dark-100 px-2 py-1 rounded">https://www.wikidata.org/entity/Q...</code> の形式で配列指定します。これで「LocalBusiness の一種で、具体的にはこの業種」と機械に伝わります。</p>
+          <p>事業者が詳しい分野は <code class="text-sm bg-dark-100 px-2 py-1 rounded">knowsAbout</code>、サービス対象地域は <code class="text-sm bg-dark-100 px-2 py-1 rounded">areaServed</code> にも Q コードを使えます。名前の文字列ではなく Q コードで指定すると、機械の解釈の精度が一段上がります。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="LocalBusiness 型の JSON-LD ブロックに、additionalType・knowsAbout・areaServed のプロパティがあり、それぞれが Wikidata の Q コード URL を指している構造図。">
+            <rect width="680" height="240" fill="#FFFFFF"/>
+            <rect x="30" y="30" width="300" height="180" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="46" y="56" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">@type: "LocalBusiness"</text>
+            <text x="46" y="80" font-family="Inter, sans-serif" font-size="11" fill="#666666">name: "T.C.HARTON"</text>
+            <rect x="46" y="92" width="268" height="30" rx="6" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="58" y="111" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">additionalType: [ Q… ] ───────▶</text>
+            <rect x="46" y="128" width="268" height="30" rx="6" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="58" y="147" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">knowsAbout: [ Q… ] ──────────▶</text>
+            <rect x="46" y="164" width="268" height="30" rx="6" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="58" y="183" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">areaServed: [ Q… ] ───────────▶</text>
+            <line x1="330" y1="107" x2="380" y2="107" stroke="#D4AF37" stroke-width="2"/>
+            <line x1="330" y1="143" x2="380" y2="143" stroke="#D4AF37" stroke-width="2"/>
+            <line x1="330" y1="179" x2="380" y2="179" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="380,107 370,102 370,112" fill="#D4AF37"/>
+            <polygon points="380,143 370,138 370,148" fill="#D4AF37"/>
+            <polygon points="380,179 370,174 370,184" fill="#D4AF37"/>
+            <rect x="382" y="40" width="270" height="160" rx="8" fill="#1B4965"/>
+            <text x="398" y="64" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Wikidata（世界共通の定義）</text>
+            <text x="398" y="96" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">Q… ＝ 業種の概念</text>
+            <text x="398" y="132" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">Q… ＝ 詳しい分野の概念</text>
+            <text x="398" y="168" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">Q… ＝ 対象地域の概念</text>
+            <text x="398" y="190" font-family="Inter, sans-serif" font-size="10" fill="#9db8c4">どの言語からも同じ実体を指す</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：additionalType・knowsAbout・areaServed に Q コードを置けば、業種・分野・地域がすべて世界共通の定義に接続される。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="紐づけるべき 4 種類の Q コード" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 【Top 4】中小企業が紐づけるべき 4 種類の Q コード</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">Wikidata には数千万の項目がありますが、中小企業サイトで実際に使うのは次の 4 種類に絞れます。自社専用の項目がなくても、これらは「一般概念」なのですでに存在しています。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">1</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">業種の Q コード</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">「ウェブデザイン」「飲食業」など、自社の業種を表す概念。<code class="text-sm bg-dark-100 px-2 py-1 rounded">additionalType</code> に置き、機械に業態を確定させます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">2</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">所在地・対象地域の Q コード</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">「静岡県沼津市」など、市区町村の概念。<code class="text-sm bg-dark-100 px-2 py-1 rounded">areaServed</code> に置けば、同名地名との混同を防げます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">3</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">専門分野・テーマの Q コード</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">「検索エンジン最適化」「ウェブアクセシビリティ」など、扱うテーマ。<code class="text-sm bg-dark-100 px-2 py-1 rounded">knowsAbout</code> に置き、得意分野を機械可読にします。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">4</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">提供サービスの Q コード</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">「ウェブ開発」「グラフィックデザイン」など、具体的なサービス内容。サービスの種類を曖昧さなく示せます。</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">自社の Wikidata 項目は不要です。</strong>多くの中小企業に専用項目はなく、それが普通です。使うのは業種・地域・分野といった「すでにある一般概念」の Q コード。自社項目をわざわざ作る必要はありません。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="Q コードは順位の魔法ではない" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. Q コードは「順位の魔法」ではない — 正直な効果</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>ここで誇張を 1 つ正しておきます。「Wikidata に紐づければ検索順位が上がる」「AI 引用が増える」といった主張には、確実な裏付けがありません。</p>
+          <p><strong class="text-dark-900">Wikidata の Q コードは直接のランキング要因ではありません。</strong>効果はあくまで間接的で、AI と検索エンジンがエンティティを明確に特定できるようになることです。Knowledge Panel の情報が Wikidata 由来であるように、機械が事物を整理する土台に貢献する、という性質のものです。</p>
+          <p>とはいえ無意味ではありません。2025 年 10 月には Wikidata Embedding Project が公開され、MCP（Model Context Protocol）標準への対応で AI からの参照性が公式に強化されました。Q コードは「順位を押し上げる魔法」ではなく、<strong class="text-dark-900">機械に取り違えられないための識別子</strong>。土台として地味に効きます。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Q コードは検索順位アップには直結しない。一方で、エンティティの明確化・取り違え防止・AI からの参照性向上には寄与する、という効果の振り分け図。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="40" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">直結しないこと</text>
+            <rect x="40" y="50" width="270" height="40" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="60" y="75" font-family="Inter, sans-serif" font-size="12" fill="#666666">✕ 検索順位が上がる</text>
+            <rect x="40" y="100" width="270" height="40" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="60" y="125" font-family="Inter, sans-serif" font-size="12" fill="#666666">✕ AI 引用が直接増える</text>
+            <text x="40" y="170" font-family="Inter, sans-serif" font-size="11" fill="#666666">ランキング要因ではない</text>
+            <line x1="340" y1="20" x2="340" y2="180" stroke="#e0e6eb" stroke-width="2"/>
+            <text x="370" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">寄与すること</text>
+            <rect x="370" y="50" width="270" height="40" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="390" y="75" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">○ エンティティの明確化</text>
+            <rect x="370" y="100" width="270" height="40" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="390" y="125" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">○ 取り違えの防止・参照性向上</text>
+            <text x="370" y="170" font-family="Inter, sans-serif" font-size="11" fill="#10b981" font-weight="700">機械に正しく認識される土台</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 4：Q コードは順位や引用を直接押し上げない。だが「正しく認識される」という土台には確かに寄与する。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="Q コードの調べ方と設定手順" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. Q コードの調べ方と設定手順</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Q コードの調べ方はシンプルです。<code class="text-sm bg-dark-100 px-2 py-1 rounded">wikidata.org</code> の検索窓に業種名や地名を日本語で入力すると候補が出ます。目的の項目を開けば、URL の末尾と見出し横に <code class="text-sm bg-dark-100 px-2 py-1 rounded">Q</code> から始まる番号が表示されます。それが QID です。</p>
+          <p>選ぶときの注意点は 2 つ。1 つ目は<strong class="text-dark-900">概念の粒度</strong>。自社の業態に最も近い項目を選び、広すぎず狭すぎない概念にします。2 つ目は<strong class="text-dark-900">項目の確認</strong> — 開いた項目の説明文を読み、本当に意図した概念かを人間の目で確かめます。同名で別概念の項目が存在することがあるためです。</p>
+          <p>設定後は、Schema.org の Markup Validator や Google のリッチリザルトテストで JSON-LD の構文を検証します。構文エラーはツールが見つけますが、Q コードが業種に合っているかは人間が確認します。ここは <a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500">JSON-LD 実装ガイド</a>の検証手順と同じ流れです。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Q コードを設定すれば検索順位は上がりますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">上がりません。Wikidata の Q コードは直接のランキング要因ではありません。効果は間接的で、AI と検索エンジンが「この事業者はどの実体か」を曖昧さなく特定できるようになることです。順位の魔法ではなく、正しく認識されるための識別子です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">自社の Wikidata 項目がない場合はどうしますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">無理に自社項目を作る必要はありません。多くの中小企業には専用の Wikidata 項目がなく、それが普通です。代わりに、業種・所在地・サービス分野など、すでに存在する一般概念の Q コードを additionalType や knowsAbout に紐づけます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Q コードはどこで調べますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">wikidata.org の検索窓に業種名や地名を日本語で入力すると候補が出ます。項目ページの URL 末尾、または見出し横に表示される Q から始まる番号がその QID です。英語版と日本語版で同じ項目なら QID は共通です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">additionalType と knowsAbout はどう使い分けますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">additionalType は「その事業者そのものの種類」を示します。たとえば WEB 制作会社なら制作業の Q コード。knowsAbout は「その事業者が詳しい分野・扱うテーマ」を示します。両方を併用すると、機械はより立体的に事業内容を把握できます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Q コードを入れれば AI に引用されますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">引用は保証されません。Q コードはエンティティの明確化に寄与する間接的な仕組みであり、引用を直接増やす実験的な裏付けはありません。正しく認識される土台にはなりますが、引用を約束するものではありません。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">JSON-LD 構造化データ実装ガイド</a></li>
+          <li><a href="/insights/measure-ai-traffic-ga4/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">GA4 で AI 流入を正しく計測する方法</a></li>
+          <li><a href="/insights/llmo-explained/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">LLMO とは — AI 検索に引用される文章の書き方</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Wikidata — <a href="https://www.wikidata.org/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">wikidata.org</a></li>
+          <li>Wikipedia, Wikidata — <a href="https://en.wikipedia.org/wiki/Wikidata" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">en.wikipedia.org/wiki/Wikidata</a></li>
+          <li>Schema App, Using Wikidata to disambiguate your entities — <a href="https://support.schemaapp.com/support/solutions/articles/33000277321" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">support.schemaapp.com/support/solutions/articles/33000277321</a></li>
+          <li>Schema.org, additionalType — <a href="https://schema.org/additionalType" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">schema.org/additionalType</a></li>
+          <li>Wikidata, Embedding Project — <a href="https://www.wikidata.org/wiki/Wikidata:Embedding_Project" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">wikidata.org/wiki/Wikidata:Embedding_Project</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトは AI に正しく認識されていますか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの構造化データを機械検証し、エンティティの曖昧さや Q コードの紐づけ漏れをお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </section>

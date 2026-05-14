@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>HTML-first という選択肢 — Astro と Islands｜T.C.HARTON</title>
+  <meta name="description" content="Astro と Islands Architecture とは何か。「HTML-first, JavaScript when necessary」の考え方を、静的 HTML を基盤に必要な部分だけ動かす仕組みとして、一次出典付きで中小企業向けに解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="HTML-first という選択肢 — Astro と Islands｜T.C.HARTON">
+  <meta property="og:description" content="Astro と Islands Architecture とは何か。「HTML-first, JavaScript when necessary」の考え方を、静的 HTML を基盤に必要な部分だけ動かす仕組みとして、一次出典付きで中小企業向けに解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/modern-build-astro/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HTML-first という選択肢 — Astro と Islands｜T.C.HARTON">
+  <meta name="twitter:description" content="Astro と Islands Architecture とは何か。「HTML-first, JavaScript when necessary」の考え方を、静的 HTML を基盤に必要な部分だけ動かす仕組みとして、一次出典付きで中小企業向けに解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/modern-build-astro/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"HTML-first という選択肢 — Astro と Islands","item":"https://tcharton.com/insights/modern-build-astro/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/modern-build-astro/#article","headline":"HTML-first という選択肢 — Astro と Islands","description":"Astro と Islands Architecture とは何か。「HTML-first, JavaScript when necessary」の考え方を、静的 HTML を基盤に必要な部分だけ動かす仕組みとして、一次出典付きで中小企業向けに解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/modern-build-astro/","mainEntityOfPage":"https://tcharton.com/insights/modern-build-astro/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Islands Architecture とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"Islands Architecture は、クライアント側で JavaScript を動かさない静的 HTML をページの土台にし、検索ボックスやカルーセルなどインタラクティブな部分だけを「島」として個別に動かす設計の考え方です。ページ全体に JavaScript を行き渡らせる従来型と違い、動く必要のある部分にだけ JavaScript を限定します。"}},
+    {"@type":"Question","name":"Astro とはどんなツールですか？","acceptedAnswer":{"@type":"Answer","text":"Astro は「HTML-first, JavaScript when necessary（まず HTML、JavaScript は必要なときだけ）」を掲げる Web フレームワークです。ページを静的 HTML として書き出し、インタラクティブな部分には client:load・client:idle・client:visible といった指示で、JavaScript を読み込むタイミングを部分ごとに制御できます。"}},
+    {"@type":"Question","name":"Astro は従来の作り方より速いのですか？","acceptedAnswer":{"@type":"Answer","text":"「何パーセント速い」という定量的な比較は測定条件に左右されるため断定はできません。ただし Astro や Islands Architecture は、JavaScript をゼロの状態から始めて必要な部分にだけ足していく構造のため、ページ全体に JavaScript を配る従来型より、表示や応答性の面で構造的に有利です。"}},
+    {"@type":"Question","name":"中小企業のサイトに Astro は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"必須ではありません。重要なのはツール名ではなく「ページに不要な JavaScript を載せない」という考え方です。会社案内やサービス紹介のように動きの少ないページなら、そもそも静的 HTML で十分なこともあります。Islands の発想は、どの作り方を選んでも JavaScript を最小限に保つ指針として役立ちます。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">HTML-first という選択肢 — Astro と Islands</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 速くて快適なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">HTML-first という選択肢 — Astro と Islands</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 8 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">サイトが遅くなる大きな原因は、ページ全体に行き渡った<strong class="text-dark-900">過剰な JavaScript</strong> です。これに対する答えが <strong class="text-dark-900">「HTML-first」</strong>という考え方。静的 HTML を土台にし、検索ボックスやカルーセルなど<strong class="text-dark-900">本当に動く必要のある部分だけ</strong>を「島（Island）」として動かします。Astro はこの発想を実装するフレームワークで、JavaScript の読み込みタイミングを部分ごとに指定できます。「何 % 速い」と数値で語る話ではなく、<strong class="text-dark-900">JavaScript をゼロから始める構造的な有利さ</strong>の話です。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. 遅さの根に「過剰な JavaScript」がある</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. Islands Architecture という発想</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. Astro の「HTML-first」とは</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. ハイドレーションのタイミング制御</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 中小企業サイトでの現実的な使いどころ</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 【Top 4】HTML-first を活かす判断</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="従来型はページ全体に JavaScript が行き渡るが、Islands Architecture は静的 HTML を土台にして検索ボックスやカルーセルなど一部だけを島として動かすことを示す比較図。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">従来型と Islands Architecture の違い</text>
+          <text x="40" y="64" font-family="Inter, sans-serif" font-size="12" fill="#666666">従来型：ページ全体に JavaScript が行き渡る</text>
+          <rect x="40" y="74" width="270" height="140" rx="8" fill="#c9d6dc"/>
+          <text x="175" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">全面が JavaScript で覆われる</text>
+          <text x="175" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#1B4965">動かない部分まで JS を読む</text>
+          <text x="370" y="64" font-family="Inter, sans-serif" font-size="12" fill="#666666">Islands：静的 HTML が土台、一部だけ「島」</text>
+          <rect x="370" y="74" width="270" height="140" rx="8" fill="#e0e6eb"/>
+          <text x="505" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#1B4965">静的 HTML（JS ゼロ）</text>
+          <rect x="392" y="110" width="100" height="44" rx="6" fill="#2a6a8a"/>
+          <text x="442" y="136" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">検索の島</text>
+          <rect x="510" y="150" width="110" height="44" rx="6" fill="#D4AF37"/>
+          <text x="565" y="176" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">カルーセルの島</text>
+          <text x="370" y="230" font-family="Inter, sans-serif" font-size="11" fill="#10b981">動く必要のある島にだけ JavaScript を限定</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：Islands は静的 HTML を土台に、動く部分だけを島として切り出す。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="遅さの根に過剰な JavaScript がある" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. 遅さの根に「過剰な JavaScript」がある</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>サイトが遅い・操作がもたつく、その原因を掘り下げると、多くは「JavaScript の量と実行コスト」に行き着きます。Web Almanac 2025 では、メインスレッドがふさがる総量を示す TBT が前年比 <strong class="text-dark-900">58% 増</strong>。Web 全体で JavaScript が増え続けています。</p>
+          <p>問題は、その JavaScript の多くが「実は動かす必要のない部分」にまで載っていることです。会社案内の本文や見出しは、本来ただ表示されればよく、JavaScript で動かす理由はありません。それでも従来型の作り方では、ページ全体に JavaScript が行き渡ってしまいます。</p>
+          <p>ここから生まれた発想が「<strong class="text-dark-900">そもそも JavaScript をゼロから始め、必要な部分にだけ足す</strong>」というアプローチです。これが HTML-first であり、Islands Architecture の出発点です。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="Islands Architecture という発想" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. Islands Architecture という発想</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Islands Architecture（アイランド・アーキテクチャ）は、ページを「動かない静的な海」と「動く小さな島」に分けて考える設計の考え方です。土台になるのは、クライアント側で JavaScript を一切動かさない静的 HTML。これが海です。</p>
+          <p>その上に、検索ボックス・画像のカルーセル・開閉するメニューといった、インタラクティブな部分だけを「島」として配置します。島はそれぞれ独立して動き、島ごとに必要な JavaScript だけが読み込まれます。</p>
+          <p>従来型のように「ページ全体を JavaScript で組み立て直す」のではなく、「ほぼ完成した HTML に、動く部品だけを後から差し込む」。この切り分けによって、読み込む JavaScript の総量を構造的に小さく保てます。</p>
+        </div>
+      </section>
+
+      <section id="section-3" aria-label="Astro の HTML-first とは" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. Astro の「HTML-first」とは</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Astro は、この Islands の発想を実際のサイト制作に落とし込むための Web フレームワークです。公式が掲げるスローガンが <strong class="text-dark-900">「HTML-first, JavaScript when necessary」</strong>—「まず HTML、JavaScript は必要なときだけ」。</p>
+          <p>Astro でページを作ると、基本は静的 HTML として書き出されます。本文も見出しもレイアウトも、JavaScript を伴わない素の HTML です。そこにインタラクティブな部品を置きたいときだけ、その部品を「島」として明示的に指定します。</p>
+          <p>つまり Astro は「JavaScript を載せる」のではなく「載せないのが既定で、載せたいときに宣言する」設計です。デフォルトが軽い側にあるため、作っているうちに自然と JavaScript が膨らむ事故が起きにくくなります。</p>
+        </div>
+      </section>
+
+      <section id="section-4" aria-label="ハイドレーションのタイミング制御" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. ハイドレーションのタイミング制御</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>島に JavaScript を読み込ませて「動く状態」にすることを、ハイドレーション（hydration）と呼びます。Astro の特徴は、このハイドレーションの<strong class="text-dark-900">タイミングを島ごとに指定できる</strong>ことです。</p>
+          <p>指定は <code class="text-sm bg-dark-100 px-2 py-1 rounded">client:load</code>（すぐ読み込む）、<code class="text-sm bg-dark-100 px-2 py-1 rounded">client:idle</code>（ブラウザが手すきになってから）、<code class="text-sm bg-dark-100 px-2 py-1 rounded">client:visible</code>（その島が画面に入ってから）など。たとえばページ下部のカルーセルは、スクロールして見えてから初めて JavaScript を読めば十分です。</p>
+          <p>この「いつ動かすか」を部品単位で決められることで、最初の表示に必要な JavaScript をさらに絞れます。すぐ必要なものだけ先に、後でいいものは後で。これがハイドレーション制御の実用的な価値です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Astro のハイドレーション指示。client:load はすぐ読み込み、client:idle はブラウザが手すきになってから、client:visible はその部品が画面に入ってから JavaScript を読み込むことを示す図。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">島ごとに「いつ動かすか」を指定できる</text>
+            <rect x="40" y="56" width="600" height="44" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="60" y="83" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">client:load</text>
+            <text x="200" y="83" font-family="Inter, sans-serif" font-size="12" fill="#666666">すぐ読み込む — 最初から必要な操作部品（例：ヘッダー検索）</text>
+            <rect x="40" y="108" width="600" height="44" rx="8" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="60" y="135" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8B6914">client:idle</text>
+            <text x="200" y="135" font-family="Inter, sans-serif" font-size="12" fill="#666666">手すきになってから — 急がない部品（例：通知バナー）</text>
+            <rect x="40" y="160" width="600" height="44" rx="8" fill="#f0fbf5" stroke="#10b981" stroke-width="1.5"/>
+            <text x="60" y="187" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#10b981">client:visible</text>
+            <text x="200" y="187" font-family="Inter, sans-serif" font-size="12" fill="#666666">画面に入ってから — 下部の部品（例：カルーセル、地図）</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：ハイドレーションのタイミングを島ごとに選び、初期 JavaScript を絞る。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-5" aria-label="中小企業サイトでの現実的な使いどころ" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 中小企業サイトでの現実的な使いどころ</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>誠実にお伝えすると、Astro や Islands は中小企業サイトに<strong class="text-dark-900">必須のものではありません</strong>。動きの少ない会社案内やサービス紹介なら、そもそも素朴な静的 HTML で十分なことも多くあります。</p>
+          <p>また「Astro は React 比で何 % 速い」といった定量的な比較は、測定条件によって大きく変わるため、ここでは数値での断定はしません。確実に言えるのは、<strong class="text-dark-900">JavaScript をゼロから始めて必要な部分にだけ足す構造は、全体に配る構造より有利</strong>だという定性的な事実です。</p>
+          <p>大切なのはツール名ではなく考え方です。「このページのこの部品は、本当に JavaScript で動かす必要があるか」と一つずつ問う。Islands の発想は、どの作り方を選んでも JavaScript を最小限に保つための指針として役立ちます。</p>
+        </div>
+      </section>
+
+      <section id="section-6" aria-label="HTML-first を活かす判断" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 【Top 4】HTML-first を活かす判断</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">ツールを導入するかどうかにかかわらず、HTML-first の発想を自社サイトに活かすための判断ポイントです。</p>
+        <ol class="mt-6 space-y-3">
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span><p class="text-sm text-dark-700"><strong class="text-dark-900">「動く必要のある部品」を数え上げる</strong> — 検索・カルーセル・開閉メニューなど、本当にインタラクティブな部分だけをリスト化する。それ以外は静的 HTML でよい。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span><p class="text-sm text-dark-700"><strong class="text-dark-900">JavaScript を「既定でオフ」にする</strong> — 載せるのが当たり前ではなく、載せたいときに理由を持って載せる。Astro はこの規律をツール側で支えてくれる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span><p class="text-sm text-dark-700"><strong class="text-dark-900">急がない部品は後で動かす</strong> — ページ下部や初回表示に不要な部品は、画面に入ってから・手すきになってから動かす。最初の表示を軽くできる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">4</span><p class="text-sm text-dark-700"><strong class="text-dark-900">ツールありきで考えない</strong> — Astro を使うこと自体が目的ではない。動きの少ないサイトなら素の静的 HTML でも目的は達成できる。発想を借りて、手段は身の丈で選ぶ。</p></li>
+        </ol>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">HTML-first は「流行のツール」ではなく「規律」です。</strong>ページに不要な JavaScript を載せない、という規律を持てば、どの作り方でも速いサイトに近づきます。T.C.HARTON は全ページの JavaScript 量と Core Web Vitals を実測し、<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で公開しています。まずは現状サイトに「不要な JavaScript」がないかを確認することから始められます。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Islands Architecture とは何ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Islands Architecture は、クライアント側で JavaScript を動かさない静的 HTML をページの土台にし、検索ボックスやカルーセルなどインタラクティブな部分だけを「島」として個別に動かす設計の考え方です。ページ全体に JavaScript を行き渡らせる従来型と違い、動く必要のある部分にだけ JavaScript を限定します。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Astro とはどんなツールですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Astro は「HTML-first, JavaScript when necessary（まず HTML、JavaScript は必要なときだけ）」を掲げる Web フレームワークです。ページを静的 HTML として書き出し、インタラクティブな部分には client:load・client:idle・client:visible といった指示で、JavaScript を読み込むタイミングを部分ごとに制御できます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Astro は従来の作り方より速いのですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">「何パーセント速い」という定量的な比較は測定条件に左右されるため断定はできません。ただし Astro や Islands Architecture は、JavaScript をゼロの状態から始めて必要な部分にだけ足していく構造のため、ページ全体に JavaScript を配る従来型より、表示や応答性の面で構造的に有利です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">中小企業のサイトに Astro は必要ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">必須ではありません。重要なのはツール名ではなく「ページに不要な JavaScript を載せない」という考え方です。会社案内やサービス紹介のように動きの少ないページなら、そもそも静的 HTML で十分なこともあります。Islands の発想は、どの作り方を選んでも JavaScript を最小限に保つ指針として役立ちます。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/wordpress-vs-static/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">WordPress と静的 HTML、どちらを選ぶべきか</a></li>
+          <li><a href="/insights/inp-deep-dive/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">INP を 200ms 未満にする実装の全手法</a></li>
+          <li><a href="/insights/why-slow-site-loses-sales/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">サイトが遅いと、なぜ客が逃げるのか</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>patterns.dev, Islands Architecture — <a href="https://www.patterns.dev/vanilla/islands-architecture/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">patterns.dev/vanilla/islands-architecture</a></li>
+          <li>Astro 公式サイト — <a href="https://astro.build/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">astro.build</a></li>
+          <li>Web Almanac 2025, Performance — <a href="https://almanac.httparchive.org/en/2025/performance" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">almanac.httparchive.org/en/2025/performance</a></li>
+          <li>web.dev, Web Vitals — <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/vitals</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトに、不要な JavaScript はありませんか</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの JavaScript 量と Core Web Vitals を実測し、削れる余地をお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>llms.txt は必要か — 賛否両論の検証｜T.C.HARTON</title>
+  <meta name="description" content="llms.txt は AI 検索に効くのか。Google の John Mueller・Gary Illyes の公式見解と、独立サーバーログ監査の結果をもとに、AI 検索向けの実効性と「コーディングエージェント向け」の本当の用途を一次出典付きで検証します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="llms.txt は必要か — 賛否両論の検証｜T.C.HARTON">
+  <meta property="og:description" content="llms.txt は AI 検索に効くのか。Google の John Mueller・Gary Illyes の公式見解と、独立サーバーログ監査の結果をもとに、AI 検索向けの実効性と「コーディングエージェント向け」の本当の用途を一次出典付きで検証します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/llms-txt-debate/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="llms.txt は必要か — 賛否両論の検証｜T.C.HARTON">
+  <meta name="twitter:description" content="llms.txt は AI 検索に効くのか。Google の John Mueller・Gary Illyes の公式見解と、独立サーバーログ監査の結果をもとに、AI 検索向けの実効性と「コーディングエージェント向け」の本当の用途を一次出典付きで検証します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/llms-txt-debate/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"llms.txt は必要か — 賛否両論の検証","item":"https://tcharton.com/insights/llms-txt-debate/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/llms-txt-debate/#article","headline":"llms.txt は必要か — 賛否両論の検証","description":"llms.txt は AI 検索に効くのか。Google の John Mueller・Gary Illyes の公式見解と、独立サーバーログ監査の結果をもとに、AI 検索向けの実効性と「コーディングエージェント向け」の本当の用途を一次出典付きで検証します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/llms-txt-debate/","mainEntityOfPage":"https://tcharton.com/insights/llms-txt-debate/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"llms.txt とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"llms.txt は、サイトのルートに置く Markdown 形式のファイルで、AI に「このサイトの主要な内容はここ」と案内する目的で 2024 年に提案された仕様です。robots.txt が「クロールしてよいか」を伝えるのに対し、llms.txt は「内容の地図」を渡そうとするものですが、現時点で業界標準として採用されてはいません。"}},
+    {"@type":"Question","name":"llms.txt は Google の AI 検索に効きますか？","acceptedAnswer":{"@type":"Answer","text":"効くという根拠はありません。Google の John Mueller は 2025 年 6 月に「現状どの AI システムも llms.txt を使っていない」と述べ、Gary Illyes は 2025 年 7 月に「Google は llms.txt をサポートしておらず、その予定もない」と明言しています。AI Overviews への効果は実証されていません。"}},
+    {"@type":"Question","name":"AI クローラーは llms.txt を読みに来ていますか？","acceptedAnswer":{"@type":"Answer","text":"主要な AI 検索クローラーはほとんど読みに来ていません。複数の独立したサーバーログ監査（2025 年 8 月〜10 月）で、GPTBot・ClaudeBot・PerplexityBot・Google-Extended による llms.txt へのアクセスはゼロでした。サーバーログを見れば実態が確認できます。"}},
+    {"@type":"Question","name":"llms.txt はまったく無意味ですか？","acceptedAnswer":{"@type":"Answer","text":"AI「検索」向けには実効性が実証されていませんが、Cursor や Claude Code といったコーディングエージェントでは利用されています。技術ドキュメントを公開する事業者にとっては、AI 開発ツールがドキュメントを把握する入口として一定の意味があります。AI 検索対策とは別の用途です。"}},
+    {"@type":"Question","name":"中小企業は llms.txt を設置すべきですか？","acceptedAnswer":{"@type":"Answer","text":"設置しても害はありませんが、AI 検索に効くと期待して優先的に取り組むべきものではありません。中小企業が同じ時間を使うなら、検証可能な事実を出典付きで書く、表示速度を上げる、第三者メディアに掲載されるといった、効果が実証された施策を先に進めるのが現実的です。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">llms.txt は必要か — 賛否両論の検証</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ AI 検索に選ばれる</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">llms.txt は必要か — 賛否両論の検証</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 9 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">llms.txt は AI「検索」向けの実効性が実証されていません。</strong>Google は公式に非サポートを明言し、独立したサーバーログ監査でも主要 AI クローラーのアクセスは<strong class="text-dark-900">ゼロ</strong>でした。一方、Cursor などの<strong class="text-dark-900">コーディングエージェント</strong>では利用されています。設置しても害はありませんが、中小企業が優先的に取り組むべき施策ではありません。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. llms.txt とは何か</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 「効く」派の主張と、その弱点</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. Google の公式見解 — 非サポートの明言</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. サーバーログが示す実態 — アクセスはゼロ</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 本当の用途 — コーディングエージェントの入口</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 【Top 3】中小企業が先にやるべきこと</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="llms.txt をめぐる賛否。賛成派は AI に内容の地図を渡せると主張するが、根拠は推測にとどまる。反対派は Google の公式非サポート発言と、AI クローラーのアクセスがゼロというサーバーログ監査を根拠にする。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">llms.txt をめぐる賛否</text>
+          <rect x="20" y="52" width="300" height="160" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+          <text x="36" y="80" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">「効く」派の主張</text>
+          <text x="36" y="106" font-family="Inter, sans-serif" font-size="11" fill="#666666">AI に「内容の地図」を渡せる</text>
+          <text x="36" y="128" font-family="Inter, sans-serif" font-size="11" fill="#666666">クロール効率が上がるはず</text>
+          <text x="36" y="150" font-family="Inter, sans-serif" font-size="11" fill="#666666">設置は簡単で害がない</text>
+          <text x="36" y="186" font-family="Inter, sans-serif" font-size="11" fill="#8B6914">根拠：推測にとどまる</text>
+          <rect x="360" y="52" width="300" height="160" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="376" y="80" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">「効かない」派の根拠</text>
+          <text x="376" y="106" font-family="Inter, sans-serif" font-size="11" fill="#666666">Google が公式に非サポート明言</text>
+          <text x="376" y="128" font-family="Inter, sans-serif" font-size="11" fill="#666666">AI クローラーのアクセスはゼロ</text>
+          <text x="376" y="150" font-family="Inter, sans-serif" font-size="11" fill="#666666">複数の独立ログ監査で一致</text>
+          <text x="376" y="186" font-family="Inter, sans-serif" font-size="11" fill="#1B4965">根拠：一次データで確認可能</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：賛成派の主張は推測ベース、反対派は公式発言とサーバーログという一次データに基づく。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="llms.txt とは何か" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. llms.txt とは何か</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>llms.txt は、サイトのルート（例: tcharton.com/llms.txt）に置く Markdown 形式のファイルです。2024 年に提案された仕様で、AI に「このサイトの主要な内容はここにあります」と案内することを目的としています。</p>
+          <p>名前が robots.txt に似ているので混同されやすいのですが、役割は逆向きです。robots.txt は「どこをクロールしてよいか／いけないか」を伝える制限の仕組み。llms.txt は「内容の地図」を能動的に渡そうとする案内の仕組みです。</p>
+          <p>アイデア自体は分かりやすく、設置も簡単です。だからこそ「AI 検索対策の必須項目」として紹介されることが増えました。しかし、その「効く」という前提は検証されているのか。ここを確かめる必要があります。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="効く派の主張" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 「効く」派の主張と、その弱点</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「llms.txt は効く」とする主張は、おおむね次のような理屈です。AI はサイト全体をうまく把握できないことがある。だから内容の地図を渡せば、AI が正確に理解し、引用してくれやすくなる、と。</p>
+          <p>理屈としては筋が通っているように見えます。しかし弱点が一つあります。<strong class="text-dark-900">「効いた」という検証データがほとんど示されていない</strong>ことです。多くは「効くはず」「効く可能性がある」という推測の段階で止まっています。</p>
+          <p>WEB の施策を判断するときの基本は、「効くはず」ではなく「実際にどうだったか」を見ることです。次の 2 つの章では、推測ではなく一次データ — Google の公式発言とサーバーログ — を確認します。</p>
+        </div>
+      </section>
+
+      <section id="section-3" aria-label="Google の公式見解" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. Google の公式見解 — 非サポートの明言</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>最も重い一次情報は、Google 自身の発言です。</p>
+          <p>Google の John Mueller は 2025 年 6 月に、<strong class="text-dark-900">「現状どの AI システムも llms.txt を使っていない。サーバーログを見れば一目瞭然だ」</strong>と述べました。さらに Gary Illyes は 2025 年 7 月に、<strong class="text-dark-900">「Google は llms.txt をサポートしておらず、その予定もない」</strong>と明言しています。</p>
+          <p>これは「将来どうなるか分からない」というレベルの話ではありません。Google が公式に、現時点での非サポートと、サポート予定がないことの両方を述べているということです。AI Overviews への効果を期待して llms.txt を設置するのは、現状では根拠を欠いています。</p>
+        </div>
+      </section>
+
+      <section id="section-4" aria-label="サーバーログが示す実態" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. サーバーログが示す実態 — アクセスはゼロ</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Mueller が言うように、サーバーログは事実をそのまま記録します。誰かがファイルにアクセスすれば、その記録が残る。アクセスしなければ、記録は残りません。</p>
+          <p>2025 年 8 月から 10 月にかけて行われた複数の独立したサーバーログ監査では、<strong class="text-dark-900">GPTBot・ClaudeBot・PerplexityBot・Google-Extended による llms.txt へのアクセスはゼロ</strong>でした。複数の調査が、それぞれ独立に同じ結論に達しています。</p>
+          <p>つまり、ファイルは置いてあっても、AI 検索のクローラーはそれを読みに来ていない。「効く・効かない」以前に、見られてさえいないというのが 2026 年 5 月時点の実態です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="複数の独立サーバーログ監査の結果。GPTBot、ClaudeBot、PerplexityBot、Google-Extended のいずれも llms.txt へのアクセス件数はゼロだった。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="30" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">主要 AI クローラーの llms.txt アクセス件数（独立ログ監査 2025）</text>
+            <line x1="60" y1="170" x2="640" y2="170" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="90" y="166" width="100" height="4" fill="#9db8c4"/>
+            <text x="140" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">GPTBot</text>
+            <text x="140" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">0</text>
+            <rect x="230" y="166" width="100" height="4" fill="#9db8c4"/>
+            <text x="280" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">ClaudeBot</text>
+            <text x="280" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">0</text>
+            <rect x="370" y="166" width="100" height="4" fill="#9db8c4"/>
+            <text x="420" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">PerplexityBot</text>
+            <text x="420" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">0</text>
+            <rect x="510" y="166" width="100" height="4" fill="#9db8c4"/>
+            <text x="560" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">Google-Extended</text>
+            <text x="560" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">0</text>
+            <text x="350" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8B6914">どの AI 検索クローラーもアクセスしていない</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：2025 年 8〜10 月の複数の独立監査。主要 AI クローラーの llms.txt アクセスはいずれもゼロ。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-5" aria-label="本当の用途" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 本当の用途 — コーディングエージェントの入口</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>では llms.txt はまったく無意味なのか。そう結論づけるのも正確ではありません。</p>
+          <p>AI「検索」では使われていない一方で、<strong class="text-dark-900">Cursor や Claude Code といったコーディングエージェント</strong>では llms.txt が利用されています。これらは開発者がコードを書くときに使う AI ツールで、ライブラリやサービスの技術ドキュメントを把握する入口として llms.txt を読みます。</p>
+          <p>つまり llms.txt の現実的な用途は、AI 検索対策ではなく「AI 開発ツール向けのドキュメント案内」です。API や技術ドキュメントを公開している事業者には意味があります。しかし、地域の中小企業が「AI 検索に引用されたい」という目的で設置しても、その目的には届きません。用途を取り違えないことが大切です。</p>
+        </div>
+      </section>
+
+      <section id="section-6" aria-label="先にやるべきこと" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 【Top 3】中小企業が先にやるべきこと</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">llms.txt に時間を使う前に、効果が実証されている施策があります。同じ時間なら、こちらを先に進めるのが現実的です。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">1</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">検証可能な事実を出典付きで書く</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">KDD 2024 論文では、統計・引用・出典の追加が AI 回答内の可視性を高めました。llms.txt より確かな根拠があります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">2</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">表示速度と技術品質を整える</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">AI 検索も検索エンジンも、正確に読み取れるページを引用元に選びます。Core Web Vitals の改善は土台になります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">3</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">第三者メディアに掲載される</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">AI は第三者の言及を重視する傾向があります。地域メディアや業界紙への掲載は、自社サイトを盛るより効きます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-dark-800 text-white font-bold flex items-center justify-center" aria-hidden="true">+</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">llms.txt は「やってもいい」程度に</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">設置自体に害はありません。ただし AI 検索に効くと期待せず、上の 3 つを終えてからの「余力枠」と位置づけます。</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">「流行っているから」で判断しない。</strong>WEB の施策は、推測ではなく一次データで判断するものです。T.C.HARTON は施策ごとに「何を根拠にそう言えるか」を確かめ、<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で考え方を公開しています。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">llms.txt とは何ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">llms.txt は、サイトのルートに置く Markdown 形式のファイルで、AI に「このサイトの主要な内容はここ」と案内する目的で 2024 年に提案された仕様です。robots.txt が「クロールしてよいか」を伝えるのに対し、llms.txt は「内容の地図」を渡そうとするものですが、現時点で業界標準として採用されてはいません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">llms.txt は Google の AI 検索に効きますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">効くという根拠はありません。Google の John Mueller は 2025 年 6 月に「現状どの AI システムも llms.txt を使っていない」と述べ、Gary Illyes は 2025 年 7 月に「Google は llms.txt をサポートしておらず、その予定もない」と明言しています。AI Overviews への効果は実証されていません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">AI クローラーは llms.txt を読みに来ていますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">主要な AI 検索クローラーはほとんど読みに来ていません。複数の独立したサーバーログ監査（2025 年 8 月〜10 月）で、GPTBot・ClaudeBot・PerplexityBot・Google-Extended による llms.txt へのアクセスはゼロでした。サーバーログを見れば実態が確認できます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">llms.txt はまったく無意味ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">AI「検索」向けには実効性が実証されていませんが、Cursor や Claude Code といったコーディングエージェントでは利用されています。技術ドキュメントを公開する事業者にとっては、AI 開発ツールがドキュメントを把握する入口として一定の意味があります。AI 検索対策とは別の用途です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">中小企業は llms.txt を設置すべきですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">設置しても害はありませんが、AI 検索に効くと期待して優先的に取り組むべきものではありません。中小企業が同じ時間を使うなら、検証可能な事実を出典付きで書く、表示速度を上げる、第三者メディアに掲載されるといった、効果が実証された施策を先に進めるのが現実的です。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/geo-complete-guide/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化</a></li>
+          <li><a href="/insights/llmo-explained/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">LLMO とは — AI 検索に引用される文章の書き方</a></li>
+          <li><a href="/insights/ai-search-engines-compared/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">ChatGPT・Perplexity・Gemini 攻略法の違い</a></li>
+          <li><a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">JSON-LD 構造化データ実装ガイド — AI に事実を渡す</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Search Engine Land, Google says normal SEO works for ranking in AI Overviews, and llms.txt won't be used — <a href="https://searchengineland.com/google-says-normal-seo-works-for-ranking-in-ai-overviews-and-llms-txt-wont-be-used-459422" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">searchengineland.com</a></li>
+          <li>Aggarwal et al., GEO: Generative Engine Optimization, KDD 2024 — <a href="https://arxiv.org/abs/2311.09735" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">arxiv.org/abs/2311.09735</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">流行りの施策より、効果が確かな施策から</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトが「効果が実証された施策」の基準を満たしているかを機械検証でお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>画像とフォントで表示速度を半分にする｜T.C.HARTON</title>
+  <meta name="description" content="サイトを重くする最大要因は画像とフォント。AVIF / WebP への変換、picture 要素、font-display とフォント preload など、表示速度を大きく改善する具体手法を一次出典付きで解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="画像とフォントで表示速度を半分にする｜T.C.HARTON">
+  <meta property="og:description" content="サイトを重くする最大要因は画像とフォント。AVIF / WebP への変換、picture 要素、font-display とフォント preload など、表示速度を大きく改善する具体手法を一次出典付きで解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/image-font-optimization/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="画像とフォントで表示速度を半分にする｜T.C.HARTON">
+  <meta name="twitter:description" content="サイトを重くする最大要因は画像とフォント。AVIF / WebP への変換、picture 要素、font-display とフォント preload など、表示速度を大きく改善する具体手法を一次出典付きで解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/image-font-optimization/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"画像とフォントで表示速度を半分にする","item":"https://tcharton.com/insights/image-font-optimization/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/image-font-optimization/#article","headline":"画像とフォントで表示速度を半分にする","description":"サイトを重くする最大要因は画像とフォント。AVIF / WebP への変換、picture 要素、font-display とフォント preload など、表示速度を大きく改善する具体手法を一次出典付きで解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/image-font-optimization/","mainEntityOfPage":"https://tcharton.com/insights/image-font-optimization/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"AVIF と WebP はどちらを使えばいいですか？","acceptedAnswer":{"@type":"Answer","text":"AVIF は JPEG 比で約 50%、WebP 比でも 20〜30% ファイルサイズが小さく、最も軽い形式です。ブラウザ対応も AVIF が約 94%、WebP が約 95%（2025 年 9 月時点）と十分広がっています。picture 要素を使い、AVIF を主・WebP をフォールバック・JPEG を最終保険として並べておくのが現実的な構成です。"}},
+    {"@type":"Question","name":"画像で画面がガタつくのを防ぐにはどうすればいいですか？","acceptedAnswer":{"@type":"Answer","text":"画像に幅と高さ（または縦横比）をあらかじめ指定しておくことです。サイズ指定がないと、画像が読み込まれた瞬間に表示領域が確定して周囲のレイアウトがずれ、CLS が悪化します。サイズを先に伝えておけば、ブラウザは画像が届く前に場所を確保でき、ガタつきを防げます。"}},
+    {"@type":"Question","name":"font-display: optional とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"font-display: optional は、Web フォントの読み込みが間に合わなければ無理に切り替えず代替フォントのまま表示する設定です。フォント preload と組み合わせると、文字の表示が遅れたり後から入れ替わったりするレイアウトシフトをほぼゼロに抑えられます。web.dev はこれをシフト対策の最有力として挙げています。"}},
+    {"@type":"Question","name":"画像とフォントの最適化で本当に速くなりますか？","acceptedAnswer":{"@type":"Answer","text":"多くの中小企業サイトでは、最も重いのが最適化されていない画像です。スマホで撮った数 MB の写真をそのまま載せているケースが典型で、これを適切な形式・サイズに直すだけで表示速度は大きく改善します。フォントの読み込み制御と合わせれば、LCP と CLS の両方に効きます。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">画像とフォントで表示速度を半分にする</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 速くて快適なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">画像とフォントで表示速度を半分にする</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 9 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">多くの中小企業サイトで最も重い要素は、<strong class="text-dark-900">最適化されていない画像</strong>です。スマホで撮った数 MB の写真をそのまま載せているのが典型例。<strong class="text-dark-900">AVIF</strong> は JPEG 比で約 50% も軽く、<code class="text-sm bg-dark-100 px-2 py-1 rounded">picture</code> 要素で安全に切り替えられます。さらに画像にサイズを指定すれば画面のガタつき（CLS）が止まり、フォントは <strong class="text-dark-900">font-display と preload</strong> で文字のちらつきを抑えられます。コードを書き換えるより前に、まず「重い画像を直す」だけで体感速度は大きく変わります。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. サイトを重くする最大要因は画像</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. AVIF / WebP — 軽い画像形式を使う</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. picture 要素で安全に切り替える</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. サイズ指定で画面のガタつきを止める</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. フォントのちらつきを抑える</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 【Top 6】速度を半分にする実装手順</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="同じ写真でも JPEG より WebP が 20 から 30 パーセント軽く、AVIF はさらに JPEG 比で約 50 パーセント軽いことを示す、ファイルサイズの帯グラフ。">
+          <rect width="680" height="220" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">同じ写真でも、形式を変えるだけで軽くなる</text>
+          <text x="60" y="78" font-family="Inter, sans-serif" font-size="13" fill="#666666">JPEG</text>
+          <rect x="150" y="64" width="470" height="26" rx="4" fill="#9db8c4"/>
+          <text x="380" y="82" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">基準（100%）</text>
+          <text x="60" y="124" font-family="Inter, sans-serif" font-size="13" fill="#666666">WebP</text>
+          <rect x="150" y="110" width="470" height="26" rx="4" fill="#e0e6eb"/>
+          <rect x="150" y="110" width="338" height="26" rx="4" fill="#D4AF37"/>
+          <text x="319" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">JPEG 比 20〜30% 削減</text>
+          <text x="60" y="170" font-family="Inter, sans-serif" font-size="13" fill="#666666">AVIF</text>
+          <rect x="150" y="156" width="470" height="26" rx="4" fill="#e0e6eb"/>
+          <rect x="150" y="156" width="235" height="26" rx="4" fill="#10b981"/>
+          <text x="267" y="174" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">JPEG 比 約 50% 削減</text>
+          <text x="60" y="206" font-family="Inter, sans-serif" font-size="11" fill="#666666">形式の選択だけで、写真の重さは大きく変わる（web.dev / caniuse）</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：同じ写真でも形式を変えるだけでファイルサイズは大きく減る。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="サイトを重くする最大要因は画像" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. サイトを重くする最大要因は画像</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「サイトが遅い」と相談を受けて中身を見ると、原因の上位に必ず入るのが画像です。とくに多いのが、スマートフォンで撮影した数 MB の写真を、サイズも形式も変えずにそのまま載せているケースです。</p>
+          <p>画像は、Core Web Vitals の中で「主要な中身が表示される速さ」を測る <strong class="text-dark-900">LCP</strong> を最も悪化させる典型要因です。ファーストビューの大きな写真が重いと、ページが表示されきるまでの時間がそのぶん延びます。</p>
+          <p>逆に言えば、画像を適切に直すだけで体感速度は大きく変わります。コードの書き換えやサーバーの引っ越しといった大がかりな作業の前に、まず取り組む価値があるのが画像の最適化です。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="AVIF WebP 軽い画像形式を使う" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. AVIF / WebP — 軽い画像形式を使う</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>同じ写真でも、保存する「形式」を変えるだけでファイルサイズは大きく変わります。現在の主役は <strong class="text-dark-900">AVIF</strong> と <strong class="text-dark-900">WebP</strong> の 2 つです。</p>
+          <p>web.dev によると、AVIF は JPEG 比で約 <strong class="text-dark-900">50%</strong>、WebP 比でも 20〜30% ファイルサイズが小さくなります。見た目の品質をほぼ保ったまま、写真の重さを半分近くまで落とせるということです。ブラウザの対応も広く、2025 年 9 月時点で AVIF が約 94%、WebP が約 95% の環境で表示できます。</p>
+          <p>つまり「JPEG や PNG のまま載せている写真を AVIF / WebP に変換する」だけで、ほとんどのサイトは目に見えて軽くなります。撮影した写真をアップロードする前に、変換のひと手間を挟む。これが最も費用対効果の高い最適化です。</p>
+        </div>
+      </section>
+
+      <section id="section-3" aria-label="picture 要素で安全に切り替える" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. picture 要素で安全に切り替える</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>AVIF は軽い一方、ごく一部の古い環境では表示できません。そこで使うのが <code class="text-sm bg-dark-100 px-2 py-1 rounded">picture</code> 要素です。複数の画像形式を並べて書いておくと、ブラウザが「自分が表示できる中で最も上にあるもの」を自動で選びます。</p>
+          <p>定石は、<strong class="text-dark-900">AVIF を主、WebP をフォールバック、JPEG を最終保険</strong>として並べる構成です。AVIF が使える環境では AVIF、使えなければ WebP、それも無理なら JPEG、と段階的に降りていきます。すべての訪問者が「その環境で最も軽い画像」を受け取れます。</p>
+          <p>この仕組みは一度組んでしまえば、あとは画像を差し替えるだけ。新しい形式が普及しても、同じ構成のまま対応できる拡張性も持っています。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 230" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="picture 要素は AVIF を主、WebP をフォールバック、JPEG を最終保険として並べ、ブラウザが表示できる中で最も軽い形式を自動で選ぶ仕組みを示す図。">
+            <rect width="680" height="230" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">picture 要素 — ブラウザが最も軽い形式を自動選択</text>
+            <rect x="40" y="54" width="600" height="40" rx="6" fill="#f0fbf5" stroke="#10b981" stroke-width="1.5"/>
+            <text x="56" y="79" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">&lt;source srcset="photo.avif" type="image/avif"&gt;  ← 主：最も軽い</text>
+            <rect x="40" y="102" width="600" height="40" rx="6" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="56" y="127" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">&lt;source srcset="photo.webp" type="image/webp"&gt;  ← フォールバック</text>
+            <rect x="40" y="150" width="600" height="40" rx="6" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="56" y="175" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">&lt;img src="photo.jpg" width="800" height="600" alt="..."&gt;  ← 最終保険</text>
+            <text x="40" y="216" font-family="Inter, sans-serif" font-size="11" fill="#666666">上から順に判定。img には width / height を必ず指定（次章参照）</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：AVIF 主・WebP フォールバック・JPEG 保険の 3 段構成。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="サイズ指定で画面のガタつきを止める" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. サイズ指定で画面のガタつきを止める</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>画像でもう一つ起きがちなのが、読み込んだ瞬間に周囲のレイアウトがガタッとずれる現象です。これは Core Web Vitals の <strong class="text-dark-900">CLS（表示のずれ）</strong>を悪化させ、読んでいた行を見失わせたり、ボタンの誤タップを誘発したりします。</p>
+          <p>原因は、画像にサイズが指定されていないこと。サイズ指定がないと、ブラウザは画像が届くまで「どれだけの場所を空けておけばいいか」が分からず、画像が来てから慌てて場所を確定します。そのぶん下の要素が押し下げられてずれます。</p>
+          <p>対策はシンプルで、<strong class="text-dark-900">画像に幅と高さ（または縦横比）をあらかじめ指定する</strong>こと。場所を先に確保しておけば、画像が届いてもレイアウトは動きません。<code class="text-sm bg-dark-100 px-2 py-1 rounded">img</code> 要素に <code class="text-sm bg-dark-100 px-2 py-1 rounded">width</code> と <code class="text-sm bg-dark-100 px-2 py-1 rounded">height</code> を書く、この一手間だけで CLS の主因の一つが消えます。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="フォントのちらつきを抑える" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. フォントのちらつきを抑える</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>画像の次に注意したいのがフォントです。Web フォントは読み込みに時間がかかり、その間に「文字が一瞬消える」「あとから別のフォントに入れ替わって行がずれる」といったちらつきが起きます。</p>
+          <p>web.dev が挙げる最有力の対策が、<code class="text-sm bg-dark-100 px-2 py-1 rounded">font-display: optional</code> と<strong class="text-dark-900">フォントの preload</strong> の組み合わせです。<code class="text-sm bg-dark-100 px-2 py-1 rounded">optional</code> は「読み込みが間に合わなければ無理に切り替えず代替フォントのままにする」設定で、後からの入れ替わりによるレイアウトシフトを防ぎます。preload は重要なフォントを早めに読み込ませる指定です。</p>
+          <p>補足として、フォントを自分のサーバーに置く（self-host）場合でも preload には <code class="text-sm bg-dark-100 px-2 py-1 rounded">crossorigin</code> 指定が必要です。また <code class="text-sm bg-dark-100 px-2 py-1 rounded">size-adjust</code> を使うと、代替フォントと本来のフォントの大きさの差を揃え、入れ替わり時のずれをさらに抑えられます。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="font-display を指定しないとフォント読み込み中に文字が消えたり後から入れ替わってレイアウトがずれるが、font-display optional とフォント preload を組み合わせるとレイアウトシフトをほぼゼロにできることを示す比較図。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">フォント読み込み時のちらつき対策</text>
+            <rect x="40" y="52" width="290" height="120" rx="10" fill="#eff6fb" stroke="#9db8c4" stroke-width="1.5"/>
+            <text x="185" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">対策なし</text>
+            <text x="185" y="106" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">読み込み中に文字が消える</text>
+            <text x="185" y="126" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">後から入れ替わって行がずれる</text>
+            <text x="185" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#9db8c4">→ CLS 悪化</text>
+            <rect x="350" y="52" width="290" height="120" rx="10" fill="#f0fbf5" stroke="#10b981" stroke-width="1.5"/>
+            <text x="495" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#10b981">optional + preload</text>
+            <text x="495" y="106" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">間に合わなければ代替のまま</text>
+            <text x="495" y="126" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">size-adjust で大きさの差も吸収</text>
+            <text x="495" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#10b981">→ シフトほぼゼロ</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：font-display: optional と preload の組み合わせがシフト対策の最有力。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="速度を半分にする実装手順" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 【Top 6】速度を半分にする実装手順</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">効果が大きく取り組みやすい順に、実際の作業手順としてまとめます。上から進めるのが効率的です。</p>
+        <ol class="mt-6 space-y-3">
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span><p class="text-sm text-dark-700"><strong class="text-dark-900">重い画像を洗い出す</strong> — PageSpeed Insights や DevTools で、ファイルサイズの大きい画像とファーストビューの LCP 画像を特定する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span><p class="text-sm text-dark-700"><strong class="text-dark-900">表示サイズまで縮小する</strong> — そもそも画面に表示される寸法より大きい画像は無駄。表示幅に合わせてリサイズしてから載せる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span><p class="text-sm text-dark-700"><strong class="text-dark-900">AVIF / WebP に変換する</strong> — JPEG・PNG の写真を AVIF / WebP へ。JPEG 比で約半分まで軽くなる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">4</span><p class="text-sm text-dark-700"><strong class="text-dark-900">picture 要素で 3 段構成にする</strong> — AVIF 主・WebP フォールバック・JPEG 保険。すべての環境で最も軽い画像が届く。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">5</span><p class="text-sm text-dark-700"><strong class="text-dark-900">すべての画像に width / height を指定する</strong> — 場所を先に確保し、読み込み時のガタつき（CLS）を止める。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">6</span><p class="text-sm text-dark-700"><strong class="text-dark-900">フォントに font-display と preload を設定する</strong> — 文字のちらつきと入れ替わりによるシフトを抑える。size-adjust も併用する。</p></li>
+        </ol>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">画像とフォントは「直せば確実に効く」領域です。</strong>大がかりな作り直しをしなくても、形式変換・サイズ指定・フォント制御だけで LCP と CLS は大きく改善します。T.C.HARTON は全ページの画像とフォントを含む Core Web Vitals を実測し、<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で公開しています。まずは現状サイトの「一番重い画像」を知ることから始められます。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">AVIF と WebP はどちらを使えばいいですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">AVIF は JPEG 比で約 50%、WebP 比でも 20〜30% ファイルサイズが小さく、最も軽い形式です。ブラウザ対応も AVIF が約 94%、WebP が約 95%（2025 年 9 月時点）と十分広がっています。picture 要素を使い、AVIF を主・WebP をフォールバック・JPEG を最終保険として並べておくのが現実的な構成です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">画像で画面がガタつくのを防ぐにはどうすればいいですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">画像に幅と高さ（または縦横比）をあらかじめ指定しておくことです。サイズ指定がないと、画像が読み込まれた瞬間に表示領域が確定して周囲のレイアウトがずれ、CLS が悪化します。サイズを先に伝えておけば、ブラウザは画像が届く前に場所を確保でき、ガタつきを防げます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">font-display: optional とは何ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">font-display: optional は、Web フォントの読み込みが間に合わなければ無理に切り替えず代替フォントのまま表示する設定です。フォント preload と組み合わせると、文字の表示が遅れたり後から入れ替わったりするレイアウトシフトをほぼゼロに抑えられます。web.dev はこれをシフト対策の最有力として挙げています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">画像とフォントの最適化で本当に速くなりますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">多くの中小企業サイトでは、最も重いのが最適化されていない画像です。スマホで撮った数 MB の写真をそのまま載せているケースが典型で、これを適切な形式・サイズに直すだけで表示速度は大きく改善します。フォントの読み込み制御と合わせれば、LCP と CLS の両方に効きます。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/why-slow-site-loses-sales/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">サイトが遅いと、なぜ客が逃げるのか</a></li>
+          <li><a href="/insights/core-web-vitals/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Core Web Vitals 完全解説 — INP 時代の表示速度改善</a></li>
+          <li><a href="/insights/inp-deep-dive/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">INP を 200ms 未満にする実装の全手法</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>web.dev, Best practices for fonts — <a href="https://web.dev/articles/font-best-practices" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/font-best-practices</a></li>
+          <li>web.dev, Improve font fallbacks with size-adjust — <a href="https://web.dev/articles/css-size-adjust" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/css-size-adjust</a></li>
+          <li>caniuse, AVIF image format — <a href="https://caniuse.com/avif" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">caniuse.com/avif</a></li>
+          <li>web.dev, Web Vitals — <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/vitals</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトの一番重い画像は、どれですか</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの画像・フォントを含む Core Web Vitals を実測し、削れる重さをお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

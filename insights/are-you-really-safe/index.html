@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>「うちは狙われない」は本当か — 中小企業とサイバー攻撃の現実｜T.C.HARTON</title>
+  <meta name="description" content="「小さい会社のサイトは狙われない」という思い込みを、Verizon 2025 DBIR・Patchstack 2025・IPA 情報セキュリティ 10 大脅威の一次出典つきで検証。中小企業の侵害の 88% にランサムウェアが関与する現実と、規模の小ささが安全の理由にならない理由、まず何から守るかを解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="「うちは狙われない」は本当か — 中小企業とサイバー攻撃の現実｜T.C.HARTON">
+  <meta property="og:description" content="「小さい会社のサイトは狙われない」という思い込みを、Verizon 2025 DBIR・Patchstack 2025・IPA 情報セキュリティ 10 大脅威の一次出典つきで検証。中小企業の侵害の 88% にランサムウェアが関与する現実と、規模の小ささが安全の理由にならない理由、まず何から守るかを解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/are-you-really-safe/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="「うちは狙われない」は本当か — 中小企業とサイバー攻撃の現実｜T.C.HARTON">
+  <meta name="twitter:description" content="「小さい会社のサイトは狙われない」という思い込みを、Verizon 2025 DBIR・Patchstack 2025・IPA 情報セキュリティ 10 大脅威の一次出典つきで検証。中小企業の侵害の 88% にランサムウェアが関与する現実と、規模の小ささが安全の理由にならない理由、まず何から守るかを解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/are-you-really-safe/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"「うちは狙われない」は本当か","item":"https://tcharton.com/insights/are-you-really-safe/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/are-you-really-safe/#article","headline":"「うちは狙われない」は本当か — 中小企業とサイバー攻撃の現実","description":"「小さい会社のサイトは狙われない」という思い込みを、Verizon 2025 DBIR・Patchstack 2025・IPA 情報セキュリティ 10 大脅威の一次出典つきで検証。中小企業の侵害の 88% にランサムウェアが関与する現実と、規模の小ささが安全の理由にならない理由、まず何から守るかを解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/are-you-really-safe/","mainEntityOfPage":"https://tcharton.com/insights/are-you-really-safe/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"小さな会社のサイトは本当に攻撃対象になりますか？","acceptedAnswer":{"@type":"Answer","text":"はい。Verizon 2025 DBIR では、中小企業の侵害の 88% にランサムウェアが関与し、大企業の 39% を大きく上回りました。現代の攻撃の多くは標的を一つずつ選ばず、脆弱性を持つサイトを自動で探して攻撃するため、会社の規模は安全の理由になりません。"}},
+    {"@type":"Question","name":"知名度のないサイトでもなぜ見つかってしまうのですか？","acceptedAnswer":{"@type":"Answer","text":"攻撃者は人手でサイトを探すのではなく、インターネット全体を機械的にスキャンするツールを使います。古いプラグインや既知の脆弱性を持つサイトは、公開された瞬間からこのスキャンの対象になります。アクセス数の多寡や知名度は関係ありません。"}},
+    {"@type":"Question","name":"WordPress を使っていると危険ですか？","acceptedAnswer":{"@type":"Answer","text":"WordPress 自体が危険なのではありません。Patchstack の 2025 年レポートでは、報告された脆弱性 11,334 件のうち 91% がプラグイン、9% がテーマで、コア本体はわずか 6 件でした。リスクの大半は追加した部品にあり、入れすぎない・更新を怠らないことで大きく下げられます。"}},
+    {"@type":"Question","name":"被害に遭うと具体的に何が起きますか？","acceptedAnswer":{"@type":"Answer","text":"サイトの改ざん、顧客情報の流出、ランサムウェアによるデータ暗号化と身代金要求などが代表例です。Verizon 2025 DBIR ではランサム身代金の中央値は 11.5 万ドルで、被害者の 64% は支払いを拒否しています。金銭被害に加え、復旧の手間と顧客からの信頼低下が続きます。"}},
+    {"@type":"Question","name":"まず何から手を付ければよいですか？","acceptedAnswer":{"@type":"Answer","text":"HTTPS の常時化、使っていないプラグインの削除、更新の徹底、管理画面へのアクセス制限といった基礎から始めます。これらは OWASP Top 10:2025 の上位リスクに直結し、専門ツールを買わなくても着手できます。詳細は WEB セキュリティ 5 原則の記事で扱っています。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">「うちは狙われない」は本当か</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 安全なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">「うちは狙われない」は本当か</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 8 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">「小さい会社だから狙われない」は実データと合いません。Verizon 2025 DBIR では<strong class="text-dark-900">中小企業の侵害の 88% にランサムウェアが関与</strong>し、大企業の 39% を大きく上回りました。攻撃の多くは標的を選ばず自動化されているため、<strong class="text-dark-900">規模の小ささは安全の理由になりません</strong>。まず基礎の防御から固めることが現実的です。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. 「狙われない」という思い込みの正体</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. データが示す現実 — 中小企業の侵害の 88%</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. なぜ知名度のないサイトまで見つかるのか</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. WordPress サイトに潜む「追加した部品」のリスク</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 被害に遭うと何が起きるか</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. いま何から手を付けるべきか</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="思い込みと現実の対比図。左側に「うちは小さいから狙われない」という思い込み、右側に Verizon 2025 DBIR が示す中小企業の侵害の 88 パーセントにランサムウェアが関与という現実が並ぶ。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="340" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">「思い込み」と「現実」のギャップ</text>
+          <rect x="40" y="58" width="270" height="140" rx="10" fill="#f7f9fa" stroke="#9db8c4" stroke-width="1.5"/>
+          <text x="175" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#9db8c4">思い込み</text>
+          <text x="175" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">「うちは小さい会社だから</text>
+          <text x="175" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">攻撃者の興味の対象外」</text>
+          <text x="175" y="172" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">→ 根拠のない安心</text>
+          <line x1="320" y1="128" x2="368" y2="128" stroke="#D4AF37" stroke-width="2.5"/>
+          <polygon points="368,128 356,122 356,134" fill="#D4AF37"/>
+          <rect x="378" y="58" width="262" height="140" rx="10" fill="#fdeced" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="509" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ef4444">現実</text>
+          <text x="509" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="26" font-weight="800" fill="#ef4444">88%</text>
+          <text x="509" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">中小企業の侵害に</text>
+          <text x="509" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">ランサムウェアが関与</text>
+          <text x="509" y="184" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">出典：Verizon 2025 DBIR</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：「狙われない」という思い込みと、実データが示す現実には大きなギャップがある。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="狙われないという思い込みの正体" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. 「狙われない」という思い込みの正体</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「うちのような小さな会社のサイトを、わざわざ攻撃する人はいないだろう」。この感覚は自然なものですが、攻撃者の行動を「人が標的を吟味して選ぶ」とイメージしている点に誤りがあります。実際の攻撃の多くは、人ではなくプログラムが自動で行っています。</p>
+          <p>もう一つの思い込みは「うちのサイトには盗まれて困るものがない」というものです。しかし攻撃者にとっての価値は、サイトの中身だけではありません。サーバーを別の攻撃の踏み台にする、ページを改ざんして詐欺サイトへ誘導する、といった「サイトそのものの乗っ取り」に目的があるケースが多くあります。</p>
+          <p>つまり「狙われない理由」として挙がるものの大半は、攻撃の実態と噛み合っていません。次章から、何が実際に起きているのかを一次データで確認します。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="データが示す現実" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. データが示す現実 — 中小企業の侵害の 88%</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>通信大手 Verizon が毎年公開する「2025 Data Breach Investigations Report（DBIR）」は、22,000 件超のインシデントと、うち 12,195 件の確認された侵害を分析した報告書です。そこでは<strong class="text-dark-900">中小企業の侵害の 88% にランサムウェアが関与</strong>したと示されています。</p>
+          <p>同じ報告書で、大企業の侵害にランサムウェアが関与した割合は 39% でした。中小企業の方が、ランサムウェアという特定の攻撃にさらされる比率が明らかに高いのです。攻撃者は「守りが薄く、復旧体制も整っていない相手」を効率の良い標的と見なしています。</p>
+          <p>日本の状況も同じ傾向です。IPA（情報処理推進機構）の「情報セキュリティ 10 大脅威」では、組織編の 1 位はランサム攻撃で、2021 年以降この順位は動いていません。海外特有の話ではなく、国内の組織にとっても最大級の脅威です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="侵害へのランサムウェア関与率の比較棒グラフ。中小企業は 88 パーセント、大企業は 39 パーセント。中小企業の方が約 2 倍以上高い。出典は Verizon 2025 DBIR。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">侵害へのランサムウェア関与率（Verizon 2025 DBIR）</text>
+            <text x="20" y="74" font-family="Inter, sans-serif" font-size="12" fill="#666666">中小企業</text>
+            <rect x="120" y="58" width="480" height="28" rx="4" fill="#e0e6eb"/>
+            <rect x="120" y="58" width="475" height="28" rx="4" fill="#ef4444"/>
+            <text x="608" y="78" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#ef4444">88%</text>
+            <text x="20" y="128" font-family="Inter, sans-serif" font-size="12" fill="#666666">大企業</text>
+            <rect x="120" y="112" width="480" height="28" rx="4" fill="#e0e6eb"/>
+            <rect x="120" y="112" width="213" height="28" rx="4" fill="#9db8c4"/>
+            <text x="345" y="132" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#666666">39%</text>
+            <text x="20" y="176" font-family="Inter, sans-serif" font-size="12" fill="#1B4965" font-weight="700">中小企業は大企業より高い比率でランサムウェアにさらされている</text>
+            <text x="20" y="202" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">出典：Verizon, 2025 Data Breach Investigations Report</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：中小企業の侵害は 88% がランサムウェア関与。大企業の 39% を大きく上回る。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="なぜ知名度のないサイトまで見つかるのか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. なぜ知名度のないサイトまで見つかるのか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「広告も出していないし、検索でもほとんど出てこないサイトを、どうやって見つけるのか」。答えは、攻撃者が人手でサイトを探していないからです。インターネット全体を機械的に巡回し、既知の脆弱性を持つサイトを自動で洗い出すツールが使われています。</p>
+          <p>このスキャンは、サイトのアクセス数や知名度を見ません。判定基準は「攻撃できる穴があるか」だけです。古いプラグイン、初期設定のまま放置された管理画面、既知の脆弱性 — こうした弱点を持つサイトは、公開された瞬間から自動スキャンの対象に入ります。</p>
+          <p>OWASP（オープンな WEB セキュリティ団体）が公開する「OWASP Top 10:2025」でも、1 位はアクセス制御の不備、2 位は設定ミスです。いずれも高度な攻撃技術ではなく「穴をふさぎ忘れた状態」を突くものであり、自動スキャンと相性が良いリスクと言えます。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 230" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="自動スキャン型攻撃の流れ図。攻撃者がスキャンツールを起動し、インターネット全体を機械的に巡回、脆弱性を持つサイトを自動検出し、見つけ次第攻撃する。サイトの規模や知名度は判定に関係しない。">
+            <rect width="680" height="230" fill="#FFFFFF"/>
+            <text x="340" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">自動スキャン型攻撃は「規模」を見ない</text>
+            <rect x="30" y="64" width="140" height="80" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="100" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">① スキャン起動</text>
+            <text x="100" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">ツールが自動で</text>
+            <text x="100" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">巡回を開始</text>
+            <line x1="172" y1="104" x2="206" y2="104" stroke="#9db8c4" stroke-width="2"/>
+            <polygon points="206,104 196,99 196,109" fill="#9db8c4"/>
+            <rect x="210" y="64" width="140" height="80" rx="10" fill="#f7f9fa" stroke="#9db8c4" stroke-width="1.5"/>
+            <text x="280" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#666666">② 全体を巡回</text>
+            <text x="280" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">無差別に</text>
+            <text x="280" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">サイトを調べる</text>
+            <line x1="352" y1="104" x2="386" y2="104" stroke="#9db8c4" stroke-width="2"/>
+            <polygon points="386,104 376,99 376,109" fill="#9db8c4"/>
+            <rect x="390" y="64" width="140" height="80" rx="10" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="460" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">③ 穴を検出</text>
+            <text x="460" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">既知の脆弱性を</text>
+            <text x="460" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">自動で発見</text>
+            <line x1="532" y1="104" x2="566" y2="104" stroke="#9db8c4" stroke-width="2"/>
+            <polygon points="566,104 556,99 556,109" fill="#9db8c4"/>
+            <rect x="510" y="64" width="140" height="80" rx="10" fill="#fdeced" stroke="#ef4444" stroke-width="1.5"/>
+            <text x="580" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#ef4444">④ 攻撃実行</text>
+            <text x="580" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">見つけ次第</text>
+            <text x="580" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">攻撃する</text>
+            <text x="340" y="186" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#ef4444" font-weight="700">どの工程でも「サイトの規模・知名度」は判定に使われない</text>
+            <text x="340" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">出典：OWASP Top 10:2025（A01 アクセス制御の不備 / A02 設定ミス）</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：自動スキャン型攻撃は規模を見ず、「穴があるか」だけで標的を選ぶ。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="WordPress サイトに潜むリスク" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. WordPress サイトに潜む「追加した部品」のリスク</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>中小企業のサイトでよく使われる WordPress には、特有の注意点があります。ただし「WordPress だから危険」という単純な話ではありません。リスクの所在を正確に押さえることが大切です。</p>
+          <p>セキュリティ企業 Patchstack の「State of WordPress Security in 2025」によれば、2025 年に WordPress エコシステムで報告された新規脆弱性 11,334 件のうち、<strong class="text-dark-900">91% がプラグイン、9% がテーマ、コア本体はわずか 6 件</strong>でした。つまりリスクのほぼ全ては、後から追加した部品に集中しています。</p>
+          <p>これは裏を返せば、対策の方向が明確だということです。使っていないプラグインを削除する、更新を放置しない、出所の不明な部品を入れない。この 3 つだけでも、攻撃される面積を大きく減らせます。具体的な手順は<a href="/insights/wordpress-security-basics/" class="text-teal-700 underline hover:text-teal-500">WordPress のセキュリティ記事</a>で扱っています。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="被害に遭うと何が起きるか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 被害に遭うと何が起きるか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「狙われる」と聞いてもピンとこないのは、被害の中身が具体的に見えていないからかもしれません。実際に起きるのは、サイトの改ざん、顧客情報の流出、ランサムウェアによるデータの暗号化と身代金要求といった事態です。</p>
+          <p>金銭面の負担も小さくありません。Verizon 2025 DBIR では、ランサム身代金の中央値は 11.5 万ドルと報告されています。同報告書では被害者の 64% が支払いを拒否していますが、支払いを拒否しても、暗号化されたデータの復旧やシステムの再構築には別途コストと時間がかかります。</p>
+          <p>そして見落とされがちなのが、信頼の損失です。顧客情報を漏らした、サイトが詐欺に使われた — こうした事実は、復旧後も取引先や顧客の記憶に残ります。中小企業にとって、この信頼の毀損は金銭被害以上に重い場合があります。</p>
+        </div>
+      </section>
+
+      <section id="section-6" aria-label="いま何から手を付けるべきか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. いま何から手を付けるべきか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>ここまで読むと不安が募るかもしれませんが、中小企業がやるべきことは明確で、しかも高価なツールを必要としません。攻撃の多くが「ふさぎ忘れた穴」を突くものである以上、基礎を固めるだけで攻撃される面積は大きく縮みます。</p>
+          <p>優先すべきは、OWASP Top 10:2025 の上位リスクに直結する基礎対策です。HTTPS の常時化、使っていないプラグインの削除、更新の徹底、管理画面へのアクセス制限。どれも特別な投資なしに、いますぐ着手できるものばかりです。</p>
+        </div>
+
+        <h3 class="mt-10 font-display text-xl font-bold text-dark-900">【Top 5】「狙われない」を卒業するために、まずやること</h3>
+        <ol class="mt-5 space-y-3 text-dark-700 leading-relaxed">
+          <li><strong class="text-dark-900">1. HTTPS を常時化する</strong> — 通信を暗号化し、改ざんと盗聴の基本的な防御を作る。</li>
+          <li><strong class="text-dark-900">2. 使っていないプラグイン・テーマを削除する</strong> — 攻撃される面積そのものを減らす。</li>
+          <li><strong class="text-dark-900">3. 更新を放置しない</strong> — 既知の脆弱性は更新で塞げる。自動スキャンが狙うのは「未更新」。</li>
+          <li><strong class="text-dark-900">4. 管理画面へのアクセスを制限する</strong> — OWASP 1 位のアクセス制御。誰が入れるかの境界を引く。</li>
+          <li><strong class="text-dark-900">5. 現状を一度きちんと確認する</strong> — どこに穴があるかを把握しなければ、対策の優先順位は決まらない。</li>
+        </ol>
+
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">「うちは狙われない」の反対は「過剰に怖がる」ではありません。</strong>正しい姿勢は、攻撃の実態を知り、効くところから順に手を打つことです。T.C.HARTON は<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で、自社サイトのセキュリティ実装内容を公開しています。何から守ればよいか、一緒に整理できます。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">小さな会社のサイトは本当に攻撃対象になりますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">はい。Verizon 2025 DBIR では、中小企業の侵害の 88% にランサムウェアが関与し、大企業の 39% を大きく上回りました。現代の攻撃の多くは標的を一つずつ選ばず、脆弱性を持つサイトを自動で探して攻撃するため、会社の規模は安全の理由になりません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">知名度のないサイトでもなぜ見つかってしまうのですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">攻撃者は人手でサイトを探すのではなく、インターネット全体を機械的にスキャンするツールを使います。古いプラグインや既知の脆弱性を持つサイトは、公開された瞬間からこのスキャンの対象になります。アクセス数の多寡や知名度は関係ありません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">WordPress を使っていると危険ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">WordPress 自体が危険なのではありません。Patchstack の 2025 年レポートでは、報告された脆弱性 11,334 件のうち 91% がプラグイン、9% がテーマで、コア本体はわずか 6 件でした。リスクの大半は追加した部品にあり、入れすぎない・更新を怠らないことで大きく下げられます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">被害に遭うと具体的に何が起きますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">サイトの改ざん、顧客情報の流出、ランサムウェアによるデータ暗号化と身代金要求などが代表例です。Verizon 2025 DBIR ではランサム身代金の中央値は 11.5 万ドルで、被害者の 64% は支払いを拒否しています。金銭被害に加え、復旧の手間と顧客からの信頼低下が続きます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">まず何から手を付ければよいですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">HTTPS の常時化、使っていないプラグインの削除、更新の徹底、管理画面へのアクセス制限といった基礎から始めます。これらは OWASP Top 10:2025 の上位リスクに直結し、専門ツールを買わなくても着手できます。詳細は WEB セキュリティ 5 原則の記事で扱っています。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/security-5-principles/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）</a></li>
+          <li><a href="/insights/wordpress-security-basics/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">WordPress のセキュリティで最低限やること</a></li>
+          <li><a href="/insights/core-web-vitals/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Core Web Vitals 完全ガイド — 表示速度と技術品質</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Verizon, 2025 Data Breach Investigations Report — <a href="https://www.verizon.com/business/resources/reports/dbir/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">verizon.com/business/resources/reports/dbir</a></li>
+          <li>Patchstack, State of WordPress Security in 2025 — <a href="https://patchstack.com/whitepaper/state-of-wordpress-security-in-2025/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">patchstack.com/whitepaper/state-of-wordpress-security-in-2025</a></li>
+          <li>OWASP, OWASP Top 10:2025 — <a href="https://owasp.org/Top10/2025/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">owasp.org/Top10/2025/</a></li>
+          <li>IPA, 情報セキュリティ 10 大脅威 — <a href="https://www.ipa.go.jp/security/10threats/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">ipa.go.jp/security/10threats/</a></li>
+          <li>IPA, 安全なウェブサイトの作り方（第 7 版） — <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">ipa.go.jp/security/vuln/websecurity/about.html</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトに「狙われる穴」はありませんか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの HTTPS 設定やセキュリティヘッダー、既知の弱点を機械検証し、どこに穴があるかをお見せします。「狙われない」かどうかは、推測ではなく確認で判断できます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

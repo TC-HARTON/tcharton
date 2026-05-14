@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>サイトが遅いと、なぜ客が逃げるのか｜T.C.HARTON</title>
+  <meta name="description" content="表示速度が遅いサイトはなぜ問い合わせや売上を失うのか。Core Web Vitals の合格基準、全 Web の合格率、Deloitte / Google の速度とビジネス指標の研究を、一次出典付きで中小企業向けに解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="サイトが遅いと、なぜ客が逃げるのか｜T.C.HARTON">
+  <meta property="og:description" content="表示速度が遅いサイトはなぜ問い合わせや売上を失うのか。Core Web Vitals の合格基準、全 Web の合格率、Deloitte / Google の速度とビジネス指標の研究を、一次出典付きで中小企業向けに解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/why-slow-site-loses-sales/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="サイトが遅いと、なぜ客が逃げるのか｜T.C.HARTON">
+  <meta name="twitter:description" content="表示速度が遅いサイトはなぜ問い合わせや売上を失うのか。Core Web Vitals の合格基準、全 Web の合格率、Deloitte / Google の速度とビジネス指標の研究を、一次出典付きで中小企業向けに解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/why-slow-site-loses-sales/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"サイトが遅いと、なぜ客が逃げるのか","item":"https://tcharton.com/insights/why-slow-site-loses-sales/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/why-slow-site-loses-sales/#article","headline":"サイトが遅いと、なぜ客が逃げるのか","description":"表示速度が遅いサイトはなぜ問い合わせや売上を失うのか。Core Web Vitals の合格基準、全 Web の合格率、Deloitte / Google の速度とビジネス指標の研究を、一次出典付きで中小企業向けに解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-14","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/why-slow-site-loses-sales/","mainEntityOfPage":"https://tcharton.com/insights/why-slow-site-loses-sales/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"何秒以内に表示されれば「速い」と言えますか？","acceptedAnswer":{"@type":"Answer","text":"Google の Core Web Vitals では、主要な中身が表示される LCP が 2.5 秒以内、操作への応答 INP が 200 ミリ秒以内、表示のずれ CLS が 0.1 以内であれば「良好」とされます。3 指標すべてが基準内に入って初めて合格です。"}},
+    {"@type":"Question","name":"表示速度は本当に売上に影響しますか？","acceptedAnswer":{"@type":"Answer","text":"2020 年公表の Deloitte と Google の共同研究では、モバイルの表示速度を 0.1 秒改善すると EC のコンバージョン率が 8.4%、平均注文額が 9.2% 向上したと報告されています。現在も業界標準的に引用される研究で、速度がビジネス指標と結びつくことを示しています。"}},
+    {"@type":"Question","name":"なぜ多くのサイトは遅いままなのですか？","acceptedAnswer":{"@type":"Answer","text":"Web Almanac 2025 によると、全 Web サイトで Core Web Vitals に合格しているのはモバイルで 48% にとどまります。原因は、最適化されていない大きな画像、過剰な JavaScript、詰め込まれた解析タグや広告タグなど、公開後に積み上がった負荷であることが多いです。"}},
+    {"@type":"Question","name":"表示速度は検索順位にも関係しますか？","acceptedAnswer":{"@type":"Answer","text":"関係します。Core Web Vitals は Google の検索ランキング要因の一つです。さらに表示が遅いとユーザーが離脱しやすくなり、せっかく検索から来た人を問い合わせや購入につなげる前に失うことになります。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">サイトが遅いと、なぜ客が逃げるのか</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 速くて快適なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">サイトが遅いと、なぜ客が逃げるのか</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-14">2026 年 5 月 14 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-14">最終更新 2026 年 5 月 14 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 8 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">遅いサイトは、訪問者を<strong class="text-dark-900">「待たせている」</strong>のではなく<strong class="text-dark-900">「追い返している」</strong>。Google の合格基準は <strong class="text-dark-900">LCP 2.5 秒・INP 200ms・CLS 0.1 以内</strong>ですが、全 Web のモバイル合格率は <strong class="text-dark-900">48%</strong> にすぎません。速度はユーザー体験・離脱率・検索順位の 3 つに同時に効きます。客が逃げるのは「遅さ」そのものではなく、遅さが壊す<strong class="text-dark-900">第一印象と信頼</strong>です。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. 遅さは「待たせる」ではなく「追い返す」</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. Google の合格基準と、全 Web の現実</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. 速度とビジネス指標 — 2020 年の研究</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 遅さは検索順位も削る — 二重の損失</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 【Top 5】サイトを遅くしている主因</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="ページを開いてから表示されるまでの待ち時間が長くなるほど、訪問者が離脱してビジネスチャンスが失われていく様子を示す図。">
+          <rect width="680" height="220" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">表示が遅いほど、訪問者は静かに去っていく</text>
+          <rect x="40" y="60" width="120" height="40" rx="6" fill="#10b981"/>
+          <text x="100" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">速い（〜2.5秒）</text>
+          <text x="180" y="85" font-family="Inter, sans-serif" font-size="12" fill="#666666">読む・比べる・問い合わせる</text>
+          <rect x="40" y="115" width="120" height="40" rx="6" fill="#D4AF37"/>
+          <text x="100" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">やや遅い</text>
+          <text x="180" y="140" font-family="Inter, sans-serif" font-size="12" fill="#666666">「重いな」と感じ始める</text>
+          <rect x="40" y="170" width="120" height="40" rx="6" fill="#9db8c4"/>
+          <text x="100" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">遅い</text>
+          <text x="180" y="190" font-family="Inter, sans-serif" font-size="12" fill="#666666">表示を待たずに戻るボタンを押す</text>
+          <text x="180" y="207" font-family="Inter, sans-serif" font-size="12" fill="#666666">＝広告費も検索努力も無駄になる</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：遅さは「待たせる」だけでは終わらない。表示される前に訪問者を失う。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="遅さは追い返す" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. 遅さは「待たせる」ではなく「追い返す」</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「サイトが少し遅いくらいなら、待ってもらえばいい」— この感覚が、機会損失の出発点です。実際には、訪問者は待ちません。表示される前に戻るボタンを押します。</p>
+          <p>人がページの第一印象を判断するのは、わずか <strong class="text-dark-900">約 50 ミリ秒（0.05 秒）</strong>。Lindgaard らの査読論文が示した数字で、Google の研究も一部 17 ミリ秒と追認しています。つまり、ページが表示されきる前から「このサイトは信頼できそうか」の判断は始まっているのです。</p>
+          <p>表示が遅ければ、ユーザーはその第一印象を形成する機会すら得られません。広告費を払って、検索で上位を取って、せっかく連れてきた訪問者を、玄関先で追い返していることになります。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="合格基準と現実" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. Google の合格基準と、全 Web の現実</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Google は「速さ」を曖昧な感覚ではなく、数値で定義しています。それが <strong class="text-dark-900">Core Web Vitals</strong> です。主要な中身が表示される速さ <strong class="text-dark-900">LCP は 2.5 秒以内</strong>、操作への応答 <strong class="text-dark-900">INP は 200 ミリ秒以内</strong>、表示のずれ <strong class="text-dark-900">CLS は 0.1 以内</strong>。3 つすべてが基準内で初めて「良好」です。</p>
+          <p>ところが現実は厳しい。Web Almanac 2025 によれば、全 Web サイトで 3 指標すべてに合格しているのは<strong class="text-dark-900">モバイルで 48%、デスクトップで 56%</strong>。半分以上のサイトが、Google の基準を満たせていません。</p>
+          <p>これは裏を返せばチャンスでもあります。多くの競合が遅いままなら、自分のサイトを基準内に収めるだけで、体験の質で明確な差がつきます。判定は実ユーザーの体験（CrUX）の 75 パーセンタイルで行われるため、回線の遅い人・古い端末の人も含めて速くする必要があります。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="全 Web サイトの Core Web Vitals 合格率はモバイルで 48 パーセント、デスクトップで 56 パーセント。半分以上のサイトが基準を満たせていないことを示す棒グラフ。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">全 Web サイトの CWV 合格率（Web Almanac 2025）</text>
+            <text x="60" y="80" font-family="Inter, sans-serif" font-size="13" fill="#666666">モバイル</text>
+            <rect x="150" y="66" width="480" height="24" rx="4" fill="#e0e6eb"/>
+            <rect x="150" y="66" width="230" height="24" rx="4" fill="#D4AF37"/>
+            <text x="392" y="84" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8B6914">48% 合格</text>
+            <text x="60" y="130" font-family="Inter, sans-serif" font-size="13" fill="#666666">デスクトップ</text>
+            <rect x="150" y="116" width="480" height="24" rx="4" fill="#e0e6eb"/>
+            <rect x="150" y="116" width="269" height="24" rx="4" fill="#2a6a8a"/>
+            <text x="431" y="134" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">56% 合格</text>
+            <text x="150" y="172" font-family="Inter, sans-serif" font-size="12" fill="#666666">残りの約半数は Google の速度基準を満たせていない</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：全 Web のモバイル合格率は 48%。遅いサイトが多数派という現実。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="速度とビジネス指標" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. 速度とビジネス指標 — 2020 年の研究</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>速度が「気持ちよさ」だけでなく「お金」に直結することを示した代表的な研究があります。Deloitte と Google が共同で行った「Milliseconds Make Millions」です。</p>
+          <p>この研究では、<strong class="text-dark-900">モバイルの表示速度を 0.1 秒改善するだけ</strong>で、EC のコンバージョン率が <strong class="text-dark-900">8.4%</strong>、平均注文額が <strong class="text-dark-900">9.2%</strong> 向上したと報告されています。旅行サイトのコンバージョンは 10.1% 向上、リード獲得型の情報ページでは直帰率が 8.3% 改善しました。</p>
+          <p>誠実にお伝えすると、この研究は <strong class="text-dark-900">2020 年に公表</strong>されたものです。それでも現在まで業界標準的に引用され続けているのは、「わずかな速度差がビジネス指標を動かす」という関係が、繰り返し確認されているからです。沼津の小さな会社のサイトでも、構造は同じです。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="モバイル表示速度を 0.1 秒改善すると、EC のコンバージョン率が 8.4 パーセント、平均注文額が 9.2 パーセント、旅行サイトのコンバージョンが 10.1 パーセント向上したという 2020 年公表の Deloitte / Google 研究の結果。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">速度 0.1 秒改善で動いた指標（Deloitte/Google・2020 年公表）</text>
+            <rect x="50" y="60" width="180" height="100" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="140" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#666666">EC コンバージョン</text>
+            <text x="140" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#10b981">+8.4%</text>
+            <rect x="250" y="60" width="180" height="100" rx="10" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="340" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#666666">平均注文額</text>
+            <text x="340" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#8B6914">+9.2%</text>
+            <rect x="450" y="60" width="180" height="100" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="540" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#666666">旅行コンバージョン</text>
+            <text x="540" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#10b981">+10.1%</text>
+            <text x="50" y="186" font-family="Inter, sans-serif" font-size="11" fill="#666666">※ 2020 年公表の研究。現在も業界標準的に引用される。</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：たった 0.1 秒の改善が、コンバージョンと注文額を動かす。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="検索順位への影響" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 遅さは検索順位も削る — 二重の損失</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>遅いサイトの損失は、離脱だけではありません。検索順位にも効きます。Core Web Vitals は Google の検索ランキング要因の一つとして公式に位置づけられています。</p>
+          <p>つまり遅さは <strong class="text-dark-900">二重の損失</strong>を生みます。1 つ目は、検索結果での順位が下がり、そもそも訪問者が来にくくなること。2 つ目は、来てくれた数少ない訪問者も、表示を待たずに離脱すること。</p>
+          <p>逆に言えば、速度を改善すれば両方が同時に良くなります。順位が上がって流入が増え、来た人も離脱しにくくなる。速度対策は「守り」ではなく、流入と変換を同時に押し上げる「攻め」の投資です。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="サイトを遅くしている主因" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 【Top 5】サイトを遅くしている主因</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">サイトが遅くなる原因の多くは、公開後に少しずつ積み上がった負荷です。中小企業サイトでよく見る 5 つを挙げます。</p>
+        <ol class="mt-6 space-y-3">
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span><p class="text-sm text-dark-700"><strong class="text-dark-900">最適化されていない大きな画像</strong> — スマホで撮った数 MB の写真をそのまま載せている。LCP を最も悪化させる典型例。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span><p class="text-sm text-dark-700"><strong class="text-dark-900">詰め込まれた解析・広告タグ</strong> — 計測タグやチャットツールを足し続けると、JavaScript の総量が膨らみ INP が悪化する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span><p class="text-sm text-dark-700"><strong class="text-dark-900">プラグインの入れすぎ</strong> — WordPress などで機能ごとにプラグインを足すと、読み込むコードが累積する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">4</span><p class="text-sm text-dark-700"><strong class="text-dark-900">サイズ指定のない画像・広告枠</strong> — 読み込み後に場所が確定して画面がガタつく。CLS が悪化し、誤タップも誘発する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">5</span><p class="text-sm text-dark-700"><strong class="text-dark-900">未最適化のホスティング環境</strong> — サーバーの応答が遅いと、何をしても表示の出発点が遅れる。</p></li>
+        </ol>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">遅さは「直せる問題」です。</strong>上の 5 つはいずれも、公開後に積み上がった負荷であり、計測して 1 つずつ外せば改善します。T.C.HARTON は全ページの速度実測を <a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で公開しています。改善の第一歩は、まず現状を数字で知ることです。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">何秒以内に表示されれば「速い」と言えますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Google の Core Web Vitals では、主要な中身が表示される LCP が 2.5 秒以内、操作への応答 INP が 200 ミリ秒以内、表示のずれ CLS が 0.1 以内であれば「良好」とされます。3 指標すべてが基準内に入って初めて合格です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">表示速度は本当に売上に影響しますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">2020 年公表の Deloitte と Google の共同研究では、モバイルの表示速度を 0.1 秒改善すると EC のコンバージョン率が 8.4%、平均注文額が 9.2% 向上したと報告されています。現在も業界標準的に引用される研究で、速度がビジネス指標と結びつくことを示しています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">なぜ多くのサイトは遅いままなのですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Web Almanac 2025 によると、全 Web サイトで Core Web Vitals に合格しているのはモバイルで 48% にとどまります。原因は、最適化されていない大きな画像、過剰な JavaScript、詰め込まれた解析タグや広告タグなど、公開後に積み上がった負荷であることが多いです。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">表示速度は検索順位にも関係しますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">関係します。Core Web Vitals は Google の検索ランキング要因の一つです。さらに表示が遅いとユーザーが離脱しやすくなり、せっかく検索から来た人を問い合わせや購入につなげる前に失うことになります。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/core-web-vitals/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Core Web Vitals 完全解説 — INP 時代の表示速度改善</a></li>
+          <li><a href="/insights/image-font-optimization/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">画像とフォントで表示速度を半分にする</a></li>
+          <li><a href="/insights/inp-deep-dive/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">INP を 200ms 未満にする実装の全手法</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>web.dev, Web Vitals — <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/vitals</a></li>
+          <li>Google Search Central, Core Web Vitals &amp; Google Search — <a href="https://developers.google.com/search/docs/appearance/core-web-vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">developers.google.com/search/docs/appearance/core-web-vitals</a></li>
+          <li>Web Almanac 2025, Performance — <a href="https://almanac.httparchive.org/en/2025/performance" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">almanac.httparchive.org/en/2025/performance</a></li>
+          <li>Deloitte / Google, Milliseconds Make Millions（2020 年公表）— <a href="https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions</a></li>
+          <li>Lindgaard et al., Attention web designers: You have 50 milliseconds to make a good first impression — <a href="https://www.tandfonline.com/doi/abs/10.1080/01449290500330448" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">tandfonline.com/doi/abs/10.1080/01449290500330448</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトは、訪問者を待たせていませんか</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの Core Web Vitals を実測し、客を逃している原因をお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

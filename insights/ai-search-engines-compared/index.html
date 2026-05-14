@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>ChatGPT・Perplexity・Gemini 攻略法の違い — AI 検索プラットフォーム比較｜T.C.HARTON</title>
+  <meta name="description" content="ChatGPT・Perplexity・Google AI Overviews は引用ロジックが全く違います。Profound や Ahrefs の大規模調査をもとに、3 つの AI 検索の引用源の個性と、中小企業がどう優先順位をつけるべきかを一次出典付きで解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="ChatGPT・Perplexity・Gemini 攻略法の違い — AI 検索プラットフォーム比較｜T.C.HARTON">
+  <meta property="og:description" content="ChatGPT・Perplexity・Google AI Overviews は引用ロジックが全く違います。Profound や Ahrefs の大規模調査をもとに、3 つの AI 検索の引用源の個性と、中小企業がどう優先順位をつけるべきかを一次出典付きで解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/ai-search-engines-compared/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ChatGPT・Perplexity・Gemini 攻略法の違い — AI 検索プラットフォーム比較｜T.C.HARTON">
+  <meta name="twitter:description" content="ChatGPT・Perplexity・Google AI Overviews は引用ロジックが全く違います。Profound や Ahrefs の大規模調査をもとに、3 つの AI 検索の引用源の個性と、中小企業がどう優先順位をつけるべきかを一次出典付きで解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/ai-search-engines-compared/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"ChatGPT・Perplexity・Gemini 攻略法の違い","item":"https://tcharton.com/insights/ai-search-engines-compared/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/ai-search-engines-compared/#article","headline":"ChatGPT・Perplexity・Gemini 攻略法の違い","description":"ChatGPT・Perplexity・Google AI Overviews は引用ロジックが全く違います。Profound や Ahrefs の大規模調査をもとに、3 つの AI 検索の引用源の個性と、中小企業がどう優先順位をつけるべきかを一次出典付きで解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/ai-search-engines-compared/","mainEntityOfPage":"https://tcharton.com/insights/ai-search-engines-compared/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"ChatGPT と Perplexity は同じ対策で両方に効きますか？","acceptedAnswer":{"@type":"Answer","text":"同じ対策が両方に効くとは限りません。Profound が 6.8 億件の引用を分析した調査では、ChatGPT と Perplexity が共通して引用するドメインは 11% にとどまりました。両者は引用源の選び方が大きく異なるため、片方で引用されても、もう片方では引用されないことが珍しくありません。"}},
+    {"@type":"Question","name":"Perplexity に引用されるには何が効きますか？","acceptedAnswer":{"@type":"Answer","text":"Perplexity は Google の検索順位と強く連動する傾向があります。ある調査では Perplexity の引用元の 91% が Google 上位 10 位に入っていました。つまり Perplexity 対策は、従来の検索エンジン最適化（SEO）の土台づくりとほぼ同じ方向を向いています。"}},
+    {"@type":"Question","name":"ChatGPT は検索順位を上げれば引用されますか？","acceptedAnswer":{"@type":"Answer","text":"ChatGPT は検索順位との連動が弱い傾向があります。ある調査では ChatGPT の引用元と Google 上位 10 位の重複はわずか 14% でした。ChatGPT は学習済みの知識や Wikipedia などの定番ソースを重視するため、検索順位を上げるだけでは引用されにくいと考えられます。"}},
+    {"@type":"Question","name":"Google AI Overviews の引用元と検索順位の関係は変わっていますか？","acceptedAnswer":{"@type":"Answer","text":"関係は弱まっています。Ahrefs が約 86 万件の検索結果を分析した調査では、AI Overviews の引用元と Google 上位 10 位の一致率は 2025 年中頃の約 76% から 2026 年初頭に約 38% へ低下しました。検索順位だけに頼る対策は効きにくくなっています。"}},
+    {"@type":"Question","name":"中小企業は 3 つのうちどれを優先すべきですか？","acceptedAnswer":{"@type":"Answer","text":"まず従来の検索エンジン最適化（SEO）の土台を固めることです。これは Google 検索順位と連動する Perplexity と Google AI Overviews の両方に効きます。その上で、第三者メディアへの掲載や事実の明記といった、プラットフォーム共通で効く品質づくりを積み上げるのが現実的です。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">ChatGPT・Perplexity・Gemini 攻略法の違い</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ AI 検索に選ばれる</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">ChatGPT・Perplexity・Gemini 攻略法の違い</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 10 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">ChatGPT・Perplexity・Google AI Overviews は引用ロジックが異なります。</strong>大規模調査では、ChatGPT と Perplexity が共通して引用するドメインは<strong class="text-dark-900">わずか 11%</strong>。Perplexity は Google 検索順位と強く連動し、ChatGPT は学習済み知識を重視します。中小企業はまず従来 SEO の土台を固め、その上に各プラットフォーム共通で効く品質づくりを積むのが現実的です。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. 「AI 検索」はひとつではない</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 引用が重ならない — 共通ドメインは 11%</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. Perplexity — 検索順位連動型</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. ChatGPT — 独自知識型</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. Google AI Overviews — 順位との相関が低下中</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 【Top 4】中小企業の優先順位</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 260" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="3 つの AI 検索プラットフォームの引用源の個性。Perplexity は Google 検索順位と強く連動する順位連動型。ChatGPT は学習済み知識や Wikipedia を重視する独自知識型。Google AI Overviews は Reddit や YouTube に分散する分散型。">
+          <rect width="680" height="260" fill="#FFFFFF"/>
+          <text x="20" y="30" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">3 つの AI 検索 — 引用源の個性</text>
+          <rect x="20" y="50" width="200" height="180" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="36" y="78" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">Perplexity</text>
+          <text x="36" y="100" font-family="Inter, sans-serif" font-size="11" fill="#666666">順位連動型</text>
+          <text x="36" y="126" font-family="Inter, sans-serif" font-size="11" fill="#666666">Google 上位を多く引用</text>
+          <text x="36" y="146" font-family="Inter, sans-serif" font-size="11" fill="#666666">リアルタイム Web 重視</text>
+          <rect x="36" y="166" width="160" height="9" rx="2" fill="#2a6a8a"/>
+          <rect x="36" y="180" width="150" height="9" rx="2" fill="#2a6a8a"/>
+          <text x="36" y="214" font-family="Inter, sans-serif" font-size="11" fill="#1B4965">→ SEO の土台が効く</text>
+          <rect x="240" y="50" width="200" height="180" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+          <text x="256" y="78" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">ChatGPT</text>
+          <text x="256" y="100" font-family="Inter, sans-serif" font-size="11" fill="#666666">独自知識型</text>
+          <text x="256" y="126" font-family="Inter, sans-serif" font-size="11" fill="#666666">学習済み知識を重視</text>
+          <text x="256" y="146" font-family="Inter, sans-serif" font-size="11" fill="#666666">Wikipedia 偏重</text>
+          <rect x="256" y="166" width="120" height="9" rx="2" fill="#9db8c4"/>
+          <rect x="256" y="180" width="100" height="9" rx="2" fill="#c9d6dc"/>
+          <text x="256" y="214" font-family="Inter, sans-serif" font-size="11" fill="#1B4965">→ 定番ソース掲載が効く</text>
+          <rect x="460" y="50" width="200" height="180" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+          <text x="476" y="78" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">Google AI Overviews</text>
+          <text x="476" y="100" font-family="Inter, sans-serif" font-size="11" fill="#666666">分散型</text>
+          <text x="476" y="126" font-family="Inter, sans-serif" font-size="11" fill="#666666">Reddit・YouTube に分散</text>
+          <text x="476" y="146" font-family="Inter, sans-serif" font-size="11" fill="#666666">順位との相関は低下中</text>
+          <rect x="476" y="166" width="110" height="9" rx="2" fill="#9db8c4"/>
+          <rect x="476" y="180" width="130" height="9" rx="2" fill="#9db8c4"/>
+          <text x="476" y="214" font-family="Inter, sans-serif" font-size="11" fill="#1B4965">→ 第三者掲載が効く</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：3 つの AI 検索は引用源の選び方が異なる。「AI 検索対策」はひとつの対策ではない。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="AI 検索はひとつではない" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. 「AI 検索」はひとつではない</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「AI 検索に対応したい」という相談をよく受けます。ただ、ここで見落とされがちなのは、<strong class="text-dark-900">「AI 検索」と一括りにできるものは存在しない</strong>という事実です。</p>
+          <p>ChatGPT、Perplexity、Google の AI Overviews。この 3 つは、どれも「質問に文章で答える」という見た目は同じです。しかし内部で「どのサイトを引用元に選ぶか」の仕組みは、それぞれ大きく違います。</p>
+          <p>つまり、ひとつの対策を打てば 3 つすべてに効く、という前提が成り立ちません。まずこの「3 つは別物」という出発点を押さえることが、遠回りを避ける第一歩になります。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="引用が重ならない" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 引用が重ならない — 共通ドメインは 11%</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「3 つは別物」を最もはっきり示すのが、引用ドメインの重なりの少なさです。</p>
+          <p>AI 検索の可視性を分析する Profound が、約 <strong class="text-dark-900">6.8 億件</strong>の引用を調べた調査によると、<strong class="text-dark-900">ChatGPT と Perplexity が共通して引用するドメインは 11% にとどまりました</strong>。残りの約 9 割は、片方だけが引用しているということです。</p>
+          <p>この数字が意味するのは単純です。Perplexity で引用されているサイトでも、ChatGPT ではほとんど引用されていない可能性が高い。逆もまた同じです。だからこそ、それぞれの「引用の選び方の個性」を知る必要があります。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Profound の調査によると、ChatGPT と Perplexity が共通して引用するドメインは 11 パーセントのみ。残りの 89 パーセントは片方のプラットフォームだけが引用している。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="30" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">ChatGPT と Perplexity の引用ドメインの重なり（Profound 調査）</text>
+            <circle cx="270" cy="125" r="80" fill="#2a6a8a" fill-opacity="0.35" stroke="#2a6a8a" stroke-width="1.5"/>
+            <circle cx="380" cy="125" r="80" fill="#9db8c4" fill-opacity="0.5" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="215" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">ChatGPT</text>
+            <text x="435" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">Perplexity</text>
+            <circle cx="325" cy="125" r="14" fill="#D4AF37"/>
+            <text x="325" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">共通 11%</text>
+            <text x="325" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">残り 89% は片方のみ</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：Profound が約 6.8 億件の引用を分析。共通引用ドメインはわずか 11%。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="Perplexity 検索順位連動型" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. Perplexity — 検索順位連動型</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>3 つのなかで、最も「従来の検索エンジン最適化（SEO）」と相性がよいのが Perplexity です。</p>
+          <p>ある調査では、<strong class="text-dark-900">Perplexity の引用元の 91% が Google 上位 10 位に入っていました</strong>。Perplexity はリアルタイムに Web を検索し、その上位結果を引用元として使う傾向が強い、ということです。</p>
+          <p>中小企業にとって、これは朗報です。Perplexity 対策は、特別な裏技ではなく「Google 検索で上位に入る基本的な品質づくり」とほぼ同じ方向を向いています。狙うキーワードで検索順位を上げれば、Perplexity の引用にもつながりやすい。やるべきことが従来 SEO と重なるぶん、取り組みやすい相手だと言えます。</p>
+        </div>
+      </section>
+
+      <section id="section-4" aria-label="ChatGPT 独自知識型" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. ChatGPT — 独自知識型</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Perplexity と対照的なのが ChatGPT です。</p>
+          <p>同じ調査では、<strong class="text-dark-900">ChatGPT の引用元と Google 上位 10 位の重複はわずか 14%</strong>でした。ChatGPT は検索順位をそのまま引用に反映するわけではなく、学習済みの知識や、Wikipedia のような定番ソースを重視する傾向があります。Profound の分析では、ChatGPT の引用源のなかで Wikipedia が最も多く、約 7.8% を占めていました。</p>
+          <p>つまり、ChatGPT で引用されたいなら「検索順位を上げる」だけでは足りません。Wikipedia をはじめとする信頼性の高い第三者の場に、自社の情報が正確な形で存在しているか。ここが効いてきます。検索順位とは別の土俵だと考えるのが現実的です。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="Google AI Overviews 相関低下" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. Google AI Overviews — 順位との相関が低下中</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>3 つ目の Google AI Overviews は、いま最も「動いている」プラットフォームです。</p>
+          <p>Ahrefs が約 <strong class="text-dark-900">86 万件</strong>の検索結果と 400 万件超の AI Overviews の URL を分析した調査によると、AI Overviews の引用元と Google 上位 10 位の一致率は、<strong class="text-dark-900">2025 年中頃の約 76% から 2026 年初頭には約 38% へ低下</strong>しました。約半分です。</p>
+          <p>これは「Google で上位に入れば AI Overviews にも引用される」という関係が崩れつつあることを意味します。Google AI Overviews は Reddit や YouTube など多様なソースに引用を分散させる傾向があり、検索順位だけに頼る対策は通用しにくくなっています。3 つのなかで最も変化が速く、継続的な観察が必要な相手です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Ahrefs の調査によると、Google AI Overviews の引用元と Google 上位 10 位の一致率は、2025 年中頃の約 76 パーセントから 2026 年初頭に約 38 パーセントへ低下した。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="30" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">AI Overviews 引用元と Google 上位 10 位の一致率（Ahrefs 調査）</text>
+            <line x1="80" y1="170" x2="620" y2="170" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="150" y="55" width="120" height="115" fill="#2a6a8a"/>
+            <text x="210" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">2025 年中頃</text>
+            <text x="210" y="47" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">約 76%</text>
+            <rect x="420" y="112" width="120" height="58" fill="#9db8c4"/>
+            <text x="480" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">2026 年初頭</text>
+            <text x="480" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">約 38%</text>
+            <path d="M 280 100 L 410 130" stroke="#D4AF37" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="345" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">約半分に低下</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：AI Overviews と検索順位の連動は急低下。Gemini 3 の AI Overviews 標準化と時期が重なる。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="中小企業の優先順位" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 【Top 4】中小企業の優先順位</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">3 つの違いを踏まえると、中小企業が限られた時間で取り組む順番は次のようになります。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">1</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">従来 SEO の土台を固める</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">検索順位は Perplexity に直結し、AI Overviews にも一部効きます。最も投資効率がよく、最初に手をつけるべき土台です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">2</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">第三者の場に正しい情報を置く</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">ChatGPT は Wikipedia など定番ソースを重視。地域メディアや業界紙への掲載が、自社サイトを盛るより効きます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">3</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">事実を検証可能な形で書く</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">統計・引用・出典を明記した文章は、どのプラットフォームでも引用元として扱われやすくなります。共通で効く土台です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">4</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">プラットフォーム別に観察を続ける</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">特に AI Overviews は変化が速い。実際に各 AI に質問し、自社が引用・言及されるかを定期的に確認します。</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">「全部を一度に」ではなく「順番に」。</strong>3 つの AI 検索は別物ですが、土台の従来 SEO と「検証可能な事実づくり」は共通で効きます。T.C.HARTON はこの優先順位で取り組み、<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で考え方を公開しています。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">ChatGPT と Perplexity は同じ対策で両方に効きますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">同じ対策が両方に効くとは限りません。Profound が 6.8 億件の引用を分析した調査では、ChatGPT と Perplexity が共通して引用するドメインは 11% にとどまりました。両者は引用源の選び方が大きく異なるため、片方で引用されても、もう片方では引用されないことが珍しくありません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Perplexity に引用されるには何が効きますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Perplexity は Google の検索順位と強く連動する傾向があります。ある調査では Perplexity の引用元の 91% が Google 上位 10 位に入っていました。つまり Perplexity 対策は、従来の検索エンジン最適化（SEO）の土台づくりとほぼ同じ方向を向いています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">ChatGPT は検索順位を上げれば引用されますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">ChatGPT は検索順位との連動が弱い傾向があります。ある調査では ChatGPT の引用元と Google 上位 10 位の重複はわずか 14% でした。ChatGPT は学習済みの知識や Wikipedia などの定番ソースを重視するため、検索順位を上げるだけでは引用されにくいと考えられます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Google AI Overviews の引用元と検索順位の関係は変わっていますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">関係は弱まっています。Ahrefs が約 86 万件の検索結果を分析した調査では、AI Overviews の引用元と Google 上位 10 位の一致率は 2025 年中頃の約 76% から 2026 年初頭に約 38% へ低下しました。検索順位だけに頼る対策は効きにくくなっています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">中小企業は 3 つのうちどれを優先すべきですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">まず従来の検索エンジン最適化（SEO）の土台を固めることです。これは Google 検索順位と連動する Perplexity と Google AI Overviews の両方に効きます。その上で、第三者メディアへの掲載や事実の明記といった、プラットフォーム共通で効く品質づくりを積み上げるのが現実的です。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/geo-complete-guide/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化</a></li>
+          <li><a href="/insights/get-cited-by-ai/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">AI に「おすすめ」と言わせる方法</a></li>
+          <li><a href="/insights/llmo-explained/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">LLMO とは — AI 検索に引用される文章の書き方</a></li>
+          <li><a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">JSON-LD 構造化データ実装ガイド — AI に事実を渡す</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Profound, AI Platform Citation Patterns — <a href="https://www.tryprofound.com/blog/ai-platform-citation-patterns" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">tryprofound.com/blog/ai-platform-citation-patterns</a></li>
+          <li>Ahrefs, AI Overview citations and the top 10 — <a href="https://ahrefs.com/blog/ai-overview-citations-top-10/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">ahrefs.com/blog/ai-overview-citations-top-10</a></li>
+          <li>Pew Research Center, Google users are less likely to click on links when an AI summary appears — <a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">pewresearch.org/short-reads/2025/07/22</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトはどの AI 検索に届いていますか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトが従来 SEO の土台と「検証可能な事実づくり」の基準を満たしているかを機械検証でお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

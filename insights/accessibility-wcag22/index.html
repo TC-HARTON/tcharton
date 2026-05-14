@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB｜T.C.HARTON</title>
+  <meta name="description" content="WCAG 2.2 は 2023 年 10 月に W3C 勧告化され、達成基準が 9 個追加されました。タップターゲット最小 24×24px などの新基準と、EAA のウェブ基準が 2.1 AA であって 2.2 ではないという正確な事実を、W3C 公式をもとに中小企業向けに解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB｜T.C.HARTON">
+  <meta property="og:description" content="WCAG 2.2 は 2023 年 10 月に W3C 勧告化され、達成基準が 9 個追加されました。タップターゲット最小 24×24px などの新基準と、EAA のウェブ基準が 2.1 AA であって 2.2 ではないという正確な事実を、W3C 公式をもとに中小企業向けに解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/accessibility-wcag22/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB｜T.C.HARTON">
+  <meta name="twitter:description" content="WCAG 2.2 は 2023 年 10 月に W3C 勧告化され、達成基準が 9 個追加されました。タップターゲット最小 24×24px などの新基準と、EAA のウェブ基準が 2.1 AA であって 2.2 ではないという正確な事実を、W3C 公式をもとに中小企業向けに解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/accessibility-wcag22/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB","item":"https://tcharton.com/insights/accessibility-wcag22/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/accessibility-wcag22/#article","headline":"アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB","description":"WCAG 2.2 は 2023 年 10 月に W3C 勧告化され、達成基準が 9 個追加されました。タップターゲット最小 24×24px などの新基準と、EAA のウェブ基準が 2.1 AA であって 2.2 ではないという正確な事実を、W3C 公式をもとに中小企業向けに解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/accessibility-wcag22/","mainEntityOfPage":"https://tcharton.com/insights/accessibility-wcag22/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"WCAG 2.2 はいつ勧告化されましたか？","acceptedAnswer":{"@type":"Answer","text":"2023 年 10 月 5 日に W3C 勧告となりました。WCAG 2.1 に対して達成基準が 9 個追加され、一方で 4.1.1 Parsing は廃止・削除されています。2.1 の基準はほぼそのまま 2.2 に引き継がれているため、2.2 への対応は 2.1 を土台にした積み増しになります。"}},
+    {"@type":"Question","name":"EAA に対応するには WCAG 2.2 が必須ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。これはよくある誤解です。EAA（欧州アクセシビリティ法）のウェブ技術基準は、整合規格 EN 301 549 を経由して WCAG 2.1 の Level AA です。2.2 ではありません。「EAA だから 2.2 必須」という説明は不正確なので注意してください。"}},
+    {"@type":"Question","name":"タップターゲットの最小サイズはいくつですか？","acceptedAnswer":{"@type":"Answer","text":"WCAG 2.2 の新基準 Target Size (Minimum) は、Level AA で最小 24×24 CSS ピクセルを求めます。指で操作するボタンやリンクが小さすぎると、誤タップや操作の失敗が起きやすくなります。隣接する操作要素との間隔が十分に空いている場合などの例外もあります。"}},
+    {"@type":"Question","name":"小さな会社のサイトでもアクセシビリティ対応は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"必要です。アクセシビリティは障害のある人だけのものではありません。加齢で細かい文字が読みづらい人、屋外で画面が見えにくい人、片手がふさがっている人。誰もが一時的に「使いにくい状況」に置かれます。対応は特定の人のためではなく、取りこぼしを減らすための設計です。"}},
+    {"@type":"Question","name":"どこから手をつければよいですか？","acceptedAnswer":{"@type":"Answer","text":"まず影響が大きく確認しやすい 3 点から始めます。文字と背景の色のコントラスト、画像の代替テキスト、キーボードだけで全ページを操作できるか。この 3 点は無料の検査ツールでも多くを確認でき、改善の効果も実感しやすい入口です。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 機械に伝わるデータ設計</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 8 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">WCAG 2.2 は 2023 年 10 月 5 日に W3C 勧告化</strong>され、達成基準が 9 個追加されました。代表的なのは、タップターゲットを最小 <strong class="text-dark-900">24×24 CSS ピクセル</strong>とする Target Size (Minimum) です。一方で <code class="text-sm bg-dark-100 px-2 py-1 rounded">4.1.1 Parsing</code> は廃止・削除されました。ここで誤解されやすいのが EAA（欧州アクセシビリティ法）。<strong class="text-dark-900">EAA のウェブ技術基準は WCAG 2.1 AA であって 2.2 ではありません。</strong>アクセシビリティは特定の人のためではなく、誰も取りこぼさないための設計です。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. アクセシビリティは「誰も取りこぼさない」設計</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. WCAG 2.2 とは — 9 基準追加と 1 基準削除</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. EAA のウェブ基準は 2.1 AA — よくある誤解の訂正</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 【Top 5】中小企業がまず押さえる 5 つの基準</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. タップターゲット 24×24px の実務</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 無料ツールで始める検査の手順</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="アクセシビリティ対応は障害のある人だけでなく、加齢で文字が読みづらい人、屋外で画面が見えにくい人、片手がふさがっている人など、誰もが置かれる一時的な使いにくい状況にも効くことを示す図。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">アクセシビリティが効く相手は「全員」</text>
+          <rect x="20" y="52" width="200" height="68" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="38" y="80" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">恒常的な状況</text>
+          <text x="38" y="102" font-family="Inter, sans-serif" font-size="11" fill="#666666">視覚・聴覚・運動の障害</text>
+          <rect x="240" y="52" width="200" height="68" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="258" y="80" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">加齢による変化</text>
+          <text x="258" y="102" font-family="Inter, sans-serif" font-size="11" fill="#666666">細かい文字・小さなボタン</text>
+          <rect x="460" y="52" width="200" height="68" rx="10" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+          <text x="478" y="80" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">一時的な状況</text>
+          <text x="478" y="102" font-family="Inter, sans-serif" font-size="11" fill="#666666">屋外の強い光・片手操作</text>
+          <line x1="340" y1="120" x2="340" y2="150" stroke="#1B4965" stroke-width="2"/>
+          <polygon points="340,150 335,140 345,140" fill="#1B4965"/>
+          <rect x="180" y="156" width="320" height="56" rx="10" fill="#1B4965"/>
+          <text x="340" y="182" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">同じ設計が、すべての状況の取りこぼしを減らす</text>
+          <text x="340" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">特定の人のためではなく、全員のための設計</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：アクセシビリティ対応は障害のある人専用ではない。加齢・一時的な状況も含め、誰もが恩恵を受ける。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="アクセシビリティは誰も取りこぼさない設計" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. アクセシビリティは「誰も取りこぼさない」設計</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>アクセシビリティと聞くと「障害のある人への特別対応」と思われがちです。これは半分しか合っていません。確かに視覚・聴覚・運動などに障害のある人にとって不可欠ですが、効く相手はもっと広いのです。</p>
+          <p>加齢で細かい文字が読みづらくなった人。屋外の強い光で画面が見えにくい人。子どもを抱いて片手しか使えない人。誰もが一時的に「使いにくい状況」に置かれます。アクセシビリティ対応は、こうした全員の取りこぼしを同じ設計で減らします。</p>
+          <p>中小企業にとっての意味は明快です。せっかく訪れた人を、ボタンが小さい、文字が薄い、操作が複雑、という理由で逃さない。これは慈善ではなく、商機を取りこぼさないための実務です。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="WCAG 2.2 とは" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. WCAG 2.2 とは — 9 基準追加と 1 基準削除</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>WCAG（ウェブコンテンツアクセシビリティガイドライン）は、W3C が定める国際的なアクセシビリティ基準です。最新版の <strong class="text-dark-900">WCAG 2.2 は 2023 年 10 月 5 日に勧告化</strong>されました。</p>
+          <p>2.1 からの変更は、達成基準が 9 個追加されたこと。代表的なのは、フォーカス位置が他の要素に隠れないことを求める Focus Not Obscured (Minimum)、ドラッグ操作に代替手段を求める Dragging Movements、そしてタップターゲットを最小 24×24 CSS ピクセルとする Target Size (Minimum) です。いずれも Level AA に含まれます。一方、<code class="text-sm bg-dark-100 px-2 py-1 rounded">4.1.1 Parsing</code> は廃止・削除されました。</p>
+          <p>重要なのは、2.1 の基準はほぼそのまま 2.2 に引き継がれていることです。だから 2.2 対応は「ゼロからやり直し」ではなく、2.1 を土台にした積み増しです。すでに 2.1 AA を満たしているサイトなら、追加 9 基準への対応が次の一歩になります。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="WCAG 2.1 を土台として、WCAG 2.2 では達成基準が 9 個追加され、4.1.1 Parsing が削除されたことを示す積み上げ図。2.1 の基準は 2.2 にほぼ引き継がれている。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="40" y="38" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">WCAG 2.1（2018 年勧告 / 土台）</text>
+            <rect x="40" y="52" width="320" height="50" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="200" y="82" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">2.1 の達成基準（ほぼそのまま引き継ぎ）</text>
+            <line x1="200" y1="106" x2="200" y2="130" stroke="#1B4965" stroke-width="2"/>
+            <polygon points="200,130 195,120 205,120" fill="#1B4965"/>
+            <text x="40" y="156" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">WCAG 2.2（2023-10-05 勧告）</text>
+            <rect x="40" y="170" width="320" height="36" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="200" y="193" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">2.1 の基準を継承</text>
+            <rect x="370" y="170" width="170" height="36" rx="8" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="455" y="193" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">＋ 9 基準追加</text>
+            <rect x="550" y="170" width="110" height="36" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="605" y="193" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">4.1.1 削除</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：WCAG 2.2 は 2.1 の上に 9 基準を積み増したもの。2.1 対応済みなら、ゼロからやり直す必要はない。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="EAA のウェブ基準は 2.1 AA" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. EAA のウェブ基準は 2.1 AA — よくある誤解の訂正</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>ここで誤解を 1 つはっきり正しておきます。「EAA に対応するには WCAG 2.2 が必須」という説明をときどき見かけますが、これは不正確です。</p>
+          <p>EAA（European Accessibility Act / 欧州アクセシビリティ法）は 2025 年 6 月 28 日に適用が始まりました。そのウェブ技術基準は、整合規格 EN 301 549 を経由して <strong class="text-dark-900">WCAG 2.1 の Level AA</strong> です。2.2 ではありません。「EAA だから 2.2 必須」は誤りなので、この区別は押さえておく価値があります。</p>
+          <p>もっとも、これは「2.2 をやらなくてよい」という意味ではありません。2.2 は 2.1 の上位互換であり、2.2 AA を満たせば自動的に 2.1 AA も満たします。実務の指針はシンプルです。法的な最低ラインは 2.1 AA、目指す到達点は 2.2 AA。誤った理由（EAA だから）ではなく、正しい理由（より多くの人を取りこぼさないため）で 2.2 を目指します。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 210" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="EAA のウェブ技術基準は EN 301 549 を経由して WCAG 2.1 AA であり 2.2 ではないこと、そして 2.2 AA を満たせば 2.1 AA も自動的に満たすという包含関係を示す図。">
+            <rect width="680" height="210" fill="#FFFFFF"/>
+            <text x="40" y="36" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">EAA が参照する基準</text>
+            <rect x="40" y="50" width="130" height="40" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="105" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">EAA</text>
+            <line x1="170" y1="70" x2="210" y2="70" stroke="#1B4965" stroke-width="2"/>
+            <polygon points="210,70 200,65 200,75" fill="#1B4965"/>
+            <rect x="212" y="50" width="150" height="40" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="287" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">EN 301 549</text>
+            <line x1="362" y1="70" x2="402" y2="70" stroke="#1B4965" stroke-width="2"/>
+            <polygon points="402,70 392,65 392,75" fill="#1B4965"/>
+            <rect x="404" y="48" width="200" height="44" rx="8" fill="#1B4965"/>
+            <text x="504" y="68" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">WCAG 2.1 Level AA</text>
+            <text x="504" y="84" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#c9d6dc">※ 2.2 ではない</text>
+            <text x="40" y="138" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8B6914">基準どうしの包含関係</text>
+            <rect x="40" y="152" width="560" height="40" rx="8" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="60" y="177" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">WCAG 2.2 AA を満たす → WCAG 2.1 AA も自動的に満たす</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：EAA の参照基準は 2.1 AA。ただし 2.2 AA を満たせば 2.1 AA も満たすため、到達点を 2.2 に置くのは合理的。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="中小企業がまず押さえる 5 つの基準" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 【Top 5】中小企業がまず押さえる 5 つの基準</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">WCAG の達成基準は数十項目ありますが、中小企業サイトで影響が大きく、確認もしやすいのは次の 5 つです。ここから着手すれば、取りこぼしを大きく減らせます。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">1</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">色のコントラスト</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">文字と背景の明暗差を十分にとります。通常サイズの文字は 4.5:1 以上が目安。薄いグレーの文字は読みづらさの代表例です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">2</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">画像の代替テキスト</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">画像に <code class="text-sm bg-dark-100 px-2 py-1 rounded">alt</code> 属性で説明を付けます。画面を読み上げて使う人にも、画像が表示されない時にも内容が伝わります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">3</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">キーボード操作</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">マウスなしで全ページを操作できること。Tab キーでリンクやボタンを順にたどり、Enter で実行できる状態を保ちます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">4</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">タップターゲットの大きさ</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">WCAG 2.2 の新基準。ボタンやリンクは最小 24×24 CSS ピクセル。指での誤タップを減らす実用的な指標です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">5</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">フォーカスの可視化</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">いま操作対象がどこかを枠などで明示します。2.2 の Focus Not Obscured は、その枠が他要素に隠れないことも求めます。</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">全基準を一度に満たそうとしなくて大丈夫です。</strong>この 5 つは影響が大きく、無料ツールでも多くを確認できます。まず色のコントラストと代替テキストから。1 か所直すごとに、取りこぼしていた誰かが使えるようになる。その積み重ねがアクセシビリティです。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="タップターゲット 24×24px の実務" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. タップターゲット 24×24px の実務</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>WCAG 2.2 の新基準のうち、中小企業サイトで最も実感しやすいのが Target Size (Minimum) です。Level AA で、操作できる要素は最小 24×24 CSS ピクセルを求めます。</p>
+          <p>これが効くのは、スマートフォンでの操作です。小さすぎるボタンや、行間に詰め込まれたテキストリンクは、指で正確に押せず誤タップを招きます。隣接する操作要素どうしの間隔が十分に空いている場合などの例外はありますが、基本は「指で押せる大きさを確保する」と覚えれば十分です。</p>
+          <p>実務上は、24×24px を最低ラインとしつつ、押しやすさを考えると余白を含めてもう少し大きく確保するのが現実的です。当サイトのボタンやリンクも、十分なタップ領域を持たせる方針で設計しています。詳しい設計の考え方は <a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500">JSON-LD 構造化データ実装ガイド</a>と同じく「機械にも人にも優しい」を軸にしています。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 210" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="小さすぎるタップターゲットは指で誤タップしやすく、最小 24×24 CSS ピクセルを確保したターゲットは正確に押せることを比較した図。">
+            <rect width="680" height="210" fill="#FFFFFF"/>
+            <text x="40" y="38" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">小さすぎるターゲット</text>
+            <rect x="60" y="58" width="22" height="22" rx="4" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="92" y="58" width="22" height="22" rx="4" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="124" y="58" width="22" height="22" rx="4" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <circle cx="108" cy="92" r="20" fill="#9db8c4" fill-opacity="0.4" stroke="#9db8c4" stroke-width="1.5"/>
+            <text x="40" y="150" font-family="Inter, sans-serif" font-size="12" fill="#666666">指の接地面より小さく、隣を誤タップ</text>
+            <line x1="340" y1="24" x2="340" y2="186" stroke="#e0e6eb" stroke-width="2"/>
+            <text x="380" y="38" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">24×24px 以上を確保</text>
+            <rect x="400" y="52" width="48" height="48" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <rect x="464" y="52" width="48" height="48" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <circle cx="424" cy="76" r="20" fill="#10b981" fill-opacity="0.35" stroke="#10b981" stroke-width="1.5"/>
+            <text x="380" y="142" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">指で正確に押せる / 余白も確保</text>
+            <text x="380" y="164" font-family="Inter, sans-serif" font-size="11" fill="#666666">最小 24×24 CSS px が Level AA の基準</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 4：小さいターゲットは誤タップの温床。24×24px を最低ラインに、余白も含めて押しやすさを確保する。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="無料ツールで始める検査の手順" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 無料ツールで始める検査の手順</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>アクセシビリティ検査は、専門家でなくても始められます。代表的な無料ツールに、ブラウザ拡張として使える axe DevTools や、Google Chrome に組み込まれた Lighthouse のアクセシビリティ監査があります。</p>
+          <p>手順はシンプルです。まず主要ページでツールを実行し、検出された問題を一覧で受け取る。色のコントラスト不足や代替テキストの欠落など、機械が見つけられる問題はここで多くが拾えます。次に、ツールでは判定できない部分を人の目で確認する。たとえばキーボードだけでフォームを最後まで操作できるか、代替テキストの内容が画像の意味を正しく表しているか。</p>
+          <p>ただし注意点があります。自動ツールはすべての問題を見つけられるわけではありません。ツールで「問題ゼロ」でも、実際には使いにくい箇所が残ることがあります。自動検査で土台を固め、最後は人の手で確かめる。この二段構えが、誰も取りこぼさないサイトへの現実的な道筋です。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">WCAG 2.2 はいつ勧告化されましたか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">2023 年 10 月 5 日に W3C 勧告となりました。WCAG 2.1 に対して達成基準が 9 個追加され、一方で 4.1.1 Parsing は廃止・削除されています。2.1 の基準はほぼそのまま 2.2 に引き継がれているため、2.2 への対応は 2.1 を土台にした積み増しになります。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">EAA に対応するには WCAG 2.2 が必須ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">いいえ。これはよくある誤解です。EAA（欧州アクセシビリティ法）のウェブ技術基準は、整合規格 EN 301 549 を経由して WCAG 2.1 の Level AA です。2.2 ではありません。「EAA だから 2.2 必須」という説明は不正確なので注意してください。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">タップターゲットの最小サイズはいくつですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">WCAG 2.2 の新基準 Target Size (Minimum) は、Level AA で最小 24×24 CSS ピクセルを求めます。指で操作するボタンやリンクが小さすぎると、誤タップや操作の失敗が起きやすくなります。隣接する操作要素との間隔が十分に空いている場合などの例外もあります。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">小さな会社のサイトでもアクセシビリティ対応は必要ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">必要です。アクセシビリティは障害のある人だけのものではありません。加齢で細かい文字が読みづらい人、屋外で画面が見えにくい人、片手がふさがっている人。誰もが一時的に「使いにくい状況」に置かれます。対応は特定の人のためではなく、取りこぼしを減らすための設計です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">どこから手をつければよいですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">まず影響が大きく確認しやすい 3 点から始めます。文字と背景の色のコントラスト、画像の代替テキスト、キーボードだけで全ページを操作できるか。この 3 点は無料の検査ツールでも多くを確認でき、改善の効果も実感しやすい入口です。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">JSON-LD 構造化データ実装ガイド</a></li>
+          <li><a href="/insights/measure-ai-traffic-ga4/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">GA4 で AI 流入を正しく計測する方法</a></li>
+          <li><a href="/insights/publish-is-not-the-goal/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">「公開して終わり」にしないための月次運用</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>W3C, What's New in WCAG 2.2 — <a href="https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">w3.org/WAI/standards-guidelines/wcag/new-in-22/</a></li>
+          <li>W3C, Web Content Accessibility Guidelines (WCAG) 2.2 — <a href="https://www.w3.org/TR/WCAG22/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">w3.org/TR/WCAG22/</a></li>
+          <li>European Commission, European Accessibility Act — <a href="https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">commission.europa.eu/.../european-accessibility-act-eaa_en</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトは、誰かを取りこぼしていませんか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの色のコントラスト・代替テキスト・キーボード操作・タップターゲットを点検し、WCAG の観点でどこを直すべきかをお見せします。発注前に「誰も取りこぼさない基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

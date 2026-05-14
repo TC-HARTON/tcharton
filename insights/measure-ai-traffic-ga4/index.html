@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>GA4 で AI 流入を正しく計測する方法｜T.C.HARTON</title>
+  <meta name="description" content="ChatGPT や Perplexity からの訪問者は、GA4 のデフォルト設定では 6〜7 割が Direct に誤分類されます。カスタムチャネルグループと正規表現で「AI assistants」チャネルを作り、AI 流入を可視化する具体的な設定手順を、Google 公式ドキュメントをもとに解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="GA4 で AI 流入を正しく計測する方法｜T.C.HARTON">
+  <meta property="og:description" content="ChatGPT や Perplexity からの訪問者は、GA4 のデフォルト設定では 6〜7 割が Direct に誤分類されます。カスタムチャネルグループと正規表現で「AI assistants」チャネルを作り、AI 流入を可視化する具体的な設定手順を、Google 公式ドキュメントをもとに解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/measure-ai-traffic-ga4/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GA4 で AI 流入を正しく計測する方法｜T.C.HARTON">
+  <meta name="twitter:description" content="ChatGPT や Perplexity からの訪問者は、GA4 のデフォルト設定では 6〜7 割が Direct に誤分類されます。カスタムチャネルグループと正規表現で「AI assistants」チャネルを作り、AI 流入を可視化する具体的な設定手順を、Google 公式ドキュメントをもとに解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/measure-ai-traffic-ga4/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"GA4 で AI 流入を正しく計測する方法","item":"https://tcharton.com/insights/measure-ai-traffic-ga4/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/measure-ai-traffic-ga4/#article","headline":"GA4 で AI 流入を正しく計測する方法","description":"ChatGPT や Perplexity からの訪問者は、GA4 のデフォルト設定では 6〜7 割が Direct に誤分類されます。カスタムチャネルグループと正規表現で「AI assistants」チャネルを作り、AI 流入を可視化する具体的な設定手順を、Google 公式ドキュメントをもとに解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/measure-ai-traffic-ga4/","mainEntityOfPage":"https://tcharton.com/insights/measure-ai-traffic-ga4/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"GA4 はなぜ AI 流入を Direct に誤分類するのですか？","acceptedAnswer":{"@type":"Answer","text":"主な原因は 2 つです。1 つはモバイルアプリ内ブラウザ（webview）が参照元情報（referrer）を削除すること。もう 1 つは、ユーザーが AI の回答に出た URL を手でコピーしてブラウザに貼る行動です。どちらも参照元が残らないため、GA4 は流入を Direct に分類してしまいます。"}},
+    {"@type":"Question","name":"カスタムチャネルグループを作ると既存のデータも分類し直されますか？","acceptedAnswer":{"@type":"Answer","text":"はい。GA4 のカスタムチャネルグループは、過去のデータにも遡って適用されます。新しくルールを作っても、それまで蓄積された参照元データが残っていれば、その範囲で AI assistants チャネルに振り分けられて表示されます。"}},
+    {"@type":"Question","name":"どの参照元ドメインを AI として登録すればよいですか？","acceptedAnswer":{"@type":"Answer","text":"代表的なのは chatgpt.com・perplexity.ai・gemini.google.com・copilot.microsoft.com・claude.ai です。AI サービスは新しいものが次々に登場するため、正規表現のリストは数か月ごとに見直すことをおすすめします。"}},
+    {"@type":"Question","name":"設定すれば AI 流入を 100% 捕捉できますか？","acceptedAnswer":{"@type":"Answer","text":"できません。カスタムチャネルグループは参照元が残っている訪問だけを分類できます。モバイルアプリ内ブラウザが参照元を削除したぶんは、原理的に取りこぼします。設定後も「実際の AI 流入はこの数字より多い」と理解しておくことが大切です。"}},
+    {"@type":"Question","name":"小さな会社でもここまで計測する必要がありますか？","acceptedAnswer":{"@type":"Answer","text":"必要です。むしろ訪問数が少ない事業者ほど、流入の内訳を 1 件単位で把握できる価値が大きいです。AI 経由の問い合わせが月に数件あるかどうかは、今後の発信方針を決める材料になります。設定は一度きりで、費用もかかりません。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">GA4 で AI 流入を正しく計測する方法</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 機械に伝わるデータ設計</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">GA4 で AI 流入を正しく計測する方法</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 8 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">GA4 はデフォルト設定のままだと、ChatGPT や Perplexity からの訪問者の多くを Direct に誤分類します。</strong>ある調査では、AI 流入の <strong class="text-dark-900">約 6〜7 割</strong>が本来の参照元を失っていると報告されています。対策は、GA4 に <code class="text-sm bg-dark-100 px-2 py-1 rounded">AI assistants</code> というカスタムチャネルグループを作り、正規表現で AI サービスのドメインを振り分けること。ただしモバイルアプリ内ブラウザ経由のぶんは原理的に取りこぼすため、<strong class="text-dark-900">「見えている数字は実際より少ない」</strong>と理解した上で使います。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. なぜ GA4 は AI 流入を取りこぼすのか</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 「Direct が多い」の正体を知る</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. カスタムチャネルグループの作り方</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 【Top 5】AI assistants に登録する 5 つの参照元</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 計測の限界を正直に受け止める</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 設定後に見るべき 3 つの指標</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 250" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="ChatGPT から訪れたユーザーのうち、参照元が残った訪問は AI assistants チャネルに正しく分類されるが、モバイルアプリ内ブラウザ経由や URL コピペ経由の訪問は参照元が消え、GA4 では Direct に誤分類される、という流れの図。">
+          <rect width="680" height="250" fill="#FFFFFF"/>
+          <rect x="20" y="95" width="150" height="56" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="95" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">AI の回答から</text>
+          <text x="95" y="138" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">サイトへ訪問</text>
+          <line x1="170" y1="123" x2="225" y2="70" stroke="#10b981" stroke-width="2"/>
+          <line x1="170" y1="123" x2="225" y2="180" stroke="#9db8c4" stroke-width="2"/>
+          <polygon points="225,70 214,71 219,80" fill="#10b981"/>
+          <polygon points="225,180 219,170 214,179" fill="#9db8c4"/>
+          <rect x="230" y="44" width="230" height="52" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+          <text x="246" y="66" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#10b981">参照元が残った訪問</text>
+          <text x="246" y="86" font-family="Inter, sans-serif" font-size="11" fill="#666666">PC ブラウザのリンククリック等</text>
+          <rect x="230" y="154" width="230" height="56" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+          <text x="246" y="176" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#666666">参照元が消えた訪問</text>
+          <text x="246" y="195" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">アプリ内ブラウザ・URL コピペ</text>
+          <line x1="460" y1="70" x2="510" y2="90" stroke="#10b981" stroke-width="2"/>
+          <line x1="460" y1="182" x2="510" y2="160" stroke="#9db8c4" stroke-width="2"/>
+          <polygon points="510,90 499,86 502,96" fill="#10b981"/>
+          <polygon points="510,160 502,154 499,164" fill="#9db8c4"/>
+          <rect x="515" y="68" width="145" height="48" rx="8" fill="#1B4965"/>
+          <text x="587" y="89" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">AI assistants</text>
+          <text x="587" y="106" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#c9d6dc">正しく分類</text>
+          <rect x="515" y="136" width="145" height="48" rx="8" fill="#9db8c4"/>
+          <text x="587" y="157" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Direct</text>
+          <text x="587" y="174" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#e0e6eb">誤分類されてしまう</text>
+          <text x="20" y="235" font-family="Inter, sans-serif" font-size="11" fill="#666666">設定で救えるのは上の経路。下の経路は原理的に取りこぼす。</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：AI からの訪問は 2 つの経路に分かれる。参照元が残る経路は設定で救えるが、参照元が消える経路は誤分類されたままになる。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="なぜ GA4 は AI 流入を取りこぼすのか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. なぜ GA4 は AI 流入を取りこぼすのか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>GA4 が流入元を判定する手がかりは「参照元（referrer）」です。あるサイトのリンクをクリックして別サイトに移動すると、移動先には「どこから来たか」の情報が渡ります。GA4 はこれを読んでチャネルを振り分けています。</p>
+          <p>ところが AI サービス経由の訪問では、この参照元がしばしば消えます。原因は主に 2 つ。1 つはスマートフォンのアプリ内ブラウザ（webview）が参照元を削除すること。もう 1 つは、ユーザーが AI の回答に出た URL を手でコピーしてブラウザに貼り付ける行動です。どちらも「どこから来たか」が残りません。</p>
+          <p>参照元が消えた訪問を、GA4 は <code class="text-sm bg-dark-100 px-2 py-1 rounded">Direct</code>（直接流入）に分類します。ある調査では、AI 流入の約 6〜7 割が本来の参照元を失い Direct 等に誤分類されると報告されています（martech.org）。つまりデフォルトのレポートだけ見ていると、AI の影響を実際よりずっと小さく見積もってしまいます。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="Direct が多いの正体を知る" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 「Direct が多い」の正体を知る</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>GA4 の「Direct」は、本来「ブックマークや URL 直打ちで来た人」を指します。しかし実際には、参照元が判定できなかった訪問の受け皿にもなっています。AI 流入の取りこぼしぶんも、SNS アプリ経由の一部も、ここに混ざります。</p>
+          <p>だから「Direct が急に増えた」とき、その中身を疑う価値があります。とくに AI 検索が普及した 2025 年以降、Direct の一部は「正体不明」ではなく「AI 経由だが参照元が消えたもの」である可能性が高まっています。</p>
+          <p>完全な切り分けはできませんが、手がかりはあります。AI で言及されやすい記事ページへの Direct 流入が増えていないか、その訪問が新規ユーザー中心かどうか。これらを併せて見ると、Direct の中に隠れた AI 流入の輪郭が少しずつ見えてきます。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="GA4 の Direct チャネルの内訳イメージ。ブックマークや URL 直打ちの本来の Direct に加え、参照元が消えた AI 流入や SNS アプリ経由の一部が混ざり込んでいることを示す積み上げ図。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="40" y="38" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">GA4 の「Direct」の中身</text>
+            <rect x="40" y="56" width="380" height="40" rx="6" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="56" y="81" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">本来の Direct（ブックマーク・URL 直打ち）</text>
+            <rect x="40" y="102" width="380" height="40" rx="6" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="56" y="127" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">参照元が消えた AI 流入（隠れている）</text>
+            <rect x="40" y="148" width="380" height="40" rx="6" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="56" y="173" font-family="Inter, sans-serif" font-size="12" fill="#666666">SNS アプリ経由などの一部</text>
+            <line x1="440" y1="122" x2="500" y2="122" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="500,122 490,117 490,127" fill="#D4AF37"/>
+            <text x="450" y="112" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">救いたいのはここ</text>
+            <rect x="505" y="100" width="150" height="44" rx="8" fill="#1B4965"/>
+            <text x="580" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">AI assistants</text>
+            <text x="580" y="136" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#c9d6dc">チャネルへ分離</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：Direct は「正体不明の訪問」の受け皿。設定で救えるのは、参照元がまだ残っている AI 流入の部分。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="カスタムチャネルグループの作り方" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. カスタムチャネルグループの作り方</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>GA4 のデフォルトチャネルグループは編集できません。そこで「カスタムチャネルグループ」を新しく作ります。手順は、管理画面の「データの表示」→「チャネルグループ」→「新しいチャネルグループを作成」です。</p>
+          <p>新規グループの中に <code class="text-sm bg-dark-100 px-2 py-1 rounded">AI assistants</code> というチャネルを追加し、条件を「参照元（Source）が正規表現に一致」に設定します。正規表現には <code class="text-sm bg-dark-100 px-2 py-1 rounded">chatgpt|perplexity|gemini|copilot|claude</code> のように、AI サービスのドメインの一部をパイプ（縦棒）でつなげて並べます。</p>
+          <p>並び順も重要です。<code class="text-sm bg-dark-100 px-2 py-1 rounded">AI assistants</code> チャネルは、Organic Search や Referral より<strong class="text-dark-900">上</strong>に置きます。GA4 は上から順に条件を当てはめるため、上に置かないと AI 流入が先に Organic Search などに吸い込まれてしまうからです。最後にこのカスタムグループを「プライマリ」に指定すれば、標準レポートにも反映されます。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 250" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="カスタムチャネルグループの設定手順を 4 ステップで示した図。新規グループ作成、AI assistants チャネル追加、参照元の正規表現条件設定、チャネルの並び順を上位に配置、の順。">
+            <rect width="680" height="250" fill="#FFFFFF"/>
+            <rect x="30" y="30" width="290" height="44" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <circle cx="54" cy="52" r="13" fill="#1B4965"/>
+            <text x="54" y="57" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">1</text>
+            <text x="76" y="57" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">カスタムチャネルグループを新規作成</text>
+            <rect x="30" y="86" width="290" height="44" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <circle cx="54" cy="108" r="13" fill="#1B4965"/>
+            <text x="54" y="113" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">2</text>
+            <text x="76" y="113" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">AI assistants チャネルを追加</text>
+            <rect x="30" y="142" width="290" height="44" rx="8" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <circle cx="54" cy="164" r="13" fill="#D4AF37"/>
+            <text x="54" y="169" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">3</text>
+            <text x="76" y="169" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">参照元の正規表現で条件を指定</text>
+            <rect x="30" y="198" width="290" height="44" rx="8" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <circle cx="54" cy="220" r="13" fill="#D4AF37"/>
+            <text x="54" y="225" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">4</text>
+            <text x="76" y="225" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">チャネルを並び順の上位に置く</text>
+            <rect x="360" y="60" width="290" height="150" rx="8" fill="#1B4965"/>
+            <text x="380" y="88" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">条件の例</text>
+            <text x="380" y="116" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">Source が正規表現に一致：</text>
+            <rect x="380" y="128" width="250" height="32" rx="6" fill="#0f3147"/>
+            <text x="394" y="148" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">chatgpt|perplexity|gemini|copilot|claude</text>
+            <text x="380" y="184" font-family="Inter, sans-serif" font-size="10" fill="#9db8c4">並び順は Organic Search より上に</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：設定は 4 ステップ。鍵は「正規表現の条件」と「チャネルの並び順」。上位に置かないと AI 流入が他チャネルに吸われる。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="AI assistants に登録する 5 つの参照元" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 【Top 5】AI assistants に登録する 5 つの参照元</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">正規表現に入れておきたい代表的な参照元ドメインは、次の 5 つです。AI サービスは入れ替わりが早いため、数か月ごとにこのリストを見直してください。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">1</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">chatgpt.com</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">ChatGPT。検索機能やブラウジング機能からのリンク流入がここに含まれます。利用者数が多く、まず押さえるべき参照元です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">2</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">perplexity.ai</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">Perplexity。回答に出典リンクを多く並べる設計で、相対的にサイトへの送客が起きやすい AI 検索です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">3</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">gemini.google.com</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">Gemini。Google の AI アシスタント単体からの流入。Google 検索内の AI Overviews とは参照元が異なる点に注意します。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">4</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">copilot.microsoft.com</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">Microsoft Copilot。Windows や Edge に統合されているため、業務 PC からの流入で見かけることがあります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">5</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">claude.ai</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">Claude。ウェブ検索を伴う回答からのリンク流入。他の AI と同様、参照元が残った訪問のみ捕捉できます。</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">網羅したリストを目指さなくて大丈夫です。</strong>主要な 5 つを入れておけば、AI 流入の「見える化」は一気に進みます。新しい AI サービスが定着してきたら、その都度ドメインを 1 つ追加するだけ。最初から全部そろえようとして手が止まるより、まず動かすことが大切です。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="計測の限界を正直に受け止める" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 計測の限界を正直に受け止める</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>ここで誇張を 1 つ正しておきます。カスタムチャネルグループを作っても、AI 流入を 100% 捕捉できるわけではありません。</p>
+          <p>この設定で救えるのは「参照元がまだ残っている訪問」だけです。スマートフォンのアプリ内ブラウザが参照元を削除したぶん、ユーザーが URL をコピペしたぶんは、参照元そのものが存在しないため、どんな正規表現を書いても拾えません。これは設定の不備ではなく、計測技術の原理的な限界です。</p>
+          <p>だから設定後に見える「AI assistants」の数字は、<strong class="text-dark-900">実際の AI 流入より少ない</strong>と理解しておきます。それでも価値はあります。ゼロだったものが「最低でもこれだけはある」という下限値として見えるようになる。傾向の変化を追えるようになる。すべてを捉える計測ではなく「方向が分かる計測」を手に入れる、と考えるのが正確です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="実際の AI 流入の総量に対して、カスタムチャネルグループで捕捉できるのはその一部だけであり、アプリ内ブラウザ経由などの取りこぼし分が残ることを示す対比図。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="40" y="40" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">実際の AI 流入（本当の総量）</text>
+            <rect x="40" y="54" width="420" height="44" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <text x="230" y="81" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">この全体は誰にも正確には見えない</text>
+            <text x="40" y="132" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">設定で見えるようになる範囲</text>
+            <rect x="40" y="146" width="240" height="40" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="160" y="171" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">参照元が残った訪問＝下限値</text>
+            <rect x="284" y="146" width="176" height="40" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <text x="372" y="171" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">取りこぼし（原理的に不可視）</text>
+            <text x="490" y="165" font-family="Inter, sans-serif" font-size="11" fill="#10b981" font-weight="700">「方向が分かる」</text>
+            <text x="490" y="182" font-family="Inter, sans-serif" font-size="11" fill="#10b981" font-weight="700">計測で十分役に立つ</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 4：見えるのは AI 流入の「下限値」。全量ではないが、傾向を追うには十分な手がかりになる。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="設定後に見るべき 3 つの指標" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 設定後に見るべき 3 つの指標</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>チャネルが作れたら、次は「何を見るか」です。3 つに絞ると追いやすくなります。1 つ目は <code class="text-sm bg-dark-100 px-2 py-1 rounded">AI assistants</code> チャネルのセッション数の推移。月単位で右肩上がりか横ばいかを見ます。</p>
+          <p>2 つ目は、AI assistants 経由の訪問が<strong class="text-dark-900">どのページに着地しているか</strong>。AI は具体的な疑問に答えるとき、その答えが書かれたページを引用します。着地ページを見れば「自社のどの記事が AI に拾われているか」が分かります。</p>
+          <p>3 つ目は、その訪問が問い合わせなどの<strong class="text-dark-900">行動につながったか</strong>。AI 流入は量こそ大きくないものの、目的が明確な訪問者が多い傾向が指摘されています。コンバージョンを軸に見れば、量の小ささに惑わされず価値を評価できます。計測の土台づくりは <a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500">JSON-LD 構造化データ実装ガイド</a>と同じく、地味でも後から効いてくる作業です。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">GA4 はなぜ AI 流入を Direct に誤分類するのですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">主な原因は 2 つです。1 つはモバイルアプリ内ブラウザ（webview）が参照元情報（referrer）を削除すること。もう 1 つは、ユーザーが AI の回答に出た URL を手でコピーしてブラウザに貼る行動です。どちらも参照元が残らないため、GA4 は流入を Direct に分類してしまいます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">カスタムチャネルグループを作ると既存のデータも分類し直されますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">はい。GA4 のカスタムチャネルグループは、過去のデータにも遡って適用されます。新しくルールを作っても、それまで蓄積された参照元データが残っていれば、その範囲で AI assistants チャネルに振り分けられて表示されます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">どの参照元ドメインを AI として登録すればよいですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">代表的なのは chatgpt.com・perplexity.ai・gemini.google.com・copilot.microsoft.com・claude.ai です。AI サービスは新しいものが次々に登場するため、正規表現のリストは数か月ごとに見直すことをおすすめします。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">設定すれば AI 流入を 100% 捕捉できますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">できません。カスタムチャネルグループは参照元が残っている訪問だけを分類できます。モバイルアプリ内ブラウザが参照元を削除したぶんは、原理的に取りこぼします。設定後も「実際の AI 流入はこの数字より多い」と理解しておくことが大切です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">小さな会社でもここまで計測する必要がありますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">必要です。むしろ訪問数が少ない事業者ほど、流入の内訳を 1 件単位で把握できる価値が大きいです。AI 経由の問い合わせが月に数件あるかどうかは、今後の発信方針を決める材料になります。設定は一度きりで、費用もかかりません。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">JSON-LD 構造化データ実装ガイド</a></li>
+          <li><a href="/insights/wikidata-for-ai/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Wikidata Q コードで AI に正しく認識される</a></li>
+          <li><a href="/insights/publish-is-not-the-goal/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">「公開して終わり」にしないための月次運用</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Google アナリティクス ヘルプ, デフォルトのチャネル グループ — <a href="https://support.google.com/analytics/answer/13051316" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">support.google.com/analytics/answer/13051316</a></li>
+          <li>MarTech, How GA4 records traffic from Perplexity, Comet and ChatGPT Atlas — <a href="https://martech.org/how-ga4-records-traffic-from-perplexity-comet-and-chatgpt-atlas/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">martech.org/how-ga4-records-traffic-from-perplexity-comet-and-chatgpt-atlas/</a></li>
+          <li>Ahrefs, ChatGPT has 12% of Google's search volume — <a href="https://ahrefs.com/blog/chatgpt-has-12-percent-of-googles-search-volume/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">ahrefs.com/blog/chatgpt-has-12-percent-of-googles-search-volume/</a></li>
+          <li>Pew Research Center, Google users are less likely to click on links when an AI summary appears — <a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">pewresearch.org/short-reads/2025/07/22/</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトに AI 経由の訪問は届いていますか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状の GA4 設定を確認し、AI 流入が Direct に埋もれていないか、計測の取りこぼしがどこで起きているかをお見せします。発注前に「何を測るか」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

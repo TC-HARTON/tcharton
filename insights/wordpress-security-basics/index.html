@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>WordPress のセキュリティで最低限やること（2025 Patchstack 準拠）｜T.C.HARTON</title>
+  <meta name="description" content="WordPress サイトのセキュリティで最低限やるべきことを、Patchstack 2025・OWASP Top 10:2025・IPA の一次出典つきで解説。脆弱性の 91% がプラグイン起因という現実をふまえ、プラグインの整理・更新・アクセス制御・ヘッダー設定など、中小企業が専門ツールなしで着手できる対策をまとめます。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="WordPress のセキュリティで最低限やること（2025 Patchstack 準拠）｜T.C.HARTON">
+  <meta property="og:description" content="WordPress サイトのセキュリティで最低限やるべきことを、Patchstack 2025・OWASP Top 10:2025・IPA の一次出典つきで解説。脆弱性の 91% がプラグイン起因という現実をふまえ、プラグインの整理・更新・アクセス制御・ヘッダー設定など、中小企業が専門ツールなしで着手できる対策をまとめます。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/wordpress-security-basics/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WordPress のセキュリティで最低限やること（2025 Patchstack 準拠）｜T.C.HARTON">
+  <meta name="twitter:description" content="WordPress サイトのセキュリティで最低限やるべきことを、Patchstack 2025・OWASP Top 10:2025・IPA の一次出典つきで解説。脆弱性の 91% がプラグイン起因という現実をふまえ、プラグインの整理・更新・アクセス制御・ヘッダー設定など、中小企業が専門ツールなしで着手できる対策をまとめます。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/wordpress-security-basics/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"WordPress のセキュリティで最低限やること","item":"https://tcharton.com/insights/wordpress-security-basics/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/wordpress-security-basics/#article","headline":"WordPress のセキュリティで最低限やること（2025 Patchstack 準拠）","description":"WordPress サイトのセキュリティで最低限やるべきことを、Patchstack 2025・OWASP Top 10:2025・IPA の一次出典つきで解説。脆弱性の 91% がプラグイン起因という現実をふまえ、プラグインの整理・更新・アクセス制御・ヘッダー設定など、中小企業が専門ツールなしで着手できる対策をまとめます。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/wordpress-security-basics/","mainEntityOfPage":"https://tcharton.com/insights/wordpress-security-basics/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"WordPress のコア本体は安全ですか？","acceptedAnswer":{"@type":"Answer","text":"コア本体のリスクは相対的に小さいと言えます。Patchstack の 2025 年レポートでは、報告された新規脆弱性 11,334 件のうちコア本体はわずか 6 件で、いずれも低優先度でした。91% はプラグイン、9% はテーマ起因です。ただしコアも更新を放置すると将来の脆弱性にさらされるため、自動更新を有効にしておくのが基本です。"}},
+    {"@type":"Question","name":"プラグインは何個までなら安全ですか？","acceptedAnswer":{"@type":"Answer","text":"「何個まで」という安全な上限はありません。重要なのは数そのものより、一つひとつが「いま実際に使われているか」「更新が継続されているか」「出所が信頼できるか」です。使っていないプラグインは個数に関わらず削除します。攻撃される面積は、有効・無効を問わずインストールされている部品の数で決まります。"}},
+    {"@type":"Question","name":"有料プラグインやテーマなら安全ですか？","acceptedAnswer":{"@type":"Answer","text":"有料であることは安全性を保証しません。Patchstack の 2025 年データでは、テーマ起因の脆弱性も全体の 9% を占めており、有料テーマも例外ではありません。判断基準は価格ではなく、開発元が脆弱性報告に迅速に対応し、更新を継続しているかどうかです。"}},
+    {"@type":"Question","name":"更新するとサイトが壊れそうで怖いです。どうすればよいですか？","acceptedAnswer":{"@type":"Answer","text":"更新を止めることは、既知の脆弱性を放置することと同じで、より大きなリスクになります。現実的な進め方は、更新前にバックアップを取る、可能ならステージング環境で先に試す、そのうえで本番に適用する、という手順です。怖いから更新しないのではなく、安全に更新できる手順を整えるのが正しい対処です。"}},
+    {"@type":"Question","name":"セキュリティプラグインを入れれば対策は完了しますか？","acceptedAnswer":{"@type":"Answer","text":"セキュリティプラグインは補助にはなりますが、それだけで完了とは言えません。OWASP Top 10:2025 の上位はアクセス制御の不備と設定ミスで、これらはプラグイン任せにできない運用と設計の問題です。プラグインの整理・更新・アクセス制御・サーバー設定という基礎を固めたうえで、セキュリティプラグインを上乗せするのが正しい順序です。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">WordPress のセキュリティで最低限やること</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 安全なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">WordPress のセキュリティで最低限やること</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 9 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">WordPress のリスクはコア本体ではなく、後から追加した部品に集中します。Patchstack 2025 では新規脆弱性の<strong class="text-dark-900">91% がプラグイン、9% がテーマ、コア本体は 6 件のみ</strong>でした。最低限やるべきは<strong class="text-dark-900">①プラグインを整理する ②更新を放置しない ③アクセス制御を固める ④サーバー設定を整える</strong>こと。専門ツールより、この基礎が効きます。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. リスクの所在 — コアではなく「追加した部品」</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. やること 1 — プラグインを整理する</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. やること 2 — 更新を放置しない</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. やること 3 — アクセス制御を固める</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. やること 4 — サーバー設定を整える</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. セキュリティプラグインの正しい位置づけ</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="2025 年に報告された WordPress エコシステムの新規脆弱性 11334 件の内訳。プラグインが 91 パーセント、テーマが 9 パーセント、コア本体は 6 件のみ。リスクはサードパーティ部品に集中している。">
+          <rect width="680" height="220" fill="#FFFFFF"/>
+          <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">WordPress 脆弱性の内訳（2025 年・11,334 件）</text>
+          <rect x="20" y="56" width="600" height="40" rx="6" fill="#e0e6eb"/>
+          <rect x="20" y="56" width="546" height="40" rx="6" fill="#ef4444"/>
+          <rect x="566" y="56" width="54" height="40" fill="#D4AF37"/>
+          <rect x="614" y="56" width="6" height="40" rx="3" fill="#1B4965"/>
+          <text x="293" y="81" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">プラグイン 91%</text>
+          <text x="593" y="81" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">テーマ 9%</text>
+          <circle cx="36" cy="128" r="6" fill="#ef4444"/>
+          <text x="50" y="133" font-family="Inter, sans-serif" font-size="12" fill="#666666">プラグイン — リスクの大半はここに集中（91%）</text>
+          <circle cx="36" cy="154" r="6" fill="#D4AF37"/>
+          <text x="50" y="159" font-family="Inter, sans-serif" font-size="12" fill="#666666">テーマ — 有料テーマも安全とは限らない（9%）</text>
+          <circle cx="36" cy="180" r="6" fill="#1B4965"/>
+          <text x="50" y="185" font-family="Inter, sans-serif" font-size="12" fill="#666666">コア本体 — わずか 6 件、いずれも低優先度</text>
+          <text x="20" y="208" font-family="Inter, sans-serif" font-size="11" fill="#9db8c4">出典：Patchstack「State of WordPress Security in 2025」</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：WordPress のリスクはコア本体ではなく、プラグインとテーマというサードパーティ部品に集中している。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="リスクの所在" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. リスクの所在 — コアではなく「追加した部品」</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「WordPress は危険」とよく言われますが、これは正確ではありません。セキュリティ企業 Patchstack の「State of WordPress Security in 2025」によれば、2025 年に WordPress エコシステムで報告された新規脆弱性 11,334 件のうち、コア本体はわずか 6 件でした。</p>
+          <p>残りの内訳は、<strong class="text-dark-900">91% がプラグイン、9% がテーマ</strong>です。つまり危険なのは WordPress 本体ではなく、後から追加した部品です。同レポートでは新規脆弱性が前年比 42% 増とされており、追加する部品が増えるほどリスクも積み上がる構図が見えます。</p>
+          <p>これは対策にとって良い知らせでもあります。守るべき対象が「自分で選んで入れた部品」に絞られるなら、対策の方向もはっきりするからです。この記事では、中小企業が専門ツールなしで着手できる 4 つの基礎を順に解説します。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="やること 1 プラグインを整理する" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. やること 1 — プラグインを整理する</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>最初にやるべきは、いま入っているプラグインの棚卸しです。リスクの 91% がプラグイン起因である以上、ここを整理することが最も効きます。判断基準は「いま実際に使っているか」「更新が継続されているか」「出所が信頼できるか」の 3 つです。</p>
+          <p>使っていないプラグインは、有効・無効を問わず削除します。無効化しただけのプラグインもファイルはサーバーに残り、脆弱性があれば攻撃の入口になり得るからです。攻撃される面積は、インストールされている部品の数で決まります。</p>
+          <p>新しくプラグインを入れるときは、最終更新日とサポート状況を確認します。長く更新が止まっているプラグインは、脆弱性が見つかっても修正されない可能性が高いものです。「便利そうだから」で増やさず、必要な機能に絞り込む姿勢が安全につながります。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="プラグイン棚卸しの判断フロー図。各プラグインについて、いま使っているか、更新が継続されているか、出所が信頼できるかの 3 つを確認し、いずれかが当てはまらなければ削除または置き換えを検討する。">
+            <rect width="680" height="240" fill="#FFFFFF"/>
+            <text x="340" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">プラグイン棚卸しの 3 つの判断</text>
+            <rect x="40" y="60" width="180" height="76" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="130" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">① いま使っているか</text>
+            <text x="130" y="114" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">使っていなければ</text>
+            <text x="130" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">無効化ではなく削除</text>
+            <rect x="250" y="60" width="180" height="76" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="340" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">② 更新が続いているか</text>
+            <text x="340" y="114" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">更新停止プラグインは</text>
+            <text x="340" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">置き換えを検討</text>
+            <rect x="460" y="60" width="180" height="76" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="550" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">③ 出所が信頼できるか</text>
+            <text x="550" y="114" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">配布元・実績を確認</text>
+            <text x="550" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#666666">不明な配布元は避ける</text>
+            <line x1="130" y1="140" x2="130" y2="172" stroke="#9db8c4" stroke-width="2"/>
+            <polygon points="130,172 125,162 135,162" fill="#9db8c4"/>
+            <line x1="340" y1="140" x2="340" y2="172" stroke="#9db8c4" stroke-width="2"/>
+            <polygon points="340,172 335,162 345,162" fill="#9db8c4"/>
+            <line x1="550" y1="140" x2="550" y2="172" stroke="#9db8c4" stroke-width="2"/>
+            <polygon points="550,172 545,162 555,162" fill="#9db8c4"/>
+            <rect x="190" y="176" width="300" height="40" rx="10" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="340" y="201" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">一つでも当てはまらなければ削除・置き換えを検討</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：プラグインは「使用中か・更新が続くか・出所が信頼できるか」の 3 点で棚卸しする。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="やること 2 更新を放置しない" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. やること 2 — 更新を放置しない</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>更新は、見つかった脆弱性をふさぐための最も基本的な手段です。自動スキャン型の攻撃が狙うのは、まさに「更新されないまま放置されたサイト」です。脆弱性の情報は公開されるため、更新しないことは「攻撃方法が公開された穴を開けたままにする」のと同じ意味になります。</p>
+          <p>「更新するとサイトが壊れそうで怖い」という声はよく聞きます。しかし更新を止めることは、より大きなリスクを選ぶことです。正しい対処は更新しないことではなく、安全に更新できる手順を整えることにあります。</p>
+          <p>現実的な手順は、更新前にバックアップを取る、可能ならステージング環境（本番と同じ構成の試験環境）で先に試す、問題なければ本番に適用する、という流れです。コア・プラグイン・テーマのうち、自動更新にできるものは有効にしておくと、放置のリスクを下げられます。</p>
+        </div>
+      </section>
+
+      <section id="section-4" aria-label="やること 3 アクセス制御を固める" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. やること 3 — アクセス制御を固める</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>OWASP（オープンな WEB セキュリティ団体）の「OWASP Top 10:2025」で 1 位は、アクセス制御の不備です。WordPress でいえば、管理画面（ログイン画面）と、誰がどの権限を持つかの設計がこれに当たります。</p>
+          <p>具体的には、管理者アカウントに推測されやすい名前を使わない、パスワードを強固にする、ログインに二要素認証を加える、ユーザーごとの権限を「必要な分だけ」に絞る、といった対策です。投稿だけする人に管理者権限を与えない、退職した担当者のアカウントを残さない、といった運用面の見直しも含まれます。</p>
+          <p>これらは新しいツールを買う話ではなく、「誰が何をできるか」の境界を引き直す作業です。アクセス制御は WordPress に限らず WEB セキュリティの土台であり、その全体像は<a href="/insights/security-5-principles/" class="text-teal-700 underline hover:text-teal-500">WEB セキュリティ 5 原則</a>で詳しく扱っています。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 210" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="WordPress のアクセス制御チェックリスト。管理者名を推測されにくくする、強固なパスワード、二要素認証、権限の最小化、不要アカウントの削除の 5 項目が並ぶ。出典は OWASP Top 10 2025 の A01 アクセス制御の不備。">
+            <rect width="680" height="210" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">アクセス制御の最低 5 チェック（OWASP 1 位対策）</text>
+            <circle cx="34" cy="62" r="9" fill="#10b981"/>
+            <text x="34" y="66" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">1</text>
+            <text x="54" y="67" font-family="Inter, sans-serif" font-size="12" fill="#666666">管理者アカウント名を推測されにくいものにする</text>
+            <circle cx="34" cy="94" r="9" fill="#10b981"/>
+            <text x="34" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">2</text>
+            <text x="54" y="99" font-family="Inter, sans-serif" font-size="12" fill="#666666">パスワードを長く複雑にし、使い回さない</text>
+            <circle cx="34" cy="126" r="9" fill="#10b981"/>
+            <text x="34" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">3</text>
+            <text x="54" y="131" font-family="Inter, sans-serif" font-size="12" fill="#666666">ログインに二要素認証を加える</text>
+            <circle cx="34" cy="158" r="9" fill="#10b981"/>
+            <text x="34" y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">4</text>
+            <text x="54" y="163" font-family="Inter, sans-serif" font-size="12" fill="#666666">ユーザーごとの権限を「必要な分だけ」に絞る</text>
+            <circle cx="34" cy="190" r="9" fill="#10b981"/>
+            <text x="34" y="194" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">5</text>
+            <text x="54" y="195" font-family="Inter, sans-serif" font-size="12" fill="#666666">退職者・不要になったアカウントを残さず削除する</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：アクセス制御は「誰が何をできるか」の境界を引き直す作業。新しいツールは不要。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-5" aria-label="やること 4 サーバー設定を整える" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. やること 4 — サーバー設定を整える</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>OWASP Top 10:2025 で 2 位は設定ミスです。WordPress では、サーバーや WordPress 自体の設定の不備がここに当たります。コードの問題ではなく「設定を直すだけで塞げる穴」なので、優先的に取り組む価値があります。</p>
+          <p>具体的には、サイト全体を HTTPS で常時化する、デバッグ表示を本番で無効にする、エラー画面に内部情報を出さない、不要なファイル一覧の公開を止める、といった項目です。WordPress のバージョンを外部から読み取られないようにするのも、攻撃者に手がかりを与えない基本対策の一つです。</p>
+          <p>あわせて整えたいのが、ブラウザに安全な扱いを指示するセキュリティヘッダーです。HSTS や CSP（Content Security Policy）などを設定しておきます。なお、クリックジャッキング対策の X-Frame-Options は CSP の frame-ancestors ディレクティブにより obsolete 扱いとなったため、新規実装では frame-ancestors を優先します。設定が正しいかは securityheaders.com などの評価ツールで確認できます。</p>
+        </div>
+      </section>
+
+      <section id="section-6" aria-label="セキュリティプラグインの正しい位置づけ" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. セキュリティプラグインの正しい位置づけ</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「セキュリティプラグインを入れたから安心」という考え方には注意が必要です。セキュリティプラグインは補助としては有用ですが、それだけで対策が完了するわけではありません。</p>
+          <p>理由は、ここまで挙げた 4 つの基礎 — プラグインの整理、更新、アクセス制御、サーバー設定 — のほとんどが、プラグイン任せにできない運用と設計の問題だからです。OWASP Top 10:2025 の上位であるアクセス制御の不備と設定ミスは、まさにこの領域に属します。さらにセキュリティプラグイン自体も「追加した部品」であり、それが脆弱性を持つ可能性もゼロではありません。</p>
+          <p>正しい順序は、まず 4 つの基礎を固め、そのうえでセキュリティプラグインを上乗せすることです。日本では IPA「安全なウェブサイトの作り方」第 7 版（2026 年現在も現行版）が、こうした基礎的な脆弱性対策を体系的に解説しています。</p>
+        </div>
+
+        <h3 class="mt-10 font-display text-xl font-bold text-dark-900">【Top 5】WordPress で最低限やること</h3>
+        <ol class="mt-5 space-y-3 text-dark-700 leading-relaxed">
+          <li><strong class="text-dark-900">1. プラグインを整理する</strong> — 使用中・更新継続・出所信頼の 3 点で棚卸し。使っていないものは削除。</li>
+          <li><strong class="text-dark-900">2. 更新を放置しない</strong> — バックアップ → 試験環境 → 本番の手順を整え、自動更新も活用する。</li>
+          <li><strong class="text-dark-900">3. アクセス制御を固める</strong> — OWASP 1 位。管理者名・パスワード・二要素認証・権限の最小化。</li>
+          <li><strong class="text-dark-900">4. サーバー設定を整える</strong> — OWASP 2 位。HTTPS 常時化・デバッグ表示の停止・セキュリティヘッダー。</li>
+          <li><strong class="text-dark-900">5. セキュリティプラグインは「上乗せ」</strong> — 基礎を固めた後の補助。入れただけで完了ではない。</li>
+        </ol>
+
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">WordPress を安全にするのは、高価なツールではなく基礎の徹底です。</strong>リスクの 91% が「自分で入れた部品」にある以上、対策の主役は運用と設計です。T.C.HARTON は<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で、自社サイトのセキュリティ実装内容を公開しています。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">WordPress のコア本体は安全ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">コア本体のリスクは相対的に小さいと言えます。Patchstack の 2025 年レポートでは、報告された新規脆弱性 11,334 件のうちコア本体はわずか 6 件で、いずれも低優先度でした。91% はプラグイン、9% はテーマ起因です。ただしコアも更新を放置すると将来の脆弱性にさらされるため、自動更新を有効にしておくのが基本です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">プラグインは何個までなら安全ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">「何個まで」という安全な上限はありません。重要なのは数そのものより、一つひとつが「いま実際に使われているか」「更新が継続されているか」「出所が信頼できるか」です。使っていないプラグインは個数に関わらず削除します。攻撃される面積は、有効・無効を問わずインストールされている部品の数で決まります。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">有料プラグインやテーマなら安全ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">有料であることは安全性を保証しません。Patchstack の 2025 年データでは、テーマ起因の脆弱性も全体の 9% を占めており、有料テーマも例外ではありません。判断基準は価格ではなく、開発元が脆弱性報告に迅速に対応し、更新を継続しているかどうかです。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">更新するとサイトが壊れそうで怖いです。どうすればよいですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">更新を止めることは、既知の脆弱性を放置することと同じで、より大きなリスクになります。現実的な進め方は、更新前にバックアップを取る、可能ならステージング環境で先に試す、そのうえで本番に適用する、という手順です。怖いから更新しないのではなく、安全に更新できる手順を整えるのが正しい対処です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">セキュリティプラグインを入れれば対策は完了しますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">セキュリティプラグインは補助にはなりますが、それだけで完了とは言えません。OWASP Top 10:2025 の上位はアクセス制御の不備と設定ミスで、これらはプラグイン任せにできない運用と設計の問題です。プラグインの整理・更新・アクセス制御・サーバー設定という基礎を固めたうえで、セキュリティプラグインを上乗せするのが正しい順序です。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/security-5-principles/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）</a></li>
+          <li><a href="/insights/are-you-really-safe/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">「うちは狙われない」は本当か — 中小企業とサイバー攻撃の現実</a></li>
+          <li><a href="/insights/core-web-vitals/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Core Web Vitals 完全ガイド — 表示速度と技術品質</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Patchstack, State of WordPress Security in 2025 — <a href="https://patchstack.com/whitepaper/state-of-wordpress-security-in-2025/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">patchstack.com/whitepaper/state-of-wordpress-security-in-2025</a></li>
+          <li>OWASP, OWASP Top 10:2025 — <a href="https://owasp.org/Top10/2025/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">owasp.org/Top10/2025/</a></li>
+          <li>OWASP, OWASP Secure Headers Project — <a href="https://owasp.org/www-project-secure-headers/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">owasp.org/www-project-secure-headers</a></li>
+          <li>MDN Web Docs, X-Frame-Options — <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options</a></li>
+          <li>IPA, 安全なウェブサイトの作り方（第 7 版） — <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">ipa.go.jp/security/vuln/websecurity/about.html</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたの WordPress サイト、基礎は固まっていますか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの HTTPS 設定・セキュリティヘッダー・公開情報の露出などを機械検証し、4 つの基礎のどこに穴があるかをお見せします。プラグインを入れる前に、土台を確認しましょう。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

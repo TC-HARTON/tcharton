@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>WordPress と静的 HTML、どちらを選ぶべきか｜T.C.HARTON</title>
+  <meta name="description" content="WordPress と静的 HTML はどちらが中小企業サイトに向くのか。Core Web Vitals 合格率・更新のしやすさ・セキュリティを Web Almanac 2025 など一次出典付きで比較し、選び方の判断軸を解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="WordPress と静的 HTML、どちらを選ぶべきか｜T.C.HARTON">
+  <meta property="og:description" content="WordPress と静的 HTML はどちらが中小企業サイトに向くのか。Core Web Vitals 合格率・更新のしやすさ・セキュリティを Web Almanac 2025 など一次出典付きで比較し、選び方の判断軸を解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/wordpress-vs-static/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WordPress と静的 HTML、どちらを選ぶべきか｜T.C.HARTON">
+  <meta name="twitter:description" content="WordPress と静的 HTML はどちらが中小企業サイトに向くのか。Core Web Vitals 合格率・更新のしやすさ・セキュリティを Web Almanac 2025 など一次出典付きで比較し、選び方の判断軸を解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/wordpress-vs-static/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"WordPress と静的 HTML、どちらを選ぶべきか","item":"https://tcharton.com/insights/wordpress-vs-static/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/wordpress-vs-static/#article","headline":"WordPress と静的 HTML、どちらを選ぶべきか","description":"WordPress と静的 HTML はどちらが中小企業サイトに向くのか。Core Web Vitals 合格率・更新のしやすさ・セキュリティを Web Almanac 2025 など一次出典付きで比較し、選び方の判断軸を解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/wordpress-vs-static/","mainEntityOfPage":"https://tcharton.com/insights/wordpress-vs-static/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"WordPress は静的 HTML より遅いのですか？","acceptedAnswer":{"@type":"Answer","text":"「WordPress だから遅い」というのは正確ではありません。Web Almanac 2025 では WordPress サイトのモバイル全 Core Web Vitals 合格率は 43.44% で主要 CMS の中で最も低いものの、これは低品質テーマ・プラグイン過多・未最適化ホスティングといった母集団の影響です。適切に作られた WordPress も静的 HTML も、どちらも高速なサイトたり得ます。"}},
+    {"@type":"Question","name":"なぜ WordPress はこれほど使われているのですか？","acceptedAnswer":{"@type":"Answer","text":"W3Techs の 2026 年 5 月時点のデータでは、WordPress は全 Web サイトの 42.2%、CMS を使うサイトの中では 59.6% を占めます。管理画面から専門知識なしで記事を更新でき、機能を追加するプラグインのエコシステムが巨大なため、更新頻度が高いサイトや担当者が自分で運用したいケースで選ばれています。"}},
+    {"@type":"Question","name":"静的 HTML のデメリットは何ですか？","acceptedAnswer":{"@type":"Answer","text":"静的 HTML は表示が速くセキュリティ面で有利ですが、ブログのように頻繁に記事を追加するサイトでは、更新のたびに制作者の手やビルド作業が必要になります。管理画面から誰でも更新する運用には向きません。更新頻度と運用体制が選択の分かれ目になります。"}},
+    {"@type":"Question","name":"中小企業はどちらを選ぶべきですか？","acceptedAnswer":{"@type":"Answer","text":"判断軸は更新頻度・運用体制・予算・セキュリティ要件です。社内で頻繁に情報発信するなら WordPress を適切に設計して使う、ページ数が限られ表示速度と安全性を最優先するなら静的 HTML、というのが基本です。重要なのは技術名そのものではなく、どちらを選んでも公開後に速度とセキュリティを実測し続けることです。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">WordPress と静的 HTML、どちらを選ぶべきか</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 速くて快適なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">WordPress と静的 HTML、どちらを選ぶべきか</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 9 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">「WordPress だから遅い」は<strong class="text-dark-900">正確ではありません</strong>。Web Almanac 2025 で WordPress のモバイル合格率が <strong class="text-dark-900">43.44%</strong> と CMS 最低なのは事実ですが、これは低品質テーマ・プラグイン過多・未最適化ホスティングという<strong class="text-dark-900">母集団の効果</strong>です。適切に作れば WordPress も静的 HTML もどちらも高速になります。選択の本当の分かれ目は速度ではなく、<strong class="text-dark-900">更新頻度・運用体制・セキュリティ要件</strong>。技術名で迷うより、「公開後に何を実測し続けるか」を決めるほうが重要です。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. 「WordPress だから遅い」の誤解</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 数字で見る CMS 別の合格率</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. WordPress が選ばれる理由</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 静的 HTML が向く場面</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. セキュリティ面の違い</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 【Top 5】選択を決める判断軸</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="WordPress は管理画面で更新でき柔軟だがプラグイン依存のリスクがあり、静的 HTML は表示が速く安全だが更新に手間がかかる、という両者の特性を対比した図。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">WordPress と静的 HTML — 強みと弱みは表裏一体</text>
+          <rect x="40" y="56" width="290" height="160" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="185" y="84" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">WordPress</text>
+          <text x="60" y="112" font-family="Inter, sans-serif" font-size="12" fill="#10b981">＋ 管理画面で誰でも更新できる</text>
+          <text x="60" y="134" font-family="Inter, sans-serif" font-size="12" fill="#10b981">＋ 機能追加のプラグインが豊富</text>
+          <text x="60" y="156" font-family="Inter, sans-serif" font-size="12" fill="#9db8c4">－ プラグイン過多で重く・脆弱に</text>
+          <text x="60" y="178" font-family="Inter, sans-serif" font-size="12" fill="#9db8c4">－ 更新・保守の手間が継続的に発生</text>
+          <text x="60" y="200" font-family="Inter, sans-serif" font-size="11" fill="#666666">頻繁に情報発信するサイト向き</text>
+          <rect x="350" y="56" width="290" height="160" rx="10" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+          <text x="495" y="84" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#8B6914">静的 HTML</text>
+          <text x="370" y="112" font-family="Inter, sans-serif" font-size="12" fill="#10b981">＋ 表示が速くシンプル</text>
+          <text x="370" y="134" font-family="Inter, sans-serif" font-size="12" fill="#10b981">＋ 攻撃対象が少なく安全</text>
+          <text x="370" y="156" font-family="Inter, sans-serif" font-size="12" fill="#9db8c4">－ 更新に制作者の手やビルドが必要</text>
+          <text x="370" y="178" font-family="Inter, sans-serif" font-size="12" fill="#9db8c4">－ 管理画面からの自由な編集は不向き</text>
+          <text x="370" y="200" font-family="Inter, sans-serif" font-size="11" fill="#666666">ページ数が限られたサイト向き</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：どちらにも明確な向き不向きがある。速度だけで決める問題ではない。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="WordPress だから遅いの誤解" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. 「WordPress だから遅い」の誤解</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「WordPress は遅い」とよく言われます。しかしこれは、技術そのものの問題ではなく、使われ方の問題です。WordPress は世界中で最も使われている CMS であり、利用者の幅が広いぶん、雑に作られたサイトも大量に含まれます。</p>
+          <p>遅い WordPress サイトの正体は、たいてい <strong class="text-dark-900">低品質なテーマ・入れすぎたプラグイン・最適化されていない安価なホスティング</strong>の組み合わせです。逆に、テーマを吟味し、プラグインを最小限にし、まともなサーバーに置けば、WordPress でも十分に速いサイトになります。</p>
+          <p>正確に言えば、「適切に作られた WordPress も静的 HTML も、どちらも高速なサイトたり得る。ただし平均的な WordPress サイトの合格率は低い」。これがデータに基づいた中立な見方です。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="数字で見る CMS 別の合格率" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 数字で見る CMS 別の合格率</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Web Almanac 2025 は、CMS ごとに Core Web Vitals の合格率を集計しています。WordPress のモバイル全 CWV 合格率は <strong class="text-dark-900">43.44%</strong> で、主要 CMS の中で最も低い数字です。</p>
+          <p>比較すると、Duda が 83.63%、Shopify が 75.22%、Wix が 70.76%、Squarespace が 67.66%、Drupal が 59.07%。WordPress だけが大きく下にいます。一方で WordPress は、W3Techs の 2026 年 5 月時点のデータで <strong class="text-dark-900">全 Web の 42.2%、CMS 利用サイトの 59.6%</strong> を占める大きな利用シェアを持ちます。</p>
+          <p>つまり「最も使われているが、平均品質では最下位」という構図です。これは WordPress を選ぶこと自体が悪いという意味ではなく、「WordPress を選ぶなら、平均から抜け出す作り方を意識する必要がある」ということを示しています。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 250" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="主要 CMS のモバイル Core Web Vitals 合格率。Duda 83.63 パーセント、Shopify 75.22 パーセント、Wix 70.76 パーセント、Squarespace 67.66 パーセント、Drupal 59.07 パーセント、WordPress 43.44 パーセントという棒グラフ。">
+            <rect width="680" height="250" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">CMS 別 モバイル CWV 合格率（Web Almanac 2025）</text>
+            <text x="20" y="62" font-family="Inter, sans-serif" font-size="12" fill="#666666">Duda</text>
+            <rect x="160" y="50" width="460" height="18" rx="3" fill="#e0e6eb"/>
+            <rect x="160" y="50" width="385" height="18" rx="3" fill="#2a6a8a"/>
+            <text x="555" y="64" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">83.63%</text>
+            <text x="20" y="92" font-family="Inter, sans-serif" font-size="12" fill="#666666">Shopify</text>
+            <rect x="160" y="80" width="460" height="18" rx="3" fill="#e0e6eb"/>
+            <rect x="160" y="80" width="346" height="18" rx="3" fill="#2a6a8a"/>
+            <text x="516" y="94" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">75.22%</text>
+            <text x="20" y="122" font-family="Inter, sans-serif" font-size="12" fill="#666666">Wix</text>
+            <rect x="160" y="110" width="460" height="18" rx="3" fill="#e0e6eb"/>
+            <rect x="160" y="110" width="326" height="18" rx="3" fill="#2a6a8a"/>
+            <text x="496" y="124" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">70.76%</text>
+            <text x="20" y="152" font-family="Inter, sans-serif" font-size="12" fill="#666666">Squarespace</text>
+            <rect x="160" y="140" width="460" height="18" rx="3" fill="#e0e6eb"/>
+            <rect x="160" y="140" width="311" height="18" rx="3" fill="#2a6a8a"/>
+            <text x="481" y="154" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">67.66%</text>
+            <text x="20" y="182" font-family="Inter, sans-serif" font-size="12" fill="#666666">Drupal</text>
+            <rect x="160" y="170" width="460" height="18" rx="3" fill="#e0e6eb"/>
+            <rect x="160" y="170" width="272" height="18" rx="3" fill="#2a6a8a"/>
+            <text x="442" y="184" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">59.07%</text>
+            <text x="20" y="212" font-family="Inter, sans-serif" font-size="12" fill="#666666">WordPress</text>
+            <rect x="160" y="200" width="460" height="18" rx="3" fill="#e0e6eb"/>
+            <rect x="160" y="200" width="200" height="18" rx="3" fill="#D4AF37"/>
+            <text x="370" y="214" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">43.44%</text>
+            <text x="20" y="240" font-family="Inter, sans-serif" font-size="11" fill="#666666">WordPress は利用シェア最大（全 Web の 42.2%）だが平均合格率は最下位</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：WordPress は CMS 中で平均合格率が最も低い。母集団の影響が大きい。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="WordPress が選ばれる理由" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. WordPress が選ばれる理由</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>合格率が低くても WordPress が世界の 4 割超で使われているのには、明確な理由があります。最大の強みは <strong class="text-dark-900">管理画面から専門知識なしで更新できる</strong>こと。記事の追加・写真の差し替え・お知らせの掲載を、担当者が自分の手で行えます。</p>
+          <p>もうひとつは <strong class="text-dark-900">プラグインのエコシステム</strong>。問い合わせフォーム、予約システム、EC 機能などを後から足せます。この柔軟さは、頻繁に情報を発信したい中小企業にとって実用的な価値です。</p>
+          <p>注意点は、その柔軟さがそのままリスクの裏返しになること。プラグインを足すほどコードが累積して重くなり、後述するセキュリティ上の弱点も増えます。WordPress を選ぶなら「足す自由」を「足さない規律」で抑える設計が前提になります。</p>
+        </div>
+      </section>
+
+      <section id="section-4" aria-label="静的 HTML が向く場面" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 静的 HTML が向く場面</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>静的 HTML は、あらかじめ完成したページファイルをサーバーに置いておく方式です。アクセスのたびにプログラムが動いてページを組み立てる WordPress と違い、出来上がったものをそのまま返すため、表示の出発点が速くなります。</p>
+          <p>向いているのは、<strong class="text-dark-900">ページ数が比較的限られ、更新頻度がそれほど高くないサイト</strong>。会社案内・サービス紹介・採用情報といった「内容が安定しているページ」を中心に構成するなら、静的 HTML の速さと安全性がそのまま活きます。</p>
+          <p>弱点は更新です。ブログのように毎週記事を足すサイトでは、更新のたびに制作者の手やビルド作業が必要になります。「誰でも管理画面から自由に編集する」運用には向きません。更新頻度と運用体制が、静的 HTML を選べるかどうかの分かれ目です。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="セキュリティ面の違い" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. セキュリティ面の違い</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>表示速度と並んで無視できないのがセキュリティです。WordPress エコシステムでは 2025 年に <strong class="text-dark-900">11,334 件</strong>の新規脆弱性が報告され、前年比 42% 増。その内訳が重要で、<strong class="text-dark-900">91% がプラグイン、9% がテーマ、コア本体はわずか 6 件</strong>でした（Patchstack 2025）。</p>
+          <p>つまり WordPress 本体は堅牢で、リスクのほぼ全てがサードパーティのプラグイン・テーマに起因します。「プラグインを入れすぎない・更新を怠らない・有料テーマも安全とは限らない」が、実データに裏打ちされた鉄則です。</p>
+          <p>静的 HTML は、そもそも動的に処理を実行するプログラムがサーバー上にないため、攻撃の対象になる面が構造的に少なくなります。これは静的 HTML の明確な利点です。ただし「静的だから絶対安全」ではなく、フォーム連携や外部サービスの扱いには変わらず注意が必要です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="2025 年の WordPress エコシステムの新規脆弱性 11334 件の内訳。91 パーセントがプラグイン、9 パーセントがテーマ、コア本体はわずか 6 件であることを示す図。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">WordPress 脆弱性 11,334 件の内訳（Patchstack 2025）</text>
+            <text x="60" y="78" font-family="Inter, sans-serif" font-size="13" fill="#666666">プラグイン</text>
+            <rect x="170" y="64" width="450" height="24" rx="4" fill="#e0e6eb"/>
+            <rect x="170" y="64" width="410" height="24" rx="4" fill="#9db8c4"/>
+            <text x="592" y="82" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">91%</text>
+            <text x="60" y="122" font-family="Inter, sans-serif" font-size="13" fill="#666666">テーマ</text>
+            <rect x="170" y="108" width="450" height="24" rx="4" fill="#e0e6eb"/>
+            <rect x="170" y="108" width="41" height="24" rx="4" fill="#D4AF37"/>
+            <text x="223" y="126" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8B6914">9%</text>
+            <text x="60" y="166" font-family="Inter, sans-serif" font-size="13" fill="#666666">コア本体</text>
+            <rect x="170" y="152" width="450" height="24" rx="4" fill="#e0e6eb"/>
+            <rect x="170" y="152" width="6" height="24" rx="3" fill="#10b981"/>
+            <text x="186" y="170" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#10b981">わずか 6 件（全て低優先度）</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：WordPress のリスクはほぼプラグイン・テーマ起因。本体は堅牢。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="選択を決める判断軸" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 【Top 5】選択を決める判断軸</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">技術名で迷うのではなく、次の 5 つの軸で自社の状況を整理すると、おのずと答えが出ます。</p>
+        <ol class="mt-6 space-y-3">
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span><p class="text-sm text-dark-700"><strong class="text-dark-900">更新頻度</strong> — 社内で週単位・月単位に情報発信するなら WordPress。年に数回程度なら静的 HTML でも困らない。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span><p class="text-sm text-dark-700"><strong class="text-dark-900">運用体制</strong> — 担当者が自分で管理画面から触りたいなら WordPress。更新は制作者に任せる前提なら静的 HTML が向く。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span><p class="text-sm text-dark-700"><strong class="text-dark-900">セキュリティ要件</strong> — 攻撃対象面を最小にしたい、保守の手間を抑えたいなら静的 HTML。WordPress ならプラグイン管理と更新の運用を必ずセットにする。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">4</span><p class="text-sm text-dark-700"><strong class="text-dark-900">必要な機能</strong> — 予約・EC・会員機能などを多用するなら WordPress のプラグイン資産が現実的。シンプルな問い合わせだけなら静的 HTML で足りる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">5</span><p class="text-sm text-dark-700"><strong class="text-dark-900">公開後の保守予算</strong> — WordPress はプラグイン更新・バックアップなど継続的な保守コストが発生する。静的 HTML は保守が軽い。長期の運用費まで含めて比較する。</p></li>
+        </ol>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">大事なのは技術名そのものではありません。</strong>WordPress でも静的 HTML でも、公開後に Core Web Vitals とセキュリティを実測し続けられるかどうかが品質を決めます。T.C.HARTON は全ページの実測を <a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で公開しています。発注前に「どちらを選ぶか」と「何を測り続けるか」を一緒に決めましょう。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">WordPress は静的 HTML より遅いのですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">「WordPress だから遅い」というのは正確ではありません。Web Almanac 2025 では WordPress サイトのモバイル全 Core Web Vitals 合格率は 43.44% で主要 CMS の中で最も低いものの、これは低品質テーマ・プラグイン過多・未最適化ホスティングといった母集団の影響です。適切に作られた WordPress も静的 HTML も、どちらも高速なサイトたり得ます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">なぜ WordPress はこれほど使われているのですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">W3Techs の 2026 年 5 月時点のデータでは、WordPress は全 Web サイトの 42.2%、CMS を使うサイトの中では 59.6% を占めます。管理画面から専門知識なしで記事を更新でき、機能を追加するプラグインのエコシステムが巨大なため、更新頻度が高いサイトや担当者が自分で運用したいケースで選ばれています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">静的 HTML のデメリットは何ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">静的 HTML は表示が速くセキュリティ面で有利ですが、ブログのように頻繁に記事を追加するサイトでは、更新のたびに制作者の手やビルド作業が必要になります。管理画面から誰でも更新する運用には向きません。更新頻度と運用体制が選択の分かれ目になります。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">中小企業はどちらを選ぶべきですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">判断軸は更新頻度・運用体制・予算・セキュリティ要件です。社内で頻繁に情報発信するなら WordPress を適切に設計して使う、ページ数が限られ表示速度と安全性を最優先するなら静的 HTML、というのが基本です。重要なのは技術名そのものではなく、どちらを選んでも公開後に速度とセキュリティを実測し続けることです。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/why-slow-site-loses-sales/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">サイトが遅いと、なぜ客が逃げるのか</a></li>
+          <li><a href="/insights/modern-build-astro/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">HTML-first という選択肢 — Astro と Islands</a></li>
+          <li><a href="/insights/core-web-vitals/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Core Web Vitals 完全解説 — INP 時代の表示速度改善</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Web Almanac 2025, CMS — <a href="https://almanac.httparchive.org/en/2025/cms" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">almanac.httparchive.org/en/2025/cms</a></li>
+          <li>Web Almanac 2025, Performance — <a href="https://almanac.httparchive.org/en/2025/performance" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">almanac.httparchive.org/en/2025/performance</a></li>
+          <li>W3Techs, Usage statistics of WordPress — <a href="https://w3techs.com/technologies/details/cm-wordpress" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">w3techs.com/technologies/details/cm-wordpress</a></li>
+          <li>Patchstack, State of WordPress Security in 2025 — <a href="https://patchstack.com/whitepaper/state-of-wordpress-security-in-2025/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">patchstack.com/whitepaper/state-of-wordpress-security-in-2025</a></li>
+          <li>web.dev, Web Vitals — <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/vitals</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">WordPress か静的 HTML か、迷っていませんか</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの構成と Core Web Vitals を実測し、どちらの方式が自社の運用に合うかを一緒に整理します。発注前に「成功の基準」を決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

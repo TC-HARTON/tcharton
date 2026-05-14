@@ -76,6 +76,29 @@ const STATIC_TARGETS = [
   'insights/eat-improvement/index.html',
   'insights/longtail-seo/index.html',
   'insights/search-intent/index.html',
+  'insights/geo-complete-guide/index.html',
+  'insights/ai-search-engines-compared/index.html',
+  'insights/llms-txt-debate/index.html',
+  'insights/get-cited-by-ai/index.html',
+  'insights/why-slow-site-loses-sales/index.html',
+  'insights/inp-deep-dive/index.html',
+  'insights/wordpress-vs-static/index.html',
+  'insights/modern-build-astro/index.html',
+  'insights/image-font-optimization/index.html',
+  'insights/are-you-really-safe/index.html',
+  'insights/wordpress-security-basics/index.html',
+  'insights/local-seo-guide/index.html',
+  'insights/google-business-profile/index.html',
+  'insights/seo-from-zero-backlinks/index.html',
+  'insights/measure-ai-traffic-ga4/index.html',
+  'insights/publish-is-not-the-goal/index.html',
+  'insights/accessibility-wcag22/index.html',
+  'insights/how-to-read-a-quote/index.html',
+  'insights/cheap-vs-expensive-site/index.html',
+  'insights/when-to-rebuild/index.html',
+  'insights/how-to-choose-web-company/index.html',
+  'insights/subsidy-for-website/index.html',
+  'insights/no-results-after-launch/index.html',
 
 
     // Stella サブセクション (v1.37 / certification 完全再現 / 131 pages)
@@ -261,6 +284,29 @@ const PAGE_TYPE = {
   'insights/eat-improvement/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/longtail-seo/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/search-intent/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'insights/geo-complete-guide/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/ai-search-engines-compared/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/llms-txt-debate/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/get-cited-by-ai/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/why-slow-site-loses-sales/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/inp-deep-dive/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/wordpress-vs-static/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/modern-build-astro/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/image-font-optimization/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/are-you-really-safe/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/wordpress-security-basics/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/local-seo-guide/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/google-business-profile/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/seo-from-zero-backlinks/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/measure-ai-traffic-ga4/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/publish-is-not-the-goal/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/accessibility-wcag22/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/how-to-read-a-quote/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/cheap-vs-expensive-site/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/when-to-rebuild/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/how-to-choose-web-company/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/subsidy-for-website/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/no-results-after-launch/index.html': 'minimal',  // Insights 記事（本実装済み）
   // Stella サブセクション (v1.37 Step 1 stub / ① 起草中)
   'stella/index.html': 'minimal',
   'stella/methodology/index.html': 'minimal',
@@ -1427,6 +1473,14 @@ function cGlobal() {
       'insights/index.html', 'insights/core-web-vitals/index.html', 'insights/json-ld-implementation/index.html',
       'insights/llmo-explained/index.html', 'insights/wikidata-for-ai/index.html', 'insights/security-5-principles/index.html',
       'insights/eat-improvement/index.html', 'insights/longtail-seo/index.html', 'insights/search-intent/index.html',
+      'insights/geo-complete-guide/index.html', 'insights/ai-search-engines-compared/index.html', 'insights/llms-txt-debate/index.html',
+      'insights/get-cited-by-ai/index.html', 'insights/why-slow-site-loses-sales/index.html', 'insights/inp-deep-dive/index.html',
+      'insights/wordpress-vs-static/index.html', 'insights/modern-build-astro/index.html', 'insights/image-font-optimization/index.html',
+      'insights/are-you-really-safe/index.html', 'insights/wordpress-security-basics/index.html', 'insights/local-seo-guide/index.html',
+      'insights/google-business-profile/index.html', 'insights/seo-from-zero-backlinks/index.html', 'insights/measure-ai-traffic-ga4/index.html',
+      'insights/publish-is-not-the-goal/index.html', 'insights/accessibility-wcag22/index.html', 'insights/how-to-read-a-quote/index.html',
+      'insights/cheap-vs-expensive-site/index.html', 'insights/when-to-rebuild/index.html', 'insights/how-to-choose-web-company/index.html',
+      'insights/subsidy-for-website/index.html', 'insights/no-results-after-launch/index.html',
 ]);
     const sitemapMissing = STATIC_TARGETS
       .filter(t => !NO_SITEMAP.has(t))

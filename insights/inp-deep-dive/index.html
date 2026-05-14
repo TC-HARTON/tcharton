@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>INP を 200ms 未満にする実装の全手法｜T.C.HARTON</title>
+  <meta name="description" content="操作への応答速度 INP を 200ms 未満に保つための実装手法を、ロングタスク分割・scheduler.yield()・Web Worker など一次出典付きで解説。INP 改善の web.dev 公式ケーススタディも紹介します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="INP を 200ms 未満にする実装の全手法｜T.C.HARTON">
+  <meta property="og:description" content="操作への応答速度 INP を 200ms 未満に保つための実装手法を、ロングタスク分割・scheduler.yield()・Web Worker など一次出典付きで解説。INP 改善の web.dev 公式ケーススタディも紹介します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/inp-deep-dive/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="INP を 200ms 未満にする実装の全手法｜T.C.HARTON">
+  <meta name="twitter:description" content="操作への応答速度 INP を 200ms 未満に保つための実装手法を、ロングタスク分割・scheduler.yield()・Web Worker など一次出典付きで解説。INP 改善の web.dev 公式ケーススタディも紹介します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/inp-deep-dive/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"INP を 200ms 未満にする実装の全手法","item":"https://tcharton.com/insights/inp-deep-dive/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/inp-deep-dive/#article","headline":"INP を 200ms 未満にする実装の全手法","description":"操作への応答速度 INP を 200ms 未満に保つための実装手法を、ロングタスク分割・scheduler.yield()・Web Worker など一次出典付きで解説。INP 改善の web.dev 公式ケーススタディも紹介します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/inp-deep-dive/","mainEntityOfPage":"https://tcharton.com/insights/inp-deep-dive/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"INP と旧指標 FID は何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"FID は最初の 1 操作の「待ち時間」だけを測る指標でしたが、INP はページ滞在中のほぼ全ての操作を見て、その中で遅かったものを代表値として採用します。応答が完了して画面が更新されるまでを測るため、FID より格段に厳しい指標です。2024 年 3 月に Core Web Vitals の正式指標として FID と置き換わりました。"}},
+    {"@type":"Question","name":"INP の合格基準は何ミリ秒ですか？","acceptedAnswer":{"@type":"Answer","text":"INP は 200 ミリ秒以内であれば「良好」、200〜500 ミリ秒で「要改善」、500 ミリ秒超で「不良」とされます。判定は実ユーザーの体験データ（CrUX）の 75 パーセンタイルで行われるため、回線が遅い人や古い端末の人を含めて 200ms 以内に収める必要があります。"}},
+    {"@type":"Question","name":"scheduler.yield() はすべてのブラウザで使えますか？","acceptedAnswer":{"@type":"Answer","text":"scheduler.yield() はメインスレッドを安全に明け渡す新しい標準 API ですが、2026 年 5 月時点で Safari は未対応です。そのため scheduler.yield() が使える環境ではそれを使い、使えない環境では setTimeout によるフォールバックを併用するのが定石です。"}},
+    {"@type":"Question","name":"INP を良くすると売上も上がりますか？","acceptedAnswer":{"@type":"Answer","text":"web.dev の公式ケーススタディでは、INP を約 80% 削減した QuintoAndar でコンバージョンが前年比 36% 増、INP を約 4 分の 1 にした Economic Times で直帰率 50% 減・ページビュー 43% 増という結果が報告されています。厳密には相関ですが、操作の快適さがビジネス指標と結びつく事例として参考になります。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">INP を 200ms 未満にする実装の全手法</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 速くて快適なサイト</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">INP を 200ms 未満にする実装の全手法</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 9 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">INP（Interaction to Next Paint）は、ユーザーの操作に対してサイトが <strong class="text-dark-900">200 ミリ秒以内</strong>に応答できているかを測る指標です。悪化の主因は、メインスレッドを長時間ふさぐ<strong class="text-dark-900">ロングタスク</strong>（50ms 超の処理）。改善の核心は「長い処理を細かく分割し、こまめにブラウザへ制御を返す（yield する）」こと。<strong class="text-dark-900">scheduler.yield()</strong> や Web Worker を使い、重い計算を画面更新の邪魔をしない場所へ追い出せば、200ms 未満は十分に届きます。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. INP とは何を測っているのか</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 悪化の正体は「ロングタスク」</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. 中核手法 — タスクを分割して yield する</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 重い計算は Web Worker へ逃がす</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 公式ケーススタディが示す改善幅</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 【Top 6】INP を 200ms 未満にする実装手順</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="ユーザーがボタンをタップしてから画面が更新されるまでの時間が INP。入力遅延・処理時間・描画遅延の 3 段階の合計で、200 ミリ秒以内が良好とされる図。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">INP = 操作してから画面が更新されるまでの時間</text>
+          <text x="20" y="62" font-family="Inter, sans-serif" font-size="12" fill="#666666">タップ・クリック・キー入力 → 次の描画 までの全体を測る</text>
+          <rect x="40" y="84" width="140" height="44" rx="6" fill="#c9d6dc"/>
+          <text x="110" y="103" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">入力遅延</text>
+          <text x="110" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#1B4965">処理待ち</text>
+          <rect x="190" y="84" width="200" height="44" rx="6" fill="#2a6a8a"/>
+          <text x="290" y="103" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">処理時間</text>
+          <text x="290" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#FFFFFF">JavaScript の実行</text>
+          <rect x="400" y="84" width="140" height="44" rx="6" fill="#9db8c4"/>
+          <text x="470" y="103" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">描画遅延</text>
+          <text x="470" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#FFFFFF">画面の再描画</text>
+          <line x1="40" y1="148" x2="540" y2="148" stroke="#9db8c4" stroke-width="1.5"/>
+          <text x="290" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">この合計 ≦ 200ms で「良好」</text>
+          <rect x="40" y="190" width="160" height="32" rx="6" fill="#10b981"/>
+          <text x="120" y="211" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">〜200ms 良好</text>
+          <rect x="210" y="190" width="160" height="32" rx="6" fill="#D4AF37"/>
+          <text x="290" y="211" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">200〜500ms 要改善</text>
+          <rect x="380" y="190" width="160" height="32" rx="6" fill="#9db8c4"/>
+          <text x="460" y="211" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">500ms〜 不良</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：INP は入力遅延・処理時間・描画遅延の合計。200ms 以内が良好の境界線。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="INP とは何を測っているのか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. INP とは何を測っているのか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>INP（Interaction to Next Paint）は、ユーザーがボタンをタップしたり文字を入力したりした瞬間から、その操作の結果が画面に反映されるまでの時間を測る指標です。Core Web Vitals の 3 指標のうち「操作への応答性」を担当します。</p>
+          <p>合格基準は明確で、<strong class="text-dark-900">200 ミリ秒以内なら「良好」</strong>、200〜500ms で「要改善」、500ms 超で「不良」です。判定は実ユーザーの体験データ（CrUX）の 75 パーセンタイルで行われるため、回線が遅い人や古い端末の人を含めて 200ms 以内に収める必要があります。</p>
+          <p>2024 年 3 月、INP は旧指標 FID（First Input Delay）と置き換わりました。FID は最初の 1 操作の「待ち時間」だけを見ていましたが、INP はページ滞在中のほぼ全操作を見て、応答が完了し画面が更新されるまでを測ります。FID より格段に厳しい指標です。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="悪化の正体はロングタスク" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 悪化の正体は「ロングタスク」</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>ブラウザの JavaScript は「メインスレッド」という 1 本の作業列で動きます。ここで <strong class="text-dark-900">50 ミリ秒を超える処理</strong>が走っている間、ブラウザはユーザーの操作に応答できません。これが「ロングタスク」で、INP 悪化の正体です。</p>
+          <p>Web Almanac 2025 によると、INP 自体は改善傾向にある一方、TBT（Total Blocking Time＝メインスレッドがふさがる総量）は前年比 <strong class="text-dark-900">58% 増</strong>。サイトに積まれる JavaScript の総量と実行コストが増え続けていることを示しています。</p>
+          <p>タップしても反応しない、入力した文字がワンテンポ遅れて表示される — こうした「もたつき」は、たいてい裏でロングタスクが走っているサインです。解決の方向はひとつ。<strong class="text-dark-900">長い処理を細かく区切り、その合間にブラウザへ制御を返す</strong>ことです。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="ひとつの長い処理がメインスレッドをふさいでいると操作に応答できないが、処理を細かく分割して合間にブラウザへ制御を返すと、操作に素早く応答できるようになることを示す比較図。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">ロングタスク分割で操作に応答できるようになる</text>
+            <text x="40" y="68" font-family="Inter, sans-serif" font-size="12" fill="#666666">改善前：ひとつの長い処理がメインスレッドを占有</text>
+            <rect x="40" y="78" width="420" height="30" rx="4" fill="#9db8c4"/>
+            <text x="250" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">長い処理（この間ずっと操作できない）</text>
+            <text x="470" y="98" font-family="Inter, sans-serif" font-size="11" fill="#666666">→ 応答が遅い</text>
+            <text x="40" y="140" font-family="Inter, sans-serif" font-size="12" fill="#666666">改善後：処理を分割し、合間に制御を返す（yield）</text>
+            <rect x="40" y="150" width="70" height="30" rx="4" fill="#2a6a8a"/>
+            <rect x="118" y="150" width="70" height="30" rx="4" fill="#2a6a8a"/>
+            <rect x="196" y="150" width="70" height="30" rx="4" fill="#2a6a8a"/>
+            <rect x="274" y="150" width="70" height="30" rx="4" fill="#2a6a8a"/>
+            <rect x="352" y="150" width="70" height="30" rx="4" fill="#2a6a8a"/>
+            <path d="M114 165 l-6 -4 v8 z M192 165 l-6 -4 v8 z M270 165 l-6 -4 v8 z M348 165 l-6 -4 v8 z" fill="#10b981"/>
+            <text x="470" y="170" font-family="Inter, sans-serif" font-size="11" fill="#10b981" font-weight="700">→ 操作に即応答</text>
+            <text x="40" y="205" font-family="Inter, sans-serif" font-size="11" fill="#666666">緑の隙間でブラウザがユーザー操作を処理できる</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：長い処理を分割し合間に制御を返すと、その隙間でブラウザが操作に応答できる。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="中核手法 タスクを分割して yield する" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. 中核手法 — タスクを分割して yield する</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>INP 改善の中核は、web.dev 公式が示す「ロングタスクの分割」と「メインスレッドへの yield（明け渡し）」です。処理の途中でブラウザに「ここで一旦どうぞ」と制御を返すと、その瞬間に溜まっていたユーザー操作を先に処理できます。</p>
+          <p>制御を返す新しい標準が <code class="text-sm bg-dark-100 px-2 py-1 rounded">scheduler.yield()</code> です。ただし 2026 年 5 月時点で <strong class="text-dark-900">Safari は未対応</strong>のため、使える環境では <code class="text-sm bg-dark-100 px-2 py-1 rounded">scheduler.yield()</code>、使えない環境では <code class="text-sm bg-dark-100 px-2 py-1 rounded">setTimeout</code> によるフォールバックを併用するのが定石です。タスクに優先度を付けて予約する <code class="text-sm bg-dark-100 px-2 py-1 rounded">scheduler.postTask()</code> も関連 API として使えます。</p>
+          <p>実装の勘所は、ループや一括処理の中で「重要な画面更新を先に済ませ、残りの作業の前に yield する」こと。イベントハンドラの中に重い処理を全部書かず、ユーザーに見える部分の更新を優先させます。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 250" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="scheduler.yield() が使える環境ではそれを使い、使えない環境では setTimeout でフォールバックする実装パターンを示すコード構造の図。">
+            <rect width="680" height="250" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">yield のフォールバック実装パターン</text>
+            <rect x="40" y="52" width="600" height="40" rx="6" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="56" y="77" font-family="Inter, sans-serif" font-size="13" fill="#1B4965">function yieldToMain() {</text>
+            <rect x="70" y="100" width="540" height="36" rx="6" fill="#f0fbf5" stroke="#10b981" stroke-width="1.5"/>
+            <text x="86" y="123" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">if ('scheduler' in window) return scheduler.yield();  ← 新標準</text>
+            <rect x="70" y="144" width="540" height="36" rx="6" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="86" y="167" font-family="Inter, sans-serif" font-size="12" fill="#1B4965">return new Promise(r =&gt; setTimeout(r, 0));  ← Safari 等の保険</text>
+            <text x="56" y="202" font-family="Inter, sans-serif" font-size="13" fill="#1B4965">}</text>
+            <text x="40" y="234" font-family="Inter, sans-serif" font-size="11" fill="#666666">重い処理の合間で await yieldToMain() を呼べば、操作に割り込みの余地が生まれる</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：scheduler.yield() を主に、setTimeout を保険にしたフォールバック構造。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="重い計算は Web Worker へ逃がす" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 重い計算は Web Worker へ逃がす</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>分割しても重すぎる処理は、そもそもメインスレッドから外すのが正解です。それを担うのが <strong class="text-dark-900">Web Worker</strong>。画面描画とは別のスレッドで JavaScript を動かせる仕組みです。</p>
+          <p>大量データの並べ替え、検索フィルタの集計、画像の前処理といった「画面を直接いじらない計算」は Web Worker に任せられます。計算が終わったら結果だけをメインスレッドに渡して描画する。こうすればメインスレッドは常に操作へ応答できる状態を保てます。</p>
+          <p>中小企業サイトでここまで必要になる場面は多くありませんが、商品の絞り込み一覧や予約カレンダーなど「操作のたびに裏で計算が走る」画面では効果が大きい手法です。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="公式ケーススタディが示す改善幅" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 公式ケーススタディが示す改善幅</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「INP を直すと何が変わるのか」は、web.dev の公式ケーススタディが具体的に示しています。いずれも前述の手法を実際に適用した結果です。</p>
+          <p>EC サイトの Trendyol は <code class="text-sm bg-dark-100 px-2 py-1 rounded">scheduler.yield()</code> の導入で商品一覧の INP を <strong class="text-dark-900">50% 削減</strong>。不動産サイトの QuintoAndar は INP を <strong class="text-dark-900">80% 削減</strong>し、コンバージョンが前年比 36% 増と報告されています。ニュースサイトの Economic Times は INP を約 4 分の 1 にし、直帰率 50% 減・ページビュー 43% 増という結果が出ています。</p>
+          <p>誠実にお伝えすると、「INP 改善 → 売上 X%」は厳密には因果ではなく相関です。それでも、操作の快適さがビジネス指標と一緒に動く事例が公式に積み重なっていることは、対策の価値を裏付けています。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="web.dev 公式ケーススタディの INP 改善幅。Trendyol が 50 パーセント削減、QuintoAndar が 80 パーセント削減、Economic Times が約 4 分の 1 に削減した結果を示す図。">
+            <rect width="680" height="200" fill="#FFFFFF"/>
+            <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">web.dev 公式ケーススタディの INP 改善幅</text>
+            <rect x="50" y="58" width="180" height="104" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="140" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#666666">Trendyol（EC）</text>
+            <text x="140" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#10b981">-50%</text>
+            <text x="140" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">商品一覧の INP</text>
+            <rect x="250" y="58" width="180" height="104" rx="10" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="340" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#666666">QuintoAndar（不動産）</text>
+            <text x="340" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#8B6914">-80%</text>
+            <text x="340" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">CV 前年比 +36% 報告</text>
+            <rect x="450" y="58" width="180" height="104" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="540" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#666666">Economic Times（報道）</text>
+            <text x="540" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#10b981">約 1/4 に</text>
+            <text x="540" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">直帰率 -50% 報告</text>
+            <text x="50" y="186" font-family="Inter, sans-serif" font-size="11" fill="#666666">※ ビジネス指標の変化は相関。「〜という結果が報告されている」事例。</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 4：公式ケーススタディが示す INP 改善幅。手法は本記事と同じ。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="INP を 200ms 未満にする実装手順" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 【Top 6】INP を 200ms 未満にする実装手順</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">優先度の高い順に、実際の作業手順としてまとめます。上から取り組むのが効率的です。</p>
+        <ol class="mt-6 space-y-3">
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span><p class="text-sm text-dark-700"><strong class="text-dark-900">まず計測して遅い操作を特定する</strong> — Chrome DevTools の Performance パネルや PageSpeed Insights で、どの操作で INP が伸びているかを実データで確認する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span><p class="text-sm text-dark-700"><strong class="text-dark-900">50ms 超のロングタスクを洗い出す</strong> — DevTools で長い処理に色が付く。イベントハンドラ内で何が走っているかを 1 つずつ確認する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span><p class="text-sm text-dark-700"><strong class="text-dark-900">長い処理を分割し yield を挟む</strong> — <code class="text-sm bg-dark-100 px-2 py-1 rounded">scheduler.yield()</code> を主に、<code class="text-sm bg-dark-100 px-2 py-1 rounded">setTimeout</code> をフォールバックにして、処理の合間に制御を返す。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">4</span><p class="text-sm text-dark-700"><strong class="text-dark-900">画面に見える更新を優先する</strong> — クリック直後に「押された見た目」だけ先に反映し、重い処理は後回しにする。体感の応答性が大きく変わる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">5</span><p class="text-sm text-dark-700"><strong class="text-dark-900">重い計算は Web Worker へ逃がす</strong> — 並べ替え・集計など画面を触らない計算は別スレッドへ。メインスレッドを操作応答に専念させる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">6</span><p class="text-sm text-dark-700"><strong class="text-dark-900">不要な JavaScript を減らす</strong> — 使っていないライブラリやタグを外す。そもそもの処理量が減れば、ロングタスクは生まれにくくなる。</p></li>
+        </ol>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">INP は「測れば直せる」指標です。</strong>もたつきの正体はほぼ必ずロングタスクであり、分割と yield、Web Worker への退避で着実に縮みます。T.C.HARTON は全ページの Core Web Vitals 実測を <a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で公開しています。まずは現状の INP を数字で知ることが第一歩です。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">INP と旧指標 FID は何が違いますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">FID は最初の 1 操作の「待ち時間」だけを測る指標でしたが、INP はページ滞在中のほぼ全ての操作を見て、その中で遅かったものを代表値として採用します。応答が完了して画面が更新されるまでを測るため、FID より格段に厳しい指標です。2024 年 3 月に Core Web Vitals の正式指標として FID と置き換わりました。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">INP の合格基準は何ミリ秒ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">INP は 200 ミリ秒以内であれば「良好」、200〜500 ミリ秒で「要改善」、500 ミリ秒超で「不良」とされます。判定は実ユーザーの体験データ（CrUX）の 75 パーセンタイルで行われるため、回線が遅い人や古い端末の人を含めて 200ms 以内に収める必要があります。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">scheduler.yield() はすべてのブラウザで使えますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">scheduler.yield() はメインスレッドを安全に明け渡す新しい標準 API ですが、2026 年 5 月時点で Safari は未対応です。そのため scheduler.yield() が使える環境ではそれを使い、使えない環境では setTimeout によるフォールバックを併用するのが定石です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">INP を良くすると売上も上がりますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">web.dev の公式ケーススタディでは、INP を約 80% 削減した QuintoAndar でコンバージョンが前年比 36% 増、INP を約 4 分の 1 にした Economic Times で直帰率 50% 減・ページビュー 43% 増という結果が報告されています。厳密には相関ですが、操作の快適さがビジネス指標と結びつく事例として参考になります。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/core-web-vitals/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Core Web Vitals 完全解説 — INP 時代の表示速度改善</a></li>
+          <li><a href="/insights/why-slow-site-loses-sales/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">サイトが遅いと、なぜ客が逃げるのか</a></li>
+          <li><a href="/insights/image-font-optimization/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">画像とフォントで表示速度を半分にする</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>web.dev, Web Vitals — <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/vitals</a></li>
+          <li>web.dev, Optimize INP — <a href="https://web.dev/articles/optimize-inp" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/optimize-inp</a></li>
+          <li>web.dev, Optimize long tasks — <a href="https://web.dev/articles/optimize-long-tasks" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/optimize-long-tasks</a></li>
+          <li>Web Almanac 2025, Performance — <a href="https://almanac.httparchive.org/en/2025/performance" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">almanac.httparchive.org/en/2025/performance</a></li>
+          <li>web.dev, Trendyol INP case study — <a href="https://web.dev/case-studies/trendyol-inp" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/case-studies/trendyol-inp</a></li>
+          <li>web.dev, QuintoAndar INP case study — <a href="https://web.dev/case-studies/quintoandar-inp" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/case-studies/quintoandar-inp</a></li>
+          <li>web.dev, Economic Times INP case study — <a href="https://web.dev/case-studies/economic-times-inp" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/case-studies/economic-times-inp</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトの操作は、もたついていませんか</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの INP を含む Core Web Vitals を実測し、もたつきの原因をお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

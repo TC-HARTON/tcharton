@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化｜T.C.HARTON</title>
+  <meta name="description" content="GEO（Generative Engine Optimization）の完全ガイド。原典の KDD 2024 論文が示した「統計・引用・出典」の編集効果、効果がドメイン依存である事実、AI 検索が検索行動を変えた Pew Research のデータを、一次出典付きで解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化｜T.C.HARTON">
+  <meta property="og:description" content="GEO（Generative Engine Optimization）の完全ガイド。原典の KDD 2024 論文が示した「統計・引用・出典」の編集効果、効果がドメイン依存である事実、AI 検索が検索行動を変えた Pew Research のデータを、一次出典付きで解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/geo-complete-guide/">
+  <meta property="og:image" content="https://tcharton.com/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="T.C.HARTON サービス紹介 OGP 画像（静岡発の高品質 WEB 制作と AI 予測）">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化｜T.C.HARTON">
+  <meta name="twitter:description" content="GEO（Generative Engine Optimization）の完全ガイド。原典の KDD 2024 論文が示した「統計・引用・出典」の編集効果、効果がドメイン依存である事実、AI 検索が検索行動を変えた Pew Research のデータを、一次出典付きで解説します。">
+  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/geo-complete-guide/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化","item":"https://tcharton.com/insights/geo-complete-guide/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/geo-complete-guide/#article","headline":"GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化","description":"GEO（Generative Engine Optimization）の完全ガイド。原典の KDD 2024 論文が示した「統計・引用・出典」の編集効果、効果がドメイン依存である事実、AI 検索が検索行動を変えた Pew Research のデータを、一次出典付きで解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-14","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/geo-complete-guide/","mainEntityOfPage":"https://tcharton.com/insights/geo-complete-guide/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"GEO とは何の略ですか？","acceptedAnswer":{"@type":"Answer","text":"GEO は Generative Engine Optimization（生成エンジン最適化）の略です。2024 年のデータマイニング国際会議 KDD で発表された Aggarwal らの論文が原典で、ChatGPT や Google AI Overviews などの生成 AI の回答に引用されることを狙う最適化を指します。"}},
+    {"@type":"Question","name":"GEO をやれば AI 引用は必ず増えますか？","acceptedAnswer":{"@type":"Answer","text":"必ず増えるとは言えません。KDD 2024 論文は「統計・引用・出典の追加で source visibility が最大 40% 向上した」と報告していますが、これは 2023〜2024 年の旧世代モデルでの実測です。論文自身が効果はドメイン依存と明記しており、現行の AI Overviews での再現は検証されていません。"}},
+    {"@type":"Question","name":"GEO で効く編集はどんなものですか？","acceptedAnswer":{"@type":"Answer","text":"KDD 2024 論文では、文章への統計・数値の追加、権威ある情報源の引用、出典の明記が source visibility を高めました。一方でキーワードの詰め込みはほとんど効きませんでした。法律・行政の話題では統計値、歴史・社会の話題では引用がより有効と報告されています。"}},
+    {"@type":"Question","name":"GEO と SEO はどちらを優先すべきですか？","acceptedAnswer":{"@type":"Answer","text":"対立する関係ではありません。AI 検索は内容を正確に理解できるページを引用元に選ぶため、検索エンジンに評価される基本的な品質づくり（従来 SEO）は GEO の土台になります。まず従来 SEO の土台を整え、その上に GEO の文章設計を積むのが現実的です。"}},
+    {"@type":"Question","name":"GEO の効果はどう測ればよいですか？","acceptedAnswer":{"@type":"Answer","text":"AI 検索からの流入は GA4 で direct に誤分類されやすいため、カスタムチャネルグループでの分類設定が必要です。クリック数だけでなく、AI の回答に自社が引用・言及される頻度を継続的に確認するのが現実的な指標です。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ AI 検索に選ばれる</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-14">2026 年 5 月 14 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-14">最終更新 2026 年 5 月 14 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 10 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">GEO（Generative Engine Optimization）</strong>は、生成 AI の回答に引用されるための最適化です。原典の <strong class="text-dark-900">KDD 2024 論文</strong>は、文章への統計・引用・出典の追加が AI 回答内の可視性を<strong class="text-dark-900">最大 40% 高めた</strong>と報告しています。ただし論文自身が「効果はドメイン依存」と明記しており、これは旧世代モデルでの実測です。GEO は誇張ではなく、検証可能な事実づくりとして取り組むものです。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. GEO とは — 「順位」ではなく「引用」を競う</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 原典 KDD 2024 論文が実験で示したこと</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. 「効果はドメイン依存」— 論文が釘を刺した点</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. なぜ今 GEO なのか — Pew Research のデータ</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 【Top 5】中小企業が実践できる GEO の編集</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. GEO の落とし穴 — 誇張と「○倍」系の主張</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="従来の検索エンジン最適化はキーワードと被リンクで検索順位を上げることを狙う。GEO は統計・引用・出典で生成 AI の回答内に引用されることを狙う。両者は目的が異なる。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">従来 SEO — 検索順位を狙う</text>
+          <rect x="20" y="52" width="290" height="120" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+          <text x="36" y="78" font-family="Inter, sans-serif" font-size="12" fill="#666666">入力：キーワード・被リンク・内部構造</text>
+          <text x="36" y="104" font-family="Inter, sans-serif" font-size="12" fill="#666666">出力：10 本の青いリンクの並び順</text>
+          <rect x="36" y="120" width="258" height="10" rx="2" fill="#2a6a8a"/>
+          <rect x="36" y="136" width="240" height="10" rx="2" fill="#9db8c4"/>
+          <rect x="36" y="152" width="250" height="10" rx="2" fill="#c9d6dc"/>
+          <text x="20" y="200" font-family="Inter, sans-serif" font-size="12" fill="#666666">ゴール：何位に並ぶか</text>
+          <line x1="350" y1="24" x2="350" y2="216" stroke="#e0e6eb" stroke-width="2"/>
+          <text x="380" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">GEO — AI 引用を狙う</text>
+          <rect x="380" y="52" width="280" height="120" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="396" y="78" font-family="Inter, sans-serif" font-size="12" fill="#666666">入力：統計・引用・出典・直答構造</text>
+          <text x="396" y="104" font-family="Inter, sans-serif" font-size="12" fill="#666666">出力：AI 回答文の中の引用元</text>
+          <rect x="396" y="120" width="248" height="9" rx="2" fill="#2a6a8a"/>
+          <rect x="396" y="135" width="240" height="9" rx="2" fill="#2a6a8a"/>
+          <circle cx="402" cy="158" r="6" fill="#D4AF37"/>
+          <circle cx="422" cy="158" r="6" fill="#D4AF37"/>
+          <text x="436" y="162" font-family="Inter, sans-serif" font-size="11" fill="#1B4965">引用元に選ばれる</text>
+          <text x="380" y="200" font-family="Inter, sans-serif" font-size="12" fill="#666666">ゴール：回答に引用されるか</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：従来 SEO は「順位」、GEO は「引用」を競う。入力も出力もゴールも違う。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="GEO とは" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. GEO とは — 「順位」ではなく「引用」を競う</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>GEO は <strong class="text-dark-900">Generative Engine Optimization（生成エンジン最適化）</strong>の略です。ChatGPT や Google の AI Overviews といった「生成エンジン」が返す回答文の中に、自社サイトを引用元として選ばせるための最適化を指します。</p>
+          <p>従来の検索エンジン最適化（SEO）は、10 本のリンクの並び順を競うものでした。GEO が競うのは並び順ではありません。AI が回答を組み立てるとき、その根拠として「どのサイトを引用するか」です。</p>
+          <p>この違いは小さくありません。検索結果の 5 位でも、AI に引用されれば回答文の中に露出します。逆に 1 位でも、引用されなければ AI の回答からは見えない。GEO は、その「引用される側」に回るための考え方です。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="KDD 2024 論文" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 原典 KDD 2024 論文が実験で示したこと</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>GEO という言葉の原典は、2024 年のデータマイニング国際会議 <strong class="text-dark-900">KDD</strong> に採択された Aggarwal らの論文「GEO: Generative Engine Optimization」です。研究チームは <strong class="text-dark-900">GEO-bench</strong> という 10,000 件のクエリのベンチマークを作り、「どう書けば AI に引用されやすいか」を実験で測りました。</p>
+          <p>結論はこうです。文章に<strong class="text-dark-900">統計・数値を加える</strong>、<strong class="text-dark-900">引用を加える</strong>、<strong class="text-dark-900">出典を明記する</strong>といった編集を施すと、生成エンジンの応答内での source visibility（引用元としての可視性）が<strong class="text-dark-900">最大 40% 向上</strong>しました。一方で、キーワードを詰め込むだけの古い手法はほとんど効きませんでした。</p>
+          <p>言い換えれば、AI に引用されたいなら「検索エンジン向けの小細工」ではなく「読み手に検証可能な事実を渡すこと」が効く、というのが論文の核心です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="KDD 2024 論文の結果。編集前を基準 100 とすると、統計の追加で約 130、引用の追加で約 135、出典の明記で最大 140 まで AI 回答内の可視性が上昇する。キーワード詰め込みは 100 付近で横ばい。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="28" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">編集手法別の AI 回答内可視性（編集前 = 100）</text>
+            <line x1="60" y1="178" x2="660" y2="178" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="90" y="120" width="70" height="58" fill="#9db8c4"/>
+            <text x="125" y="198" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">編集前</text>
+            <text x="125" y="112" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">100</text>
+            <rect x="210" y="124" width="70" height="54" fill="#c9d6dc"/>
+            <text x="245" y="198" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">KW 詰め込み</text>
+            <text x="245" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#666666">ほぼ横ばい</text>
+            <rect x="330" y="98" width="70" height="80" fill="#2a6a8a"/>
+            <text x="365" y="198" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">統計を追加</text>
+            <text x="365" y="90" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">上昇</text>
+            <rect x="450" y="86" width="70" height="92" fill="#2a6a8a"/>
+            <text x="485" y="198" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">引用を追加</text>
+            <text x="485" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">上昇</text>
+            <rect x="570" y="70" width="70" height="108" fill="#D4AF37"/>
+            <text x="605" y="198" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">出典を明記</text>
+            <text x="605" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#8B6914">最大 +40%</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：KDD 2024 論文より。統計・引用・出典の追加が可視性を押し上げ、キーワード詰め込みは効かない。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="効果はドメイン依存" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. 「効果はドメイン依存」— 論文が釘を刺した点</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>ここが GEO を語るうえで最も誤解されやすい点です。KDD 2024 論文は「40% 上がる」と書いただけではありません。<strong class="text-dark-900">効果はドメイン（話題の分野）に依存する</strong>と明記しています。</p>
+          <p>論文の報告では、<strong class="text-dark-900">法律・行政</strong>の話題では統計値の追加がより効き、<strong class="text-dark-900">歴史・社会</strong>の話題では引用の追加がより効きました。つまり「どの編集が効くか」は業種ごとに違う。すべての記事に同じ手を打てばよい、というものではありません。</p>
+          <p>さらに重要なのは時点です。この実験は 2023〜2024 年の旧世代モデル（GPT-3.5／4 世代）で行われました。Gemini 3 が標準になった現行の AI Overviews でそのまま再現するかは検証されていません。「GEO をやれば必ず 40% 上がる」は、論文が言っていないことです。</p>
+        </div>
+      </section>
+
+      <section id="section-4" aria-label="なぜ今 GEO なのか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. なぜ今 GEO なのか — Pew Research のデータ</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>では、なぜ中小企業が今 GEO を気にする必要があるのか。学術機関のデータが、検索行動そのものが変わったことを示しています。</p>
+          <p>Pew Research Center は、米国成人 900 人の実ブラウジングデータ（2025 年 3 月時点）と 68,000 件超の実検索クエリを分析しました。それによると、<strong class="text-dark-900">AI 要約が表示されたとき検索結果をクリックしたのは 8%</strong>。AI 要約が出ないときの 15% と比べ、ほぼ半分です。</p>
+          <p>さらに、AI 要約が引用したソースへのクリックは<strong class="text-dark-900">わずか 1%</strong>。2025 年 3 月時点で、全 Google 検索の約 <strong class="text-dark-900">18%</strong> が AI 要約を誘発していました。クリックされる総量が減るなかで、「AI に引用されること」自体の価値が相対的に上がっている。これが GEO に取り組む理由です。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Pew Research のデータ。AI 要約が表示されないとき検索結果のクリック率は 15 パーセント、AI 要約が表示されると 8 パーセントに下がる。AI 要約が引用したソースへのクリックはわずか 1 パーセント。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="28" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">検索結果のクリック率（Pew Research 2025）</text>
+            <line x1="70" y1="170" x2="640" y2="170" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="110" y="80" width="90" height="90" fill="#2a6a8a"/>
+            <text x="155" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">AI 要約なし</text>
+            <text x="155" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">15%</text>
+            <rect x="290" y="122" width="90" height="48" fill="#9db8c4"/>
+            <text x="335" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">AI 要約あり</text>
+            <text x="335" y="114" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">8%</text>
+            <rect x="470" y="160" width="90" height="10" fill="#D4AF37"/>
+            <text x="515" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">引用ソースへ</text>
+            <text x="515" y="152" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8B6914">1%</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：AI 要約が出るとクリックは半減し、引用ソースへのクリックは 1%。総量が減るほど「引用される位置」が重要になる。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-5" aria-label="中小企業が実践できる GEO" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 【Top 5】中小企業が実践できる GEO の編集</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">KDD 2024 論文が「効いた」とした編集を、中小企業の WEB サイトで実行できる形に落とすと、次の 5 つになります。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">1</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">主張に統計・数値を添える</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">「速いサイト」ではなく「表示 1.2 秒のサイト」。論文で最も効果が示された編集です。曖昧語を数値に置き換えます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">2</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">権威ある情報源を引用する</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">公式ドキュメント・査読論文・政府機関の一次出典を本文に引く。AI は裏付けのある記述を抜き出しやすくなります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">3</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">出典を明記する</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">数値の横に出典名と URL を置く。「どこから来た数字か」が明示された文章は、引用元として信頼されます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">4</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">業種に合う編集を選ぶ</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">論文は効果がドメイン依存と明記。法律・行政系なら統計値、解説・社会系なら引用を厚くするなど、使い分けます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">5</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">キーワード詰め込みをやめる</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">論文では効果がほぼ見られなかった手法です。同じ語の連呼より、検証可能な 1 つの事実のほうが引用に効きます。</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">この記事自体が実演です。</strong>本文の数値はすべて出典付き、段落は短く、結論は冒頭で言い切っています。T.C.HARTON はこの編集ルールを全ページで実践し、<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で公開しています。</p>
+        </div>
+      </section>
+
+      <section id="section-6" aria-label="GEO の落とし穴" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. GEO の落とし穴 — 誇張と「○倍」系の主張</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>GEO は今、語られ方が過熱しています。「GEO で AI 流入が 10 倍」といった主張をよく見かけますが、その多くは原典をたどれません。</p>
+          <p>誠実に言えば、GEO の効果について<strong class="text-dark-900">信頼できる定量データは KDD 2024 論文の「最大 40%」</strong>くらいしかありません。そしてその論文自身が、効果はドメイン依存で、旧世代モデルでの実測だと釘を刺しています。「必ず○倍」と言い切る業者がいたら、その数字の出典を尋ねるべきです。</p>
+          <p>GEO の正しい姿勢はこうです。引用を保証する魔法はない。しかし「検証可能な事実を、出典付きで、読みやすく書く」ことは、AI にとっても人間にとっても良い記事を作る。GEO は近道ではなく、品質づくりの別名だと考えるのが現実的です。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">GEO とは何の略ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">GEO は Generative Engine Optimization（生成エンジン最適化）の略です。2024 年のデータマイニング国際会議 KDD で発表された Aggarwal らの論文が原典で、ChatGPT や Google AI Overviews などの生成 AI の回答に引用されることを狙う最適化を指します。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">GEO をやれば AI 引用は必ず増えますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">必ず増えるとは言えません。KDD 2024 論文は「統計・引用・出典の追加で source visibility が最大 40% 向上した」と報告していますが、これは 2023〜2024 年の旧世代モデルでの実測です。論文自身が効果はドメイン依存と明記しており、現行の AI Overviews での再現は検証されていません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">GEO で効く編集はどんなものですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">KDD 2024 論文では、文章への統計・数値の追加、権威ある情報源の引用、出典の明記が source visibility を高めました。一方でキーワードの詰め込みはほとんど効きませんでした。法律・行政の話題では統計値、歴史・社会の話題では引用がより有効と報告されています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">GEO と SEO はどちらを優先すべきですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">対立する関係ではありません。AI 検索は内容を正確に理解できるページを引用元に選ぶため、検索エンジンに評価される基本的な品質づくり（従来 SEO）は GEO の土台になります。まず従来 SEO の土台を整え、その上に GEO の文章設計を積むのが現実的です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">GEO の効果はどう測ればよいですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">AI 検索からの流入は GA4 で direct に誤分類されやすいため、カスタムチャネルグループでの分類設定が必要です。クリック数だけでなく、AI の回答に自社が引用・言及される頻度を継続的に確認するのが現実的な指標です。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/llmo-explained/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">LLMO とは — AI 検索に引用される文章の書き方</a></li>
+          <li><a href="/insights/get-cited-by-ai/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">AI に「おすすめ」と言わせる方法</a></li>
+          <li><a href="/insights/ai-search-engines-compared/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">ChatGPT・Perplexity・Gemini 攻略法の違い</a></li>
+          <li><a href="/insights/json-ld-implementation/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">JSON-LD 構造化データ実装ガイド — AI に事実を渡す</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Aggarwal et al., GEO: Generative Engine Optimization, KDD 2024 — <a href="https://arxiv.org/abs/2311.09735" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">arxiv.org/abs/2311.09735</a></li>
+          <li>ACM Digital Library, GEO: Generative Engine Optimization (KDD 2024) — <a href="https://dl.acm.org/doi/10.1145/3637528.3671900" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">dl.acm.org/doi/10.1145/3637528.3671900</a></li>
+          <li>Pew Research Center, Google users are less likely to click on links when an AI summary appears — <a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">pewresearch.org/short-reads/2025/07/22</a></li>
+          <li>Search Engine Land, Mastering Generative Engine Optimization in 2026 — <a href="https://searchengineland.com/mastering-generative-engine-optimization-in-2026-full-guide-469142" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">searchengineland.com</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトは AI に引用される土台ができていますか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの文章が「統計・引用・出典」の編集基準を満たしているかを機械検証でお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>
