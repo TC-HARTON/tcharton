@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "tcharton-static",
+      "name": "tcharton-preview",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "serve", "-l", "8080", "."],
-      "port": 8080
+      "runtimeArgs": ["--yes", "http-server", ".", "-p", "8789", "-c-1", "--silent"],
+      "port": 8789
     }
   ]
 }

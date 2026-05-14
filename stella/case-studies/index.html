@@ -1,15 +1,15 @@
 <!--
-  HARTON Stella サイト共通レイアウトテンプレート
-  ────────────────────────────────────────
-  生成元: certification/build-base.js（17 基盤） + certification/generate.js（動的ページ）
-  準拠: SPEC v3.4 §1.0 / §4.2 #1 / §8.1 / §8.5-§8.9 / MASTER-PLAN v1.1.4 §4.1 / §10
-  Variant: marketing（明色）/ reading（暗色）— SPEC §10.6.1 準拠
+ HARTON Stella サイト共通レイアウトテンプレート
+ ────────────────────────────────────────
+ 生成元: certification/build-base.js（17 基盤） + certification/generate.js（動的ページ）
+ 準拠: SPEC v3.4 §1.0 / §4.2 #1 / §8.1 / §8.5-§8.9 / MASTER-PLAN v1.1.4 §4.1 / §10
+ Variant: marketing（明色）/ reading（暗色）— SPEC §10.6.1 準拠
 
-  プレースホルダ仕様: lang / title / description / canonical_path / robots / og_type /
-    og_image_path / theme_color / color_scheme / body_class / breadcrumbs_jsonld /
-    additional_jsonld / main_content / nav_active_search / nav_active_methodology /
-    nav_active_apply / nav_active_about / nav_active_press
-  詳細は build-base.js / generate.js の applyLayout() コメントを参照。
+ プレースホルダ仕様: lang / title / description / canonical_path / robots / og_type /
+ og_image_path / theme_color / color_scheme / body_class / breadcrumbs_jsonld /
+ additional_jsonld / main_content / nav_active_search / nav_active_methodology /
+ nav_active_apply / nav_active_about / nav_active_press
+ 詳細は build-base.js / generate.js の applyLayout() コメントを参照。
 -->
 <!DOCTYPE html>
 <html lang="ja" class="no-js">
@@ -60,298 +60,298 @@
 <!-- Tailwind ビルド成果物 -->
 <link rel="stylesheet" href="/dist/output.css?v=202605131200">
 <link rel="stylesheet" href="/dist/stella.css?v=202605141500">
-  <!-- カスタム CSS（SPEC §9 / §11.5 prefers-reduced-motion 必須） -->
+ <!-- カスタム CSS（SPEC §9 / §11.5 prefers-reduced-motion 必須） -->
 <!-- SPEC v3.4 §4.2 #1 JSON-LD（@type 配列必須・additionalType + sameAs GBP） -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
-  "@id": "https://tcharton.com/#organization",
-  "name": "HARTON Stella",
-  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
-  "description": "WEB 品質を機械検証で公正に評価する地方発の認定機関 (旧 HARTON Certified)。SPEC v3.x 2,554 項目 + 4 軸スキャナーで地域の優良サイトを ★/★★/★★★ で格付け認定。",
-  "url": "https://tcharton.com/stella/",
-  "logo": "https://tcharton.com/assets/stella/logo/logo.svg",
-  "image": "https://tcharton.com/stella/ogp.png",
-  "telephone": "+81-80-1058-0538",
-  "email": "stella@tcharton.com",
-  "additionalType": [
-    "https://www.wikidata.org/wiki/Q11661",
-    "https://www.wikidata.org/wiki/Q189210",
-    "https://www.wikidata.org/wiki/Q87415039",
-    "https://www.wikidata.org/wiki/Q13460321",
-    "https://www.wikidata.org/wiki/Q765517"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "JP",
-    "addressRegion": "静岡県",
-    "addressLocality": "沼津市",
-    "streetAddress": "大岡2690",
-    "postalCode": "410-0022"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 35.0959,
-    "longitude": 138.8634
-  },
-  "foundingDate": "2026-04",
-  "knowsAbout": [
-    { "@type": "Thing", "name": "Web Quality Certification", "sameAs": "https://www.wikidata.org/wiki/Q374814" },
-    { "@type": "Thing", "name": "Accreditation", "sameAs": "https://www.wikidata.org/wiki/Q705899" },
-    { "@type": "Thing", "name": "Certification mark", "sameAs": "https://www.wikidata.org/wiki/Q908620" },
-    { "@type": "Thing", "name": "Quality assurance", "sameAs": "https://www.wikidata.org/wiki/Q836575" },
-    { "@type": "Thing", "name": "Quality control", "sameAs": "https://www.wikidata.org/wiki/Q827792" },
-    { "@type": "Thing", "name": "Audit", "sameAs": "https://www.wikidata.org/wiki/Q181487" },
-    { "@type": "Thing", "name": "Benchmarking", "sameAs": "https://www.wikidata.org/wiki/Q816754" },
-    { "@type": "Thing", "name": "Star rating", "sameAs": "https://www.wikidata.org/wiki/Q1642648" },
-    { "@type": "Thing", "name": "Web accessibility", "sameAs": "https://www.wikidata.org/wiki/Q808932" },
-    { "@type": "Thing", "name": "Web Accessibility Initiative", "sameAs": "https://www.wikidata.org/wiki/Q636020" },
-    { "@type": "Thing", "name": "WCAG 2.2", "sameAs": "https://www.wikidata.org/wiki/Q5364439" },
-    { "@type": "Thing", "name": "Search engine optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
-    { "@type": "Thing", "name": "Web standards", "sameAs": "https://www.wikidata.org/wiki/Q1153289" },
-    { "@type": "Thing", "name": "Schema.org", "sameAs": "https://www.wikidata.org/wiki/Q3475322" },
-    { "@type": "Thing", "name": "Structured data", "sameAs": "https://www.wikidata.org/wiki/Q26813700" },
-    { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://www.wikidata.org/wiki/Q104618838" },
-    { "@type": "Thing", "name": "Web design", "sameAs": "https://www.wikidata.org/wiki/Q190637" },
-    "Machine Verification",
-    "GEO/LLMO"
-  ],
-  "about": [
-    { "@type": "Thing", "name": "World Wide Web", "sameAs": "https://www.wikidata.org/wiki/Q466" },
-    { "@type": "Thing", "name": "Website", "sameAs": "https://www.wikidata.org/wiki/Q35127" }
-  ],
-  "memberOf": {
-    "@type": "Organization",
-    "name": "W3C ecosystem",
-    "sameAs": "https://www.wikidata.org/wiki/Q37033"
-  },
-  "areaServed": [
-    { "@type": "AdministrativeArea", "name": "静岡県", "sameAs": "https://www.wikidata.org/wiki/Q131320" },
-    { "@type": "AdministrativeArea", "name": "東京都", "sameAs": "https://www.wikidata.org/wiki/Q1490" },
-    { "@type": "Country", "name": "Japan" }
-  ],
-  "slogan": "機械検証が示す、AI 時代の WEB 品質。",
-  "sameAs": [
-    "https://tcharton.com/",
-    "https://note.com/tcharton",
-    "https://www.google.com/maps/place/?cid=16606425942373165010",
-    "https://maps.google.com/?cid=16606425942373165010"
-  ]
+ "@context": "https://schema.org",
+ "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+ "@id": "https://tcharton.com/#organization",
+ "name": "HARTON Stella",
+ "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+ "description": "WEB 品質を機械検証で公正に評価する地方発の評価サービス (旧 HARTON Certified)。SPEC v3.x 2,554 項目 + 4 軸スキャナーで地域の優良サイトを ★/★★/★★★ で格付け認定。",
+ "url": "https://tcharton.com/stella/",
+ "logo": "https://tcharton.com/assets/stella/logo/logo.svg",
+ "image": "https://tcharton.com/stella/ogp.png",
+ "telephone": "+81-80-1058-0538",
+ "email": "stella@tcharton.com",
+ "additionalType": [
+ "https://www.wikidata.org/wiki/Q11661",
+ "https://www.wikidata.org/wiki/Q189210",
+ "https://www.wikidata.org/wiki/Q87415039",
+ "https://www.wikidata.org/wiki/Q13460321",
+ "https://www.wikidata.org/wiki/Q765517"
+ ],
+ "address": {
+ "@type": "PostalAddress",
+ "addressCountry": "JP",
+ "addressRegion": "静岡県",
+ "addressLocality": "沼津市",
+ "streetAddress": "大岡2690",
+ "postalCode": "410-0022"
+ },
+ "geo": {
+ "@type": "GeoCoordinates",
+ "latitude": 35.0959,
+ "longitude": 138.8634
+ },
+ "foundingDate": "2026-04",
+ "knowsAbout": [
+ { "@type": "Thing", "name": "Web Quality Certification", "sameAs": "https://www.wikidata.org/wiki/Q374814" },
+ { "@type": "Thing", "name": "Accreditation", "sameAs": "https://www.wikidata.org/wiki/Q705899" },
+ { "@type": "Thing", "name": "Certification mark", "sameAs": "https://www.wikidata.org/wiki/Q908620" },
+ { "@type": "Thing", "name": "Quality assurance", "sameAs": "https://www.wikidata.org/wiki/Q836575" },
+ { "@type": "Thing", "name": "Quality control", "sameAs": "https://www.wikidata.org/wiki/Q827792" },
+ { "@type": "Thing", "name": "Audit", "sameAs": "https://www.wikidata.org/wiki/Q181487" },
+ { "@type": "Thing", "name": "Benchmarking", "sameAs": "https://www.wikidata.org/wiki/Q816754" },
+ { "@type": "Thing", "name": "Star rating", "sameAs": "https://www.wikidata.org/wiki/Q1642648" },
+ { "@type": "Thing", "name": "Web accessibility", "sameAs": "https://www.wikidata.org/wiki/Q808932" },
+ { "@type": "Thing", "name": "Web Accessibility Initiative", "sameAs": "https://www.wikidata.org/wiki/Q636020" },
+ { "@type": "Thing", "name": "WCAG 2.2", "sameAs": "https://www.wikidata.org/wiki/Q5364439" },
+ { "@type": "Thing", "name": "Search engine optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
+ { "@type": "Thing", "name": "Web standards", "sameAs": "https://www.wikidata.org/wiki/Q1153289" },
+ { "@type": "Thing", "name": "Schema.org", "sameAs": "https://www.wikidata.org/wiki/Q3475322" },
+ { "@type": "Thing", "name": "Structured data", "sameAs": "https://www.wikidata.org/wiki/Q26813700" },
+ { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://www.wikidata.org/wiki/Q104618838" },
+ { "@type": "Thing", "name": "Web design", "sameAs": "https://www.wikidata.org/wiki/Q190637" },
+ "Machine Verification",
+ "GEO/LLMO"
+ ],
+ "about": [
+ { "@type": "Thing", "name": "World Wide Web", "sameAs": "https://www.wikidata.org/wiki/Q466" },
+ { "@type": "Thing", "name": "Website", "sameAs": "https://www.wikidata.org/wiki/Q35127" }
+ ],
+ "memberOf": {
+ "@type": "Organization",
+ "name": "W3C ecosystem",
+ "sameAs": "https://www.wikidata.org/wiki/Q37033"
+ },
+ "areaServed": [
+ { "@type": "AdministrativeArea", "name": "静岡県", "sameAs": "https://www.wikidata.org/wiki/Q131320" },
+ { "@type": "AdministrativeArea", "name": "東京都", "sameAs": "https://www.wikidata.org/wiki/Q1490" },
+ { "@type": "Country", "name": "Japan" }
+ ],
+ "slogan": "機械検証が示す、AI 時代の WEB 品質。",
+ "sameAs": [
+ "https://tcharton.com/",
+ "https://note.com/tcharton",
+ "https://www.google.com/maps/place/?cid=16606425942373165010",
+ "https://maps.google.com/?cid=16606425942373165010"
+ ]
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "HARTON Stella",
-  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
-  "url": "https://tcharton.com/stella/",
-  "inLanguage": "ja",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://tcharton.com/stella/regions/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "HARTON Stella",
+ "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+ "url": "https://tcharton.com/stella/",
+ "inLanguage": "ja",
+ "potentialAction": {
+ "@type": "SearchAction",
+ "target": {
+ "@type": "EntryPoint",
+ "urlTemplate": "https://tcharton.com/stella/regions/?q={search_term_string}"
+ },
+ "query-input": "required name=search_term_string"
+ }
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "トップ",
-      "item": "https://tcharton.com/stella/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "導入事例",
-      "item": "https://tcharton.com/stella/case-studies/"
-    }
-  ]
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "トップ",
+ "item": "https://tcharton.com/stella/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "導入事例",
+ "item": "https://tcharton.com/stella/case-studies/"
+ }
+ ]
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "@id": "https://tcharton.com/stella/case-studies/#list",
-  "name": "HARTON Stella 認定事業者 導入事例一覧",
-  "numberOfItems": 1,
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "Article",
-        "@id": "https://tcharton.com/stella/case-studies/tcharton-com/#article",
-        "headline": "tcharton.com — 沼津起点の自己実証 (旧 C/65 → 🏆 S/90)",
-        "url": "https://tcharton.com/stella/case-studies/tcharton-com/"
-      }
-    }
-  ]
+ "@context": "https://schema.org",
+ "@type": "ItemList",
+ "@id": "https://tcharton.com/stella/case-studies/#list",
+ "name": "HARTON Stella 認定事業者 導入事例一覧",
+ "numberOfItems": 1,
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "item": {
+ "@type": "Article",
+ "@id": "https://tcharton.com/stella/case-studies/tcharton-com/#article",
+ "headline": "tcharton.com — 沼津起点の自己実証 (旧 C/65 → 🏆 S/90)",
+ "url": "https://tcharton.com/stella/case-studies/tcharton-com/"
+ }
+ }
+ ]
 }
 </script>
-  <script src="/dist/scripts/js-marker.js?v=202605131200"></script>
-  <script src="/dist/scripts/ga4.js?v=202605131200" defer></script>
-  <script src="/dist/scripts/trusted-types.js?v=202605131200"></script>
+ <script src="/dist/scripts/js-marker.js?v=202605131200"></script>
+ <script src="/dist/scripts/ga4.js?v=202605131200" defer></script>
+ <script src="/dist/scripts/trusted-types.js?v=202605131200"></script>
 </head>
 <body class="bg-white text-dark-700 font-sans antialiased">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
 
-  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
-    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
-        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-          <rect width="28" height="28" rx="6" fill="#1B4965"/>
-          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
-        </svg>
-        <span>T.C.HARTON</span>
-      </a>
-      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
-        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
-        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
-        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
-        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
-        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
-        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
-        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
-      </div>
-      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18"/>
-        </svg>
-      </button>
-    </nav>
-  </header>
+ <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+ <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+ <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+ <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+ <rect width="28" height="28" rx="6" fill="#1B4965"/>
+ <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+ </svg>
+ <span>T.C.HARTON</span>
+ </a>
+ <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+ <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+ <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+ <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+ <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+ <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+ <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+ <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+ </div>
+ <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+ <path d="M3 6h18M3 12h18M3 18h18"/>
+ </svg>
+ </button>
+ </nav>
+ </header>
 
-  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
-    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
-      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
-      </button>
-      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
-      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
-      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
-      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
-      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
-      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
-      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
-      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
-      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
-      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
-      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
-    </div>
-  </nav>
+ <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+ <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+ <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+ <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+ </button>
+ <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+ <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+ <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+ <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+ <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+ <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+ <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+ <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+ <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+ <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+ <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+ </div>
+ </nav>
 
 <main id="main" class="pt-16">
 
 <article>
-  <header>
-    <h1>導入事例 — ★ 取得への道筋</h1>
-    <p><time datetime="2026-05-03" itemprop="datePublished">2026-05-03 公開</time> ／ <time datetime="2026-05-03" itemprop="dateModified">最終更新 2026-05-03</time></p>
-  </header>
+ <header>
+ <h1>導入事例 — ★ 取得への道筋</h1>
+ <p><time datetime="2026-05-03" itemprop="datePublished">2026-05-03 公開</time> ／ <time datetime="2026-05-03" itemprop="dateModified">最終更新 2026-05-03</time></p>
+ </header>
 
-  <section aria-label="冒頭エビデンス">
-    <p>HARTON Stella は機械検証で WEB 品質を測る独立認定機関である。本ページは ★ 認定を取得した事業者が辿った「<strong>課題 → 改善 → 取得</strong>」の 3 段ストーリーを公開する。Phase 0.5 静岡県 5 都市 902 件機械検証では ★ 認定取得は 0 件であるが、運営主体 T.C.HARTON の自社サイト tcharton.com が <strong>★★★ HARTON Stella S-Class</strong> を取得した自己実証体 第 1 号として、全事業者に向けて取得経緯を verbatim 公開する。</p>
-    <blockquote cite="https://tcharton.com/stella/about/">
-      「機械検証が示す、AI 時代の WEB 品質。」 — HARTON Stella
-    </blockquote>
-  </section>
+ <section aria-label="冒頭エビデンス">
+ <p>HARTON Stella は機械検証で WEB 品質を測るWEB 品質評価サービスである。本ページは ★ 認定を取得した事業者が辿った「<strong>課題 → 改善 → 取得</strong>」の 3 段ストーリーを公開する。Phase 0.5 静岡県 5 都市 902 件機械検証では ★ 認定取得は 0 件であるが、運営主体 T.C.HARTON の自社サイト tcharton.com が <strong>★★★ HARTON Stella S-Class</strong> を取得した自己実証体 第 1 号として、全事業者に向けて取得経緯を verbatim 公開する。</p>
+ <blockquote cite="https://tcharton.com/stella/about/">
+ 「機械検証が示す、AI 時代の WEB 品質。」 — HARTON Stella
+ </blockquote>
+ </section>
 
-  <section aria-label="自己実証体 第 1 号" class="case-studies-list">
-    <h2>自己実証体 第 1 号</h2>
-    <ul class="case-studies-cards">
-      <li class="case-card case-card-featured">
-        <div class="case-card-meta">
-          <span class="case-card-rating" aria-label="★★★ HARTON Stella S-Class">★★★</span>
-          <span class="case-card-class">HARTON S-Class</span>
-        </div>
-        <h3 class="case-card-title">tcharton.com — 沼津起点の自己実証 (旧 C/65 → 🏆 S/90)</h3>
-        <p class="case-card-meta-line">IT・WEB 制作 ／ 静岡県沼津市 ／ 取得 2026-04-27 / commit <code>36d4328</code></p>
-        <p class="case-card-summary">運営主体 T.C.HARTON の自社サイト。dogfooding 倫理に基づき、自社評価基準を自社サイトに先に適用した第 1 号。旧スコア C/65 から 7 commit と 1 個の住所完全公開で 🏆 S/90 (HARTON S-Class) を取得した記録的事例。</p>
-        <a href="/stella/case-studies/tcharton-com/" class="case-card-link">課題 → 改善 → 取得 の詳細を見る →</a>
-      </li>
-    </ul>
-  </section>
+ <section aria-label="自己実証体 第 1 号" class="case-studies-list">
+ <h2>自己実証体 第 1 号</h2>
+ <ul class="case-studies-cards">
+ <li class="case-card case-card-featured">
+ <div class="case-card-meta">
+ <span class="case-card-rating" aria-label="★★★ HARTON Stella S-Class">★★★</span>
+ <span class="case-card-class">HARTON S-Class</span>
+ </div>
+ <h3 class="case-card-title">tcharton.com — 沼津起点の自己実証 (旧 C/65 → 🏆 S/90)</h3>
+ <p class="case-card-meta-line">IT・WEB 制作 ／ 静岡県沼津市 ／ 取得 2026-04-27 / commit <code>36d4328</code></p>
+ <p class="case-card-summary">運営主体 T.C.HARTON の自社サイト。dogfooding 倫理に基づき、自社評価基準を自社サイトに先に適用した第 1 号。旧スコア C/65 から 7 commit と 1 個の住所公開した上で 🏆 S/90 (HARTON S-Class) を取得した記録的事例。</p>
+ <a href="/stella/case-studies/tcharton-com/" class="case-card-link">課題 → 改善 → 取得 の詳細を見る →</a>
+ </li>
+ </ul>
+ </section>
 
-  <section aria-label="未来の認定事業者" class="case-studies-future">
-    <h2>未来の認定事業者の方へ</h2>
-    <p>Phase 0.5 静岡県 5 都市 902 件機械検証では ★ 認定取得は 0 件 (業界中央値 24 点 / 業界 max 54 点 / 認定基準 70 点)。但し、tcharton.com の自己実証経緯が示す通り、<strong>HTTPS + JSON-LD + CSP + GEO/LLMO + Core Web Vitals の 5 Step を 90 日で実装すれば ★★★ HARTON Stella S-Class まで到達可能</strong>である。</p>
-    <ul>
-      <li><a href="/stella/improvement-guide/"><strong>改善ガイダンス 5 Step (90 日)</strong></a> — HTTPS / JSON-LD / CSP / GEO/LLMO / CWV の各 step 実装手順 + tcharton.com 7 commit からの抽出パターン</li>
-      <li><a href="/stella/methodology/">評価方法 4 軸機械検証</a> — A 基礎 / B 防御 / C AI 検索 / D 経営の閾値全公開</li>
-      <li><a href="/stella/apply/">掲載申請 (無料)</a> — 自社サイトの ★ 区分判定を申込</li>
-    </ul>
-  </section>
+ <section aria-label="未来の認定事業者" class="case-studies-future">
+ <h2>未来の認定事業者の方へ</h2>
+ <p>Phase 0.5 静岡県 5 都市 902 件機械検証では ★ 認定取得は 0 件 (業界中央値 24 点 / 業界 max 54 点 / 認定基準 70 点)。但し、tcharton.com の自己実証経緯が示す通り、<strong>HTTPS + JSON-LD + CSP + GEO/LLMO + Core Web Vitals の 5 Step を 90 日で実装すれば ★★★ HARTON Stella S-Class まで到達可能</strong>である。</p>
+ <ul>
+ <li><a href="/stella/improvement-guide/"><strong>改善ガイダンス 5 Step (90 日)</strong></a> — HTTPS / JSON-LD / CSP / GEO/LLMO / CWV の各 step 実装手順 + tcharton.com 7 commit からの抽出パターン</li>
+ <li><a href="/stella/methodology/">評価方法 4 軸機械検証</a> — A 基礎 / B 防御 / C AI 検索 / D 経営の閾値全公開</li>
+ <li><a href="/stella/apply/">掲載申請 (無料)</a> — 自社サイトの ★ 区分判定を申込</li>
+ </ul>
+ </section>
 
-  <section aria-label="関連ページ">
-    <h2>関連ページ</h2>
-    <ul>
-      <li><a href="/stella/about/">サイトについて</a> — dogfooding 倫理 + 自己実証体 第 1 号の信頼根拠</li>
-      <li><a href="/stella/news/shizuoka-industry-report-2026-q2/">静岡県 5 都市 WEB 品質業界レポート 2026 Q2</a> — Phase 0.5 全体実測</li>
-      <li><a href="/stella/comparison/regions/shizuoka/">静岡県 5 都市 WEB 品質比較</a> — 都市横並び比較</li>
-    </ul>
-  </section>
+ <section aria-label="関連ページ">
+ <h2>関連ページ</h2>
+ <ul>
+ <li><a href="/stella/about/">サイトについて</a> — dogfooding 倫理 + 自己実証体 第 1 号の信頼根拠</li>
+ <li><a href="/stella/news/shizuoka-industry-report-2026-q2/">静岡県 5 都市 WEB 品質業界レポート 2026 Q2</a> — Phase 0.5 全体実測</li>
+ <li><a href="/stella/comparison/regions/shizuoka/">静岡県 5 都市 WEB 品質比較</a> — 都市横並び比較</li>
+ </ul>
+ </section>
 </article>
 </main>
 
 <footer class="bg-dark-900 text-dark-300">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
-      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
-            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
-            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
-            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
-            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
-            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
-            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
-            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
-            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
-            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
-            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
-            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
-        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
-      </div>
-    </div>
-  </footer>
-  <script src="/dist/scripts/menu.js?v=202605131500" defer></script>
+ <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+ <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+ <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+ <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+ <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+ <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+ <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+ <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+ <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+ <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+ <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+ <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+ <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+ </ul>
+ </div>
+ </nav>
+ <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+ <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+ <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+ </div>
+ </div>
+ </footer>
+ <script src="/dist/scripts/menu.js?v=202605131500" defer></script>
 </body>
 </html>

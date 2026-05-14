@@ -3525,3 +3525,144 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Inter", "Noto Sans JP", sans-serif !important;
   color: #1F2937 !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   v1.37.1 ★ Badge / Card / Accent カラー修復
+   旧 Navy 背景 + dim gold → 白基調で見える Gold + 明確なコントラスト
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --accent     : #C9A961 !important; /* Champagne Gold (badge / link / decoration) */
+  --accent-strong: #D4AF37 !important; /* Classic Gold (★ symbol) */
+}
+
+/* ★ overlay badge — 元 navy rgba を白基調に置換 */
+.featured-card-rating {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #D4AF37 !important;
+  border: 1.5px solid #D4AF37 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  font-size: 1.2rem !important;
+}
+
+/* Card thumb 背景 — グラデを薄く調整 (ベージュ感解消) */
+.featured-card-thumb {
+  background:
+    radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 55%),
+    linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+}
+
+/* Card 本体は白 + ボーダー明確化 */
+ul.featured-rail > li.featured-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important;
+}
+ul.featured-rail > li.featured-card:hover {
+  border-color: #C9A961 !important;
+  box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18) !important;
+}
+
+/* Hero stars (page top) — 明確な gold */
+.hero-stars, .hero-stars .star-svg, .star-svg, .star-svg-logo {
+  color: #D4AF37 !important;
+  fill: #D4AF37 !important;
+}
+
+/* Card 本文文字色を確実に dark に */
+.featured-card-name, .featured-card-body, .featured-card-thumb-label {
+  color: #1F2937 !important;
+}
+.featured-card-thumb-label { color: #6B7280 !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   v1.37.2 featured-card-bignum (空サムネ → 大きな数値ハイライト)
+   ═══════════════════════════════════════════════════════════════ */
+.featured-card-bignum {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+  pointer-events: none;
+}
+.bignum-value {
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  font-size: clamp(2.75rem, 8vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #1F2937;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #B8923B 0%, #D4AF37 50%, #B8923B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bignum-unit {
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6B7280;
+  margin-left: 0.25rem;
+  margin-top: 0.35rem;
+  display: inline-block;
+  vertical-align: top;
+}
+.bignum-caption {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #6B7280;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   v1.37.5 ヘッダー被り解消 + drop-cap 撤去
+   - fixed header (h-16=64px) と main pt-16 が密着 → 余白追加
+   - ::first-letter drop-cap が「2026」を「2」+「026」に分断 → 撤去
+   ═══════════════════════════════════════════════════════════════ */
+main#main.pt-16 {
+  padding-top: 6rem !important; /* 64px header + 32px breathing room */
+}
+body > main > article > section[aria-label*="冒頭エビデンス"] > p:first-of-type::first-letter {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  float: none !important;
+  line-height: inherit !important;
+  margin: 0 !important;
+  color: inherit !important;
+  font-weight: inherit !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   v1.37.8 フッター救済 — 濃紺背景の見出し不可視 + リンク金色化を解消
+   先行の h1-h6/#1F2937 強制と cert の a{color:--accent} がフッターを破壊
+   ═══════════════════════════════════════════════════════════════ */
+/* フッター見出し: 濃紺背景なので白に戻す */
+footer.bg-dark-900 h2,
+footer.bg-dark-900 h3,
+footer.bg-dark-900 h4 {
+  color: #FFFFFF !important;
+}
+/* フッターリンク: 金色 → HARTON 標準（薄グレー → hover 白） */
+footer.bg-dark-900 a {
+  color: #cbd5e1 !important;
+}
+footer.bg-dark-900 a:hover {
+  color: #FFFFFF !important;
+}
+/* フッター本文テキスト */
+footer.bg-dark-900 p,
+footer.bg-dark-900 li,
+footer.bg-dark-900 span {
+  color: #94a3b8 !important;
+}
+footer.bg-dark-900 .text-white,
+footer.bg-dark-900 p > span:first-child {
+  color: #FFFFFF !important;
+}

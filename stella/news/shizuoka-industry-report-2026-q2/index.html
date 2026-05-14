@@ -1,15 +1,15 @@
 <!--
-  HARTON Stella サイト共通レイアウトテンプレート
-  ────────────────────────────────────────
-  生成元: certification/build-base.js（17 基盤） + certification/generate.js（動的ページ）
-  準拠: SPEC v3.4 §1.0 / §4.2 #1 / §8.1 / §8.5-§8.9 / MASTER-PLAN v1.1.4 §4.1 / §10
-  Variant: marketing（明色）/ reading（暗色）— SPEC §10.6.1 準拠
+ HARTON Stella サイト共通レイアウトテンプレート
+ ────────────────────────────────────────
+ 生成元: certification/build-base.js（17 基盤） + certification/generate.js（動的ページ）
+ 準拠: SPEC v3.4 §1.0 / §4.2 #1 / §8.1 / §8.5-§8.9 / MASTER-PLAN v1.1.4 §4.1 / §10
+ Variant: marketing（明色）/ reading（暗色）— SPEC §10.6.1 準拠
 
-  プレースホルダ仕様: lang / title / description / canonical_path / robots / og_type /
-    og_image_path / theme_color / color_scheme / body_class / breadcrumbs_jsonld /
-    additional_jsonld / main_content / nav_active_search / nav_active_methodology /
-    nav_active_apply / nav_active_about / nav_active_press
-  詳細は build-base.js / generate.js の applyLayout() コメントを参照。
+ プレースホルダ仕様: lang / title / description / canonical_path / robots / og_type /
+ og_image_path / theme_color / color_scheme / body_class / breadcrumbs_jsonld /
+ additional_jsonld / main_content / nav_active_search / nav_active_methodology /
+ nav_active_apply / nav_active_about / nav_active_press
+ 詳細は build-base.js / generate.js の applyLayout() コメントを参照。
 -->
 <!DOCTYPE html>
 <html lang="ja" class="no-js">
@@ -60,697 +60,697 @@
 <!-- Tailwind ビルド成果物 -->
 <link rel="stylesheet" href="/dist/output.css?v=202605131200">
 <link rel="stylesheet" href="/dist/stella.css?v=202605141500">
-  <!-- カスタム CSS（SPEC §9 / §11.5 prefers-reduced-motion 必須） -->
+ <!-- カスタム CSS（SPEC §9 / §11.5 prefers-reduced-motion 必須） -->
 <!-- SPEC v3.4 §4.2 #1 JSON-LD（@type 配列必須・additionalType + sameAs GBP） -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
-  "@id": "https://tcharton.com/#organization",
-  "name": "HARTON Stella",
-  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
-  "description": "WEB 品質を機械検証で公正に評価する地方発の認定機関 (旧 HARTON Certified)。SPEC v3.x 2,554 項目 + 4 軸スキャナーで地域の優良サイトを ★/★★/★★★ で格付け認定。",
-  "url": "https://tcharton.com/stella/",
-  "logo": "https://tcharton.com/assets/stella/logo/logo.svg",
-  "image": "https://tcharton.com/stella/ogp.png",
-  "telephone": "+81-80-1058-0538",
-  "email": "stella@tcharton.com",
-  "additionalType": [
-    "https://www.wikidata.org/wiki/Q11661",
-    "https://www.wikidata.org/wiki/Q189210",
-    "https://www.wikidata.org/wiki/Q87415039",
-    "https://www.wikidata.org/wiki/Q13460321",
-    "https://www.wikidata.org/wiki/Q765517"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "JP",
-    "addressRegion": "静岡県",
-    "addressLocality": "沼津市",
-    "streetAddress": "大岡2690",
-    "postalCode": "410-0022"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 35.0959,
-    "longitude": 138.8634
-  },
-  "foundingDate": "2026-04",
-  "knowsAbout": [
-    { "@type": "Thing", "name": "Web Quality Certification", "sameAs": "https://www.wikidata.org/wiki/Q374814" },
-    { "@type": "Thing", "name": "Accreditation", "sameAs": "https://www.wikidata.org/wiki/Q705899" },
-    { "@type": "Thing", "name": "Certification mark", "sameAs": "https://www.wikidata.org/wiki/Q908620" },
-    { "@type": "Thing", "name": "Quality assurance", "sameAs": "https://www.wikidata.org/wiki/Q836575" },
-    { "@type": "Thing", "name": "Quality control", "sameAs": "https://www.wikidata.org/wiki/Q827792" },
-    { "@type": "Thing", "name": "Audit", "sameAs": "https://www.wikidata.org/wiki/Q181487" },
-    { "@type": "Thing", "name": "Benchmarking", "sameAs": "https://www.wikidata.org/wiki/Q816754" },
-    { "@type": "Thing", "name": "Star rating", "sameAs": "https://www.wikidata.org/wiki/Q1642648" },
-    { "@type": "Thing", "name": "Web accessibility", "sameAs": "https://www.wikidata.org/wiki/Q808932" },
-    { "@type": "Thing", "name": "Web Accessibility Initiative", "sameAs": "https://www.wikidata.org/wiki/Q636020" },
-    { "@type": "Thing", "name": "WCAG 2.2", "sameAs": "https://www.wikidata.org/wiki/Q5364439" },
-    { "@type": "Thing", "name": "Search engine optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
-    { "@type": "Thing", "name": "Web standards", "sameAs": "https://www.wikidata.org/wiki/Q1153289" },
-    { "@type": "Thing", "name": "Schema.org", "sameAs": "https://www.wikidata.org/wiki/Q3475322" },
-    { "@type": "Thing", "name": "Structured data", "sameAs": "https://www.wikidata.org/wiki/Q26813700" },
-    { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://www.wikidata.org/wiki/Q104618838" },
-    { "@type": "Thing", "name": "Web design", "sameAs": "https://www.wikidata.org/wiki/Q190637" },
-    "Machine Verification",
-    "GEO/LLMO"
-  ],
-  "about": [
-    { "@type": "Thing", "name": "World Wide Web", "sameAs": "https://www.wikidata.org/wiki/Q466" },
-    { "@type": "Thing", "name": "Website", "sameAs": "https://www.wikidata.org/wiki/Q35127" }
-  ],
-  "memberOf": {
-    "@type": "Organization",
-    "name": "W3C ecosystem",
-    "sameAs": "https://www.wikidata.org/wiki/Q37033"
-  },
-  "areaServed": [
-    { "@type": "AdministrativeArea", "name": "静岡県", "sameAs": "https://www.wikidata.org/wiki/Q131320" },
-    { "@type": "AdministrativeArea", "name": "東京都", "sameAs": "https://www.wikidata.org/wiki/Q1490" },
-    { "@type": "Country", "name": "Japan" }
-  ],
-  "slogan": "機械検証が示す、AI 時代の WEB 品質。",
-  "sameAs": [
-    "https://tcharton.com/",
-    "https://note.com/tcharton",
-    "https://www.google.com/maps/place/?cid=16606425942373165010",
-    "https://maps.google.com/?cid=16606425942373165010"
-  ]
+ "@context": "https://schema.org",
+ "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+ "@id": "https://tcharton.com/#organization",
+ "name": "HARTON Stella",
+ "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+ "description": "WEB 品質を機械検証で公正に評価する地方発の評価サービス (旧 HARTON Certified)。SPEC v3.x 2,554 項目 + 4 軸スキャナーで地域の優良サイトを ★/★★/★★★ で格付け認定。",
+ "url": "https://tcharton.com/stella/",
+ "logo": "https://tcharton.com/assets/stella/logo/logo.svg",
+ "image": "https://tcharton.com/stella/ogp.png",
+ "telephone": "+81-80-1058-0538",
+ "email": "stella@tcharton.com",
+ "additionalType": [
+ "https://www.wikidata.org/wiki/Q11661",
+ "https://www.wikidata.org/wiki/Q189210",
+ "https://www.wikidata.org/wiki/Q87415039",
+ "https://www.wikidata.org/wiki/Q13460321",
+ "https://www.wikidata.org/wiki/Q765517"
+ ],
+ "address": {
+ "@type": "PostalAddress",
+ "addressCountry": "JP",
+ "addressRegion": "静岡県",
+ "addressLocality": "沼津市",
+ "streetAddress": "大岡2690",
+ "postalCode": "410-0022"
+ },
+ "geo": {
+ "@type": "GeoCoordinates",
+ "latitude": 35.0959,
+ "longitude": 138.8634
+ },
+ "foundingDate": "2026-04",
+ "knowsAbout": [
+ { "@type": "Thing", "name": "Web Quality Certification", "sameAs": "https://www.wikidata.org/wiki/Q374814" },
+ { "@type": "Thing", "name": "Accreditation", "sameAs": "https://www.wikidata.org/wiki/Q705899" },
+ { "@type": "Thing", "name": "Certification mark", "sameAs": "https://www.wikidata.org/wiki/Q908620" },
+ { "@type": "Thing", "name": "Quality assurance", "sameAs": "https://www.wikidata.org/wiki/Q836575" },
+ { "@type": "Thing", "name": "Quality control", "sameAs": "https://www.wikidata.org/wiki/Q827792" },
+ { "@type": "Thing", "name": "Audit", "sameAs": "https://www.wikidata.org/wiki/Q181487" },
+ { "@type": "Thing", "name": "Benchmarking", "sameAs": "https://www.wikidata.org/wiki/Q816754" },
+ { "@type": "Thing", "name": "Star rating", "sameAs": "https://www.wikidata.org/wiki/Q1642648" },
+ { "@type": "Thing", "name": "Web accessibility", "sameAs": "https://www.wikidata.org/wiki/Q808932" },
+ { "@type": "Thing", "name": "Web Accessibility Initiative", "sameAs": "https://www.wikidata.org/wiki/Q636020" },
+ { "@type": "Thing", "name": "WCAG 2.2", "sameAs": "https://www.wikidata.org/wiki/Q5364439" },
+ { "@type": "Thing", "name": "Search engine optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
+ { "@type": "Thing", "name": "Web standards", "sameAs": "https://www.wikidata.org/wiki/Q1153289" },
+ { "@type": "Thing", "name": "Schema.org", "sameAs": "https://www.wikidata.org/wiki/Q3475322" },
+ { "@type": "Thing", "name": "Structured data", "sameAs": "https://www.wikidata.org/wiki/Q26813700" },
+ { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://www.wikidata.org/wiki/Q104618838" },
+ { "@type": "Thing", "name": "Web design", "sameAs": "https://www.wikidata.org/wiki/Q190637" },
+ "Machine Verification",
+ "GEO/LLMO"
+ ],
+ "about": [
+ { "@type": "Thing", "name": "World Wide Web", "sameAs": "https://www.wikidata.org/wiki/Q466" },
+ { "@type": "Thing", "name": "Website", "sameAs": "https://www.wikidata.org/wiki/Q35127" }
+ ],
+ "memberOf": {
+ "@type": "Organization",
+ "name": "W3C ecosystem",
+ "sameAs": "https://www.wikidata.org/wiki/Q37033"
+ },
+ "areaServed": [
+ { "@type": "AdministrativeArea", "name": "静岡県", "sameAs": "https://www.wikidata.org/wiki/Q131320" },
+ { "@type": "AdministrativeArea", "name": "東京都", "sameAs": "https://www.wikidata.org/wiki/Q1490" },
+ { "@type": "Country", "name": "Japan" }
+ ],
+ "slogan": "機械検証が示す、AI 時代の WEB 品質。",
+ "sameAs": [
+ "https://tcharton.com/",
+ "https://note.com/tcharton",
+ "https://www.google.com/maps/place/?cid=16606425942373165010",
+ "https://maps.google.com/?cid=16606425942373165010"
+ ]
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "HARTON Stella",
-  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
-  "url": "https://tcharton.com/stella/",
-  "inLanguage": "ja",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://tcharton.com/stella/regions/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "HARTON Stella",
+ "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+ "url": "https://tcharton.com/stella/",
+ "inLanguage": "ja",
+ "potentialAction": {
+ "@type": "SearchAction",
+ "target": {
+ "@type": "EntryPoint",
+ "urlTemplate": "https://tcharton.com/stella/regions/?q={search_term_string}"
+ },
+ "query-input": "required name=search_term_string"
+ }
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "トップ",
-      "item": "https://tcharton.com/stella/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "お知らせ",
-      "item": "https://tcharton.com/stella/news/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "業界レポート 2026 Q2 (4-6 月号)",
-      "item": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/"
-    }
-  ]
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "トップ",
+ "item": "https://tcharton.com/stella/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "お知らせ",
+ "item": "https://tcharton.com/stella/news/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 3,
+ "name": "業界レポート 2026 Q2 (4-6 月号)",
+ "item": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/"
+ }
+ ]
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": [
-    "Article",
-    "Report"
-  ],
-  "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#article",
-  "headline": "静岡県 5 都市 WEB 品質業界レポート 2026 Q2 (4-6 月号)",
-  "alternativeHeadline": "Shizuoka 5-City WEB Quality Industry Report 2026 Q2",
-  "description": "静岡県 5 都市 (沼津・三島・富士・静岡・浜松) × 11 業種 902 件機械検証実測。★ 獲得率 0/902 = 0.0% / 業界中央値 24 点 / 業界 max 54 点 / 致命的 NG 32.5%。",
-  "datePublished": "2026-05-02",
-  "dateModified": "2026-05-14",
-  "inLanguage": "ja",
-  "isAccessibleForFree": true,
-  "license": "https://creativecommons.org/licenses/by/4.0/",
-  "author": {
-    "@type": "Organization",
-    "@id": "https://tcharton.com/#organization",
-    "name": "HARTON Stella",
-    "url": "https://tcharton.com/stella/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://tcharton.com/#organization",
-    "name": "T.C.HARTON",
-    "url": "https://tcharton.com/"
-  },
-  "mainEntityOfPage": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/",
-  "about": [
-    {
-      "@type": "AdministrativeArea",
-      "name": "静岡県",
-      "sameAs": "https://www.wikidata.org/wiki/Q131320"
-    },
-    {
-      "@type": "Thing",
-      "name": "WEB Quality Certification",
-      "sameAs": "https://schema.org/QualitativeValue"
-    }
-  ],
-  "mentions": [
-    {
-      "@type": "AdministrativeArea",
-      "name": "沼津市",
-      "sameAs": "https://www.wikidata.org/wiki/Q241037"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "三島市",
-      "sameAs": "https://www.wikidata.org/wiki/Q653478"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "富士市",
-      "sameAs": "https://www.wikidata.org/wiki/Q328613"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "静岡市",
-      "sameAs": "https://www.wikidata.org/wiki/Q174691"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "浜松市",
-      "sameAs": "https://www.wikidata.org/wiki/Q185125"
-    }
-  ],
-  "citation": "HARTON Stella (2026). 静岡県 5 都市 WEB 品質業界レポート 2026 Q2 (4-6 月号). https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/"
+ "@context": "https://schema.org",
+ "@type": [
+ "Article",
+ "Report"
+ ],
+ "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#article",
+ "headline": "静岡県 5 都市 WEB 品質業界レポート 2026 Q2 (4-6 月号)",
+ "alternativeHeadline": "Shizuoka 5-City WEB Quality Industry Report 2026 Q2",
+ "description": "静岡県 5 都市 (沼津・三島・富士・静岡・浜松) × 11 業種 902 件機械検証実測。★ 獲得率 0/902 = 0.0% / 業界中央値 24 点 / 業界 max 54 点 / 致命的 NG 32.5%。",
+ "datePublished": "2026-05-02",
+ "dateModified": "2026-05-14",
+ "inLanguage": "ja",
+ "isAccessibleForFree": true,
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "author": {
+ "@type": "Organization",
+ "@id": "https://tcharton.com/#organization",
+ "name": "HARTON Stella",
+ "url": "https://tcharton.com/stella/"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "@id": "https://tcharton.com/#organization",
+ "name": "T.C.HARTON",
+ "url": "https://tcharton.com/"
+ },
+ "mainEntityOfPage": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/",
+ "about": [
+ {
+ "@type": "AdministrativeArea",
+ "name": "静岡県",
+ "sameAs": "https://www.wikidata.org/wiki/Q131320"
+ },
+ {
+ "@type": "Thing",
+ "name": "WEB Quality Certification",
+ "sameAs": "https://schema.org/QualitativeValue"
+ }
+ ],
+ "mentions": [
+ {
+ "@type": "AdministrativeArea",
+ "name": "沼津市",
+ "sameAs": "https://www.wikidata.org/wiki/Q241037"
+ },
+ {
+ "@type": "AdministrativeArea",
+ "name": "三島市",
+ "sameAs": "https://www.wikidata.org/wiki/Q653478"
+ },
+ {
+ "@type": "AdministrativeArea",
+ "name": "富士市",
+ "sameAs": "https://www.wikidata.org/wiki/Q328613"
+ },
+ {
+ "@type": "AdministrativeArea",
+ "name": "静岡市",
+ "sameAs": "https://www.wikidata.org/wiki/Q174691"
+ },
+ {
+ "@type": "AdministrativeArea",
+ "name": "浜松市",
+ "sameAs": "https://www.wikidata.org/wiki/Q185125"
+ }
+ ],
+ "citation": "HARTON Stella (2026). 静岡県 5 都市 WEB 品質業界レポート 2026 Q2 (4-6 月号). https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/"
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Dataset",
-  "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#dataset",
-  "name": "静岡県 5 都市 × 11 業種 WEB 品質機械検証データ 2026 Q2",
-  "alternateName": "Shizuoka 5-City × 11-Industry WEB Quality Verification Dataset 2026 Q2",
-  "description": "静岡県 5 都市 (沼津・三島・富士・静岡・浜松) × 11 業種 902 件の公開 WEB サイトを HARTON Stella scanner.py (4 軸 / 2,554 項目) で機械検証した結果データセット。総合スコア / ★ 認定可否 / 致命的 NG 内訳 / 業界中央値・max / 都市 × 業種 cross-tab を含む。",
-  "url": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/",
-  "identifier": "harton-certified-shizuoka-2026-q2",
-  "keywords": [
-    "WEB 品質",
-    "Web Quality",
-    "機械検証",
-    "Machine Verification",
-    "静岡県",
-    "Shizuoka",
-    "Web Vitals",
-    "WCAG 2.2",
-    "GEO/LLMO",
-    "Schema.org",
-    "HTTPS",
-    "CSP"
-  ],
-  "datePublished": "2026-05-02",
-  "dateModified": "2026-05-14",
-  "temporalCoverage": "2026-05-02",
-  "spatialCoverage": {
-    "@type": "Place",
-    "name": "静岡県",
-    "geo": {
-      "@type": "GeoShape",
-      "box": "34.5 137.4 35.7 139.2"
-    },
-    "sameAs": "https://www.wikidata.org/wiki/Q131320"
-  },
-  "inLanguage": "ja",
-  "isAccessibleForFree": true,
-  "license": "https://creativecommons.org/licenses/by/4.0/",
-  "creator": {
-    "@type": "Organization",
-    "@id": "https://tcharton.com/#organization",
-    "name": "HARTON Stella",
-    "url": "https://tcharton.com/stella/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://tcharton.com/#organization",
-    "name": "T.C.HARTON",
-    "url": "https://tcharton.com/"
-  },
-  "variableMeasured": [
-    {
-      "@type": "PropertyValue",
-      "name": "対象サイト数 (n_total)",
-      "value": 902,
-      "unitText": "サイト"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "★ 認定取得サイト数 (eligible_total)",
-      "value": 0,
-      "unitText": "サイト"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "業界中央値スコア (score_stats.median)",
-      "value": 24,
-      "unitText": "点 (0-100)"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "業界最高点 (score_stats.max)",
-      "value": 54,
-      "unitText": "点 (0-100)"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "致命的 NG 発生率 (ng_pct)",
-      "value": 32.5,
-      "unitText": "%"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "致命的 NG 件数 (ng_total_companies)",
-      "value": 293,
-      "unitText": "サイト"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "都市別 cross-tab (cross_tab_n)",
-      "description": "都市 × 業種別の対象サイト数を二次元配列で格納"
-    }
-  ],
-  "distribution": [
-    {
-      "@type": "DataDownload",
-      "@id": "https://tcharton.com/stella/datasets/shizuoka-2026-q2.json#download",
-      "encodingFormat": "application/json",
-      "contentUrl": "https://tcharton.com/stella/datasets/shizuoka-2026-q2.json",
-      "name": "静岡県 5 都市 WEB 品質データ JSON",
-      "description": "AI クローラー / 研究機関 / メディアによる引用・再利用可能な機械可読 JSON。CC BY 4.0",
-      "inLanguage": "ja",
-      "encodesCreativeWork": {
-        "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#dataset"
-      }
-    }
-  ],
-  "citation": "HARTON Stella (2026). 静岡県 5 都市 × 11 業種 WEB 品質機械検証データセット 2026 Q2. https://tcharton.com/stella/datasets/shizuoka-2026-q2.json",
-  "isBasedOn": {
-    "@type": "CreativeWork",
-    "@id": "https://tcharton.com/stella/methodology/#article",
-    "name": "HARTON Stella SPEC v3.4 (2,554 項目 / 4 軸機械検証)",
-    "url": "https://tcharton.com/stella/methodology/"
-  }
+ "@context": "https://schema.org",
+ "@type": "Dataset",
+ "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#dataset",
+ "name": "静岡県 5 都市 × 11 業種 WEB 品質機械検証データ 2026 Q2",
+ "alternateName": "Shizuoka 5-City × 11-Industry WEB Quality Verification Dataset 2026 Q2",
+ "description": "静岡県 5 都市 (沼津・三島・富士・静岡・浜松) × 11 業種 902 件の公開 WEB サイトを HARTON Stella scanner.py (4 軸 / 2,554 項目) で機械検証した結果データセット。総合スコア / ★ 認定可否 / 致命的 NG 内訳 / 業界中央値・max / 都市 × 業種 cross-tab を含む。",
+ "url": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/",
+ "identifier": "harton-certified-shizuoka-2026-q2",
+ "keywords": [
+ "WEB 品質",
+ "Web Quality",
+ "機械検証",
+ "Machine Verification",
+ "静岡県",
+ "Shizuoka",
+ "Web Vitals",
+ "WCAG 2.2",
+ "GEO/LLMO",
+ "Schema.org",
+ "HTTPS",
+ "CSP"
+ ],
+ "datePublished": "2026-05-02",
+ "dateModified": "2026-05-14",
+ "temporalCoverage": "2026-05-02",
+ "spatialCoverage": {
+ "@type": "Place",
+ "name": "静岡県",
+ "geo": {
+ "@type": "GeoShape",
+ "box": "34.5 137.4 35.7 139.2"
+ },
+ "sameAs": "https://www.wikidata.org/wiki/Q131320"
+ },
+ "inLanguage": "ja",
+ "isAccessibleForFree": true,
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "creator": {
+ "@type": "Organization",
+ "@id": "https://tcharton.com/#organization",
+ "name": "HARTON Stella",
+ "url": "https://tcharton.com/stella/"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "@id": "https://tcharton.com/#organization",
+ "name": "T.C.HARTON",
+ "url": "https://tcharton.com/"
+ },
+ "variableMeasured": [
+ {
+ "@type": "PropertyValue",
+ "name": "対象サイト数 (n_total)",
+ "value": 902,
+ "unitText": "サイト"
+ },
+ {
+ "@type": "PropertyValue",
+ "name": "★ 認定取得サイト数 (eligible_total)",
+ "value": 0,
+ "unitText": "サイト"
+ },
+ {
+ "@type": "PropertyValue",
+ "name": "業界中央値スコア (score_stats.median)",
+ "value": 24,
+ "unitText": "点 (0-100)"
+ },
+ {
+ "@type": "PropertyValue",
+ "name": "業界最高点 (score_stats.max)",
+ "value": 54,
+ "unitText": "点 (0-100)"
+ },
+ {
+ "@type": "PropertyValue",
+ "name": "致命的 NG 発生率 (ng_pct)",
+ "value": 32.5,
+ "unitText": "%"
+ },
+ {
+ "@type": "PropertyValue",
+ "name": "致命的 NG 件数 (ng_total_companies)",
+ "value": 293,
+ "unitText": "サイト"
+ },
+ {
+ "@type": "PropertyValue",
+ "name": "都市別 cross-tab (cross_tab_n)",
+ "description": "都市 × 業種別の対象サイト数を二次元配列で格納"
+ }
+ ],
+ "distribution": [
+ {
+ "@type": "DataDownload",
+ "@id": "https://tcharton.com/stella/datasets/shizuoka-2026-q2.json#download",
+ "encodingFormat": "application/json",
+ "contentUrl": "https://tcharton.com/stella/datasets/shizuoka-2026-q2.json",
+ "name": "静岡県 5 都市 WEB 品質データ JSON",
+ "description": "AI クローラー / 研究機関 / メディアによる引用・再利用可能な機械可読 JSON。CC BY 4.0",
+ "inLanguage": "ja",
+ "encodesCreativeWork": {
+ "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#dataset"
+ }
+ }
+ ],
+ "citation": "HARTON Stella (2026). 静岡県 5 都市 × 11 業種 WEB 品質機械検証データセット 2026 Q2. https://tcharton.com/stella/datasets/shizuoka-2026-q2.json",
+ "isBasedOn": {
+ "@type": "CreativeWork",
+ "@id": "https://tcharton.com/stella/methodology/#article",
+ "name": "HARTON Stella SPEC v3.4 (2,554 項目 / 4 軸機械検証)",
+ "url": "https://tcharton.com/stella/methodology/"
+ }
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#faq",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "静岡県 5 都市 全体で ★ 認定取得サイトは何件ありますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "0 件 (902 件中 / 2026-05-02 時点)。Phase 0.5 機械検証では総合 70 点以上 + 致命的 NG 0 件を全達成したサイトはゼロ。業界中央値は 24 点、業界 max は 54 点、★ 認定基準 (70 点) との差は 16 点。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "5 都市の中で WEB 品質が最も高い都市はどこですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "★ 認定取得率は全 5 都市で 0.0% (Phase 0.5 では全件未達)。業界最高点ベースで沼津市 54 点が最高。致命的 NG% が最も低いのは三島市 (28.5%) で、母集団全体の防御水準は最高。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "11 業種の中で WEB 品質が最も高い業種はどれですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "業界最高点ベースで司法書士 (54 点) / 不動産仲介 (54 点) が最高、次いでクリニック・診療所 (53 点) / 税理士・会計士 (52 点) / 行政書士 (52 点)。NG% (防御層改善余地) が最も大きいのは行政書士 (48.6%) と美容クリニック (46.5%)。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "このレポートのデータは引用・再利用可能ですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "はい。機械可読 JSON (https://tcharton.com/stella/datasets/shizuoka-2026-q2.json) として CC BY 4.0 で公開。AI クローラー / 研究機関 / メディアによる引用・再利用フリー (出典明記必須)。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "致命的 NG が業界で最も多いのはどの種類ですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "WordPress 管理面露出 (232 件) が最多で、HTTPS 非対応 (54 件) / SSL 証明書失効 (47 件) / CMS バージョン情報露出 (28 件) と続く。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "次回スキャンはいつですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "次回スキャンは 2026-06-02 (月次運用 / scanner.py 自動再判定)。改善により ★ 認定可能となった事業者は月次再判定で自動的に静岡県 5 都市の認定店舗ページに掲載される。"
-      }
-    }
-  ]
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#faq",
+ "mainEntity": [
+ {
+ "@type": "Question",
+ "name": "静岡県 5 都市 全体で ★ 認定取得サイトは何件ありますか？",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "0 件 (902 件中 / 2026-05-02 時点)。Phase 0.5 機械検証では総合 70 点以上 + 致命的 NG 0 件を全達成したサイトはゼロ。業界中央値は 24 点、業界 max は 54 点、★ 認定基準 (70 点) との差は 16 点。"
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "5 都市の中で WEB 品質が最も高い都市はどこですか？",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "★ 認定取得率は全 5 都市で 0.0% (Phase 0.5 では全件未達)。業界最高点ベースで沼津市 54 点が最高。致命的 NG% が最も低いのは三島市 (28.5%) で、母集団全体の防御水準は最高。"
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "11 業種の中で WEB 品質が最も高い業種はどれですか？",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "業界最高点ベースで司法書士 (54 点) / 不動産仲介 (54 点) が最高、次いでクリニック・診療所 (53 点) / 税理士・会計士 (52 点) / 行政書士 (52 点)。NG% (防御層改善余地) が最も大きいのは行政書士 (48.6%) と美容クリニック (46.5%)。"
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "このレポートのデータは引用・再利用可能ですか？",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "はい。機械可読 JSON (https://tcharton.com/stella/datasets/shizuoka-2026-q2.json) として CC BY 4.0 で公開。AI クローラー / 研究機関 / メディアによる引用・再利用フリー (出典明記必須)。"
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "致命的 NG が業界で最も多いのはどの種類ですか？",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "WordPress 管理面露出 (232 件) が最多で、HTTPS 非対応 (54 件) / SSL 証明書失効 (47 件) / CMS バージョン情報露出 (28 件) と続く。"
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "次回スキャンはいつですか？",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "次回スキャンは 2026-06-02 (月次運用 / scanner.py 自動再判定)。改善により ★ 認定可能となった事業者は月次再判定で自動的に静岡県 5 都市の認定店舗ページに掲載される。"
+ }
+ }
+ ]
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#cities",
-  "name": "静岡県 5 都市 WEB 品質ランキング 2026 Q2 (業界最高点降順)",
-  "numberOfItems": 5,
-  "itemListOrder": "https://schema.org/ItemListOrderDescending",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "AdministrativeArea",
-        "name": "沼津市",
-        "url": "https://tcharton.com/stella/regions/shizuoka/numazu/",
-        "sameAs": "https://www.wikidata.org/wiki/Q241037",
-        "description": "沼津市: 対象 171 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 54 点 / 致命的 NG 32.7%"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "AdministrativeArea",
-        "name": "富士市",
-        "url": "https://tcharton.com/stella/regions/shizuoka/fuji/",
-        "sameAs": "https://www.wikidata.org/wiki/Q328613",
-        "description": "富士市: 対象 167 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 53 点 / 致命的 NG 35.9%"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "AdministrativeArea",
-        "name": "浜松市",
-        "url": "https://tcharton.com/stella/regions/shizuoka/hamamatsu/",
-        "sameAs": "https://www.wikidata.org/wiki/Q185125",
-        "description": "浜松市: 対象 199 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 53 点 / 致命的 NG 33.2%"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "AdministrativeArea",
-        "name": "静岡市",
-        "url": "https://tcharton.com/stella/regions/shizuoka/shizuoka/",
-        "sameAs": "https://www.wikidata.org/wiki/Q174691",
-        "description": "静岡市: 対象 200 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 52 点 / 致命的 NG 32.0%"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "item": {
-        "@type": "AdministrativeArea",
-        "name": "三島市",
-        "url": "https://tcharton.com/stella/regions/shizuoka/mishima/",
-        "sameAs": "https://www.wikidata.org/wiki/Q653478",
-        "description": "三島市: 対象 165 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 51 点 / 致命的 NG 28.5%"
-      }
-    }
-  ]
+ "@context": "https://schema.org",
+ "@type": "ItemList",
+ "@id": "https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/#cities",
+ "name": "静岡県 5 都市 WEB 品質ランキング 2026 Q2 (業界最高点降順)",
+ "numberOfItems": 5,
+ "itemListOrder": "https://schema.org/ItemListOrderDescending",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "item": {
+ "@type": "AdministrativeArea",
+ "name": "沼津市",
+ "url": "https://tcharton.com/stella/regions/shizuoka/numazu/",
+ "sameAs": "https://www.wikidata.org/wiki/Q241037",
+ "description": "沼津市: 対象 171 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 54 点 / 致命的 NG 32.7%"
+ }
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "item": {
+ "@type": "AdministrativeArea",
+ "name": "富士市",
+ "url": "https://tcharton.com/stella/regions/shizuoka/fuji/",
+ "sameAs": "https://www.wikidata.org/wiki/Q328613",
+ "description": "富士市: 対象 167 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 53 点 / 致命的 NG 35.9%"
+ }
+ },
+ {
+ "@type": "ListItem",
+ "position": 3,
+ "item": {
+ "@type": "AdministrativeArea",
+ "name": "浜松市",
+ "url": "https://tcharton.com/stella/regions/shizuoka/hamamatsu/",
+ "sameAs": "https://www.wikidata.org/wiki/Q185125",
+ "description": "浜松市: 対象 199 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 53 点 / 致命的 NG 33.2%"
+ }
+ },
+ {
+ "@type": "ListItem",
+ "position": 4,
+ "item": {
+ "@type": "AdministrativeArea",
+ "name": "静岡市",
+ "url": "https://tcharton.com/stella/regions/shizuoka/shizuoka/",
+ "sameAs": "https://www.wikidata.org/wiki/Q174691",
+ "description": "静岡市: 対象 200 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 52 点 / 致命的 NG 32.0%"
+ }
+ },
+ {
+ "@type": "ListItem",
+ "position": 5,
+ "item": {
+ "@type": "AdministrativeArea",
+ "name": "三島市",
+ "url": "https://tcharton.com/stella/regions/shizuoka/mishima/",
+ "sameAs": "https://www.wikidata.org/wiki/Q653478",
+ "description": "三島市: 対象 165 件 / ★ 認定取得 0 件 / 認定取得率 0.0% / 業界最高点 51 点 / 致命的 NG 28.5%"
+ }
+ }
+ ]
 }
 </script>
-  <script src="/dist/scripts/js-marker.js?v=202605131200"></script>
-  <script src="/dist/scripts/ga4.js?v=202605131200" defer></script>
-  <script src="/dist/scripts/trusted-types.js?v=202605131200"></script>
+ <script src="/dist/scripts/js-marker.js?v=202605131200"></script>
+ <script src="/dist/scripts/ga4.js?v=202605131200" defer></script>
+ <script src="/dist/scripts/trusted-types.js?v=202605131200"></script>
 </head>
 <body class="bg-white text-dark-700 font-sans antialiased">
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
 
-  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
-    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
-        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-          <rect width="28" height="28" rx="6" fill="#1B4965"/>
-          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
-        </svg>
-        <span>T.C.HARTON</span>
-      </a>
-      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
-        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
-        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
-        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
-        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
-        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
-        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
-        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
-      </div>
-      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18"/>
-        </svg>
-      </button>
-    </nav>
-  </header>
+ <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+ <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+ <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+ <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+ <rect width="28" height="28" rx="6" fill="#1B4965"/>
+ <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+ </svg>
+ <span>T.C.HARTON</span>
+ </a>
+ <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+ <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+ <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+ <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+ <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+ <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+ <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+ <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+ </div>
+ <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+ <path d="M3 6h18M3 12h18M3 18h18"/>
+ </svg>
+ </button>
+ </nav>
+ </header>
 
-  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
-    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
-      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
-      </button>
-      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
-      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
-      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
-      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
-      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
-      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
-      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
-      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
-      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
-      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
-      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
-    </div>
-  </nav>
+ <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+ <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+ <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+ <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+ </button>
+ <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+ <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+ <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+ <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+ <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+ <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+ <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+ <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+ <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+ <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+ <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+ </div>
+ </nav>
 
 <main id="main" class="pt-16">
 
 <article>
-  <header>
-    <h1>静岡県 5 都市 WEB 品質業界レポート 2026 Q2 (4-6 月号)</h1>
-    <p><time datetime="2026-05-02" itemprop="datePublished">2026-05-02 スキャン実施・公開</time> ／ <time datetime="2026-06-02" itemprop="dateModified">次回更新予定: 2026-06-02</time></p>
-  </header>
-  <section aria-label="冒頭エビデンス">
-    <p><strong>2026 年 5 月 2 日</strong>、静岡県 5 都市（沼津市・三島市・富士市・静岡市・浜松市）× 11 業種（税理士・弁護士・司法書士・行政書士・不動産仲介・飲食店・美容院・美容クリニック・宿泊施設・クリニック / 診療所・学習塾）<strong>902</strong> 件の公開 WEB サイトを 4 軸機械検証した。業界中央値は <strong>24</strong> 点（業界 max <strong>54</strong> 点）であり、★ 以上認定可能なサイトは <strong>0</strong> 件、致命的 NG 発生率は <strong>32.5%</strong> であった。本レポートのデータ全件は <a href="/stella/datasets/shizuoka-2026-q2.json" type="application/json">機械可読 JSON</a> として CC BY 4.0 で公開する (AI クローラー / 研究者 / 引用フリー)。出典: <a href="https://web.dev/articles/vitals" rel="noopener noreferrer" target="_blank">Google Web Vitals 公式</a> / <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" rel="noopener noreferrer" target="_blank">W3C WCAG 2.2</a> / <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" rel="noopener noreferrer" target="_blank">IPA 安全なウェブサイトの作り方</a>。</p>
-    <blockquote cite="https://tcharton.com/stella/methodology/">
-      「公正に測るとは、評価方法のすべてを公開することだ」 — HARTON Stella 評価原則
-    </blockquote>
-  </section>
+ <header>
+ <h1>静岡県 5 都市 WEB 品質業界レポート 2026 Q2 (4-6 月号)</h1>
+ <p><time datetime="2026-05-02" itemprop="datePublished">2026-05-02 スキャン実施・公開</time> ／ <time datetime="2026-06-02" itemprop="dateModified">次回更新予定: 2026-06-02</time></p>
+ </header>
+ <section aria-label="冒頭エビデンス">
+ <p><strong>2026 年 5 月 2 日</strong>、静岡県 5 都市（沼津市・三島市・富士市・静岡市・浜松市）× 11 業種（税理士・弁護士・司法書士・行政書士・不動産仲介・飲食店・美容院・美容クリニック・宿泊施設・クリニック / 診療所・学習塾）<strong>902</strong> 件の公開 WEB サイトを 4 軸機械検証した。業界中央値は <strong>24</strong> 点（業界 max <strong>54</strong> 点）であり、★ 以上認定可能なサイトは <strong>0</strong> 件、致命的 NG 発生率は <strong>32.5%</strong> であった。本レポートのデータ全件は <a href="/stella/datasets/shizuoka-2026-q2.json" type="application/json">機械可読 JSON</a> として CC BY 4.0 で公開する (AI クローラー / 研究者 / 引用フリー)。出典: <a href="https://web.dev/articles/vitals" rel="noopener noreferrer" target="_blank">Google Web Vitals 公式</a> / <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" rel="noopener noreferrer" target="_blank">W3C WCAG 2.2</a> / <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" rel="noopener noreferrer" target="_blank">IPA 安全なウェブサイトの作り方</a>。</p>
+ <blockquote cite="https://tcharton.com/stella/methodology/">
+ 「評価方法はすべて公開しています」 — HARTON Stella
+ </blockquote>
+ </section>
 
-  <section aria-label="Phase 0.5 から Phase 1+ 成功への道筋" class="report-narrative-section">
-    <h2>Phase 0.5 → Phase 1+: 成功への道筋 (3 段ストーリー)</h2>
-    <p>Phase 0.5 静岡県 5 都市 902 件機械検証で ★ 認定取得は <strong>0 件</strong>であった。これは「失敗」ではなく、機械検証で WEB 品質を測る独立認定機関としての <strong>透明性の証明</strong>であり、未来の認定事業者への明確な道筋を示すデータである。</p>
-    <ol class="report-narrative-3step">
-      <li class="narrative-step-challenge">
-        <h3><span class="narrative-num">1</span> 現状 (Phase 0.5 / 2026-05-02)</h3>
-        <p>静岡県 5 都市 902 件で ★ 認定 <strong>0/902 = 0.0%</strong>。業界中央値 24 点 / 業界 max 54 点 / 致命的 NG 32.5%。WP 管理面露出 232 件 / HTTPS 非対応 54 件 / SSL 証明書失効 47 件 / CMS バージョン情報露出 28 件。</p>
-      </li>
-      <li class="narrative-step-improvement">
-        <h3><span class="narrative-num">2</span> 改善 (90 日 / 5 Step)</h3>
-        <p>運営主体 T.C.HARTON の自社サイト tcharton.com が辿った 5 Step (HTTPS preload + JSON-LD + CSP + GEO/LLMO + Core Web Vitals) を 90 日で実装すれば、業界 max 54 点 → 70 点まで +16 点引き上げ可能。<a href="/stella/improvement-guide/">改善ガイダンス 5 Step タイムライン</a>で具体的 config 値・header 文字列・ファイルパスを全公開。<a href="/stella/case-studies/tcharton-com/">tcharton.com 自己実証 case study</a> で 7 commit timeline を verbatim 確認可能。</p>
-      </li>
-      <li class="narrative-step-acquired">
-        <h3><span class="narrative-num">3</span> 取得 (Phase 1+ / 2026-06-02 月次再判定〜)</h3>
-        <p>月次再判定で改善した事業者は自動的に ★ HARTON Stella 取得 → <a href="/stella/regions/shizuoka/">静岡県 5 都市の認定店舗ページ</a>に掲載 + 本レポートに昇格通知。Phase 1 (主要 20 都市 / 2026 Q3〜) で全国順次拡大予定。tcharton.com (★★★ HARTON Stella S-Class) と並ぶ自己実証体 第 2 号は静岡県 5 都市から最初に生まれることが期待される。</p>
-      </li>
-    </ol>
-  </section>
+ <section aria-label="Phase 0.5 から Phase 1+ 成功への道筋" class="report-narrative-section">
+ <h2>Phase 0.5 → Phase 1+: 成功への道筋 (3 段ストーリー)</h2>
+ <p>Phase 0.5 静岡県 5 都市 902 件機械検証で ★ 認定取得は <strong>0 件</strong>であった。これは「失敗」ではなく、機械検証で WEB 品質を測るWEB 品質評価サービスとしての <strong>透明性の証明</strong>であり、未来の認定事業者への明確な道筋を示すデータである。</p>
+ <ol class="report-narrative-3step">
+ <li class="narrative-step-challenge">
+ <h3><span class="narrative-num">1</span> 現状 (Phase 0.5 / 2026-05-02)</h3>
+ <p>静岡県 5 都市 902 件で ★ 認定 <strong>0/902 = 0.0%</strong>。業界中央値 24 点 / 業界 max 54 点 / 致命的 NG 32.5%。WP 管理面露出 232 件 / HTTPS 非対応 54 件 / SSL 証明書失効 47 件 / CMS バージョン情報露出 28 件。</p>
+ </li>
+ <li class="narrative-step-improvement">
+ <h3><span class="narrative-num">2</span> 改善 (90 日 / 5 Step)</h3>
+ <p>運営主体 T.C.HARTON の自社サイト tcharton.com が辿った 5 Step (HTTPS preload + JSON-LD + CSP + GEO/LLMO + Core Web Vitals) を 90 日で実装すれば、業界 max 54 点 → 70 点まで +16 点引き上げ可能。<a href="/stella/improvement-guide/">改善ガイダンス 5 Step タイムライン</a>で具体的 config 値・header 文字列・ファイルパスを全公開。<a href="/stella/case-studies/tcharton-com/">tcharton.com 自己実証 case study</a> で 7 commit timeline を verbatim 確認可能。</p>
+ </li>
+ <li class="narrative-step-acquired">
+ <h3><span class="narrative-num">3</span> 取得 (Phase 1+ / 2026-06-02 月次再判定〜)</h3>
+ <p>月次再判定で改善した事業者は自動的に ★ HARTON Stella 取得 → <a href="/stella/regions/shizuoka/">静岡県 5 都市の認定店舗ページ</a>に掲載 + 本レポートに昇格通知。Phase 1 (主要 20 都市 / 2026 Q3〜) で全国順次拡大予定。tcharton.com (★★★ HARTON Stella S-Class) と並ぶ自己実証体 第 2 号は静岡県 5 都市から最初に生まれることが期待される。</p>
+ </li>
+ </ol>
+ </section>
 
-  <section aria-label="評価結果の取扱いに関する注意" class="report-disclaimer-section">
-    <p><strong>本レポートの取扱いについて</strong>: 本レポートに記載される「致命的 NG」(HTTPS 非対応 / SSL 証明書 / WP 管理面露出 / CMS バージョン情報露出) の表記は SPEC v3.4 で定義された<strong>具体的技術項目の検出</strong>を意味し、対象事業者の事業品質や信用度に対する評価ではない。評価結果はスキャン実施時点 (2026-05-02) のスナップショットであり、対象 WEB サイトの現在状態を保証するものではない。検出結果に異議がある事業者は <a href="/stella/contact/">scanner 結果訂正請求</a> または <a href="/stella/opt-out/">/opt-out/</a> より速やかに申立て可能である。詳細は <a href="/stella/legal/">利用規約 第 3 条 (機械検証の限界と免責)</a>を参照。</p>
-  </section>
+ <section aria-label="評価結果の取扱いに関する注意" class="report-disclaimer-section">
+ <p><strong>本レポートの取扱いについて</strong>: 本レポートに記載される「致命的 NG」(HTTPS 非対応 / SSL 証明書 / WP 管理面露出 / CMS バージョン情報露出) の表記は SPEC v3.4 で定義された<strong>具体的技術項目の検出</strong>を意味し、対象事業者の事業品質や信用度に対する評価ではない。評価結果はスキャン実施時点 (2026-05-02) のスナップショットであり、対象 WEB サイトの現在状態を保証するものではない。検出結果に異議がある事業者は <a href="/stella/contact/">scanner 結果訂正請求</a> または <a href="/stella/opt-out/">/opt-out/</a> より速やかに申立て可能である。詳細は <a href="/stella/legal/">利用規約 第 3 条 (機械検証の限界と免責)</a>を参照。</p>
+ </section>
 
-  <section aria-label="静岡県 5 都市 ★ 獲得率（統合）" class="quality-gap-section zero-cert-statement">
-    <h2>静岡県 5 都市 ★ 獲得率</h2>
-    <div class="report-stat-display">
-      <p class="report-stat-headline"><span class="report-stat-number">0.0</span><span class="report-stat-unit">%</span></p>
-      <p class="report-stat-caption"><strong>静岡県 5 都市 902 件中、★ 認定達成 0 件 / 獲得率 0.0%</strong>（2026-05-02 時点）</p>
-      <p class="report-stat-note">機械検証 4 軸（A 基礎・B 防御・C AI 検索・D 経営インパクト）+ 致命的 NG 0 件 + 総合 70 点以上を全達成した事業者の割合。本レポートは業界の WEB 品質改善のために実測を公開するものであり、自社の集客を目的とするものではない。「準備中」「Coming soon」等の婉曲表現は採用しない。</p>
-    </div>
-  </section>
+ <section aria-label="静岡県 5 都市 ★ 獲得率（統合）" class="quality-gap-section zero-cert-statement">
+ <h2>静岡県 5 都市 ★ 獲得率</h2>
+ <div class="report-stat-display">
+ <p class="report-stat-headline"><span class="report-stat-number">0.0</span><span class="report-stat-unit">%</span></p>
+ <p class="report-stat-caption"><strong>静岡県 5 都市 902 件中、★ 認定達成 0 件 / 獲得率 0.0%</strong>（2026-05-02 時点）</p>
+ <p class="report-stat-note">機械検証 4 軸（A 基礎・B 防御・C AI 検索・D 経営インパクト）+ 致命的 NG 0 件 + 総合 70 点以上を全達成した事業者の割合。本レポートは業界の WEB 品質改善のために実測を公開するものであり、自社の集客を目的とするものではない。「準備中」「Coming soon」等の婉曲表現は採用しない。</p>
+ </div>
+ </section>
 
-  <section aria-label="都市別 WEB 品質ランキング" class="region-section">
-    <h2>都市別 WEB 品質ランキング</h2>
-    <p class="region-section-lede"><strong>★ 認定取得率</strong> = ★ 認定取得 ÷ 対象 n × 100% (実際の認定割合)。Phase 0.5 全 5 都市で <strong>0.0%</strong> (★ 認定取得サイト 0 件)。表は<strong>業界最高点 (= 当該都市内 1 位サイトのスコア)</strong>降順でソート。最高点が高い都市ほど ★ 認定基準 (70 点) に近い 1 サイトが存在することを示す。致命的 NG% は母集団全体の防御水準 (低いほど良)。</p>
-    <table>
-      <caption>静岡県 5 都市 902 件 都市別 WEB 品質ランキング (2026-05-02 時点)</caption>
-      <thead>
-        <tr><th scope="col">順位</th><th scope="col">都市</th><th scope="col">対象 n</th><th scope="col">★ 獲得</th><th scope="col">★ 認定取得率</th><th scope="col">業界最高点 / 70 点</th><th scope="col">致命的 NG%</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><th scope="row"><a href="/stella/regions/shizuoka/numazu/">沼津市</a></th><td>171 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>54 / 70 点</td><td class="ng-mid">32.7%</td></tr>
-        <tr><td>2</td><th scope="row"><a href="/stella/regions/shizuoka/fuji/">富士市</a></th><td>167 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>53 / 70 点</td><td class="ng-high">35.9%</td></tr>
-        <tr><td>3</td><th scope="row"><a href="/stella/regions/shizuoka/hamamatsu/">浜松市</a></th><td>199 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>53 / 70 点</td><td class="ng-mid">33.2%</td></tr>
-        <tr><td>4</td><th scope="row"><a href="/stella/regions/shizuoka/shizuoka/">静岡市</a></th><td>200 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>52 / 70 点</td><td class="ng-mid">32.0%</td></tr>
-        <tr><td>5</td><th scope="row"><a href="/stella/regions/shizuoka/mishima/">三島市</a></th><td>165 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>51 / 70 点</td><td class="ng-low">28.5%</td></tr>
-      </tbody>
-    </table>
-    <p class="region-section-note">凡例: ★ 認定取得率 = ★ 認定取得件数 ÷ 母集団対象 n。Phase 0.5 では全 5 都市で <strong>0/n = 0.0%</strong> (★ 認定基準 70 点に到達した事業者ゼロ)。NG% 色分け: 緑 = 30% 未満 (相対良) / 黄 = 30-35% / 赤 = 35% 以上 (相対悪)。</p>
-  </section>
+ <section aria-label="都市別 WEB 品質ランキング" class="region-section">
+ <h2>都市別 WEB 品質ランキング</h2>
+ <p class="region-section-lede"><strong>★ 認定取得率</strong> = ★ 認定取得 ÷ 対象 n × 100% (実際の認定割合)。Phase 0.5 全 5 都市で <strong>0.0%</strong> (★ 認定取得サイト 0 件)。表は<strong>業界最高点 (= 当該都市内 1 位サイトのスコア)</strong>降順でソート。最高点が高い都市ほど ★ 認定基準 (70 点) に近い 1 サイトが存在することを示す。致命的 NG% は母集団全体の防御水準 (低いほど良)。</p>
+ <table>
+ <caption>静岡県 5 都市 902 件 都市別 WEB 品質ランキング (2026-05-02 時点)</caption>
+ <thead>
+ <tr><th scope="col">順位</th><th scope="col">都市</th><th scope="col">対象 n</th><th scope="col">★ 獲得</th><th scope="col">★ 認定取得率</th><th scope="col">業界最高点 / 70 点</th><th scope="col">致命的 NG%</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>1</td><th scope="row"><a href="/stella/regions/shizuoka/numazu/">沼津市</a></th><td>171 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>54 / 70 点</td><td class="ng-mid">32.7%</td></tr>
+ <tr><td>2</td><th scope="row"><a href="/stella/regions/shizuoka/fuji/">富士市</a></th><td>167 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>53 / 70 点</td><td class="ng-high">35.9%</td></tr>
+ <tr><td>3</td><th scope="row"><a href="/stella/regions/shizuoka/hamamatsu/">浜松市</a></th><td>199 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>53 / 70 点</td><td class="ng-mid">33.2%</td></tr>
+ <tr><td>4</td><th scope="row"><a href="/stella/regions/shizuoka/shizuoka/">静岡市</a></th><td>200 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>52 / 70 点</td><td class="ng-mid">32.0%</td></tr>
+ <tr><td>5</td><th scope="row"><a href="/stella/regions/shizuoka/mishima/">三島市</a></th><td>165 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>51 / 70 点</td><td class="ng-low">28.5%</td></tr>
+ </tbody>
+ </table>
+ <p class="region-section-note">凡例: ★ 認定取得率 = ★ 認定取得件数 ÷ 母集団対象 n。Phase 0.5 では全 5 都市で <strong>0/n = 0.0%</strong> (★ 認定基準 70 点に到達した事業者ゼロ)。NG% 色分け: 緑 = 30% 未満 (相対良) / 黄 = 30-35% / 赤 = 35% 以上 (相対悪)。</p>
+ </section>
 
-  <section aria-label="業種別 WEB 品質ランキング" class="industry-section">
-    <h2>業種別 WEB 品質ランキング</h2>
-    <p class="industry-section-lede"><strong>★ 認定取得率</strong> = ★ 認定取得 ÷ 対象 n × 100% (実際の認定割合)。Phase 0.5 全 11 業種で <strong>0.0%</strong>。表は<strong>業界最高点 (= 当該業種内 1 位サイトのスコア)</strong>降順。NG% が高い業種は防御層 (HTTPS / WP 管理面 / CMS 露出) の改善余地が大きい。</p>
-    <table>
-      <caption>静岡県 5 都市 11 業種 902 件 業種別 WEB 品質ランキング (2026-05-02 時点)</caption>
-      <thead>
-        <tr><th scope="col">順位</th><th scope="col">業種</th><th scope="col">対象 n</th><th scope="col">★ 獲得</th><th scope="col">★ 認定取得率</th><th scope="col">業界最高点 / 70 点</th><th scope="col">致命的 NG%</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><th scope="row"><a href="/stella/industries/judicial-scrivener/">司法書士</a></th><td>49 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>54 / 70 点</td><td class="ng-high">44.9%</td></tr>
-        <tr><td>2</td><th scope="row"><a href="/stella/industries/real-estate/">不動産仲介</a></th><td>97 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>54 / 70 点</td><td class="ng-low">15.5%</td></tr>
-        <tr><td>3</td><th scope="row"><a href="/stella/industries/clinic/">クリニック・診療所</a></th><td>69 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>53 / 70 点</td><td class="ng-mid">33.3%</td></tr>
-        <tr><td>4</td><th scope="row"><a href="/stella/industries/tax-accountant/">税理士・会計士</a></th><td>89 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>52 / 70 点</td><td class="ng-mid">34.8%</td></tr>
-        <tr><td>5</td><th scope="row"><a href="/stella/industries/administrative-scrivener/">行政書士</a></th><td>70 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>52 / 70 点</td><td class="ng-high">48.6%</td></tr>
-        <tr><td>6</td><th scope="row"><a href="/stella/industries/lodging/">宿泊施設</a></th><td>82 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>51 / 70 点</td><td class="ng-low">26.8%</td></tr>
-        <tr><td>7</td><th scope="row"><a href="/stella/industries/restaurant/">飲食店</a></th><td>79 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>50 / 70 点</td><td class="ng-low">24.1%</td></tr>
-        <tr><td>8</td><th scope="row"><a href="/stella/industries/lawyer/">弁護士</a></th><td>67 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>49 / 70 点</td><td class="ng-mid">37.3%</td></tr>
-        <tr><td>9</td><th scope="row"><a href="/stella/industries/cram-school/">学習塾</a></th><td>94 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>46 / 70 点</td><td class="ng-low">27.7%</td></tr>
-        <tr><td>10</td><th scope="row"><a href="/stella/industries/cosmetic-clinic/">美容クリニック</a></th><td>71 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>45 / 70 点</td><td class="ng-high">46.5%</td></tr>
-        <tr><td>11</td><th scope="row"><a href="/stella/industries/beauty/">美容院</a></th><td>98 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>44 / 70 点</td><td class="ng-low">28.6%</td></tr>
-      </tbody>
-    </table>
-  </section>
+ <section aria-label="業種別 WEB 品質ランキング" class="industry-section">
+ <h2>業種別 WEB 品質ランキング</h2>
+ <p class="industry-section-lede"><strong>★ 認定取得率</strong> = ★ 認定取得 ÷ 対象 n × 100% (実際の認定割合)。Phase 0.5 全 11 業種で <strong>0.0%</strong>。表は<strong>業界最高点 (= 当該業種内 1 位サイトのスコア)</strong>降順。NG% が高い業種は防御層 (HTTPS / WP 管理面 / CMS 露出) の改善余地が大きい。</p>
+ <table>
+ <caption>静岡県 5 都市 11 業種 902 件 業種別 WEB 品質ランキング (2026-05-02 時点)</caption>
+ <thead>
+ <tr><th scope="col">順位</th><th scope="col">業種</th><th scope="col">対象 n</th><th scope="col">★ 獲得</th><th scope="col">★ 認定取得率</th><th scope="col">業界最高点 / 70 点</th><th scope="col">致命的 NG%</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>1</td><th scope="row"><a href="/stella/industries/judicial-scrivener/">司法書士</a></th><td>49 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>54 / 70 点</td><td class="ng-high">44.9%</td></tr>
+ <tr><td>2</td><th scope="row"><a href="/stella/industries/real-estate/">不動産仲介</a></th><td>97 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>54 / 70 点</td><td class="ng-low">15.5%</td></tr>
+ <tr><td>3</td><th scope="row"><a href="/stella/industries/clinic/">クリニック・診療所</a></th><td>69 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>53 / 70 点</td><td class="ng-mid">33.3%</td></tr>
+ <tr><td>4</td><th scope="row"><a href="/stella/industries/tax-accountant/">税理士・会計士</a></th><td>89 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>52 / 70 点</td><td class="ng-mid">34.8%</td></tr>
+ <tr><td>5</td><th scope="row"><a href="/stella/industries/administrative-scrivener/">行政書士</a></th><td>70 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>52 / 70 点</td><td class="ng-high">48.6%</td></tr>
+ <tr><td>6</td><th scope="row"><a href="/stella/industries/lodging/">宿泊施設</a></th><td>82 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>51 / 70 点</td><td class="ng-low">26.8%</td></tr>
+ <tr><td>7</td><th scope="row"><a href="/stella/industries/restaurant/">飲食店</a></th><td>79 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>50 / 70 点</td><td class="ng-low">24.1%</td></tr>
+ <tr><td>8</td><th scope="row"><a href="/stella/industries/lawyer/">弁護士</a></th><td>67 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>49 / 70 点</td><td class="ng-mid">37.3%</td></tr>
+ <tr><td>9</td><th scope="row"><a href="/stella/industries/cram-school/">学習塾</a></th><td>94 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>46 / 70 点</td><td class="ng-low">27.7%</td></tr>
+ <tr><td>10</td><th scope="row"><a href="/stella/industries/cosmetic-clinic/">美容クリニック</a></th><td>71 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>45 / 70 点</td><td class="ng-high">46.5%</td></tr>
+ <tr><td>11</td><th scope="row"><a href="/stella/industries/beauty/">美容院</a></th><td>98 件</td><td>0 件</td><td><strong>0.0%</strong></td><td>44 / 70 点</td><td class="ng-low">28.6%</td></tr>
+ </tbody>
+ </table>
+ </section>
 
-  <section aria-label="致命的 NG 内訳" class="ng-table-section">
-    <h2>致命的 NG 内訳（業界横断 / 293 件 ／ 32.5%）</h2>
-    <table>
-      <caption>静岡県 5 都市 902 件中の致命的 NG 検出件数（複数 NG 重複事業者あり）</caption>
-      <thead>
-        <tr><th scope="col">致命的 NG 種類</th><th scope="col">件数</th><th scope="col">説明</th></tr>
-      </thead>
-      <tbody>
-        <tr><th scope="row">HTTPS非対応</th><td>54 件</td><td>HTTPS で配信されておらず、現代ブラウザでは安全でない接続として表示される。検索評価上も不利となる</td></tr>
-        <tr><th scope="row">SSL証明書</th><td>47 件</td><td>SSL/TLS 証明書が期限切れ・無効・自己署名のため、ブラウザによる警告表示が発生する</td></tr>
-        <tr><th scope="row">WP管理面露出</th><td>232 件</td><td>WordPress 管理画面（wp-login.php / xmlrpc.php 等）が公開状態にあり、認証ボット試行の対象となりうる</td></tr>
-        <tr><th scope="row">readme.html露出</th><td>0 件</td><td>WordPress 同梱の readme.html が公開状態にあり、稼働バージョンが第三者から特定可能となる</td></tr>
-        <tr><th scope="row">xmlrpc.php有効</th><td>0 件</td><td>XML-RPC エンドポイントが有効化されており、リフレクション攻撃に利用される可能性がある</td></tr>
-        <tr><th scope="row">CMSバージョン情報露出</th><td>28 件</td><td>&lt;meta name=&quot;generator&quot;&gt; 等で CMS のバージョン情報が露出しており、既知脆弱性の特定が容易な状態にある</td></tr>
-      </tbody>
-    </table>
-  </section>
+ <section aria-label="致命的 NG 内訳" class="ng-table-section">
+ <h2>致命的 NG 内訳（業界横断 / 293 件 ／ 32.5%）</h2>
+ <table>
+ <caption>静岡県 5 都市 902 件中の致命的 NG 検出件数（複数 NG 重複事業者あり）</caption>
+ <thead>
+ <tr><th scope="col">致命的 NG 種類</th><th scope="col">件数</th><th scope="col">説明</th></tr>
+ </thead>
+ <tbody>
+ <tr><th scope="row">HTTPS非対応</th><td>54 件</td><td>HTTPS で配信されておらず、現代ブラウザでは安全でない接続として表示される。検索評価上も不利となる</td></tr>
+ <tr><th scope="row">SSL証明書</th><td>47 件</td><td>SSL/TLS 証明書が期限切れ・無効・自己署名のため、ブラウザによる警告表示が発生する</td></tr>
+ <tr><th scope="row">WP管理面露出</th><td>232 件</td><td>WordPress 管理画面（wp-login.php / xmlrpc.php 等）が公開状態にあり、認証ボット試行の対象となりうる</td></tr>
+ <tr><th scope="row">readme.html露出</th><td>0 件</td><td>WordPress 同梱の readme.html が公開状態にあり、稼働バージョンが第三者から特定可能となる</td></tr>
+ <tr><th scope="row">xmlrpc.php有効</th><td>0 件</td><td>XML-RPC エンドポイントが有効化されており、リフレクション攻撃に利用される可能性がある</td></tr>
+ <tr><th scope="row">CMSバージョン情報露出</th><td>28 件</td><td>&lt;meta name=&quot;generator&quot;&gt; 等で CMS のバージョン情報が露出しており、既知脆弱性の特定が容易な状態にある</td></tr>
+ </tbody>
+ </table>
+ </section>
 
-  <section aria-label="dogfooding 倫理開示">
-    <h2>dogfooding 倫理：自己実証体としての透明性</h2>
-    <blockquote cite="https://tcharton.com/stella/about/">
-      「機械検証が示す、AI 時代の WEB 品質。」 — HARTON Stella 信頼根拠の核
-    </blockquote>
-    <p>本機関の自己実証体 第 1 号は scanner.py により ★★★（HARTON S-Class）を取得し、月次再判定の対象となる（自己例外なし）。自己実証体 自身に致命的 NG 検出時は即時非掲載状態に切替え、機械検証ログを verbatim 公開する。静岡県 5 都市 902 件の業界実測で 70 点以上を達成したサイトはゼロ件である。これは認定基準が「人間の主観や金銭、規模に依存しない」客観的な技術指標であることを業界実測で示している。</p>
-  </section>
+ <section aria-label="dogfooding 倫理開示">
+ <h2>dogfooding 倫理：自己実証体としての透明性</h2>
+ <blockquote cite="https://tcharton.com/stella/about/">
+ 「機械検証が示す、AI 時代の WEB 品質。」 — HARTON Stella
+ </blockquote>
+ <p>HARTON Stella の自己実証体 第 1 号は scanner.py により ★★★（HARTON S-Class）を取得し、月次再判定の対象となる（自己例外なし）。自己実証体 自身に致命的 NG 検出時は即時非掲載状態に切替え、機械検証ログを verbatim 公開する。静岡県 5 都市 902 件の業界実測で 70 点以上を達成したサイトはゼロ件である。これは認定基準が「人間の主観や金銭、規模に依存しない」客観的な技術指標であることを業界実測で示している。</p>
+ </section>
 
-  <section aria-label="関連ページ">
-    <h2>関連ページ</h2>
-    <ul>
-      <li><a href="/stella/comparison/regions/shizuoka/"><strong>静岡県 5 都市 WEB 品質比較</strong></a> — 5 都市横並び + 都市 × 業種 cross-tab + 業種横並びの 3 表で詳細比較</li>
-      <li><a href="/stella/datasets/shizuoka-2026-q2.json">機械可読 JSON データセット (CC BY 4.0)</a> — Schema.org Dataset / AI クローラー引用フリー</li>
-      <li><a href="/stella/methodology/">評価方法（4 軸機械検証 全公開）</a> — A 基礎 / B 防御 / C AI 検索 / D 経営の 4 軸独立評価とその閾値</li>
-      <li><a href="/stella/methodology/security/">B 軸 防御力・生存率</a> — 致命的 NG 4 項目の詳細と検出根拠</li>
-      <li><a href="/stella/improvement-guide/">改善ガイダンス</a> — ★区分昇格のための具体 Step（既掲載事業者向け）</li>
-      <li><a href="/stella/apply/">掲載申請</a> — 自社サイトの認定獲得を目指す事業者向け</li>
-    </ul>
-    <p><strong>現状診断レポート</strong>（自社サイトの 4 軸スコア + 致命的 NG 警告 + ★ 取得までの改善 Step）は CR-3 Cloudflare Turnstile 実装後に <a href="/stella/contact/">お問合せ</a>経由で受付開始予定。</p>
-  </section>
+ <section aria-label="関連ページ">
+ <h2>関連ページ</h2>
+ <ul>
+ <li><a href="/stella/comparison/regions/shizuoka/"><strong>静岡県 5 都市 WEB 品質比較</strong></a> — 5 都市横並び + 都市 × 業種 cross-tab + 業種横並びの 3 表で詳細比較</li>
+ <li><a href="/stella/datasets/shizuoka-2026-q2.json">機械可読 JSON データセット (CC BY 4.0)</a> — Schema.org Dataset / AI クローラー引用フリー</li>
+ <li><a href="/stella/methodology/">評価方法（4 軸機械検証 全公開）</a> — A 基礎 / B 防御 / C AI 検索 / D 経営の 4 軸独立評価とその閾値</li>
+ <li><a href="/stella/methodology/security/">B 軸 防御力・生存率</a> — 致命的 NG 4 項目の詳細と検出根拠</li>
+ <li><a href="/stella/improvement-guide/">改善ガイダンス</a> — ★区分昇格のための具体 Step（既掲載事業者向け）</li>
+ <li><a href="/stella/apply/">掲載申請</a> — 自社サイトの認定獲得を目指す事業者向け</li>
+ </ul>
+ <p><strong>現状診断レポート</strong>（自社サイトの 4 軸スコア + 致命的 NG 警告 + ★ 取得までの改善 Step）は CR-3 Cloudflare Turnstile 実装後に <a href="/stella/contact/">お問合せ</a>経由で受付開始予定。</p>
+ </section>
 
-  <section aria-label="改善された場合の対応">
-    <h2>改善された場合の対応 / 四半期更新方針</h2>
-    <p>本レポートは月次に scanner.py で全件再判定する。改善により ★ 認定可能となった事業者は、月次再判定で自動的に <a href="/stella/regions/shizuoka/">静岡県 5 都市の認定店舗ページ</a>に掲載され、業界レポートにも昇格通知が記載される。再判定の運用は本機関の失効・降格運用（MASTER-PLAN §12）と完全整合する（事業者通知 + 14 日改善猶予 + 致命的 NG 即時切替）。</p>
-    <ul>
-      <li><strong>スキャン実施日</strong>: 2026-05-02</li>
-      <li><strong>次回再判定予定</strong>: 2026-06-02（月次運用 / scanner.py 自動再判定）</li>
-      <li><strong>レポート更新</strong>: 月次再判定後、本ページの数値を更新する</li>
-      <li><strong>新規認定通知</strong>: 改善により ★ 認定可能となった事業者は本ページ「新規認定（改善後）」枠に追記し、認定店舗ページに掲載する</li>
-    </ul>
-  </section>
+ <section aria-label="改善された場合の対応">
+ <h2>改善された場合の対応 / 四半期更新方針</h2>
+ <p>本レポートは月次に scanner.py で全件再判定する。改善により ★ 認定可能となった事業者は、月次再判定で自動的に <a href="/stella/regions/shizuoka/">静岡県 5 都市の認定店舗ページ</a>に掲載され、業界レポートにも昇格通知が記載される。再判定の運用はHARTON Stella の失効・降格運用（MASTER-PLAN §12）と整合する（事業者通知 + 14 日改善猶予 + 致命的 NG 即時切替）。</p>
+ <ul>
+ <li><strong>スキャン実施日</strong>: 2026-05-02</li>
+ <li><strong>次回再判定予定</strong>: 2026-06-02（月次運用 / scanner.py 自動再判定）</li>
+ <li><strong>レポート更新</strong>: 月次再判定後、本ページの数値を更新する</li>
+ <li><strong>新規認定通知</strong>: 改善により ★ 認定可能となった事業者は本ページ「新規認定（改善後）」枠に追記し、認定店舗ページに掲載する</li>
+ </ul>
+ </section>
 
-  <section aria-label="よくある質問" class="report-faq-section">
-    <h2>よくある質問 (静岡県 5 都市集計)</h2>
-    <details open><summary>静岡県 5 都市 全体で ★ 認定取得サイトは何件ありますか？</summary><div class="faq-answer"><p><strong>0 件</strong> (902 件中 / 2026-05-02 時点)。Phase 0.5 機械検証では総合 70 点以上 + 致命的 NG 0 件を全達成したサイトはゼロでした。業界中央値は 24 点、業界 max は 54 点であり、★ 認定基準 (70 点) との差は 16 点です。</p></div></details>
-    <details><summary>5 都市の中で WEB 品質が最も高い (★ 認定に最も近い) 都市はどこですか？</summary><div class="faq-answer"><p><strong>★ 認定取得率は全 5 都市で 0.0%</strong> (Phase 0.5 では全件未達)。業界最高点 (= 当該都市内 1 位サイト) ベースでは <strong>沼津市 54 点</strong> が最高、次いで富士市 53 点 / 浜松市 53 点 / 静岡市 52 点 / 三島市 51 点。いずれも ★ 認定基準 (70 点) には未到達です。致命的 NG% が最も低いのは三島市 (28.5%) で、母集団全体の防御水準は最高です。</p></div></details>
-    <details><summary>11 業種の中で WEB 品質が最も高い業種はどれですか？</summary><div class="faq-answer"><p>業界最高点ベースで <strong>司法書士 (54 点) / 不動産仲介 (54 点)</strong> が最高、次いでクリニック・診療所 (53 点) / 税理士・会計士 (52 点) / 行政書士 (52 点)。逆に最高点が低いのは美容院 (44 点) / 美容クリニック (45 点) / 学習塾 (46 点) です。NG% (防御層改善余地) が最も大きいのは行政書士 (48.6%) と美容クリニック (46.5%) です。</p></div></details>
-    <details><summary>このレポートのデータは引用・再利用可能ですか？</summary><div class="faq-answer"><p>はい。<a href="/stella/datasets/shizuoka-2026-q2.json">機械可読 JSON</a> として CC BY 4.0 で公開しています。AI クローラー / 研究機関 / メディアによる引用・再利用フリー (出典明記必須)。引用形式: 「HARTON Stella (2026). 静岡県 5 都市 WEB 品質業界レポート 2026 Q2. https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/」。</p></div></details>
-    <details><summary>致命的 NG が業界で最も多いのはどの種類ですか？</summary><div class="faq-answer"><p><strong>WordPress 管理面露出 (232 件)</strong> が最多で、HTTPS 非対応 (54 件) / SSL 証明書失効 (47 件) / CMS バージョン情報露出 (28 件) と続きます。WP 管理面露出は wp-login.php / xmlrpc.php 等が公開状態のことで、認証ボット攻撃の入口となります。改善は IP 制限 / Basic 認証 / 2FA で即時可能です。</p></div></details>
-    <details><summary>次回スキャンと改善後の再判定はいつですか？</summary><div class="faq-answer"><p><strong>次回スキャンは 2026-06-02</strong> (月次運用 / scanner.py 自動再判定)。改善により ★ 認定可能となった事業者は月次再判定で自動的に <a href="/stella/regions/shizuoka/">静岡県 5 都市の認定店舗ページ</a>に掲載されます。事業者からの即時再スキャン依頼は <a href="/stella/contact/">お問合せ</a>から受付。</p></div></details>
-  </section>
+ <section aria-label="よくある質問" class="report-faq-section">
+ <h2>よくある質問 (静岡県 5 都市集計)</h2>
+ <details open><summary>静岡県 5 都市 全体で ★ 認定取得サイトは何件ありますか？</summary><div class="faq-answer"><p><strong>0 件</strong> (902 件中 / 2026-05-02 時点)。Phase 0.5 機械検証では総合 70 点以上 + 致命的 NG 0 件を全達成したサイトはゼロでした。業界中央値は 24 点、業界 max は 54 点であり、★ 認定基準 (70 点) との差は 16 点です。</p></div></details>
+ <details><summary>5 都市の中で WEB 品質が最も高い (★ 認定に最も近い) 都市はどこですか？</summary><div class="faq-answer"><p><strong>★ 認定取得率は全 5 都市で 0.0%</strong> (Phase 0.5 では全件未達)。業界最高点 (= 当該都市内 1 位サイト) ベースでは <strong>沼津市 54 点</strong> が最高、次いで富士市 53 点 / 浜松市 53 点 / 静岡市 52 点 / 三島市 51 点。いずれも ★ 認定基準 (70 点) には未到達です。致命的 NG% が最も低いのは三島市 (28.5%) で、母集団全体の防御水準は最高です。</p></div></details>
+ <details><summary>11 業種の中で WEB 品質が最も高い業種はどれですか？</summary><div class="faq-answer"><p>業界最高点ベースで <strong>司法書士 (54 点) / 不動産仲介 (54 点)</strong> が最高、次いでクリニック・診療所 (53 点) / 税理士・会計士 (52 点) / 行政書士 (52 点)。逆に最高点が低いのは美容院 (44 点) / 美容クリニック (45 点) / 学習塾 (46 点) です。NG% (防御層改善余地) が最も大きいのは行政書士 (48.6%) と美容クリニック (46.5%) です。</p></div></details>
+ <details><summary>このレポートのデータは引用・再利用可能ですか？</summary><div class="faq-answer"><p>はい。<a href="/stella/datasets/shizuoka-2026-q2.json">機械可読 JSON</a> として CC BY 4.0 で公開しています。AI クローラー / 研究機関 / メディアによる引用・再利用フリー (出典明記必須)。引用形式: 「HARTON Stella (2026). 静岡県 5 都市 WEB 品質業界レポート 2026 Q2. https://tcharton.com/stella/news/shizuoka-industry-report-2026-q2/」。</p></div></details>
+ <details><summary>致命的 NG が業界で最も多いのはどの種類ですか？</summary><div class="faq-answer"><p><strong>WordPress 管理面露出 (232 件)</strong> が最多で、HTTPS 非対応 (54 件) / SSL 証明書失効 (47 件) / CMS バージョン情報露出 (28 件) と続きます。WP 管理面露出は wp-login.php / xmlrpc.php 等が公開状態のことで、認証ボット攻撃の入口となります。改善は IP 制限 / Basic 認証 / 2FA で即時可能です。</p></div></details>
+ <details><summary>次回スキャンと改善後の再判定はいつですか？</summary><div class="faq-answer"><p><strong>次回スキャンは 2026-06-02</strong> (月次運用 / scanner.py 自動再判定)。改善により ★ 認定可能となった事業者は月次再判定で自動的に <a href="/stella/regions/shizuoka/">静岡県 5 都市の認定店舗ページ</a>に掲載されます。事業者からの即時再スキャン依頼は <a href="/stella/contact/">お問合せ</a>から受付。</p></div></details>
+ </section>
 </article>
 </main>
 
 <footer class="bg-dark-900 text-dark-300">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
-      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
-            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
-            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
-            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
-            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
-            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
-            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
-            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
-            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
-            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
-            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
-            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
-        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
-      </div>
-    </div>
-  </footer>
-  <script src="/dist/scripts/menu.js?v=202605131500" defer></script>
+ <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+ <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+ <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+ <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+ <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+ <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+ <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+ <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+ <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+ <ul class="mt-4 space-y-2 text-sm">
+ <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+ <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+ <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+ <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+ <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+ </ul>
+ </div>
+ </nav>
+ <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+ <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+ <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+ </div>
+ </div>
+ </footer>
+ <script src="/dist/scripts/menu.js?v=202605131500" defer></script>
 </body>
 </html>
