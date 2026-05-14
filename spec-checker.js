@@ -418,9 +418,7 @@ const THEME_VARIANTS = {
 // marketing: 訴求・コンバージョン用途（明色）
 // reading  : 集中閲覧・長文用途（暗色）
 function getVariant(relPath) {
-  // Stella サブセクション (v1.37 / certification 完全再現) は dark テーマ維持
-  if (relPath.startsWith('stella/')) return 'reading';
-  // 全ページ Light 統一（2026-05-10 ブランド一貫性確保）
+  // 全ページ Light 統一 (Stella 含む / 代表 5/13 指示: HARTON サイト完全一致)
   return 'marketing';
 }
 
