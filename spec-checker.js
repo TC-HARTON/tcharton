@@ -1165,7 +1165,20 @@ function cGlobal() {
   const smPath = path.join(ROOT, 'sitemap.xml');
   if (fs.existsSync(smPath)) {
     const smContent = fs.readFileSync(smPath, 'utf-8');
-    const NO_SITEMAP = new Set(['404.html', 'thanks.html']);
+    // noindex stub (Phase α stub / Stella stub) は Google ガイドライン整合のため sitemap 除外
+    // 公開時 (Step 4-5 完遂後) に sitemap 登録予定
+    const NO_SITEMAP = new Set([
+      '404.html', 'thanks.html',
+      // Phase α stub (v1.36)
+      'problems/index.html', 'problems/site-speed/index.html', 'problems/no-inquiry/index.html',
+      'problems/ai-search-invisible/index.html', 'problems/security-risk/index.html', 'problems/no-mobile/index.html',
+      'insights/index.html', 'insights/core-web-vitals/index.html', 'insights/json-ld-implementation/index.html',
+      'insights/llmo-explained/index.html', 'insights/wikidata-for-ai/index.html', 'insights/security-5-principles/index.html',
+      'insights/eat-improvement/index.html', 'insights/longtail-seo/index.html', 'insights/search-intent/index.html',
+      // Stella stub (v1.37)
+      'stella/index.html', 'stella/methodology/index.html', 'stella/ranking/index.html',
+      'stella/badge/index.html', 'stella/diagnose/index.html',
+    ]);
     const sitemapMissing = STATIC_TARGETS
       .filter(t => !NO_SITEMAP.has(t))
       .filter(t => {

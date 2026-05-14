@@ -145,7 +145,7 @@ html .fade-in {
 }
 .sim-radar-grid { fill: none; stroke: rgba(148, 163, 184, 0.2); stroke-width: 1; }
 .sim-radar-axis { stroke: rgba(148, 163, 184, 0.25); stroke-width: 1; }
-.sim-radar-label { fill: #cbd5e1; font-size: 11px; font-family: "Inter", sans-serif; font-weight: 600; }
+.sim-radar-label { fill: #cbd5e1; font-size: 11px; font-family: "Noto Sans JP", -apple-system, sans-serif; font-weight: 500; }
 
 /* 9. 回答ボタン ゲーミフィケーション (選択直後の弾力 pulse) */
 .sim-btn-celebrate {

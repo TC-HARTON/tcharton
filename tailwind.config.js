@@ -46,10 +46,8 @@ module.exports = {
           800: '#8f7218',
           900: '#664f10',
         },
-        'stella-navy': {
-          DEFAULT: '#0F2840',  // /stella/ ヒーロー背景
-          dark: '#0a1c2e',
-        },
+        'stella-navy': '#0F2840',       // /stella/ ヒーロー背景
+        'stella-navy-dark': '#0a1c2e',  // footer / より深い navy
         // Callout 色（DESIGN.md §4 Callouts）
         'callout-info':      '#eff6fb',
         'callout-highlight': '#fff8e6',

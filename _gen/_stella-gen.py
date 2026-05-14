@@ -21,10 +21,10 @@ STELLA = [
     {
         "slug": "stella",
         "title": "HARTON Stella ─ WEB 品質の審判ポジション",
-        "desc":  "HARTON Stella は WEB 品質の独立評価機関。scanner 機械検証で全国 1,553 社の WEB サイトを評価し、業界中央値と上位水準を集計データとして公開。Sランク Badge オプトイン認定運用。",
+        "desc":  "HARTON Stella は WEB 品質の機械検証による評価レポート部門。scanner 機械検証で全国 1,553 社の WEB サイトを評価し、業界中央値と上位水準を集計データとして公開。Sランク Badge オプトイン認定運用。",
         "h1":    "WEB 品質の、審判ポジション。",
         "lead":  "HARTON Stella は、scanner 独自基準で WEB サイト品質を機械検証する評価機関です。制作会社ではなく、業界中央値と上位水準を集計データとして公開する「審判」の立場を取ります。",
-        "crumb_path": [("ホーム", "https://tcharton.com/"), ("Stella", None)],
+        "crumb_path": [("ホーム", "https://tcharton.com/"), ("Stella", "https://tcharton.com/stella/")],
     },
     {
         "slug": "stella/methodology",
@@ -82,7 +82,7 @@ def render(p):
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="HARTON Stella ─ WEB 品質の審判ポジション">
+  <meta property="og:image:alt" content="{p["h1"]} ─ HARTON Stella">
   <meta property="og:site_name" content="HARTON Stella">
   <meta property="og:locale" content="ja_JP">
 
@@ -107,7 +107,7 @@ def render(p):
   <link rel="manifest" href="/site.webmanifest">
 
   <script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"WebSite","name":"HARTON Stella","url":"https://tcharton.com/stella/","inLanguage":"ja","isPartOf":{{"@id":"https://tcharton.com/#organization"}}}}
+  {{"@context":"https://schema.org","@type":"WebPage","name":"{p["title"]}","url":"{url}","inLanguage":"ja","isPartOf":{{"@type":"WebSite","name":"HARTON Stella","url":"https://tcharton.com/stella/","publisher":{{"@id":"https://tcharton.com/#organization"}}}}}}
   </script>
   <script type="application/ld+json">
   {crumb}
@@ -146,17 +146,32 @@ def render(p):
         <a href="/stella/badge/" class="text-white/80 hover:text-gold-500">Sランク Badge</a>
         <a href="/stella/diagnose/" class="bg-gold-500 hover:bg-gold-600 text-stella-navy px-5 py-2 rounded-md font-bold">無料診断</a>
       </div>
-      <a href="/" class="text-xs text-white/60 hover:text-white">← tcharton.com</a>
+      <a href="/" class="hidden lg:inline text-xs text-white/60 hover:text-white">← tcharton.com</a>
+      <button id="stellaMenuToggle" type="button" class="lg:hidden p-3 -mr-3 text-white hover:text-gold-500" aria-label="メニューを開く" aria-expanded="false" aria-controls="stella-mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </nav>
   </header>
+
+  <nav id="stella-mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-stella-navy text-white" aria-label="Stella モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="stellaMenuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-white hover:text-gold-500" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/stella/methodology/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">評価方法論</a>
+      <a href="/stella/ranking/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">業界中央値</a>
+      <a href="/stella/badge/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">Sランク Badge</a>
+      <a href="/stella/diagnose/" class="mt-4 block bg-gold-500 hover:bg-gold-600 text-stella-navy text-center px-5 py-4 rounded-md font-bold text-lg">無料診断</a>
+      <a href="/" class="mt-6 block py-3 px-2 text-sm text-white/60 hover:text-white border-t border-white/15">← tcharton.com に戻る</a>
+    </div>
+  </nav>
 
   <main id="main">
     <nav aria-label="パンくずリスト" class="max-w-7xl mx-auto px-4 lg:px-8 pt-6 pb-2 text-sm text-dark-500">
       <ol class="flex items-center gap-2 flex-wrap">
         <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
         <li aria-hidden="true">/</li>
-        <li><a href="/stella/" class="hover:text-teal-700 py-3 inline-block">Stella</a></li>
-        {f'<li aria-hidden="true">/</li><li><span aria-current="page" class="text-dark-700">{p["crumb_path"][-1][0]}</span></li>' if len(p["crumb_path"]) > 2 else ''}
+        {f'<li><a href="/stella/" class="hover:text-teal-700 py-3 inline-block">Stella</a></li><li aria-hidden="true">/</li><li><span aria-current="page" class="text-dark-700">{p["crumb_path"][-1][0]}</span></li>' if len(p["crumb_path"]) > 2 else '<li><span aria-current="page" class="text-dark-700">Stella</span></li>'}
       </ol>
     </nav>
 
