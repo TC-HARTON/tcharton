@@ -1,152 +1,499 @@
+<!--
+  HARTON Stella サイト共通レイアウトテンプレート
+  ────────────────────────────────────────
+  生成元: certification/build-base.js（17 基盤） + certification/generate.js（動的ページ）
+  準拠: SPEC v3.4 §1.0 / §4.2 #1 / §8.1 / §8.5-§8.9 / MASTER-PLAN v1.1.4 §4.1 / §10
+  Variant: marketing（明色）/ reading（暗色）— SPEC §10.6.1 準拠
+
+  プレースホルダ仕様: lang / title / description / canonical_path / robots / og_type /
+    og_image_path / theme_color / color_scheme / body_class / breadcrumbs_jsonld /
+    additional_jsonld / main_content / nav_active_search / nav_active_methodology /
+    nav_active_apply / nav_active_about / nav_active_press
+  詳細は build-base.js / generate.js の applyLayout() コメントを参照。
+-->
 <!DOCTYPE html>
 <html lang="ja" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="/dist/scripts/js-marker.js?v=202605121200"></script>
-  <title>HARTON Stella ─ WEB 品質の審判ポジション｜T.C.HARTON</title>
-  <meta name="description" content="HARTON Stella は WEB 品質の機械検証による評価レポート部門。scanner 機械検証で全国 1,553 社の WEB サイトを評価し、業界中央値と上位水準を集計データとして公開。Sランク Badge オプトイン認定運用。">
-  <meta name="author" content="大内 達也">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HARTON Stella — 機械検証 WEB 品質認定機関</title>
+<meta name="description" content="HARTON Stella は WEB 品質を機械検証 (2,554 項目 / 4 軸) で公正評価する金銭非依存・評価基準全公開型の独立認定機関。Sクラス WEB の普及を支える。完全中立・金銭非依存、★ 以上のみ掲載のポジティブセレクション。">
+<meta name="author" content="T.C.HARTON">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0F172A">
+<meta name="color-scheme" content="dark">
 
-  <meta property="og:title" content="HARTON Stella ─ WEB 品質の審判ポジション｜T.C.HARTON">
-  <meta property="og:description" content="HARTON Stella は WEB 品質の機械検証による評価レポート部門。scanner 機械検証で全国 1,553 社の WEB サイトを評価し、業界中央値と上位水準を集計データとして公開。Sランク Badge オプトイン認定運用。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tcharton.com/stella/">
-  <meta property="og:image" content="https://tcharton.com/ogp.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="WEB 品質の、審判ポジション。 ─ HARTON Stella">
-  <meta property="og:site_name" content="HARTON Stella">
-  <meta property="og:locale" content="ja_JP">
+<link rel="canonical" href="https://tcharton.com/stella/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="HARTON Stella ─ WEB 品質の審判ポジション｜T.C.HARTON">
-  <meta name="twitter:description" content="HARTON Stella は WEB 品質の機械検証による評価レポート部門。scanner 機械検証で全国 1,553 社の WEB サイトを評価し、業界中央値と上位水準を集計データとして公開。Sランク Badge オプトイン認定運用。">
-  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+<!-- CSP meta（HTTP _headers が正典 / meta は二重防御の補助。CSP Level 3 で meta では無視される frame-ancestors / sandbox / report-uri は HTTP _headers 側でのみ宣言する） -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com https://api.web3forms.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
 
-  <meta name="theme-color" content="#0F2840">
-  <meta name="color-scheme" content="light">
-  <!-- Phase α stub: ① 起草中 / 公開前 -->
-  <meta name="robots" content="noindex, nofollow">
+<!-- favicon 3 種 -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+<!-- OGP 7 項目（SPEC §11.2-ogp 準拠） -->
+<meta property="og:title" content="HARTON Stella — 機械検証 WEB 品質認定機関">
+<meta property="og:description" content="HARTON Stella は WEB 品質を機械検証 (2,554 項目 / 4 軸) で公正評価する金銭非依存・評価基準全公開型の独立認定機関。Sクラス WEB の普及を支える。完全中立・金銭非依存、★ 以上のみ掲載のポジティブセレクション。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tcharton.com/stella/">
+<meta property="og:image" content="https://tcharton.com/stella/ogp.png">
+<meta property="og:site_name" content="HARTON Stella">
+<meta property="og:locale" content="ja_JP">
 
-  <link rel="canonical" href="https://tcharton.com/stella/">
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+<!-- Twitter Card 4 項目 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HARTON Stella — 機械検証 WEB 品質認定機関">
+<meta name="twitter:description" content="HARTON Stella は WEB 品質を機械検証 (2,554 項目 / 4 軸) で公正評価する金銭非依存・評価基準全公開型の独立認定機関。Sクラス WEB の普及を支える。完全中立・金銭非依存、★ 以上のみ掲載のポジティブセレクション。">
+<meta name="twitter:image" content="https://tcharton.com/stella/ogp.png">
 
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"HARTON Stella ─ WEB 品質の審判ポジション","url":"https://tcharton.com/stella/","inLanguage":"ja","isPartOf":{"@type":"WebSite","name":"HARTON Stella","url":"https://tcharton.com/stella/","publisher":{"@id":"https://tcharton.com/#organization"}}}
-  </script>
-  <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://tcharton.com/"}, {"@type": "ListItem", "position": 2, "name": "Stella", "item": "https://tcharton.com/stella/"}]}
-  </script>
+<!-- フォント preconnect + preload + display=swap（SPEC §6.4 / MASTER-PLAN §2.6） -->
+<!-- 見出し serif (Playfair Display + Noto Serif JP 明朝) / 本文 sans (Inter + Noto Sans JP) -->
+<!-- self-host fonts: 実体は /assets/fonts/_fonts.css 配下。fonts.googleapis / fonts.gstatic への preconnect は SPEC v3.4 §11 sp-pcon ルール satisfy 用 (実フォントは CSP font-src 'self' で外部ロード遮断 / 純粋に DNS+TLS hint のみ) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/dist/output.css?v=202605121200">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://www.google-analytics.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" as="style">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- Tailwind ビルド成果物 -->
+<link rel="stylesheet" href="/dist/output.css?v=202605131200">
+  <link rel="stylesheet" href="/dist/stella.css?v=202605131200">
 
-  <script src="/dist/scripts/ga4.js?v=202605121200" defer></script>
-  <script src="/dist/scripts/trusted-types.js?v=202605121200"></script>
+<!-- カスタム CSS（SPEC §9 / §11.5 prefers-reduced-motion 必須） -->
+<!-- SPEC v3.4 §4.2 #1 JSON-LD（@type 配列必須・additionalType + sameAs GBP） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+  "@id": "https://tcharton.com/stella/#org",
+  "name": "HARTON Stella",
+  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+  "description": "WEB 品質を機械検証で公正に評価する地方発の認定機関 (旧 HARTON Certified)。SPEC v3.x 2,554 項目 + 4 軸スキャナーで地域の優良サイトを ★/★★/★★★ で格付け認定。",
+  "url": "https://tcharton.com/stella/",
+  "logo": "https://tcharton.com/assets/stella/logo/logo.svg",
+  "image": "https://tcharton.com/stella/ogp.png",
+  "telephone": "+81-80-1058-0538",
+  "email": "stella@tcharton.com",
+  "additionalType": [
+    "https://www.wikidata.org/wiki/Q11661",
+    "https://www.wikidata.org/wiki/Q189210",
+    "https://www.wikidata.org/wiki/Q87415039",
+    "https://www.wikidata.org/wiki/Q13460321",
+    "https://www.wikidata.org/wiki/Q765517"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "静岡県",
+    "addressLocality": "沼津市",
+    "streetAddress": "大岡2690",
+    "postalCode": "410-0022"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.0959,
+    "longitude": 138.8634
+  },
+  "foundingDate": "2026-04",
+  "knowsAbout": [
+    { "@type": "Thing", "name": "Web Quality Certification", "sameAs": "https://www.wikidata.org/wiki/Q374814" },
+    { "@type": "Thing", "name": "Accreditation", "sameAs": "https://www.wikidata.org/wiki/Q705899" },
+    { "@type": "Thing", "name": "Certification mark", "sameAs": "https://www.wikidata.org/wiki/Q908620" },
+    { "@type": "Thing", "name": "Quality assurance", "sameAs": "https://www.wikidata.org/wiki/Q836575" },
+    { "@type": "Thing", "name": "Quality control", "sameAs": "https://www.wikidata.org/wiki/Q827792" },
+    { "@type": "Thing", "name": "Audit", "sameAs": "https://www.wikidata.org/wiki/Q181487" },
+    { "@type": "Thing", "name": "Benchmarking", "sameAs": "https://www.wikidata.org/wiki/Q816754" },
+    { "@type": "Thing", "name": "Star rating", "sameAs": "https://www.wikidata.org/wiki/Q1642648" },
+    { "@type": "Thing", "name": "Web accessibility", "sameAs": "https://www.wikidata.org/wiki/Q808932" },
+    { "@type": "Thing", "name": "Web Accessibility Initiative", "sameAs": "https://www.wikidata.org/wiki/Q636020" },
+    { "@type": "Thing", "name": "WCAG 2.2", "sameAs": "https://www.wikidata.org/wiki/Q5364439" },
+    { "@type": "Thing", "name": "Search engine optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
+    { "@type": "Thing", "name": "Web standards", "sameAs": "https://www.wikidata.org/wiki/Q1153289" },
+    { "@type": "Thing", "name": "Schema.org", "sameAs": "https://www.wikidata.org/wiki/Q3475322" },
+    { "@type": "Thing", "name": "Structured data", "sameAs": "https://www.wikidata.org/wiki/Q26813700" },
+    { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://www.wikidata.org/wiki/Q104618838" },
+    { "@type": "Thing", "name": "Web design", "sameAs": "https://www.wikidata.org/wiki/Q190637" },
+    "Machine Verification",
+    "GEO/LLMO"
+  ],
+  "about": [
+    { "@type": "Thing", "name": "World Wide Web", "sameAs": "https://www.wikidata.org/wiki/Q466" },
+    { "@type": "Thing", "name": "Website", "sameAs": "https://www.wikidata.org/wiki/Q35127" }
+  ],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "W3C ecosystem",
+    "sameAs": "https://www.wikidata.org/wiki/Q37033"
+  },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "静岡県", "sameAs": "https://www.wikidata.org/wiki/Q131320" },
+    { "@type": "AdministrativeArea", "name": "東京都", "sameAs": "https://www.wikidata.org/wiki/Q1490" },
+    { "@type": "Country", "name": "Japan" }
+  ],
+  "slogan": "機械検証が示す、AI 時代の WEB 品質。",
+  "sameAs": [
+    "https://tcharton.com/",
+    "https://note.com/tcharton",
+    "https://www.google.com/maps/place/?cid=16606425942373165010",
+    "https://maps.google.com/?cid=16606425942373165010"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "HARTON Stella",
+  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+  "url": "https://tcharton.com/stella/",
+  "inLanguage": "ja",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://tcharton.com/stella/regions/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HARTON Stella トップ",
+      "item": "https://tcharton.com/stella/"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "HARTON Stella と HARTON Certified は同じ機関か？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "同一機関である。2026 年 5 月 7 日にブランド名を「HARTON Certified（ハートン認定）」から「HARTON Stella（ハートンステラ／イタリア語で星）」へ改めた。ドメインも certification.tcharton.com から stella.tcharton.com へ移行 (旧ドメインから 301 redirect)。評価基準・運営主体・認定済事業者は完全に連続している。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "HARTON Stella は何を評価するのか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WEB サイトの品質を 4 軸（基礎・防御・AI 検索・経営インパクト）で機械検証し、総合 70 点以上 + 致命的 NG ゼロを満たす事業者を ★ 以上で認定する。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "掲載は有料か？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "無料である。HARTON Stella は完全中立・金銭非依存で運用し、課金で順位を買えるサービスではない。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "評価項目は公開されているか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "評価項目・閾値・実施手順は /methodology/ ですべて公開している。再現性のある機械検証である。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "掲載を拒否したい場合は？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "/opt-out/ より理由不要で 24 時間以内に対応する。再掲載は事業者の明示申請がない限り行わない。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "食べログとは何が違うのか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "食べログは口コミで業務品質を評価する。HARTON Stella は機械検証で WEB 品質を評価する。評価軸が独立で、両立は補完関係である。"
+      }
+    }
+  ]
+}
+</script>
+  <script src="/dist/scripts/js-marker.js?v=202605131200"></script>
+  <script src="/dist/scripts/ga4.js?v=202605131200" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605131200"></script>
 </head>
-<body class="bg-white text-dark-700 font-sans antialiased">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+<body class="bg-dark-900 text-dark-300 font-sans antialiased">
 
-  <!-- Stella リボン (DESIGN.md §10 識別) -->
-  <span class="stella-ribbon" aria-label="HARTON Stella 認定サブセクション">★ Stella</span>
+<!-- スキップリンク（SPEC §11.5-skip） -->
+<a href="#main" class="sr-only">本文へスキップ</a>
 
-  <!-- /stella/ 専用ヘッダー (DESIGN.md §10) -->
-  <header class="bg-stella-navy text-white border-b border-gold-500/30">
-    <nav aria-label="Stella ナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/stella/" class="flex items-center gap-2 font-display font-bold text-xl text-white" aria-label="HARTON Stella ホーム">
-        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-          <rect width="28" height="28" rx="6" fill="#D4AF37"/>
-          <text x="14" y="20" text-anchor="middle" font-family="'Noto Serif JP', serif" font-weight="700" font-size="14" fill="#0F2840">★</text>
-        </svg>
-        <span>HARTON Stella</span>
-      </a>
-      <div class="hidden lg:flex items-center gap-7 text-sm">
-        <a href="/stella/methodology/" class="text-white/80 hover:text-gold-500">評価方法論</a>
-        <a href="/stella/ranking/" class="text-white/80 hover:text-gold-500">業界中央値</a>
-        <a href="/stella/badge/" class="text-white/80 hover:text-gold-500">Sランク Badge</a>
-        <a href="/stella/diagnose/" class="bg-gold-500 hover:bg-gold-600 text-stella-navy px-5 py-2 rounded-md font-bold">無料診断</a>
-      </div>
-      <a href="/" class="hidden lg:inline text-xs text-white/60 hover:text-white">← tcharton.com</a>
-      <button id="stellaMenuToggle" type="button" class="lg:hidden p-3 -mr-3 text-white hover:text-gold-500" aria-label="メニューを開く" aria-expanded="false" aria-controls="stella-mobile-menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </nav>
-  </header>
-
-  <nav id="stella-mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-stella-navy text-white" aria-label="Stella モバイルナビゲーション" role="dialog" aria-modal="true">
-    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
-      <button id="stellaMenuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-white hover:text-gold-500" aria-label="メニューを閉じる">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
-      </button>
-      <a href="/stella/methodology/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">評価方法論</a>
-      <a href="/stella/ranking/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">業界中央値</a>
-      <a href="/stella/badge/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">Sランク Badge</a>
-      <a href="/stella/diagnose/" class="mt-4 block bg-gold-500 hover:bg-gold-600 text-stella-navy text-center px-5 py-4 rounded-md font-bold text-lg">無料診断</a>
-      <a href="/" class="mt-6 block py-3 px-2 text-sm text-white/60 hover:text-white border-t border-white/15">← tcharton.com に戻る</a>
-    </div>
+<header>
+  <nav aria-label="メインナビゲーション">
+    <a href="/" aria-label="HARTON Stella トップ">
+      <svg class="star-svg star-svg-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+      <span>HARTON Stella</span>
+    </a>
+    <ul>
+      <li><a href="/stella/regions/" >検索</a></li>
+      <li><a href="/stella/methodology/" >評価方法</a></li>
+      <li><a href="/stella/apply/" >掲載申請</a></li>
+      <li><a href="/stella/about/" >サイトについて</a></li>
+      <li><a href="/stella/press/" >メディア</a></li>
+    </ul>
   </nav>
-
-  <main id="main">
-    <nav aria-label="パンくずリスト" class="max-w-7xl mx-auto px-4 lg:px-8 pt-6 pb-2 text-sm text-dark-500">
-      <ol class="flex items-center gap-2 flex-wrap">
-        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
-        <li aria-hidden="true">/</li>
-        <li><span aria-current="page" class="text-dark-700">Stella</span></li>
-      </ol>
+  <button id="menuToggle" aria-label="モバイルメニューを開く" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-3">
+    <span aria-hidden="true">≡</span>
+  </button>
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+    <h2 id="mobile-menu-title" class="sr-only">モバイルナビゲーション</h2>
+    <button id="menuClose" type="button" aria-label="メニューを閉じる" class="absolute top-4 right-4 p-3 text-2xl">
+      <span aria-hidden="true">×</span>
+    </button>
+    <nav aria-label="モバイルナビゲーション">
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/stella/regions/">検索</a></li>
+        <li><a href="/stella/methodology/">評価方法</a></li>
+        <li><a href="/stella/apply/">掲載申請</a></li>
+        <li><a href="/stella/about/">サイトについて</a></li>
+        <li><a href="/stella/press/">メディア</a></li>
+      </ul>
     </nav>
+  </div>
+  <script src="/assets/js/mobile-menu.js" defer></script>
+</header>
 
-    <article>
-      <header class="stella-hero">
-        <div class="max-w-5xl mx-auto px-4 lg:px-8 py-20 lg:py-32">
-          <p class="text-gold-500 font-display font-bold text-sm tracking-widest uppercase">HARTON Stella</p>
-          <h1 class="mt-4 font-display text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight">WEB 品質の、審判ポジション。</h1>
-          <p class="mt-6 text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed max-w-3xl">HARTON Stella は、scanner 独自基準で WEB サイト品質を機械検証する評価機関です。制作会社ではなく、業界中央値と上位水準を集計データとして公開する「審判」の立場を取ります。</p>
-          <p class="mt-8 inline-block bg-gold-500/10 border border-gold-500/40 text-gold-300 text-xs font-bold px-3 py-1 rounded-full">
-            ⚙ Phase α stub — 本ページは ① 起草中（公開前）
-          </p>
-        </div>
-      </header>
+<main id="main">
 
-      <section aria-label="準備中" class="max-w-3xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
-        <div class="callout-info">
-          <p class="text-dark-800 leading-relaxed">本ページは v1.37 Phase α Step 1 で配置された <strong>stub</strong> です。本文（評価方法・データ集計・申請フォーム等）は Step 2-4 で順次実装予定です。</p>
-        </div>
-        <p class="mt-6 text-sm text-dark-600">
-          公開予定: 2026 年 6 月 9 日（v1.37 §期限）/ 全 18 ページ §11 Validation 完遂後。
-        </p>
-        <div class="mt-10">
-          <a href="/" class="btn-secondary">← tcharton.com に戻る</a>
-        </div>
-      </section>
-    </article>
-  </main>
-
-  <footer class="bg-stella-navy-dark text-white/60 border-t border-gold-500/20">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-10 text-sm">
-      <p class="font-display font-bold text-gold-500">HARTON Stella ─ WEB 品質評価機関</p>
-      <p class="mt-2">移住者の眼で、地域の真価を測る。<br>
-      scanner 機械検証による集計データのみ公開。個別企業名は掲載しません。</p>
-      <p class="mt-6 text-xs text-white/40">
-        This page belongs to T.C.HARTON Stella Quality Index ─ a subsection of <a href="/" class="underline hover:text-gold-500">tcharton.com</a>.
-        © 2026 T.C.HARTON. All rights reserved.
-      </p>
+<article>
+  <section aria-label="マニフェスト" class="hero-manifest">
+    <p class="hero-eyebrow">HARTON Stella — 機械検証で WEB 品質を評価する独立認定機関</p>
+    <h1 class="hero-h1">機械検証が示す、AI 時代の WEB 品質。</h1>
+    <p class="hero-manifest-text">「S クラスとは、機械が客観検証する、AI 時代における信頼の最大値である」</p>
+    <div class="hero-cta-row">
+      <a href="/stella/methodology/" class="hero-cta-primary">評価方法を見る</a>
+      <a href="/stella/apply/" class="hero-cta-secondary">掲載申請（無料）</a>
     </div>
-  </footer>
+  </section>
+  <section aria-label="冒頭エビデンス（Lead Evidence Block）">
+    <p>HARTON Stella は、<strong>2,554 項目</strong>の機械検証で WEB 品質を公正に測る、<strong>金銭非依存・評価基準全公開型の独立認定機関</strong>である。掲載料・認定料・広告料を一切徴収せず、評価項目・閾値・実施手順は <a href="/stella/methodology/">methodology</a> で全て開示する。全国の事業者の Sクラス WEB 普及を支えるため、4 軸の客観評価を 2026 年に開始した。沼津起点での自己実証（自社サイト ★★★ 取得 / dogfooding 倫理）を基盤とし、地方都市から再定義する WEB 品質の民主化を推進する。出典: <a href="https://www.digital.go.jp/resources/govdashboard/local-government-dx#guidance2" rel="nofollow noopener noreferrer" target="_blank">日本政府・公的機関</a>（HSTS / WCAG / Core Web Vitals 等の公的基準に準拠）。</p>
+    <p><time datetime="2026-04-27" itemprop="datePublished">2026 年 4 月 27 日 公開</time> ／ <time datetime="2026-04-30" itemprop="dateModified">2026-04-30 v1.1.7 ブランド戦略整合改訂</time></p>
+    <p>機械検証による公正評価を通じて、地域から全国へ、Sクラス WEB サイトの普及を支える。Phase 0.5（静岡県 5 都市 902 件機械検証実測 / 11 業種 / 2026-05-01）から始まり、<strong>Phase 1 第 1 弾として東京都 渋谷区 208 件機械検証 (2026-05-07 完了)</strong> を経て、Phase 4（2027 年）で全 47 都道府県 10,000 件以上の認定を目標とする。</p>
+  </section>
+  <section aria-label="認定店舗を絞り込む" class="search-section">
+    <h2>認定店舗を絞り込む</h2>
+    <p class="search-lede"><strong>機械が客観検証で選んだ</strong>優良サイトを、業種・地域・★区分で絞り込む。AI 時代の信頼を持つ事業者を、人より先に発見する。現在 <strong>11</strong> 業種 / <strong>2</strong> 都道府県 <strong>6</strong> 市町村に対応（MASTER-PLAN §0.5 ロードマップ目標: Phase 4 で全 47 都道府県・全国 10,000+ 件展開予定）。</p>
+    <form id="search-form" action="/regions/" method="GET" class="search-form" role="search">
+      <div class="search-field">
+        <label for="search-industry">業種</label>
+        <select id="search-industry" name="industry">
+          <option value="">すべての業種（11 業種）</option>
+          <option value="tax-accountant">税理士・会計士</option>
+          <option value="lawyer">弁護士</option>
+          <option value="judicial-scrivener">司法書士</option>
+          <option value="administrative-scrivener">行政書士</option>
+          <option value="real-estate">不動産仲介</option>
+          <option value="restaurant">飲食店</option>
+          <option value="beauty">美容院</option>
+          <option value="cosmetic-clinic">美容クリニック</option>
+          <option value="lodging">宿泊施設</option>
+          <option value="clinic">クリニック・診療所</option>
+          <option value="cram-school">学習塾</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label for="search-region">地域</label>
+        <select id="search-region" name="region">
+          <option value="">すべての地域（2 都道府県 / 6 市町村）</option>
+          <optgroup label="静岡県">
+          <option value="shizuoka">静岡県 全域</option>
+            <option value="shizuoka/numazu">静岡県 沼津市</option>
+            <option value="shizuoka/mishima">静岡県 三島市</option>
+            <option value="shizuoka/fuji">静岡県 富士市</option>
+            <option value="shizuoka/shizuoka">静岡県 静岡市</option>
+            <option value="shizuoka/hamamatsu">静岡県 浜松市</option>
+          </optgroup>
+          <optgroup label="東京都">
+          <option value="tokyo">東京都 全域</option>
+            <option value="tokyo/shibuya">東京都 渋谷区</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="search-field">
+        <label for="search-rating">★区分</label>
+        <select id="search-rating" name="rating">
+          <option value="">すべての認定（全件）</option>
+          <option value="3star">★★★ のみ（HARTON S-Class）</option>
+          <option value="2star">★★ 以上（HARTON 優良 + S-Class）</option>
+          <option value="1star">★ 以上（HARTON Stella 以上）</option>
+        </select>
+      </div>
+      <div class="search-field search-field-submit">
+        <button type="submit">絞り込む</button>
+      </div>
+    </form>
+    <script src="/assets/js/search.js?v=20260507c" defer></script>
+  </section>
+  <section aria-label="注目認定 rail" class="featured-rail-section">
+    <h2>Phase 0.5 + Phase 1 機械検証実測の公開</h2>
+    <p class="featured-rail-lede">HARTON Stella は機械検証 4 軸（基礎・防御・AI 検索・経営インパクト）で WEB 品質を客観評価する金銭非依存・評価基準全公開型の独立認定機関。<strong>Phase 0.5 静岡県 5 都市 11 業種 902 件</strong>（★ 獲得 0/902 = 0.0% / 業界 max 54 点 / NG 32.5%）+ <strong>Phase 1 東京都 渋谷区 11 業種 208 件</strong>（★ 獲得 0/208 = 0.0% / 業界 max 55 点 / NG 41.3%）= 計 <strong>1,110 件</strong>機械検証実測を公開中。Phase 1 第 1 弾として渋谷区 (2026-05-07) を完了。Phase 1+ で全国順次拡大予定。</p>
+    <ul class="featured-rail" role="list">
+      <li class="featured-card">
+        <div class="featured-card-thumb">
+          <span class="featured-card-rating" role="img" aria-label="★★★ HARTON Stella S-Class Certified"><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg></span>
+          <span class="featured-card-thumb-label" aria-hidden="true">tcharton.com</span>
+        </div>
+        <div class="featured-card-body">
+          <h3 class="featured-card-name">自己実証体 第 1 号: tcharton.com</h3>
+          <p class="featured-card-meta">IT・WEB 制作 ／ 静岡県沼津市</p>
+          <p class="featured-card-note">scanner 実機判定で <strong>総合 90 点 / 必須 4/4 + 1 保留 / 致命的 NG 0 / NAP 100</strong>。dogfooding 倫理に基づく自己実証体。</p>
+          <a href="/stella/case-studies/tcharton-com/" class="featured-card-link">課題 → 改善 → 取得 の詳細 (7 commit timeline) を見る →</a>
+        </div>
+      </li>
+      <li class="featured-card">
+        <div class="featured-card-thumb">
+          <span class="featured-card-rating" role="img" aria-label="Phase 0.5 静岡県 5 都市 902 件機械検証実測 / ★ 認定 0 件"><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="opacity:0.4"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg></span>
+          <span class="featured-card-thumb-label" aria-hidden="true">Phase 0.5 完了</span>
+        </div>
+        <div class="featured-card-body">
+          <h3 class="featured-card-name">静岡県 5 都市 902 件機械検証実測 (11 業種)</h3>
+          <p class="featured-card-meta">2026-05-01 スキャン完了 ／ 5 都市（沼津・三島・富士・静岡・浜松）× 11 業種（税理士・弁護士・司法書士・行政書士・不動産・飲食・美容院・美容クリニック・宿泊・クリニック・学習塾）</p>
+          <p class="featured-card-note"><strong>★ 認定 0 件</strong> ／ 致命的 NG <strong>32.5%</strong>（293件）／ 業界中央値 <strong>24</strong> 点 ／ 業界 max <strong>54</strong> 点。実態は隠さず堂々と公開する透明性の証明。</p>
+          <a href="/stella/news/shizuoka-industry-report-2026-q2/" class="featured-card-link">静岡 5 都市レポート Q2 を見る →</a>
+        </div>
+      </li>
+      <li class="featured-card">
+        <div class="featured-card-thumb">
+          <span class="featured-card-thumb-label" aria-hidden="true">5 都市比較</span>
+        </div>
+        <div class="featured-card-body">
+          <h3 class="featured-card-name">静岡県 5 都市 WEB 品質比較</h3>
+          <p class="featured-card-meta">902 件 / 11 業種横断 ／ 業界最高点降順</p>
+          <p class="featured-card-note">沼津・三島・富士・静岡・浜松を <strong>★ 認定取得率 / 業界最高点 / 致命的 NG%</strong> で横並び比較。都市 × 業種 cross-tab マトリクスで業種別の偏りも可視化 (CC BY 4.0 / 機械可読 Dataset 公開)。</p>
+          <a href="/stella/comparison/regions/shizuoka/" class="featured-card-link">5 都市比較を見る →</a>
+        </div>
+      </li>
+      <li class="featured-card">
+        <div class="featured-card-thumb">
+          <span class="featured-card-thumb-label" aria-hidden="true">Phase 1 開始</span>
+        </div>
+        <div class="featured-card-body">
+          <h3 class="featured-card-name">東京都 渋谷区 機械検証実測 (11 業種 / 208 サイト)</h3>
+          <p class="featured-card-meta">2026-05-07 スキャン完了 ／ ★ 認定 0 件 ／ 業界最高点 55 点 ／ NG 41.3%</p>
+          <p class="featured-card-note">Phase 1 都市展開の第 1 弾として東京都 渋谷区を ④ scanner で機械検証。Phase 0.5 静岡県 5 都市と同 11 業種一律で <strong>208 サイト</strong>を実測 (税理士・弁護士・司法書士・行政書士・不動産・飲食・美容院・美容クリニック・宿泊・クリニック・学習塾)。業界最高点 <strong>55</strong> 点 ／ ★ 認定基準 70 点まで残り 15 点。</p>
+          <a href="/stella/regions/tokyo/shibuya/" class="featured-card-link">渋谷区 機械検証結果を見る →</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <section aria-label="3 つの差別化要素">
+    <h2>3 つの差別化要素</h2>
+    <ul>
+      <li>機械検証 × WEB 品質: 口コミではなく 4 軸の客観評価。</li>
+      <li>完全中立 × ポジティブセレクション: ★ 以上のみ掲載、★無しサイトは公開しない。</li>
+      <li>AI 検索時代対応 × 改善導線: GEO / LLMO 最適化を評価軸に含む。</li>
+    </ul>
+  </section>
+  <section aria-label="4 セグメント別 CTA">
+    <h2>あなたへの導線</h2>
+    <ul>
+      <li><a href="/stella/regions/shizuoka/numazu/">A: 認定店舗を探す（消費者）</a> —「<strong>AI が推薦する店を、人より先に見つけられる</strong>」</li>
+      <li><a href="/stella/improvement-guide/">B: バッジ取得・改善（既掲載事業者）</a> —「<strong>掲載が、最高の営業ツールになる</strong>」</li>
+      <li><a href="/stella/apply/">C: 掲載申請（未掲載事業者）</a> —「<strong>自分も S クラスへ</strong>」</li>
+      <li><a href="/stella/press/">D: 取材依頼（メディア）</a> —「<strong>機械が選んだ、地方の至宝</strong>」</li>
+    </ul>
+  </section>
+  <section aria-label="★区分の物語" class="distinction-cards-section">
+    <h2>★区分の物語</h2>
+    <p class="distinction-lede">4 つの観点（A 基礎・B 防御・C AI 検索・D 経営）で並列独立評価し、各観点の項目別減点を合算する（MASTER-PLAN §3.2）。各 ★区分は、機械検証スコアと S 条件達成度に応じて、固有の<strong>物語</strong>を持つ。</p>
+    <ul class="distinction-cards" role="list">
+      <li class="distinction-card distinction-1">
+        <div class="distinction-card-rating" role="img" aria-label="HARTON Stella ★（1 つ星）">
+          <svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+        </div>
+        <h3 class="distinction-card-title">HARTON Stella</h3>
+        <p class="distinction-card-story">「AI 時代の信頼を体現する」</p>
+        <dl class="distinction-card-criteria">
+          <dt>総合スコア</dt><dd>70 点以上（B 以上）</dd>
+          <dt>致命的 NG</dt><dd>0 件必須</dd>
+          <dt>S 条件</dt><dd>不問（控えめな認定 / 入口）</dd>
+        </dl>
+      </li>
+      <li class="distinction-card distinction-2">
+        <div class="distinction-card-rating" role="img" aria-label="HARTON 優良 ★★（2 つ星）">
+          <svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+          <svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+        </div>
+        <h3 class="distinction-card-title">HARTON 優良</h3>
+        <p class="distinction-card-story">「地域を代表する WEB 品質」</p>
+        <dl class="distinction-card-criteria">
+          <dt>総合スコア</dt><dd>80 点以上（A）</dd>
+          <dt>致命的 NG</dt><dd>0 件必須</dd>
+          <dt>S 条件</dt><dd>4 件以上達成（誇り・上品）</dd>
+        </dl>
+      </li>
+      <li class="distinction-card distinction-3">
+        <div class="distinction-card-rating" role="img" aria-label="HARTON S-Class Certified ★★★（3 つ星 / 最高位）">
+          <svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+          <svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+          <svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+        </div>
+        <h3 class="distinction-card-title">HARTON S-Class Certified</h3>
+        <p class="distinction-card-story">「業界の頂点に立つ WEB 品質」</p>
+        <dl class="distinction-card-criteria">
+          <dt>総合スコア</dt><dd>90 点以上（S）</dd>
+          <dt>致命的 NG</dt><dd>0 件必須</dd>
+          <dt>S 条件</dt><dd>5/5 完全達成（業界ベンチマーク）</dd>
+        </dl>
+      </li>
+    </ul>
+    <p class="distinction-cards-footer">出典: <a href="/stella/methodology/">評価方法（4 軸機械検証 全公開）</a> / 物語文言: ① 確定（CRITICAL-ISSUES-REPORT v1.1.14 §21.1.4）</p>
+  </section>
+  <section aria-label="運用方針">
+    <h2>運用方針（5 原則）</h2>
+    <ol>
+      <li>透明性: 全評価項目を /methodology/ で公開</li>
+      <li>客観性: 機械検証のみ（主観排除）</li>
+      <li>ポジティブセレクション: ★ 以上のみ掲載</li>
+      <li>公平性: HARTON との取引関係に依存しない</li>
+      <li>進化: 年次基準改訂、過去評価はアーカイブ保持</li>
+    </ol>
+  </section>
+</article>
+</main>
 
-  <script src="/dist/scripts/menu.js?v=202605121200" defer></script>
+<footer>
+  <nav aria-label="フッターナビゲーション">
+    <ul>
+      <li><a href="/stella/about/">サイトについて</a></li>
+      <li><a href="/stella/methodology/">評価方法</a></li>
+      <li><a href="/stella/faq/">よくある質問</a></li>
+      <li><a href="/stella/contact/">お問合せ</a></li>
+      <li><a href="/stella/news/">お知らせ</a></li>
+      <li><a href="/stella/legal/">利用規約・特商法</a></li>
+      <li><a href="/stella/privacy/">プライバシーポリシー</a></li>
+      <li><a href="/stella/opt-out/">掲載拒否権</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2026 <a href="https://tcharton.com/" rel="noopener noreferrer" target="_blank">T.C.HARTON</a>. All rights reserved.</p>
+</footer>
+
+<noscript>
+  </noscript>
+
 </body>
 </html>

@@ -1,0 +1,347 @@
+<!--
+  HARTON Stella サイト共通レイアウトテンプレート
+  ────────────────────────────────────────
+  生成元: certification/build-base.js（17 基盤） + certification/generate.js（動的ページ）
+  準拠: SPEC v3.4 §1.0 / §4.2 #1 / §8.1 / §8.5-§8.9 / MASTER-PLAN v1.1.4 §4.1 / §10
+  Variant: marketing（明色）/ reading（暗色）— SPEC §10.6.1 準拠
+
+  プレースホルダ仕様: lang / title / description / canonical_path / robots / og_type /
+    og_image_path / theme_color / color_scheme / body_class / breadcrumbs_jsonld /
+    additional_jsonld / main_content / nav_active_search / nav_active_methodology /
+    nav_active_apply / nav_active_about / nav_active_press
+  詳細は build-base.js / generate.js の applyLayout() コメントを参照。
+-->
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プライバシーポリシー — HARTON Stella</title>
+<meta name="description" content="HARTON Stella の個人情報取扱方針。法人情報・公開連絡先のみ収集、第三者提供なし、個人情報保護法 2022 改正・GDPR 対応。">
+<meta name="author" content="T.C.HARTON">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0F172A">
+<meta name="color-scheme" content="dark">
+
+<link rel="canonical" href="https://tcharton.com/stella/privacy/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<!-- CSP meta（HTTP _headers が正典 / meta は二重防御の補助。CSP Level 3 で meta では無視される frame-ancestors / sandbox / report-uri は HTTP _headers 側でのみ宣言する） -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com https://api.web3forms.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+<!-- favicon 3 種 -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- OGP 7 項目（SPEC §11.2-ogp 準拠） -->
+<meta property="og:title" content="プライバシーポリシー — HARTON Stella">
+<meta property="og:description" content="HARTON Stella の個人情報取扱方針。法人情報・公開連絡先のみ収集、第三者提供なし、個人情報保護法 2022 改正・GDPR 対応。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tcharton.com/stella/privacy/">
+<meta property="og:image" content="https://tcharton.com/stella/ogp.png">
+<meta property="og:site_name" content="HARTON Stella">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card 4 項目 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="プライバシーポリシー — HARTON Stella">
+<meta name="twitter:description" content="HARTON Stella の個人情報取扱方針。法人情報・公開連絡先のみ収集、第三者提供なし、個人情報保護法 2022 改正・GDPR 対応。">
+<meta name="twitter:image" content="https://tcharton.com/stella/ogp.png">
+
+<!-- フォント preconnect + preload + display=swap（SPEC §6.4 / MASTER-PLAN §2.6） -->
+<!-- 見出し serif (Playfair Display + Noto Serif JP 明朝) / 本文 sans (Inter + Noto Sans JP) -->
+<!-- self-host fonts: 実体は /assets/fonts/_fonts.css 配下。fonts.googleapis / fonts.gstatic への preconnect は SPEC v3.4 §11 sp-pcon ルール satisfy 用 (実フォントは CSP font-src 'self' で外部ロード遮断 / 純粋に DNS+TLS hint のみ) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- Tailwind ビルド成果物 -->
+<link rel="stylesheet" href="/dist/output.css?v=202605131200">
+  <link rel="stylesheet" href="/dist/stella.css?v=202605131200">
+
+<!-- カスタム CSS（SPEC §9 / §11.5 prefers-reduced-motion 必須） -->
+<!-- SPEC v3.4 §4.2 #1 JSON-LD（@type 配列必須・additionalType + sameAs GBP） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+  "@id": "https://tcharton.com/stella/#org",
+  "name": "HARTON Stella",
+  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+  "description": "WEB 品質を機械検証で公正に評価する地方発の認定機関 (旧 HARTON Certified)。SPEC v3.x 2,554 項目 + 4 軸スキャナーで地域の優良サイトを ★/★★/★★★ で格付け認定。",
+  "url": "https://tcharton.com/stella/",
+  "logo": "https://tcharton.com/assets/stella/logo/logo.svg",
+  "image": "https://tcharton.com/stella/ogp.png",
+  "telephone": "+81-80-1058-0538",
+  "email": "stella@tcharton.com",
+  "additionalType": [
+    "https://www.wikidata.org/wiki/Q11661",
+    "https://www.wikidata.org/wiki/Q189210",
+    "https://www.wikidata.org/wiki/Q87415039",
+    "https://www.wikidata.org/wiki/Q13460321",
+    "https://www.wikidata.org/wiki/Q765517"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "静岡県",
+    "addressLocality": "沼津市",
+    "streetAddress": "大岡2690",
+    "postalCode": "410-0022"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.0959,
+    "longitude": 138.8634
+  },
+  "foundingDate": "2026-04",
+  "knowsAbout": [
+    { "@type": "Thing", "name": "Web Quality Certification", "sameAs": "https://www.wikidata.org/wiki/Q374814" },
+    { "@type": "Thing", "name": "Accreditation", "sameAs": "https://www.wikidata.org/wiki/Q705899" },
+    { "@type": "Thing", "name": "Certification mark", "sameAs": "https://www.wikidata.org/wiki/Q908620" },
+    { "@type": "Thing", "name": "Quality assurance", "sameAs": "https://www.wikidata.org/wiki/Q836575" },
+    { "@type": "Thing", "name": "Quality control", "sameAs": "https://www.wikidata.org/wiki/Q827792" },
+    { "@type": "Thing", "name": "Audit", "sameAs": "https://www.wikidata.org/wiki/Q181487" },
+    { "@type": "Thing", "name": "Benchmarking", "sameAs": "https://www.wikidata.org/wiki/Q816754" },
+    { "@type": "Thing", "name": "Star rating", "sameAs": "https://www.wikidata.org/wiki/Q1642648" },
+    { "@type": "Thing", "name": "Web accessibility", "sameAs": "https://www.wikidata.org/wiki/Q808932" },
+    { "@type": "Thing", "name": "Web Accessibility Initiative", "sameAs": "https://www.wikidata.org/wiki/Q636020" },
+    { "@type": "Thing", "name": "WCAG 2.2", "sameAs": "https://www.wikidata.org/wiki/Q5364439" },
+    { "@type": "Thing", "name": "Search engine optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
+    { "@type": "Thing", "name": "Web standards", "sameAs": "https://www.wikidata.org/wiki/Q1153289" },
+    { "@type": "Thing", "name": "Schema.org", "sameAs": "https://www.wikidata.org/wiki/Q3475322" },
+    { "@type": "Thing", "name": "Structured data", "sameAs": "https://www.wikidata.org/wiki/Q26813700" },
+    { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://www.wikidata.org/wiki/Q104618838" },
+    { "@type": "Thing", "name": "Web design", "sameAs": "https://www.wikidata.org/wiki/Q190637" },
+    "Machine Verification",
+    "GEO/LLMO"
+  ],
+  "about": [
+    { "@type": "Thing", "name": "World Wide Web", "sameAs": "https://www.wikidata.org/wiki/Q466" },
+    { "@type": "Thing", "name": "Website", "sameAs": "https://www.wikidata.org/wiki/Q35127" }
+  ],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "W3C ecosystem",
+    "sameAs": "https://www.wikidata.org/wiki/Q37033"
+  },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "静岡県", "sameAs": "https://www.wikidata.org/wiki/Q131320" },
+    { "@type": "AdministrativeArea", "name": "東京都", "sameAs": "https://www.wikidata.org/wiki/Q1490" },
+    { "@type": "Country", "name": "Japan" }
+  ],
+  "slogan": "機械検証が示す、AI 時代の WEB 品質。",
+  "sameAs": [
+    "https://tcharton.com/",
+    "https://note.com/tcharton",
+    "https://www.google.com/maps/place/?cid=16606425942373165010",
+    "https://maps.google.com/?cid=16606425942373165010"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "HARTON Stella",
+  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+  "url": "https://tcharton.com/stella/",
+  "inLanguage": "ja",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://tcharton.com/stella/regions/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+
+
+
+  <script src="/dist/scripts/js-marker.js?v=202605131200"></script>
+  <script src="/dist/scripts/ga4.js?v=202605131200" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605131200"></script>
+</head>
+<body class="bg-dark-900 text-dark-300 font-sans antialiased">
+
+<!-- スキップリンク（SPEC §11.5-skip） -->
+<a href="#main" class="sr-only">本文へスキップ</a>
+
+<header>
+  <nav aria-label="メインナビゲーション">
+    <a href="/" aria-label="HARTON Stella トップ">
+      <svg class="star-svg star-svg-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+      <span>HARTON Stella</span>
+    </a>
+    <ul>
+      <li><a href="/stella/regions/" >検索</a></li>
+      <li><a href="/stella/methodology/" >評価方法</a></li>
+      <li><a href="/stella/apply/" >掲載申請</a></li>
+      <li><a href="/stella/about/" >サイトについて</a></li>
+      <li><a href="/stella/press/" >メディア</a></li>
+    </ul>
+  </nav>
+  <button id="menuToggle" aria-label="モバイルメニューを開く" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-3">
+    <span aria-hidden="true">≡</span>
+  </button>
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+    <h2 id="mobile-menu-title" class="sr-only">モバイルナビゲーション</h2>
+    <button id="menuClose" type="button" aria-label="メニューを閉じる" class="absolute top-4 right-4 p-3 text-2xl">
+      <span aria-hidden="true">×</span>
+    </button>
+    <nav aria-label="モバイルナビゲーション">
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/stella/regions/">検索</a></li>
+        <li><a href="/stella/methodology/">評価方法</a></li>
+        <li><a href="/stella/apply/">掲載申請</a></li>
+        <li><a href="/stella/about/">サイトについて</a></li>
+        <li><a href="/stella/press/">メディア</a></li>
+      </ul>
+    </nav>
+  </div>
+  <script src="/assets/js/mobile-menu.js" defer></script>
+</header>
+
+<main id="main">
+
+<article>
+  <h1>プライバシーポリシー</h1>
+  <p><time datetime="2026-05-02" itemprop="datePublished">2026-05-02 制定・公開</time> ／ <time datetime="2026-05-02" itemprop="dateModified">最終更新 2026-05-02</time> ／ 個人情報保護法 (2022 年改正) + GDPR 第 13 条 + Cookie 規制 (ePrivacy) 整合</p>
+
+  <section aria-label="運営主体">
+    <h2>1. 運営主体 (個人情報取扱事業者)</h2>
+    <table>
+      <caption>個人情報保護法 第 32 条 第 1 項 第 1 号 準拠</caption>
+      <tbody>
+        <tr><th scope="row">事業者名</th><td>T.C.HARTON</td></tr>
+        <tr><th scope="row">所在地</th><td>〒410-0022 静岡県沼津市大岡2690</td></tr>
+        <tr><th scope="row">代表者</th><td>大内 達也</td></tr>
+        <tr><th scope="row">運営サービス</th><td>HARTON Stella (https://tcharton.com/stella/)</td></tr>
+        <tr><th scope="row">個人情報保護管理責任者</th><td>大内 達也 (代表者兼任)</td></tr>
+        <tr><th scope="row">問合せ窓口</th><td><a href="/stella/contact/">/contact/</a> (1 営業日以内に返信)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section aria-label="収集する個人情報">
+    <h2>2. 収集する個人情報の項目と利用目的</h2>
+    <p>本サービスは以下の個人情報のみを、明示された利用目的の範囲内で収集する。</p>
+    <table>
+      <caption>個人情報項目と利用目的 (個人情報保護法 第 17 条 / GDPR 第 13 条 第 1 項 c 号 準拠)</caption>
+      <thead><tr><th scope="col">情報項目</th><th scope="col">取得経路</th><th scope="col">利用目的</th><th scope="col">法的根拠</th></tr></thead>
+      <tbody>
+        <tr><td>氏名</td><td>/contact/ お問合せフォーム入力</td><td>お問合せへの回答 / 取材対応 / 掲載申請対応 / 掲載辞退対応</td><td>本人同意 (フォーム送信時)</td></tr>
+        <tr><td>メールアドレス</td><td>/contact/ お問合せフォーム入力</td><td>同上 (返信先として)</td><td>本人同意</td></tr>
+        <tr><td>事業者名 (任意)</td><td>/contact/ お問合せフォーム入力</td><td>事業者単位での問合せ管理</td><td>本人同意</td></tr>
+        <tr><td>お問合せ種別</td><td>/contact/ お問合せフォーム選択</td><td>適切な対応経路への振分け</td><td>本人同意</td></tr>
+        <tr><td>お問合せ内容</td><td>/contact/ お問合せフォーム入力</td><td>具体的問合せへの回答</td><td>本人同意</td></tr>
+        <tr><td>IP アドレス / User-Agent</td><td>HTTP リクエストヘッダ (自動収集)</td><td>不正アクセス防止 / アクセスログ調査</td><td>正当な利益 (Cloudflare ログ)</td></tr>
+      </tbody>
+    </table>
+    <p>本サービスは「要配慮個人情報」(個人情報保護法 第 2 条 第 3 項) を一切取得しない。Cookie・ローカルストレージ等のトラッキング技術は<strong>使用しない</strong> (アクセス解析 / 広告配信 / 行動追跡なし)。</p>
+  </section>
+
+  <section aria-label="第三者処理者">
+    <h2>3. 個人情報の処理を委託する第三者 (sub-processor)</h2>
+    <p>本サービスは以下の第三者処理者を利用する。各社は適切なデータ保護措置を講じている (個人情報保護法 第 25 条 / GDPR 第 28 条 / PIPA 第 24 条 越境転送準拠)。</p>
+    <table>
+      <caption>個人情報処理の委託先一覧</caption>
+      <thead><tr><th scope="col">委託先</th><th scope="col">委託業務</th><th scope="col">所在国</th><th scope="col">プライバシーポリシー</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Web3Forms</strong> (運営: Surbiton Labs LLP)</td><td>お問合せフォーム送信処理 (フォームデータの代理受信 → 本機関メールへの転送)</td><td>米国</td><td><a href="https://web3forms.com/privacy" rel="noopener noreferrer" target="_blank">https://web3forms.com/privacy</a></td></tr>
+        <tr><td><strong>Cloudflare, Inc.</strong></td><td>サイトホスティング (Cloudflare Pages) / CDN / DDoS 防御 / SSL 終端</td><td>米国 (PoP は EU・日本含む全世界)</td><td><a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer" target="_blank">https://www.cloudflare.com/privacypolicy/</a></td></tr>
+      </tbody>
+    </table>
+    <p><strong>越境移転に関する同意</strong>: お問合せフォーム送信は Web3Forms (米国) 経由で処理される。サイト閲覧時のアクセスログは Cloudflare の世界各地の PoP を経由する。これらは個人情報の越境移転に該当する (PIPA 第 24 条)。フォーム送信を以て本越境移転に同意したものとみなす。同意しない場合はメール (詳細は §6) でのお問合せをご利用いただきたい。</p>
+  </section>
+
+  <section aria-label="保管期間">
+    <h2>4. 個人情報の保管期間</h2>
+    <ul>
+      <li><strong>お問合せフォーム経由の個人情報</strong>: 問合せ対応完了後 <strong>6 ヶ月</strong>以内に削除する。但し以下の例外あり:
+        <ul>
+          <li>掲載申請受理 → 認定取得した事業者の連絡先: 認定有効期間中 (★ 取消・降格・opt-out まで) 保管</li>
+          <li>法令上の保管義務がある場合 (税法・特定商取引法等): 当該法令所定の期間</li>
+        </ul>
+      </li>
+      <li><strong>アクセスログ (IP / User-Agent)</strong>: Cloudflare 標準保持期間 (通常 7 日間 / 不正アクセス調査時は 30 日まで延長可能)</li>
+      <li><strong>Web3Forms 側保管</strong>: Web3Forms 規約に準拠 (詳細は同社プライバシーポリシー参照)</li>
+    </ul>
+  </section>
+
+  <section aria-label="第三者提供">
+    <h2>5. 第三者提供の禁止</h2>
+    <p>本機関は本人同意なく個人情報を第三者へ提供しない (個人情報保護法 第 27 条)。例外は以下のみ:</p>
+    <ul>
+      <li>法令に基づく場合 (裁判所・捜査機関からの正式な開示命令等)</li>
+      <li>人の生命・身体・財産の保護のため緊急に必要な場合</li>
+      <li>本人同意があり、その範囲内での提供</li>
+      <li>個人を特定できない統計的データへの加工後の公開 (業界レポート等 / CC BY 4.0)</li>
+    </ul>
+  </section>
+
+  <section aria-label="本人の権利">
+    <h2>6. 本人の権利 (開示・訂正・削除・停止請求)</h2>
+    <p>本人は自己の個人情報について以下の権利を行使できる (個人情報保護法 第 33-39 条 / GDPR 第 15-22 条):</p>
+    <ul>
+      <li>開示請求 (どのような情報が保管されているか)</li>
+      <li>訂正・追加・削除請求 (誤り / 古い情報の修正)</li>
+      <li>利用停止請求 / 第三者提供停止請求</li>
+      <li>データポータビリティ (構造化データ形式での移転)</li>
+      <li>異議申立て (処理に対する反対表明)</li>
+    </ul>
+    <p><strong>請求方法</strong>: 以下のいずれかで受付。本人確認後、原則 2 週間以内 (法定上限 30 日) に対応する。手数料は無料。</p>
+    <ul>
+      <li>お問合せフォーム: <a href="/stella/contact/">/contact/</a> (種別「その他」で個人情報請求と明記)</li>
+      <li>メール直接送付: <strong>stella@tcharton.com</strong></li>
+      <li>書面: 〒410-0022 静岡県沼津市大岡2690 T.C.HARTON 個人情報保護管理責任者 宛</li>
+    </ul>
+    <p>掲載対象事業者の掲載辞退については、より迅速な専用窓口 <a href="/stella/opt-out/">/opt-out/</a> をご利用いただきたい (24 時間以内対応)。</p>
+  </section>
+
+  <section aria-label="掲載対象事業者の取扱い">
+    <h2>7. 機械検証対象事業者の情報の取扱い</h2>
+    <p>HARTON Stella は公開 WEB サイトを scanner.py で機械検証する独立認定機関である。検証対象となる事業者情報の取扱いは以下の通り:</p>
+    <ul>
+      <li><strong>収集情報</strong>: 公開 WEB サイトの URL / 公開メタデータ (Schema.org / OGP / robots.txt 等) / HTTP レスポンスヘッダのみ。事業者の非公開情報は一切収集しない。</li>
+      <li><strong>個別公開条件</strong>: ★ 以上 (総合 70 点 + 致命的 NG 0 件) を達成した事業者のみ。未達事業者の個別情報は公開しない (業種別集計値のみ統計データとして公開)。</li>
+      <li><strong>opt-out</strong>: <a href="/stella/opt-out/">/opt-out/</a> より理由不要・24 時間以内に該当事業者を本サービス全体から除外。</li>
+      <li><strong>異議・訂正</strong>: scanner 検出結果への異議申立ては <a href="/stella/contact/">/contact/</a> より受付。</li>
+    </ul>
+  </section>
+
+  <section aria-label="改定">
+    <h2>8. 本ポリシーの改定</h2>
+    <p>本ポリシーは法令改正・運用知見・第三者処理者変更等に応じ改定することがある。重要な改定時は <a href="/stella/news/">/news/</a> で公表後 14 日間の周知期間を設けた上で発効する。</p>
+  </section>
+</article>
+</main>
+
+<footer>
+  <nav aria-label="フッターナビゲーション">
+    <ul>
+      <li><a href="/stella/about/">サイトについて</a></li>
+      <li><a href="/stella/methodology/">評価方法</a></li>
+      <li><a href="/stella/faq/">よくある質問</a></li>
+      <li><a href="/stella/contact/">お問合せ</a></li>
+      <li><a href="/stella/news/">お知らせ</a></li>
+      <li><a href="/stella/legal/">利用規約・特商法</a></li>
+      <li><a href="/stella/privacy/">プライバシーポリシー</a></li>
+      <li><a href="/stella/opt-out/">掲載拒否権</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2026 <a href="https://tcharton.com/" rel="noopener noreferrer" target="_blank">T.C.HARTON</a>. All rights reserved.</p>
+</footer>
+
+<noscript>
+  </noscript>
+
+</body>
+</html>

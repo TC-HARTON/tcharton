@@ -145,7 +145,7 @@ html .fade-in {
 }
 .sim-radar-grid { fill: none; stroke: rgba(148, 163, 184, 0.2); stroke-width: 1; }
 .sim-radar-axis { stroke: rgba(148, 163, 184, 0.25); stroke-width: 1; }
-.sim-radar-label { fill: #cbd5e1; font-size: 11px; font-family: "Noto Sans JP", -apple-system, sans-serif; font-weight: 500; }
+.sim-radar-label { fill: #cbd5e1; font-size: 11px; font-family: "Inter", sans-serif; font-weight: 600; }
 
 /* 9. 回答ボタン ゲーミフィケーション (選択直後の弾力 pulse) */
 .sim-btn-celebrate {
@@ -511,7 +511,7 @@ html .fade-in {
   text-align: center;
 }
 .data-card .value {
-  font-family: "Noto Serif JP", serif;
+  font-family: inherit;
   font-size: 3rem;
   font-weight: 700;
   color: #D4AF37;
@@ -577,7 +577,7 @@ html .fade-in {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Noto Serif JP", serif;
+  font-family: inherit;
   font-weight: 700;
   font-size: 1.25rem;
 }
@@ -604,10 +604,10 @@ html .fade-in {
   border-radius: 24px;
   font-weight: 700;
   font-size: 0.75rem;
-  font-family: "Noto Serif JP", serif;
+  font-family: inherit;
   letter-spacing: 0.05em;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 /* §3 Typography (DESIGN.md mandatory) */
-.font-mono { font-family: "JetBrains Mono", "Menlo", monospace; }
+.font-mono { font-family: inherit; }

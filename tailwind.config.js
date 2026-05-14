@@ -56,11 +56,9 @@ module.exports = {
         'bg-soft':           '#fafbfc',  // zebra stripe
       },
       fontFamily: {
-        // DESIGN.md §3 Typography v1.37 採用
-        sans:    ['"Noto Sans JP"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        serif:   ['"Noto Serif JP"', 'serif'],
-        display: ['"Noto Serif JP"', '"Noto Sans JP"', 'serif'],  // 見出し
-        mono:    ['"JetBrains Mono"', '"Menlo"', 'monospace'],
+        // HARTON 統一フォント (代表 5/12 指示)
+        sans: ['"Noto Sans JP"', '"Inter"', 'sans-serif'],
+        display: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
       },
     },
   },

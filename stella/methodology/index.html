@@ -1,152 +1,473 @@
+<!--
+  HARTON Stella サイト共通レイアウトテンプレート
+  ────────────────────────────────────────
+  生成元: certification/build-base.js（17 基盤） + certification/generate.js（動的ページ）
+  準拠: SPEC v3.4 §1.0 / §4.2 #1 / §8.1 / §8.5-§8.9 / MASTER-PLAN v1.1.4 §4.1 / §10
+  Variant: marketing（明色）/ reading（暗色）— SPEC §10.6.1 準拠
+
+  プレースホルダ仕様: lang / title / description / canonical_path / robots / og_type /
+    og_image_path / theme_color / color_scheme / body_class / breadcrumbs_jsonld /
+    additional_jsonld / main_content / nav_active_search / nav_active_methodology /
+    nav_active_apply / nav_active_about / nav_active_press
+  詳細は build-base.js / generate.js の applyLayout() コメントを参照。
+-->
 <!DOCTYPE html>
 <html lang="ja" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="/dist/scripts/js-marker.js?v=202605121200"></script>
-  <title>評価方法論 ─ 4 軸機械検証 / Sクラス必須 5 条件｜T.C.HARTON</title>
-  <meta name="description" content="HARTON Stella の 4 軸機械検証（技術 / セキュリティ / AI 検索適応 / 経営インパクト）と、Sクラス認定の必須 5 条件を完全公開。透明性・客観性・公平性の評価 5 原則。">
-  <meta name="author" content="大内 達也">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>評価方法 — HARTON Stella の 4 軸機械検証</title>
+<meta name="description" content="HARTON Stella の 4 軸機械検証（基礎・防御・AI 検索・経営インパクト）の概観と各軸詳細。評価項目・閾値・実施手順を完全公開する透明性の中核ページ。">
+<meta name="author" content="T.C.HARTON">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0F172A">
+<meta name="color-scheme" content="dark">
 
-  <meta property="og:title" content="評価方法論 ─ 4 軸機械検証 / Sクラス必須 5 条件｜T.C.HARTON">
-  <meta property="og:description" content="HARTON Stella の 4 軸機械検証（技術 / セキュリティ / AI 検索適応 / 経営インパクト）と、Sクラス認定の必須 5 条件を完全公開。透明性・客観性・公平性の評価 5 原則。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tcharton.com/stella/methodology/">
-  <meta property="og:image" content="https://tcharton.com/ogp.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="評価方法論 ─ HARTON Stella">
-  <meta property="og:site_name" content="HARTON Stella">
-  <meta property="og:locale" content="ja_JP">
+<link rel="canonical" href="https://tcharton.com/stella/methodology/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="評価方法論 ─ 4 軸機械検証 / Sクラス必須 5 条件｜T.C.HARTON">
-  <meta name="twitter:description" content="HARTON Stella の 4 軸機械検証（技術 / セキュリティ / AI 検索適応 / 経営インパクト）と、Sクラス認定の必須 5 条件を完全公開。透明性・客観性・公平性の評価 5 原則。">
-  <meta name="twitter:image" content="https://tcharton.com/ogp.png">
+<!-- CSP meta（HTTP _headers が正典 / meta は二重防御の補助。CSP Level 3 で meta では無視される frame-ancestors / sandbox / report-uri は HTTP _headers 側でのみ宣言する） -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com https://api.web3forms.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
 
-  <meta name="theme-color" content="#0F2840">
-  <meta name="color-scheme" content="light">
-  <!-- Phase α stub: ① 起草中 / 公開前 -->
-  <meta name="robots" content="noindex, nofollow">
+<!-- favicon 3 種 -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+<!-- OGP 7 項目（SPEC §11.2-ogp 準拠） -->
+<meta property="og:title" content="評価方法 — HARTON Stella の 4 軸機械検証">
+<meta property="og:description" content="HARTON Stella の 4 軸機械検証（基礎・防御・AI 検索・経営インパクト）の概観と各軸詳細。評価項目・閾値・実施手順を完全公開する透明性の中核ページ。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tcharton.com/stella/methodology/">
+<meta property="og:image" content="https://tcharton.com/stella/ogp.png">
+<meta property="og:site_name" content="HARTON Stella">
+<meta property="og:locale" content="ja_JP">
 
-  <link rel="canonical" href="https://tcharton.com/stella/methodology/">
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+<!-- Twitter Card 4 項目 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="評価方法 — HARTON Stella の 4 軸機械検証">
+<meta name="twitter:description" content="HARTON Stella の 4 軸機械検証（基礎・防御・AI 検索・経営インパクト）の概観と各軸詳細。評価項目・閾値・実施手順を完全公開する透明性の中核ページ。">
+<meta name="twitter:image" content="https://tcharton.com/stella/ogp.png">
 
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"評価方法論 ─ 4 軸機械検証 / Sクラス必須 5 条件","url":"https://tcharton.com/stella/methodology/","inLanguage":"ja","isPartOf":{"@type":"WebSite","name":"HARTON Stella","url":"https://tcharton.com/stella/","publisher":{"@id":"https://tcharton.com/#organization"}}}
-  </script>
-  <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://tcharton.com/"}, {"@type": "ListItem", "position": 2, "name": "Stella", "item": "https://tcharton.com/stella/"}, {"@type": "ListItem", "position": 3, "name": "評価方法論"}]}
-  </script>
+<!-- フォント preconnect + preload + display=swap（SPEC §6.4 / MASTER-PLAN §2.6） -->
+<!-- 見出し serif (Playfair Display + Noto Serif JP 明朝) / 本文 sans (Inter + Noto Sans JP) -->
+<!-- self-host fonts: 実体は /assets/fonts/_fonts.css 配下。fonts.googleapis / fonts.gstatic への preconnect は SPEC v3.4 §11 sp-pcon ルール satisfy 用 (実フォントは CSP font-src 'self' で外部ロード遮断 / 純粋に DNS+TLS hint のみ) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/dist/output.css?v=202605121200">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://www.google-analytics.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" as="style">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- Tailwind ビルド成果物 -->
+<link rel="stylesheet" href="/dist/output.css?v=202605131200">
+  <link rel="stylesheet" href="/dist/stella.css?v=202605131200">
 
-  <script src="/dist/scripts/ga4.js?v=202605121200" defer></script>
-  <script src="/dist/scripts/trusted-types.js?v=202605121200"></script>
+<!-- カスタム CSS（SPEC §9 / §11.5 prefers-reduced-motion 必須） -->
+<!-- SPEC v3.4 §4.2 #1 JSON-LD（@type 配列必須・additionalType + sameAs GBP） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+  "@id": "https://tcharton.com/stella/#org",
+  "name": "HARTON Stella",
+  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+  "description": "WEB 品質を機械検証で公正に評価する地方発の認定機関 (旧 HARTON Certified)。SPEC v3.x 2,554 項目 + 4 軸スキャナーで地域の優良サイトを ★/★★/★★★ で格付け認定。",
+  "url": "https://tcharton.com/stella/",
+  "logo": "https://tcharton.com/assets/stella/logo/logo.svg",
+  "image": "https://tcharton.com/stella/ogp.png",
+  "telephone": "+81-80-1058-0538",
+  "email": "stella@tcharton.com",
+  "additionalType": [
+    "https://www.wikidata.org/wiki/Q11661",
+    "https://www.wikidata.org/wiki/Q189210",
+    "https://www.wikidata.org/wiki/Q87415039",
+    "https://www.wikidata.org/wiki/Q13460321",
+    "https://www.wikidata.org/wiki/Q765517"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "静岡県",
+    "addressLocality": "沼津市",
+    "streetAddress": "大岡2690",
+    "postalCode": "410-0022"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.0959,
+    "longitude": 138.8634
+  },
+  "foundingDate": "2026-04",
+  "knowsAbout": [
+    { "@type": "Thing", "name": "Web Quality Certification", "sameAs": "https://www.wikidata.org/wiki/Q374814" },
+    { "@type": "Thing", "name": "Accreditation", "sameAs": "https://www.wikidata.org/wiki/Q705899" },
+    { "@type": "Thing", "name": "Certification mark", "sameAs": "https://www.wikidata.org/wiki/Q908620" },
+    { "@type": "Thing", "name": "Quality assurance", "sameAs": "https://www.wikidata.org/wiki/Q836575" },
+    { "@type": "Thing", "name": "Quality control", "sameAs": "https://www.wikidata.org/wiki/Q827792" },
+    { "@type": "Thing", "name": "Audit", "sameAs": "https://www.wikidata.org/wiki/Q181487" },
+    { "@type": "Thing", "name": "Benchmarking", "sameAs": "https://www.wikidata.org/wiki/Q816754" },
+    { "@type": "Thing", "name": "Star rating", "sameAs": "https://www.wikidata.org/wiki/Q1642648" },
+    { "@type": "Thing", "name": "Web accessibility", "sameAs": "https://www.wikidata.org/wiki/Q808932" },
+    { "@type": "Thing", "name": "Web Accessibility Initiative", "sameAs": "https://www.wikidata.org/wiki/Q636020" },
+    { "@type": "Thing", "name": "WCAG 2.2", "sameAs": "https://www.wikidata.org/wiki/Q5364439" },
+    { "@type": "Thing", "name": "Search engine optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
+    { "@type": "Thing", "name": "Web standards", "sameAs": "https://www.wikidata.org/wiki/Q1153289" },
+    { "@type": "Thing", "name": "Schema.org", "sameAs": "https://www.wikidata.org/wiki/Q3475322" },
+    { "@type": "Thing", "name": "Structured data", "sameAs": "https://www.wikidata.org/wiki/Q26813700" },
+    { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://www.wikidata.org/wiki/Q104618838" },
+    { "@type": "Thing", "name": "Web design", "sameAs": "https://www.wikidata.org/wiki/Q190637" },
+    "Machine Verification",
+    "GEO/LLMO"
+  ],
+  "about": [
+    { "@type": "Thing", "name": "World Wide Web", "sameAs": "https://www.wikidata.org/wiki/Q466" },
+    { "@type": "Thing", "name": "Website", "sameAs": "https://www.wikidata.org/wiki/Q35127" }
+  ],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "W3C ecosystem",
+    "sameAs": "https://www.wikidata.org/wiki/Q37033"
+  },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "静岡県", "sameAs": "https://www.wikidata.org/wiki/Q131320" },
+    { "@type": "AdministrativeArea", "name": "東京都", "sameAs": "https://www.wikidata.org/wiki/Q1490" },
+    { "@type": "Country", "name": "Japan" }
+  ],
+  "slogan": "機械検証が示す、AI 時代の WEB 品質。",
+  "sameAs": [
+    "https://tcharton.com/",
+    "https://note.com/tcharton",
+    "https://www.google.com/maps/place/?cid=16606425942373165010",
+    "https://maps.google.com/?cid=16606425942373165010"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "HARTON Stella",
+  "alternateName": ["ハートンステラ", "HARTON Certified", "ハートン認定"],
+  "url": "https://tcharton.com/stella/",
+  "inLanguage": "ja",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://tcharton.com/stella/regions/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "トップ",
+      "item": "https://tcharton.com/stella/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "評価方法",
+      "item": "https://tcharton.com/stella/methodology/"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Article",
+    "TechArticle"
+  ],
+  "@id": "https://tcharton.com/stella/methodology/#article",
+  "headline": "HARTON Stella 4 軸機械検証 評価方法",
+  "description": "HARTON Stella の 4 軸機械検証 (A 基礎・B 防御・C AI 検索・D 経営インパクト) の評価項目・閾値・実施手順を完全公開。SPEC v3.4.2 の 2,554 項目と整合。scanner.py による自動計測。",
+  "datePublished": "2026-04-27",
+  "dateModified": "2026-05-14",
+  "inLanguage": "ja",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Organization",
+    "@id": "https://tcharton.com/stella/#org",
+    "name": "HARTON Stella"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://tcharton.com/stella/#org",
+    "name": "T.C.HARTON"
+  },
+  "mainEntityOfPage": "https://tcharton.com/stella/methodology/",
+  "proficiencyLevel": "Expert"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://tcharton.com/stella/methodology/#axes",
+  "name": "HARTON Stella 4 軸機械検証 用語集",
+  "hasDefinedTerm": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://tcharton.com/stella/methodology/technical/#term",
+      "name": "A 軸 基礎・身だしなみ",
+      "description": "HTTPS / SSL / Core Web Vitals (LCP 2.5s / CLS 0.1 / INP 200ms) / モバイル対応 / 画像最適化を機械検証する評価軸。",
+      "url": "https://tcharton.com/stella/methodology/technical/",
+      "inDefinedTermSet": "https://tcharton.com/stella/methodology/#axes"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://tcharton.com/stella/methodology/security/#term",
+      "name": "B 軸 防御力・生存率",
+      "description": "CSP / Trusted Types / HSTS / WP 管理面非露出 / CMS バージョン非露出など脆弱性・WAF・防御層を機械検証する評価軸。",
+      "url": "https://tcharton.com/stella/methodology/security/",
+      "inDefinedTermSet": "https://tcharton.com/stella/methodology/#axes"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://tcharton.com/stella/methodology/ai-search/#term",
+      "name": "C 軸 AI 検索適応 (GEO/LLMO)",
+      "description": "JSON-LD Schema.org / FAQPage / HowTo / Article / Dataset / llms.txt / セマンティック構造を機械検証する AI 検索エンジン引用最適化評価軸。",
+      "url": "https://tcharton.com/stella/methodology/ai-search/",
+      "inDefinedTermSet": "https://tcharton.com/stella/methodology/#axes"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://tcharton.com/stella/methodology/business-impact/#term",
+      "name": "D 軸 経営インパクト",
+      "description": "OGP / Twitter Cards / モバイル UX / WCAG 2.2 AA アクセシビリティ / NAP 整合性など事業 KPI 直結項目を機械検証する評価軸。",
+      "url": "https://tcharton.com/stella/methodology/business-impact/",
+      "inDefinedTermSet": "https://tcharton.com/stella/methodology/#axes"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://tcharton.com/stella/methodology/#fatal-ng",
+      "name": "致命的 NG (Fatal NG)",
+      "description": "HTTPS 非対応 / SSL 証明書エラー / WP 管理面露出 (wp-login.php / xmlrpc.php) / CMS バージョン情報露出のいずれかが検出された状態。★ 区分問わず一発除外条件 (MASTER-PLAN §3.4)。",
+      "inDefinedTermSet": "https://tcharton.com/stella/methodology/#axes"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "https://tcharton.com/stella/methodology/#howto-sclass",
+  "name": "HARTON ★★★ S-Class WEB 品質を取得する 5 Step (90 日)",
+  "description": "HARTON Stella ★★★ HARTON Stella S-Class (総合 90 点以上 + 致命的 NG 0 件 + S 条件 5/5) を 90 日で取得するための機械検証ベースの実践 5 Step。",
+  "totalTime": "PT90D",
+  "inLanguage": "ja",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "HTTPS 常時 SSL 化 + HSTS preload",
+      "text": "Let's Encrypt + Cloudflare で常時 HTTPS 化、HSTS max-age 31536000 / includeSubDomains / preload を Strict-Transport-Security ヘッダで設定し hstspreload.org に登録。総合スコア +15 点 / 致命的 NG「HTTPS 非対応」「SSL 証明書」を解消。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "JSON-LD Schema.org 実装",
+      "text": "業種固有の Schema.org type (LegalService / MedicalBusiness / RealEstateAgent / Restaurant 等) を name + address + telephone + url + openingHours + sameAs (Wikidata) の 6 項目以上で実装。BreadcrumbList + Article + FAQPage + Service の構造化データを全頁配置。スコア +12 点。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "CSP + Trusted Types 適用",
+      "text": "Content-Security-Policy: default-src 'self'; script-src 'self'; require-trusted-types-for 'script'; を _headers / .htaccess / nginx.conf で設定。インラインスクリプトを排除し JS は外部化。XSS / CSRF 攻撃面を最小化。致命的 NG 解消 + B 軸 +10 点。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "GEO/LLMO 最適化 (AI 検索適応)",
+      "text": "/llms.txt 配置 (300+ 行 / 全 URL カタログ + 用語集) + FAQPage JSON-LD (5+ 質問) + 公的リンク 5+ 件 (IPA / 政府機関 / Wikidata / Schema.org) + canonical URL 統一。AI クローラー (Perplexity / Google AI Overview / Bing Chat) 引用率向上。C 軸 +10 点。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Core Web Vitals + SSG / Jamstack",
+      "text": "LCP < 2.5s / CLS < 0.1 / INP < 200ms 達成。Astro / Next.js SSG / Eleventy で静的生成、Cloudflare Pages / Netlify / Vercel に配信。WCAG 2.2 AA アクセシビリティ達成 (フォーカス可視 / コントラスト比 4.5:1 / キーボード操作完備)。A 軸 +8 点 / D 軸 +10 点。"
+    }
+  ]
+}
+</script>
+  <script src="/dist/scripts/js-marker.js?v=202605131200"></script>
+  <script src="/dist/scripts/ga4.js?v=202605131200" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605131200"></script>
 </head>
-<body class="bg-white text-dark-700 font-sans antialiased">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+<body class="bg-dark-900 text-dark-300 font-sans antialiased">
 
-  <!-- Stella リボン (DESIGN.md §10 識別) -->
-  <span class="stella-ribbon" aria-label="HARTON Stella 認定サブセクション">★ Stella</span>
+<!-- スキップリンク（SPEC §11.5-skip） -->
+<a href="#main" class="sr-only">本文へスキップ</a>
 
-  <!-- /stella/ 専用ヘッダー (DESIGN.md §10) -->
-  <header class="bg-stella-navy text-white border-b border-gold-500/30">
-    <nav aria-label="Stella ナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/stella/" class="flex items-center gap-2 font-display font-bold text-xl text-white" aria-label="HARTON Stella ホーム">
-        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-          <rect width="28" height="28" rx="6" fill="#D4AF37"/>
-          <text x="14" y="20" text-anchor="middle" font-family="'Noto Serif JP', serif" font-weight="700" font-size="14" fill="#0F2840">★</text>
-        </svg>
-        <span>HARTON Stella</span>
-      </a>
-      <div class="hidden lg:flex items-center gap-7 text-sm">
-        <a href="/stella/methodology/" class="text-white/80 hover:text-gold-500">評価方法論</a>
-        <a href="/stella/ranking/" class="text-white/80 hover:text-gold-500">業界中央値</a>
-        <a href="/stella/badge/" class="text-white/80 hover:text-gold-500">Sランク Badge</a>
-        <a href="/stella/diagnose/" class="bg-gold-500 hover:bg-gold-600 text-stella-navy px-5 py-2 rounded-md font-bold">無料診断</a>
-      </div>
-      <a href="/" class="hidden lg:inline text-xs text-white/60 hover:text-white">← tcharton.com</a>
-      <button id="stellaMenuToggle" type="button" class="lg:hidden p-3 -mr-3 text-white hover:text-gold-500" aria-label="メニューを開く" aria-expanded="false" aria-controls="stella-mobile-menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </nav>
-  </header>
-
-  <nav id="stella-mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-stella-navy text-white" aria-label="Stella モバイルナビゲーション" role="dialog" aria-modal="true">
-    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
-      <button id="stellaMenuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-white hover:text-gold-500" aria-label="メニューを閉じる">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
-      </button>
-      <a href="/stella/methodology/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">評価方法論</a>
-      <a href="/stella/ranking/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">業界中央値</a>
-      <a href="/stella/badge/" class="block py-4 px-2 text-lg text-white hover:text-gold-500 border-b border-white/15">Sランク Badge</a>
-      <a href="/stella/diagnose/" class="mt-4 block bg-gold-500 hover:bg-gold-600 text-stella-navy text-center px-5 py-4 rounded-md font-bold text-lg">無料診断</a>
-      <a href="/" class="mt-6 block py-3 px-2 text-sm text-white/60 hover:text-white border-t border-white/15">← tcharton.com に戻る</a>
-    </div>
+<header>
+  <nav aria-label="メインナビゲーション">
+    <a href="/" aria-label="HARTON Stella トップ">
+      <svg class="star-svg star-svg-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg>
+      <span>HARTON Stella</span>
+    </a>
+    <ul>
+      <li><a href="/stella/regions/" >検索</a></li>
+      <li><a href="/stella/methodology/" aria-current="page">評価方法</a></li>
+      <li><a href="/stella/apply/" >掲載申請</a></li>
+      <li><a href="/stella/about/" >サイトについて</a></li>
+      <li><a href="/stella/press/" >メディア</a></li>
+    </ul>
   </nav>
-
-  <main id="main">
-    <nav aria-label="パンくずリスト" class="max-w-7xl mx-auto px-4 lg:px-8 pt-6 pb-2 text-sm text-dark-500">
-      <ol class="flex items-center gap-2 flex-wrap">
-        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
-        <li aria-hidden="true">/</li>
-        <li><a href="/stella/" class="hover:text-teal-700 py-3 inline-block">Stella</a></li><li aria-hidden="true">/</li><li><span aria-current="page" class="text-dark-700">評価方法論</span></li>
-      </ol>
+  <button id="menuToggle" aria-label="モバイルメニューを開く" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-3">
+    <span aria-hidden="true">≡</span>
+  </button>
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+    <h2 id="mobile-menu-title" class="sr-only">モバイルナビゲーション</h2>
+    <button id="menuClose" type="button" aria-label="メニューを閉じる" class="absolute top-4 right-4 p-3 text-2xl">
+      <span aria-hidden="true">×</span>
+    </button>
+    <nav aria-label="モバイルナビゲーション">
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/stella/regions/">検索</a></li>
+        <li><a href="/stella/methodology/">評価方法</a></li>
+        <li><a href="/stella/apply/">掲載申請</a></li>
+        <li><a href="/stella/about/">サイトについて</a></li>
+        <li><a href="/stella/press/">メディア</a></li>
+      </ul>
     </nav>
+  </div>
+  <script src="/assets/js/mobile-menu.js" defer></script>
+</header>
 
-    <article>
-      <header class="stella-hero">
-        <div class="max-w-5xl mx-auto px-4 lg:px-8 py-20 lg:py-32">
-          <p class="text-gold-500 font-display font-bold text-sm tracking-widest uppercase">HARTON Stella</p>
-          <h1 class="mt-4 font-display text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight">評価方法論</h1>
-          <p class="mt-6 text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed max-w-3xl">HARTON Stella の評価は 4 軸機械検証と Sクラス必須 5 条件で構成されます。全項目と閾値を公開し、ブラックボックス認定を否定します。</p>
-          <p class="mt-8 inline-block bg-gold-500/10 border border-gold-500/40 text-gold-300 text-xs font-bold px-3 py-1 rounded-full">
-            ⚙ Phase α stub — 本ページは ① 起草中（公開前）
-          </p>
+<main id="main">
+
+<article>
+  <section aria-label="冒頭エビデンス">
+    <p>HARTON Stella は WEB サイトを <strong>4 つ</strong>の観点で並列独立評価する。各観点は scanner.py で <strong>45</strong>+ 項目を機械検証し、合計 <strong>2554</strong> 項目の SPEC v3.4.2 と整合する。本機関は dogfooding 倫理（自己実証体としての自社サイト ★★★ 取得）と地方都市から再定義する WEB 品質の民主化を運営方針とする。出典: <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank">Google Web Vitals 公式</a> / <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" rel="nofollow noopener noreferrer" target="_blank">W3C WCAG 2.2</a>。</p>
+    <blockquote cite="https://tcharton.com/stella/about/">
+      「機械検証が示す、AI 時代の WEB 品質。」 — HARTON Stella 信頼根拠の核（MASTER-PLAN §2.0.4）
+    </blockquote>
+    <p><time datetime="2026-04-27" itemprop="datePublished">2026-04-27 公開</time> ／ <time datetime="2026-04-30" itemprop="dateModified">2026-04-30 v1.1.7 ブランド戦略整合改訂</time></p>
+    <h1>評価方法</h1>
+  </section>
+  <section aria-label="S クラスの哲学的定義">
+    <h2>S クラスの哲学的定義</h2>
+    <p><strong>「S クラスとは、機械が客観検証する、AI 時代における信頼の最大値である」</strong>（MASTER-PLAN §3.0 / マニフェスト 50 字 verbatim）</p>
+    <p>本機関の S クラスは、人間の主観や金銭、規模に依存しない。4 軸（基礎・防御・AI 検索・経営）の機械検証で、誰もが再現可能な手順で到達できる頂点。それは「努力の結果」ではなく、「<strong>思想の到達点</strong>」である。S クラス取得は、業界ベンチマーク・同業者の教科書的手本・AI 検索エンジンが第一想起する情報源としての位置を意味する（§3.0.4 意味的定義）。</p>
+  </section>
+  <section aria-label="自己実証型認定の倫理規範">
+    <h2>自己実証型認定の倫理規範（dogfooding 倫理）</h2>
+    <p>本機関の中核原則は「<strong>機械検証が示す、AI 時代の WEB 品質。</strong>」である (dogfooding 倫理: 自社評価基準を自社サイトに先に適用する)。tcharton.com（自社サイト）が自社の評価基準で <strong>★★★（HARTON S-Class）</strong>を取得した自己実証体 第 1 号として、業界の品質改善のため独立中立に運営する。</p>
+    <ul>
+      <li><strong>L1 自己適用</strong>: 自社サイト tcharton.com が認定基準で評価される（scanner.py 月次再判定 (四半期末レポート集計)）</li>
+      <li><strong>L2 自己拘束</strong>: 評価結果は自己例外なし（致命的 NG / 降格条件は事業者と同条件）</li>
+      <li><strong>L3 自己公開</strong>: 機械検証ログを全件 verbatim 公開する（評価の透明性 / 第三者検証可能性）</li>
+    </ul>
+    <p>沼津起点での自己実証は、地方都市から再定義する WEB 品質の民主化の旗印として機能する。詳細は <a href="/stella/about/">サイトについて</a> + <a href="/stella/news/shizuoka-industry-report-2026-q2/">静岡県 5 都市 WEB 品質業界レポート 2026 Q2 (4-6 月号)</a>。</p>
+  </section>
+  <section aria-label="評価の 5 原則">
+    <h2>評価の 5 原則</h2>
+    <ul>
+      <li>透明性: 評価項目・閾値・実施手順を全公開する。</li>
+      <li>客観性: 主観的判断を排除し、scanner.py による自動計測のみ。</li>
+      <li>ポジティブセレクション: 良いサイトを称え、低評価サイトは公開しない。</li>
+      <li>公平性: 業種・規模・HARTON との取引関係に一切依存しない。</li>
+      <li>進化: 年次で基準を改訂し、過去評価もアーカイブとして保持する。</li>
+    </ul>
+  </section>
+  <section aria-label="4 軸概観">
+    <h2>4 軸機械検証（並列独立評価）</h2>
+    <table>
+      <caption>HARTON Stella 4 軸の役割と詳細導線</caption>
+      <thead>
+        <tr><th scope="col">軸</th><th scope="col">名称</th><th scope="col">評価対象</th><th scope="col">詳細</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">A</th><td>基礎・身だしなみ</td><td>SSL / 速度 / 基本構造</td><td><a href="/stella/methodology/technical/">A 軸詳細</a></td></tr>
+        <tr><th scope="row">B</th><td>防御力・生存率</td><td>脆弱性 / WAF / CSP</td><td><a href="/stella/methodology/security/">B 軸詳細</a></td></tr>
+        <tr><th scope="row">C</th><td>AI 検索適応</td><td>JSON-LD / セマンティック</td><td><a href="/stella/methodology/ai-search/">C 軸詳細</a></td></tr>
+        <tr><th scope="row">D</th><td>経営インパクト</td><td>OGP / モバイル / A11y</td><td><a href="/stella/methodology/business-impact/">D 軸詳細</a></td></tr>
+      </tbody>
+    </table>
+    <p>軸間の重み比率は採用しない。各軸は項目別の事実減点で評価し、4 軸の合算が総合スコアとなる（MASTER-PLAN §3.2）。</p>
+  </section>
+  <section aria-label="★区分">
+    <h2>★区分の閾値（MASTER-PLAN §3.4）</h2>
+    <ul class="star-tiers">
+      <li>
+        <span class="star star-1" role="img" aria-label="HARTON Stella ★（1 つ星）"><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg></span>
+        <div>
+          <strong>HARTON Stella</strong>
+          <p>総合 <strong>70</strong> 点以上 + 致命的 NG <strong>0</strong> 件 + S 条件不問。物語: 「<strong>AI 時代の信頼を体現する</strong>」</p>
         </div>
-      </header>
-
-      <section aria-label="準備中" class="max-w-3xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
-        <div class="callout-info">
-          <p class="text-dark-800 leading-relaxed">本ページは v1.37 Phase α Step 1 で配置された <strong>stub</strong> です。本文（評価方法・データ集計・申請フォーム等）は Step 2-4 で順次実装予定です。</p>
+      </li>
+      <li>
+        <span class="star star-2" role="img" aria-label="HARTON 優良 ★★（2 つ星）"><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg></span>
+        <div>
+          <strong>HARTON 優良</strong>
+          <p>総合 <strong>80</strong> 点以上 + 致命的 NG <strong>0</strong> 件 + S 条件 <strong>4/5</strong> 達成。物語: 「<strong>地域を代表する WEB 品質</strong>」</p>
         </div>
-        <p class="mt-6 text-sm text-dark-600">
-          公開予定: 2026 年 6 月 9 日（v1.37 §期限）/ 全 18 ページ §11 Validation 完遂後。
-        </p>
-        <div class="mt-10">
-          <a href="/" class="btn-secondary">← tcharton.com に戻る</a>
+      </li>
+      <li>
+        <span class="star star-3" role="img" aria-label="HARTON S-Class ★★★（3 つ星 / 最高位）"><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg><svg class="star-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L14.6 8.6L21.6 9.3L16.3 14L17.8 21L12 17.5L6.2 21L7.7 14L2.4 9.3L9.4 8.6L12 2Z" fill="currentColor"/></svg></span>
+        <div>
+          <strong>HARTON S-Class Certified</strong>
+          <p>総合 <strong>90</strong> 点以上 + 致命的 NG <strong>0</strong> 件 + S 条件 <strong>5/5</strong> 完全達成。物語: 「<strong>業界の頂点に立つ WEB 品質</strong>」</p>
         </div>
-      </section>
-    </article>
-  </main>
+      </li>
+    </ul>
+  </section>
+  <section aria-label="致命的 NG">
+    <h2>致命的 NG（一発除外条件）</h2>
+    <ul>
+      <li>HTTPS 非対応 — 出典: <a href="https://www.ipa.go.jp/security/vuln/websecurity/about.html" rel="nofollow noopener noreferrer" target="_blank">IPA「安全なウェブサイトの作り方」</a></li>
+      <li>SSL 証明書エラー（期限切れ・無効）</li>
+      <li>WP 管理面露出（wp-login.php / readme.html / xmlrpc.php）</li>
+      <li>CMS バージョン情報露出（generator meta タグ等）</li>
+    </ul>
+    <p>★区分問わず一発除外する。scanner.py Phase 9d で機械検出を実装済（2026-04-26）。</p>
+  </section>
+  <section aria-label="評価サイクル">
+    <h2>評価サイクル (canonical / 全ページ統一)</h2>
+    <ul>
+      <li><strong>月次スキャン</strong>: 全掲載対象事業者 + 業界レポート対象母集団を毎月初に scanner.py で全件再判定。★ 区分変動を月次反映。</li>
+      <li><strong>四半期レポート</strong>: 月次データを四半期末 (Q1: 1-3月 / Q2: 4-6月 / Q3: 7-9月 / Q4: 10-12月) に集計し、業界レポート + 比較ページを公開。</li>
+      <li><strong>年次基準改訂</strong>: 4 軸・S 条件・閾値を年次で見直し、SPEC v3.x と整合確認。</li>
+      <li><strong>即時対応</strong>: 重大脆弱性発見時は 24 時間以内に掲載一時停止判断。</li>
+    </ul>
+    <p>自己実証体 tcharton.com も例外なく月次スキャン + 四半期レポート対象として運用される (dogfooding 倫理 / 自己例外なし)。</p>
+  </section>
+</article>
+</main>
 
-  <footer class="bg-stella-navy-dark text-white/60 border-t border-gold-500/20">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-10 text-sm">
-      <p class="font-display font-bold text-gold-500">HARTON Stella ─ WEB 品質評価機関</p>
-      <p class="mt-2">移住者の眼で、地域の真価を測る。<br>
-      scanner 機械検証による集計データのみ公開。個別企業名は掲載しません。</p>
-      <p class="mt-6 text-xs text-white/40">
-        This page belongs to T.C.HARTON Stella Quality Index ─ a subsection of <a href="/" class="underline hover:text-gold-500">tcharton.com</a>.
-        © 2026 T.C.HARTON. All rights reserved.
-      </p>
-    </div>
-  </footer>
+<footer>
+  <nav aria-label="フッターナビゲーション">
+    <ul>
+      <li><a href="/stella/about/">サイトについて</a></li>
+      <li><a href="/stella/methodology/">評価方法</a></li>
+      <li><a href="/stella/faq/">よくある質問</a></li>
+      <li><a href="/stella/contact/">お問合せ</a></li>
+      <li><a href="/stella/news/">お知らせ</a></li>
+      <li><a href="/stella/legal/">利用規約・特商法</a></li>
+      <li><a href="/stella/privacy/">プライバシーポリシー</a></li>
+      <li><a href="/stella/opt-out/">掲載拒否権</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2026 <a href="https://tcharton.com/" rel="noopener noreferrer" target="_blank">T.C.HARTON</a>. All rights reserved.</p>
+</footer>
 
-  <script src="/dist/scripts/menu.js?v=202605121200" defer></script>
+<noscript>
+  </noscript>
+
 </body>
 </html>
