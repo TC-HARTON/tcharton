@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
-  <title>Core Web Vitals 完全解説（LCP / INP / CLS）｜T.C.HARTON</title>
-  <meta name="description" content="Google が定める Core Web Vitals（LCP / INP / CLS）の意味・測定方法・改善手順を完全解説。">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>Core Web Vitals 完全解説 — INP 時代の表示速度改善｜T.C.HARTON</title>
+  <meta name="description" content="Google が定める Core Web Vitals（LCP / INP / CLS）の意味・合格基準・改善手順を、2024 年の INP 導入を踏まえて一次出典付きで解説します。">
   <meta name="author" content="大内 達也">
 
-  <meta property="og:title" content="Core Web Vitals 完全解説（LCP / INP / CLS）｜T.C.HARTON">
-  <meta property="og:description" content="Google が定める Core Web Vitals（LCP / INP / CLS）の意味・測定方法・改善手順を完全解説。">
+  <meta property="og:title" content="Core Web Vitals 完全解説 — INP 時代の表示速度改善｜T.C.HARTON">
+  <meta property="og:description" content="Google が定める Core Web Vitals（LCP / INP / CLS）の意味・合格基準・改善手順を、2024 年の INP 導入を踏まえて一次出典付きで解説します。">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://tcharton.com/insights/core-web-vitals/">
   <meta property="og:image" content="https://tcharton.com/ogp.png">
@@ -21,14 +21,13 @@
   <meta property="og:locale" content="ja_JP">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Core Web Vitals 完全解説（LCP / INP / CLS）｜T.C.HARTON">
-  <meta name="twitter:description" content="Google が定める Core Web Vitals（LCP / INP / CLS）の意味・測定方法・改善手順を完全解説。">
+  <meta name="twitter:title" content="Core Web Vitals 完全解説 — INP 時代の表示速度改善｜T.C.HARTON">
+  <meta name="twitter:description" content="Google が定める Core Web Vitals（LCP / INP / CLS）の意味・合格基準・改善手順を、2024 年の INP 導入を踏まえて一次出典付きで解説します。">
   <meta name="twitter:image" content="https://tcharton.com/ogp.png">
 
   <meta name="theme-color" content="#FFFFFF">
   <meta name="color-scheme" content="light">
-  <!-- Phase α stub: ① 起草中 / 公開前 -->
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
 
@@ -44,11 +43,19 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
     {"@type":"ListItem","position":2,"name":"教育記事","item":"https://tcharton.com/insights/"},
-    {"@type":"ListItem","position":3,"name":"Core Web Vitals 完全解説（LCP / INP / CLS）","item":"https://tcharton.com/insights/core-web-vitals/"}
+    {"@type":"ListItem","position":3,"name":"Core Web Vitals 完全解説 — INP 時代の表示速度改善","item":"https://tcharton.com/insights/core-web-vitals/"}
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/core-web-vitals/#article","headline":"Core Web Vitals 完全解説（LCP / INP / CLS）","description":"Google が定める Core Web Vitals（LCP / INP / CLS）の意味・測定方法・改善手順を完全解説。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-12","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/core-web-vitals/","mainEntityOfPage":"https://tcharton.com/insights/core-web-vitals/","image":"https://tcharton.com/ogp.png"}
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/core-web-vitals/#article","headline":"Core Web Vitals 完全解説 — INP 時代の表示速度改善","description":"Google が定める Core Web Vitals（LCP / INP / CLS）の意味・合格基準・改善手順を、2024 年の INP 導入を踏まえて一次出典付きで解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-12","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/core-web-vitals/","mainEntityOfPage":"https://tcharton.com/insights/core-web-vitals/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Core Web Vitals の合格基準は？","acceptedAnswer":{"@type":"Answer","text":"LCP は 2.5 秒以内、INP は 200 ミリ秒以内、CLS は 0.1 以内が「良好」の基準です。3 指標すべてが基準内に入って初めて合格となります。"}},
+    {"@type":"Question","name":"INP と FID は何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"FID は最初の操作への応答だけを測りましたが、INP はページ滞在中の全操作の応答性を測ります。2024 年 3 月に INP が FID を正式に置き換えました。"}},
+    {"@type":"Question","name":"Lighthouse のスコアが 90 以上なら大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"必ずしも大丈夫ではありません。Google が順位判定に使うのは実ユーザーのフィールドデータ（CrUX）です。Lighthouse のラボ値が高くても、実環境のスコアが基準を下回ることはよくあります。"}},
+    {"@type":"Question","name":"表示速度は検索順位に影響しますか？","acceptedAnswer":{"@type":"Answer","text":"影響します。Core Web Vitals は Google の検索ランキング要因の一つです。さらに表示が遅いと離脱率が上がり、問い合わせや売上の機会損失にも直結します。"}}
+  ]}
   </script>
 
   <link rel="stylesheet" href="/dist/output.css?v=202605141500">
@@ -59,8 +66,8 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-  <script src="/dist/scripts/ga4.js?v=202605120100" defer></script>
-  <script src="/dist/scripts/trusted-types.js?v=202605120100"></script>
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
 </head>
 <body class="bg-white text-dark-700 font-sans antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
@@ -118,37 +125,162 @@
         <li aria-hidden="true">/</li>
         <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">教育記事</a></li>
         <li aria-hidden="true">/</li>
-        <li><span aria-current="page" class="text-dark-700">Core Web Vitals 完全解説（LCP / INP / CLS）</span></li>
+        <li><span aria-current="page" class="text-dark-700">Core Web Vitals 完全解説 — INP 時代の表示速度改善</span></li>
       </ol>
     </nav>
 
     <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
       <header>
-        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight</p>
-        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">Core Web Vitals 完全解説（LCP / INP / CLS）</h1>
-        <p class="mt-6 text-base sm:text-lg text-dark-700 leading-relaxed business-description">Google が定める Core Web Vitals（LCP / INP / CLS）の意味・測定方法・改善手順を完全解説。</p>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 表示速度・技術品質</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">Core Web Vitals 完全解説 — INP 時代の表示速度改善</h1>
         <p class="mt-4 text-xs text-dark-500">
-          <time datetime="2026-05-12">2026 年 5 月 12 日</time>
+          <time datetime="2026-05-12">2026 年 5 月 12 日 公開</time>
           <span class="mx-2" aria-hidden="true">/</span>
-          <time datetime="2026-05-12">最終更新 2026 年 5 月 12 日</time>
+          <time datetime="2026-05-14">最終更新 2026 年 5 月 14 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 8 分</span>
         </p>
       </header>
 
-      <div class="mt-10 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-6">
-        <p class="text-sm text-amber-900"><strong>📝 Phase α 構造実装中</strong>：本記事は ① ルートで起草中です。公開準備が整い次第、本文・図解・FAQ を順次反映します（Phase α 期限 2026-05-26）。</p>
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">Core Web Vitals は Google が定める 3 つの実ユーザー体験指標です。合格基準は <strong class="text-dark-900">LCP 2.5 秒以内・INP 200 ミリ秒以内・CLS 0.1 以内</strong>。2024 年 3 月に FID が INP に置き換わりました。重要なのは、Lighthouse のラボ値ではなく<strong class="text-dark-900">実ユーザーのフィールドデータ（CrUX）</strong>で判定される点。表示速度は検索順位と離脱率の両方に直結します。</p>
       </div>
 
-      <section aria-label="近日公開" class="mt-12 text-dark-700 leading-relaxed text-base lg:text-lg space-y-4">
-        <p>本記事は <strong class="text-dark-900">Core Web Vitals 完全解説（LCP / INP / CLS）</strong> をテーマに、原因分析・解決ステップ・実例・FAQ を体系的にまとめた教育記事です。</p>
-        <p>公開準備中です。まずは <a href="/recruit/" class="text-teal-700 underline hover:text-teal-500">制作実績キャンペーン</a> または <a href="/contact/" class="text-teal-700 underline hover:text-teal-500">お問い合わせフォーム</a> から、貴社の WEB サイトの現状についてご相談ください。</p>
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. Core Web Vitals とは — 3 つの指標</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. なぜ INP が FID を置き換えたのか</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. ラボ値と CrUX — 90 点でも落ちる理由</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 【Top 7】INP を 200ms 未満にする手法</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 計測の正しい手順</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 200" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Core Web Vitals の 3 指標。LCP は表示の速さで 2.5 秒以内、INP は操作の応答で 200 ミリ秒以内、CLS はレイアウトのずれで 0.1 以内が良好基準。">
+          <rect width="680" height="200" fill="#FFFFFF"/>
+          <rect x="30" y="40" width="190" height="120" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="125" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#1B4965">LCP</text>
+          <text x="125" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">表示の速さ</text>
+          <text x="125" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#10b981">2.5 秒以内</text>
+          <rect x="245" y="40" width="190" height="120" rx="10" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+          <text x="340" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#8B6914">INP</text>
+          <text x="340" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">操作の応答</text>
+          <text x="340" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#10b981">200ms 以内</text>
+          <rect x="460" y="40" width="190" height="120" rx="10" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="555" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#1B4965">CLS</text>
+          <text x="555" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#666666">表示のずれ</text>
+          <text x="555" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#10b981">0.1 以内</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：Core Web Vitals の 3 指標と「良好」の合格基準。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="Core Web Vitals とは" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. Core Web Vitals とは — 3 つの指標</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>Core Web Vitals は、Google が「実際のユーザー体験の良し悪し」を数値で表すために定めた 3 つの指標です。技術用語ですが、中身は単純です。</p>
+          <p><strong class="text-dark-900">LCP（Largest Contentful Paint）</strong>は、ページの主要な中身が表示されるまでの時間。<strong class="text-dark-900">INP（Interaction to Next Paint）</strong>は、ユーザーがクリックやタップをしてから画面が反応するまでの速さ。<strong class="text-dark-900">CLS（Cumulative Layout Shift）</strong>は、読み込み中に画面がガタつく量です。</p>
+          <p>合格基準は LCP 2.5 秒以内・INP 200ms 以内・CLS 0.1 以内。3 つすべてが基準内に入って初めて「良好」になります。</p>
+        </div>
       </section>
 
-      <section aria-label="CTA" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
-        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Recruitment</p>
-        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">10 業種 × 各 1 社限定 / 無料 WEB 構築</h2>
-        <p class="mt-3 text-dark-700 text-sm">全国の中小企業様向け制作実績キャンペーン。応募ガイド PDF + 5 点セットご提出で応募成立。</p>
-        <a href="/recruit/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
-          <span>キャンペーン詳細</span>
+      <section id="section-2" aria-label="INP が FID を置き換えた" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. なぜ INP が FID を置き換えたのか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>2024 年 3 月、Google は応答性の指標を FID から INP に切り替えました。理由は測定範囲の違いです。</p>
+          <p>FID は「最初の 1 操作」への応答だけを測っていました。INP は「ページ滞在中のすべての操作」の応答性を測ります。ユーザーが感じる「もたつき」を、より正確に捉えられるようになったのです。</p>
+          <p>モバイルで INP 基準を満たせているサイトは世界でまだ約 77%。逆に言えば、ここを改善すれば差をつけられる余地が残っています。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 160" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="FID は最初の 1 操作のみ測定。INP はページ滞在中の全操作を測定する違いを示す図。">
+            <rect width="680" height="160" fill="#FFFFFF"/>
+            <text x="20" y="36" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#9db8c4">旧 FID — 最初の 1 操作だけ</text>
+            <circle cx="60" cy="60" r="10" fill="#D4AF37"/>
+            <circle cx="160" cy="60" r="8" fill="#e0e6eb"/>
+            <circle cx="260" cy="60" r="8" fill="#e0e6eb"/>
+            <circle cx="360" cy="60" r="8" fill="#e0e6eb"/>
+            <circle cx="460" cy="60" r="8" fill="#e0e6eb"/>
+            <text x="20" y="112" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">新 INP — 全操作を測定</text>
+            <circle cx="60" cy="134" r="10" fill="#1B4965"/>
+            <circle cx="160" cy="134" r="10" fill="#1B4965"/>
+            <circle cx="260" cy="134" r="10" fill="#1B4965"/>
+            <circle cx="360" cy="134" r="10" fill="#1B4965"/>
+            <circle cx="460" cy="134" r="10" fill="#1B4965"/>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：FID は 1 操作、INP は全操作を測る。ユーザー体験により忠実になった。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="ラボ値と CrUX" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. ラボ値と CrUX — 90 点でも落ちる理由</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>「Lighthouse で 90 点取れたから安心」— これが落とし穴です。Google が検索順位の判定に使うのは Lighthouse のスコアではありません。</p>
+          <p>判定に使われるのは <strong class="text-dark-900">CrUX（Chrome ユーザーエクスペリエンスレポート）</strong>。実際のユーザーが過去 28 日間に体験した速度の、上位 75% 地点の値です。回線の遅い人・古い端末の人も含まれます。</p>
+          <p>だから、開発者の高速な環境で測ったラボ値が 90 点でも、実ユーザーの CrUX が基準を下回ることは普通に起きます。見るべきは「フィールドデータ」です。</p>
+        </div>
+      </section>
+
+      <section id="section-4" aria-label="INP 改善の手法" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 【Top 7】INP を 200ms 未満にする手法</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">米国 web.dev の最新ガイダンスが示す、INP 改善の実装手法を 7 つにまとめました。</p>
+        <ol class="mt-6 space-y-3">
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span><p class="text-sm text-dark-700"><strong class="text-dark-900">長い JavaScript タスクを分割する</strong> — 重い処理を小さく区切り、メインスレッドを定期的に解放する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span><p class="text-sm text-dark-700"><strong class="text-dark-900">重い計算は Web Worker へ逃がす</strong> — 画面描画を止めない別スレッドで処理する。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span><p class="text-sm text-dark-700"><strong class="text-dark-900">サードパーティスクリプトを減らす</strong> — 広告・解析タグの詰め込みが応答性を最も悪化させる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">4</span><p class="text-sm text-dark-700"><strong class="text-dark-900">スクロール・リサイズ処理を間引く</strong> — debounce と passive listener で過剰な発火を抑える。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">5</span><p class="text-sm text-dark-700"><strong class="text-dark-900">DOM を 1,500 ノード未満に保つ</strong> — 要素が多すぎると毎回の再計算が重くなる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">6</span><p class="text-sm text-dark-700"><strong class="text-dark-900">LCP 画像に fetchpriority="high" を付ける</strong> — 主要画像を最優先で読み込ませる。</p></li>
+          <li class="bg-dark-50 border border-dark-200 rounded-xl p-4 flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-700 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">7</span><p class="text-sm text-dark-700"><strong class="text-dark-900">LCP 要素に loading="lazy" を付けない</strong> — 主要画像を遅延させると逆に表示が遅れる。</p></li>
+        </ol>
+      </section>
+
+      <section id="section-5" aria-label="計測の正しい手順" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 計測の正しい手順</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>計測には 2 つのコツがあります。1 つ目は、PageSpeed Insights を開いたら<strong class="text-dark-900">「フィールドデータ」欄を先に見る</strong>こと。これが Google の判定に使われる実ユーザーの値です。</p>
+          <p>2 つ目は、Lighthouse は <strong class="text-dark-900">3〜5 回実行して中央値を採る</strong>こと。Lighthouse の単発の値は ±5〜10 点ぶれます。1 回の結果で一喜一憂しないことです。</p>
+          <p>T.C.HARTON は全ページでこの計測規律を実践し、結果を <a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で公開しています。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5"><dt class="font-display font-bold text-dark-900">Core Web Vitals の合格基準は？</dt><dd class="mt-2 text-sm text-dark-700 leading-relaxed">LCP は 2.5 秒以内、INP は 200 ミリ秒以内、CLS は 0.1 以内が「良好」の基準です。3 指標すべてが基準内に入って初めて合格となります。</dd></div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5"><dt class="font-display font-bold text-dark-900">INP と FID は何が違いますか？</dt><dd class="mt-2 text-sm text-dark-700 leading-relaxed">FID は最初の操作への応答だけを測りましたが、INP はページ滞在中の全操作の応答性を測ります。2024 年 3 月に INP が FID を正式に置き換えました。</dd></div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5"><dt class="font-display font-bold text-dark-900">Lighthouse のスコアが 90 以上なら大丈夫ですか？</dt><dd class="mt-2 text-sm text-dark-700 leading-relaxed">必ずしも大丈夫ではありません。Google が順位判定に使うのは実ユーザーのフィールドデータ（CrUX）です。Lighthouse のラボ値が高くても、実環境のスコアが基準を下回ることはよくあります。</dd></div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5"><dt class="font-display font-bold text-dark-900">表示速度は検索順位に影響しますか？</dt><dd class="mt-2 text-sm text-dark-700 leading-relaxed">影響します。Core Web Vitals は Google の検索ランキング要因の一つです。さらに表示が遅いと離脱率が上がり、問い合わせや売上の機会損失にも直結します。</dd></div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/llmo-explained/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">LLMO とは — AI 検索に引用される文章の書き方</a></li>
+          <li><a href="/insights/security-5-principles/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）</a></li>
+          <li><a href="/problems/site-speed/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">ホームページが遅い悩み解決</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>web.dev, Interaction to Next Paint (INP) — <a href="https://web.dev/articles/inp" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/inp</a></li>
+          <li>web.dev, Web Vitals — <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/vitals</a></li>
+          <li>web.dev, Learn Core Web Vitals — <a href="https://web.dev/explore/learn-core-web-vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/explore/learn-core-web-vitals</a></li>
+          <li>Google, About PageSpeed Insights — <a href="https://developers.google.com/speed/docs/insights/v5/about" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">developers.google.com/speed/docs/insights</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトの表示速度、測ってみませんか</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの Core Web Vitals を実測してお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </section>
