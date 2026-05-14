@@ -60,7 +60,7 @@ const STATIC_TARGETS = [
   // 制作実績キャンペーン LP
   'recruit/index.html',
 
-  // Phase α: Problem LP × 5 (Tier 1) + 教育記事 × 8 (Tier 2) + Hub × 2 / 全 noindex（① 起草中）
+  // Phase α: Problem LP × 5 (Tier 1) + Insights 記事 × 8 (Tier 2) + Hub × 2 / 全 noindex（① 起草中）
   'problems/index.html',
   'problems/site-speed/index.html',
   'problems/no-inquiry/index.html',

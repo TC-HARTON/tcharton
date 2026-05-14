@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
   <title>JSON-LD 構造化データ実装ガイド｜T.C.HARTON</title>
-  <meta name="description" content="Schema.org JSON-LD の実装ガイド。ProfessionalService / Service / FAQPage / HowTo / BreadcrumbList の正しい書き方。">
+  <meta name="description" content="JSON-LD 構造化データの実装ガイド。Google が JSON-LD を推奨する理由、@context・@type・@id の書き方、中小企業サイトに必要な 6 つの Schema 型、実装後の検証手順を、Google 公式ドキュメントと米国 SEO 業界の知見をもとに一次出典付きで解説します。">
   <meta name="author" content="大内 達也">
 
   <meta property="og:title" content="JSON-LD 構造化データ実装ガイド｜T.C.HARTON">
-  <meta property="og:description" content="Schema.org JSON-LD の実装ガイド。ProfessionalService / Service / FAQPage / HowTo / BreadcrumbList の正しい書き方。">
+  <meta property="og:description" content="JSON-LD 構造化データの実装ガイド。Google が JSON-LD を推奨する理由、@context・@type・@id の書き方、中小企業サイトに必要な 6 つの Schema 型、実装後の検証手順を、Google 公式ドキュメントと米国 SEO 業界の知見をもとに一次出典付きで解説します。">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://tcharton.com/insights/json-ld-implementation/">
   <meta property="og:image" content="https://tcharton.com/ogp.png">
@@ -22,7 +22,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="JSON-LD 構造化データ実装ガイド｜T.C.HARTON">
-  <meta name="twitter:description" content="Schema.org JSON-LD の実装ガイド。ProfessionalService / Service / FAQPage / HowTo / BreadcrumbList の正しい書き方。">
+  <meta name="twitter:description" content="JSON-LD 構造化データの実装ガイド。Google が JSON-LD を推奨する理由、@context・@type・@id の書き方、中小企業サイトに必要な 6 つの Schema 型、実装後の検証手順を、Google 公式ドキュメントと米国 SEO 業界の知見をもとに一次出典付きで解説します。">
   <meta name="twitter:image" content="https://tcharton.com/ogp.png">
 
   <meta name="theme-color" content="#FFFFFF">
@@ -42,12 +42,21 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
-    {"@type":"ListItem","position":2,"name":"教育記事","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
     {"@type":"ListItem","position":3,"name":"JSON-LD 構造化データ実装ガイド","item":"https://tcharton.com/insights/json-ld-implementation/"}
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/json-ld-implementation/#article","headline":"JSON-LD 構造化データ実装ガイド","description":"Schema.org JSON-LD の実装ガイド。ProfessionalService / Service / FAQPage / HowTo / BreadcrumbList の正しい書き方。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-12","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/json-ld-implementation/","mainEntityOfPage":"https://tcharton.com/insights/json-ld-implementation/","image":"https://tcharton.com/ogp.png"}
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/json-ld-implementation/#article","headline":"JSON-LD 構造化データ実装ガイド","description":"JSON-LD 構造化データの実装ガイド。Google が JSON-LD を推奨する理由、@context・@type・@id の書き方、中小企業サイトに必要な 6 つの Schema 型、実装後の検証手順を、Google 公式ドキュメントと米国 SEO 業界の知見をもとに一次出典付きで解説します。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-12","dateModified": "2026-05-14","inLanguage":"ja","url":"https://tcharton.com/insights/json-ld-implementation/","mainEntityOfPage":"https://tcharton.com/insights/json-ld-implementation/","image":"https://tcharton.com/ogp.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"JSON-LD はページのどこに書きますか？","acceptedAnswer":{"@type":"Answer","text":"Google は head 要素と body 要素のどちらに書いても受け付けます。JSON-LD は本文と混ざらない独立した script ブロックのため、保守のしやすさから head 内にまとめるのが一般的です。"}},
+    {"@type":"Question","name":"Microdata から JSON-LD に書き換えるべきですか？","acceptedAnswer":{"@type":"Answer","text":"Google は JSON-LD・Microdata・RDFa の 3 記法すべてを受け付けるため、既存の Microdata が正しく動いているなら急いで書き換える必要はありません。ただし新規実装や大規模改修では、保守の容易さから JSON-LD が推奨されます。"}},
+    {"@type":"Question","name":"構造化データを入れれば検索順位は上がりますか？","acceptedAnswer":{"@type":"Answer","text":"直接の順位上昇は保証されません。構造化データの効果は、リッチリザルト表示の対象になること、そして検索エンジンと AI がページ内容を正確に理解できるようになることです。順位の土台にはなりますが、魔法ではありません。"}},
+    {"@type":"Question","name":"FAQPage を入れれば AI に引用されますか？","acceptedAnswer":{"@type":"Answer","text":"引用は保証されません。2024 年 12 月の調査では構造化データの網羅度と AI 引用率に相関は見られませんでした。ただし質問と回答のペアは AI が抜き出しやすい構造のため、引用の土台としては有効です。"}},
+    {"@type":"Question","name":"書いた JSON-LD はどう検証しますか？","acceptedAnswer":{"@type":"Answer","text":"Google のリッチリザルトテスト、Schema.org の Markup Validator、Google Search Console の拡張レポートの 3 つで検証します。構文エラーはツールが検出しますが、型の取り違えは人間の確認が必要です。"}}
+  ]}
   </script>
 
   <link rel="stylesheet" href="/dist/output.css?v=202605141500">
@@ -115,7 +124,7 @@
       <ol class="flex items-center gap-2 flex-wrap">
         <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
         <li aria-hidden="true">/</li>
-        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">教育記事</a></li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
         <li aria-hidden="true">/</li>
         <li><span aria-current="page" class="text-dark-700">JSON-LD 構造化データ実装ガイド</span></li>
       </ol>
@@ -123,31 +132,268 @@
 
     <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
       <header>
-        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight</p>
-        <h1 class="mt-3 font-display text-3xl lg:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">JSON-LD 構造化データ実装ガイド</h1>
-        <p class="mt-6 text-base sm:text-lg text-dark-700 leading-relaxed business-description">Schema.org JSON-LD の実装ガイド。ProfessionalService / Service / FAQPage / HowTo / BreadcrumbList の正しい書き方。</p>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 構造化データ・計測・運用</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">JSON-LD 構造化データ実装ガイド</h1>
         <p class="mt-4 text-xs text-dark-500">
-          <time datetime="2026-05-12">2026 年 5 月 12 日</time>
+          <time datetime="2026-05-12">2026 年 5 月 12 日 公開</time>
           <span class="mx-2" aria-hidden="true">/</span>
-          <time datetime="2026-05-12">最終更新 2026 年 5 月 12 日</time>
+          <time datetime="2026-05-14">最終更新 2026 年 5 月 14 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 9 分</span>
         </p>
       </header>
 
-      <div class="mt-10 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-6">
-        <p class="text-sm text-amber-900"><strong>📝 Phase α 構造実装中</strong>：本記事は ① ルートで起草中です。公開準備が整い次第、本文・図解・FAQ を順次反映します（Phase α 期限 2026-05-26）。</p>
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">JSON-LD</strong> は、ページの内容を AI と検索エンジンに「事実」として正確に渡すための記法です。構造化データには 3 つの記法があり、Google はその中で <strong class="text-dark-900">JSON-LD を推奨</strong>しています。ただし構造化データは順位や AI 引用を保証する「魔法」ではなく、機械が内容を正確に理解するための<strong class="text-dark-900">土台（インフラ）</strong>です。中小企業サイトに必要な型は <strong class="text-dark-900">6 つ</strong>に絞れます。</p>
       </div>
 
-      <section aria-label="近日公開" class="mt-12 text-dark-700 leading-relaxed text-base lg:text-lg space-y-4">
-        <p>本記事は <strong class="text-dark-900">JSON-LD 構造化データ実装ガイド</strong> をテーマに、原因分析・解決ステップ・実例・FAQ を体系的にまとめた教育記事です。</p>
-        <p>公開準備中です。まずは <a href="/recruit/" class="text-teal-700 underline hover:text-teal-500">制作実績キャンペーン</a> または <a href="/contact/" class="text-teal-700 underline hover:text-teal-500">お問い合わせフォーム</a> から、貴社の WEB サイトの現状についてご相談ください。</p>
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. 構造化データとは — 機械に「事実」を渡す仕組み</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. なぜ JSON-LD なのか — 3 つの記法と Google の推奨</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. JSON-LD の書き方 — @context・@type・@id と入れ子</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 【Top 6】中小企業サイトに必要な 6 つの Schema 型</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. 構造化データは「魔法」ではない — 2024 年の検証</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 実装後の検証 — 3 つのツールと典型的な失敗</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="左は人間向けの HTML で、見出しや段落が文章として並ぶ。右は機械向けの JSON-LD で、事業者名・所在地・サービス対象地域が、それぞれ意味のラベル付きで構造化されている。">
+          <rect width="680" height="240" fill="#FFFFFF"/>
+          <text x="20" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">人間が読む HTML（文脈で理解する）</text>
+          <rect x="20" y="50" width="290" height="14" rx="3" fill="#2a6a8a"/>
+          <rect x="20" y="74" width="270" height="10" rx="2" fill="#c9d6dc"/>
+          <rect x="20" y="92" width="285" height="10" rx="2" fill="#c9d6dc"/>
+          <rect x="20" y="110" width="250" height="10" rx="2" fill="#c9d6dc"/>
+          <text x="20" y="150" font-family="Inter, sans-serif" font-size="12" fill="#666666">「沼津の WEB 制作」が所在地なのか</text>
+          <text x="20" y="168" font-family="Inter, sans-serif" font-size="12" fill="#666666">対象地域なのか、機械には曖昧</text>
+          <line x1="350" y1="24" x2="350" y2="216" stroke="#e0e6eb" stroke-width="2"/>
+          <text x="380" y="34" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#1B4965">機械が読む JSON-LD（事実で渡す）</text>
+          <rect x="380" y="50" width="280" height="120" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+          <text x="396" y="74" font-family="Inter, sans-serif" font-size="11" fill="#8B6914">"@type":</text>
+          <text x="470" y="74" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">"LocalBusiness"</text>
+          <text x="396" y="98" font-family="Inter, sans-serif" font-size="11" fill="#8B6914">"name":</text>
+          <text x="470" y="98" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">"T.C.HARTON"</text>
+          <text x="396" y="122" font-family="Inter, sans-serif" font-size="11" fill="#8B6914">"address":</text>
+          <text x="470" y="122" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">"静岡県沼津市"</text>
+          <text x="396" y="146" font-family="Inter, sans-serif" font-size="11" fill="#8B6914">"areaServed":</text>
+          <text x="490" y="146" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1B4965">"日本全国"</text>
+          <text x="380" y="194" font-family="Inter, sans-serif" font-size="12" fill="#666666">どれが何かを、ラベル付きで明示する</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：HTML は人間が文脈で読む。JSON-LD は機械に「これは所在地」「これは対象地域」と事実を明示する。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="構造化データとは" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. 構造化データとは — 機械に「事実」を渡す仕組み</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>構造化データとは、ページの内容を機械が理解できる決まった形式で記述したものです。Google は公式ドキュメントで「ページの内容を理解し、ウェブと世界全般の情報を集めるために構造化データを使う」と説明しています。</p>
+          <p>人間は「沼津市の WEB 制作」という見出しを文脈で理解できます。しかし機械は、それが<strong class="text-dark-900">事業者の所在地</strong>なのか<strong class="text-dark-900">サービスの対象地域</strong>なのかを、文章だけからは判別しにくい。構造化データは、その曖昧さをなくす仕組みです。</p>
+          <p>AI 検索の時代にこれが効く理由は明快です。AI は回答の根拠を探すとき、内容を正確に・速く理解できるページを選びやすい。構造化データは、その理解の精度を上げる土台になります。</p>
+        </div>
       </section>
 
-      <section aria-label="CTA" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
-        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Recruitment</p>
-        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">10 業種 × 各 1 社限定 / 無料 WEB 構築</h2>
-        <p class="mt-3 text-dark-700 text-sm">全国の中小企業様向け制作実績キャンペーン。応募ガイド PDF + 5 点セットご提出で応募成立。</p>
-        <a href="/recruit/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
-          <span>キャンペーン詳細</span>
+      <section id="section-2" aria-label="なぜ JSON-LD なのか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. なぜ JSON-LD なのか — 3 つの記法と Google の推奨</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>構造化データの記法は 3 つあります。<strong class="text-dark-900">Microdata</strong>、<strong class="text-dark-900">RDFa</strong>、そして <strong class="text-dark-900">JSON-LD</strong>。Google はこの 3 つすべてを受け付けますが、その中で JSON-LD を推奨しています。</p>
+          <p>Google の公式ドキュメントは「サイトの構成が許すなら JSON-LD を推奨する。サイト運営者が大規模に実装・保守する上で最も簡単な方法だから」と明言しています。</p>
+          <p>理由は構造にあります。Microdata と RDFa は HTML タグの中に属性として埋め込みます。JSON-LD は <code class="text-sm bg-dark-100 px-2 py-1 rounded">&lt;script type="application/ld+json"&gt;</code> という独立したブロックに書く。本文と混ざらないため、入れ子の深いデータも表現しやすく、保守も楽になります。配置は <code class="text-sm bg-dark-100 px-2 py-1 rounded">&lt;head&gt;</code> でも <code class="text-sm bg-dark-100 px-2 py-1 rounded">&lt;body&gt;</code> でも構いません。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Microdata と RDFa は HTML タグの中に属性として埋め込まれ本文と混ざる。JSON-LD は独立した script ブロックに分離され、本文と混ざらない。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="34" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9db8c4">Microdata ／ RDFa — HTML に混在</text>
+            <rect x="20" y="48" width="300" height="140" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="36" y="64" width="260" height="10" rx="2" fill="#c9d6dc"/>
+            <rect x="36" y="82" width="180" height="10" rx="2" fill="#D4AF37"/>
+            <rect x="36" y="100" width="240" height="10" rx="2" fill="#c9d6dc"/>
+            <rect x="36" y="118" width="160" height="10" rx="2" fill="#D4AF37"/>
+            <rect x="36" y="136" width="250" height="10" rx="2" fill="#c9d6dc"/>
+            <rect x="36" y="154" width="200" height="10" rx="2" fill="#D4AF37"/>
+            <text x="36" y="180" font-family="Inter, sans-serif" font-size="11" fill="#666666">データ（金色）が本文に絡む</text>
+            <text x="360" y="34" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">JSON-LD — 独立ブロックに分離</text>
+            <rect x="360" y="48" width="300" height="62" rx="8" fill="#f7f9fa" stroke="#c9d6dc" stroke-width="1.5"/>
+            <rect x="376" y="64" width="260" height="10" rx="2" fill="#c9d6dc"/>
+            <rect x="376" y="82" width="240" height="10" rx="2" fill="#c9d6dc"/>
+            <rect x="360" y="120" width="300" height="68" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <rect x="376" y="136" width="200" height="10" rx="2" fill="#1B4965"/>
+            <rect x="376" y="154" width="230" height="10" rx="2" fill="#1B4965"/>
+            <rect x="376" y="172" width="170" height="10" rx="2" fill="#1B4965"/>
+            <text x="360" y="206" font-family="Inter, sans-serif" font-size="11" fill="#666666">本文（灰）とデータ（青）が分かれる</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 2：JSON-LD は構造化データを本文から切り離す。だから入れ子が深くても書きやすく、保守しやすい。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-3" aria-label="JSON-LD の書き方" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. JSON-LD の書き方 — @context・@type・@id と入れ子</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>JSON-LD の骨格は 3 つのキーで決まります。<code class="text-sm bg-dark-100 px-2 py-1 rounded">@context</code> は語彙の出典で、ほぼ常に <code class="text-sm bg-dark-100 px-2 py-1 rounded">https://schema.org</code>。<code class="text-sm bg-dark-100 px-2 py-1 rounded">@type</code> はそのデータが何か（<code class="text-sm bg-dark-100 px-2 py-1 rounded">Article</code>、<code class="text-sm bg-dark-100 px-2 py-1 rounded">LocalBusiness</code> など）。<code class="text-sm bg-dark-100 px-2 py-1 rounded">@id</code> は、そのエンティティに付ける URL 形式の一意な名前です。</p>
+          <p>実際のサイトでは複数の型が登場します。記事ページなら <code class="text-sm bg-dark-100 px-2 py-1 rounded">Article</code>、運営者なら <code class="text-sm bg-dark-100 px-2 py-1 rounded">Organization</code>、パンくずなら <code class="text-sm bg-dark-100 px-2 py-1 rounded">BreadcrumbList</code>。これらは別々の <code class="text-sm bg-dark-100 px-2 py-1 rounded">&lt;script&gt;</code> ブロックに分けて書けます。</p>
+          <p>重要なのが <code class="text-sm bg-dark-100 px-2 py-1 rounded">@id</code> による参照です。記事の <code class="text-sm bg-dark-100 px-2 py-1 rounded">publisher</code> に運営者情報をまるごと書く代わりに、<code class="text-sm bg-dark-100 px-2 py-1 rounded">{"@id":"...#organization"}</code> と参照だけ書けば、同じ情報を一箇所で管理できます。AI と検索エンジンは、その <code class="text-sm bg-dark-100 px-2 py-1 rounded">@id</code> をたどって「同じ事業者だ」と認識します。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 240" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="Article ブロックの publisher プロパティが、@id 参照を通じて、別に定義された Organization ブロックを指し示す入れ子参照の構造図。">
+            <rect width="680" height="240" fill="#FFFFFF"/>
+            <rect x="30" y="30" width="280" height="150" rx="8" fill="#eff6fb" stroke="#1B4965" stroke-width="1.5"/>
+            <text x="46" y="54" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">@type: "Article"</text>
+            <text x="46" y="82" font-family="Inter, sans-serif" font-size="11" fill="#666666">headline: "JSON-LD 実装ガイド"</text>
+            <text x="46" y="104" font-family="Inter, sans-serif" font-size="11" fill="#666666">datePublished: "2026-05-12"</text>
+            <text x="46" y="126" font-family="Inter, sans-serif" font-size="11" fill="#666666">author: { Person }</text>
+            <rect x="46" y="138" width="248" height="30" rx="6" fill="#fff8e6" stroke="#D4AF37" stroke-width="1.5"/>
+            <text x="58" y="158" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#8B6914">publisher: { @id 参照 } ─────▶</text>
+            <line x1="310" y1="153" x2="370" y2="153" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="370,153 360,148 360,158" fill="#D4AF37"/>
+            <rect x="372" y="100" width="278" height="110" rx="8" fill="#1B4965"/>
+            <text x="388" y="124" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">@id: "...#organization"</text>
+            <text x="388" y="150" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">@type: "Organization"</text>
+            <text x="388" y="172" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">name: "T.C.HARTON"</text>
+            <text x="388" y="194" font-family="Inter, sans-serif" font-size="11" fill="#c9d6dc">一度だけ定義 → どこからでも参照</text>
+            <text x="372" y="50" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#1B4965">運営者情報は 1 箇所に集約</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 3：@id 参照を使えば、運営者情報を 1 箇所で定義し、全ページの記事から参照できる。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-4" aria-label="必要な 6 つの Schema 型" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 【Top 6】中小企業サイトに必要な 6 つの Schema 型</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">Schema.org には数百の型がありますが、中小企業の WEB サイトで実際に使うのは次の 6 つに絞れます。米国 SEO 業界が共通して優先度に挙げる型です。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">1</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">Organization / LocalBusiness</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">事業者そのものを表す。社名・所在地・連絡先。地域で商売をするなら、より具体的な <code class="text-sm bg-dark-100 px-2 py-1 rounded">LocalBusiness</code> を使います。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">2</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">ProfessionalService</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">士業・制作業などの専門サービス業。<code class="text-sm bg-dark-100 px-2 py-1 rounded">LocalBusiness</code> の下位型で、業種を機械に正しく伝えます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">3</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">Article / BlogPosting</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">記事ページに付ける。見出し・著者・公開日・更新日。記事ページやお知らせには必須です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">4</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">BreadcrumbList</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">パンくずリスト。サイト内でのそのページの位置を機械に伝える。すべての下層ページに付けます。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">5</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">FAQPage</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">よくある質問。質問と回答のペアで構成する。AI が回答として抜き出しやすい構造です。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center" aria-hidden="true">6</div>
+            <h3 class="mt-3 font-display font-bold text-dark-900">Person</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">代表者・記事の著者。「誰が書いたか」を機械可読にし、E-E-A-T の信頼シグナルを補強します。</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">この記事自体が実演です。</strong>このページには <code class="text-sm bg-dark-100 px-2 py-1 rounded">Article</code>・<code class="text-sm bg-dark-100 px-2 py-1 rounded">FAQPage</code>・<code class="text-sm bg-dark-100 px-2 py-1 rounded">BreadcrumbList</code> の 3 つの JSON-LD が実装されています。T.C.HARTON はこの 6 型を全ページで実践し、<a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で実装内容を公開しています。</p>
+        </div>
+      </section>
+
+      <section id="section-5" aria-label="構造化データは魔法ではない" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. 構造化データは「魔法」ではない — 2024 年の検証</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>ここで誇張を 1 つ正しておきます。「構造化データを入れれば AI 引用が 3 倍になる」といった主張には、裏付けがありません。</p>
+          <p>2024 年 12 月の Search/Atlas の調査は、<strong class="text-dark-900">構造化データの網羅度と AI 引用率の間に相関は見られなかった</strong>と報告しています。スキーマを大量に入れたサイトが、最小限のサイトを一貫して上回ったわけではないのです。</p>
+          <p>一方で、効果がないわけでもありません。Google は 2025 年 4 月に「AI Overviews で構造化データは優位に働く」と認め、Microsoft も Bing Copilot が内容理解にスキーマを使うと述べています。正しい理解はこうです — 構造化データは引用を保証する魔法ではなく、<strong class="text-dark-900">機械が内容を正確に理解するための土台（インフラ）</strong>。土台がなければ、その上には何も乗りません。</p>
+        </div>
+        <figure class="mt-6">
+          <svg viewBox="0 0 680 220" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="左のグラフは、スキーマ網羅度を増やしても AI 引用率は横ばいで相関がないことを示す。右は、構造化データが機械の内容理解の精度という土台を支えていることを示す。">
+            <rect width="680" height="220" fill="#FFFFFF"/>
+            <text x="20" y="30" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#9db8c4">スキーマ網羅度 → AI 引用率（相関なし）</text>
+            <line x1="40" y1="170" x2="320" y2="170" stroke="#c9d6dc" stroke-width="1.5"/>
+            <line x1="40" y1="50" x2="40" y2="170" stroke="#c9d6dc" stroke-width="1.5"/>
+            <circle cx="80" cy="130" r="5" fill="#9db8c4"/>
+            <circle cx="130" cy="118" r="5" fill="#9db8c4"/>
+            <circle cx="180" cy="135" r="5" fill="#9db8c4"/>
+            <circle cx="230" cy="122" r="5" fill="#9db8c4"/>
+            <circle cx="280" cy="128" r="5" fill="#9db8c4"/>
+            <line x1="60" y1="128" x2="300" y2="126" stroke="#9db8c4" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="60" y="195" font-family="Inter, sans-serif" font-size="11" fill="#666666">Search/Atlas 2024 年 12 月</text>
+            <line x1="350" y1="30" x2="350" y2="200" stroke="#e0e6eb" stroke-width="2"/>
+            <text x="378" y="30" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1B4965">でも「土台」としては効く</text>
+            <polygon points="510,46 470,90 550,90" fill="#D4AF37"/>
+            <text x="510" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">AI 引用</text>
+            <polygon points="470,94 550,94 590,140 430,140" fill="#2a6a8a"/>
+            <text x="510" y="122" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">検索エンジンの評価</text>
+            <polygon points="430,144 590,144 630,180 390,180" fill="#1B4965"/>
+            <text x="510" y="167" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">機械の内容理解（構造化データ）</text>
+            <text x="510" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#666666">土台がなければ上は乗らない</text>
+          </svg>
+          <figcaption class="mt-2 text-xs text-dark-500 text-center">図 4：スキーマの量は引用率を直接押し上げない。だが「機械の内容理解」という土台としては不可欠。</figcaption>
+        </figure>
+      </section>
+
+      <section id="section-6" aria-label="実装後の検証" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 実装後の検証 — 3 つのツールと典型的な失敗</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>書いた JSON-LD は必ず検証します。使うツールは 3 つ。Google の<strong class="text-dark-900">リッチリザルトテスト</strong>、Schema.org の<strong class="text-dark-900">Schema Markup Validator</strong>、そして Google Search Console の<strong class="text-dark-900">「拡張」レポート</strong>です。</p>
+          <p>典型的な失敗も 3 つあります。1 つ目は<strong class="text-dark-900">必須プロパティの欠落</strong>。Google は「リッチリザルト表示の対象になるには、必須プロパティをすべて含める必要がある」と明記しています。</p>
+          <p>2 つ目は、<strong class="text-dark-900">ページに表示されていない情報をマークアップすること</strong>。Google はガイドラインで「ユーザーに見えない情報の構造化データを追加してはいけない」と禁じています。3 つ目は<strong class="text-dark-900">型の取り違え</strong> — 制作業に飲食店の型を使うような誤りです。検証ツールは構文エラーは見つけますが、型が業種に合っているかまでは見ません。そこは人間が確認します。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">JSON-LD はページのどこに書きますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Google は head 要素と body 要素のどちらに書いても受け付けます。JSON-LD は本文と混ざらない独立した script ブロックのため、保守のしやすさから head 内にまとめるのが一般的です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">Microdata から JSON-LD に書き換えるべきですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Google は JSON-LD・Microdata・RDFa の 3 記法すべてを受け付けるため、既存の Microdata が正しく動いているなら急いで書き換える必要はありません。ただし新規実装や大規模改修では、保守の容易さから JSON-LD が推奨されます。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">構造化データを入れれば検索順位は上がりますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">直接の順位上昇は保証されません。構造化データの効果は、リッチリザルト表示の対象になること、そして検索エンジンと AI がページ内容を正確に理解できるようになることです。順位の土台にはなりますが、魔法ではありません。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">FAQPage を入れれば AI に引用されますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">引用は保証されません。2024 年 12 月の調査では構造化データの網羅度と AI 引用率に相関は見られませんでした。ただし質問と回答のペアは AI が抜き出しやすい構造のため、引用の土台としては有効です。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">書いた JSON-LD はどう検証しますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">Google のリッチリザルトテスト、Schema.org の Markup Validator、Google Search Console の拡張レポートの 3 つで検証します。構文エラーはツールが検出しますが、型の取り違えは人間の確認が必要です。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/llmo-explained/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">LLMO とは — AI 検索に引用される文章の書き方</a></li>
+          <li><a href="/insights/wikidata-for-ai/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Wikidata Q コードで AI に正しく認識される</a></li>
+          <li><a href="/insights/eat-improvement/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">E-E-A-T 強化ガイド — AI 時代の信頼シグナル</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>Google Search Central, Intro to How Structured Data Markup Works — <a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">developers.google.com/search/docs/appearance/structured-data/intro-structured-data</a></li>
+          <li>Google Search Central, Structured Data Markup that Google Search Supports — <a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">developers.google.com/search/docs/appearance/structured-data</a></li>
+          <li>Schema.org — <a href="https://schema.org/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">schema.org</a></li>
+          <li>Search Engine Land, Schema markup and AI search: Sorting hype from reality — <a href="https://searchengineland.com/schema-markup-ai-search-no-hype-472339" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">searchengineland.com/schema-markup-ai-search-no-hype-472339</a></li>
+          <li>BrightEdge, Structured Data in the AI Search Era — <a href="https://www.brightedge.com/blog/structured-data-ai-search-era" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">brightedge.com/blog/structured-data-ai-search-era</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトの構造化データは正しく書けていますか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの JSON-LD を機械検証し、必須プロパティの欠落や型の取り違えをお見せします。発注前に「成功の基準」を一緒に決めます。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </section>
