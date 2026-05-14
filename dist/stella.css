@@ -3488,3 +3488,38 @@ body > main > article > section[aria-label*="セグメント別"] > ul > li:hove
     display: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   HARTON 統一オーバーライド v1.37 (white base / 全フォント sans 統一)
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --bg-page    : #FFFFFF;
+  --bg-soft    : #F8FAFC;
+  --bg-card    : #FFFFFF;
+  --fg-body    : #374151;
+  --fg-muted   : #6B7280;
+  --fg-strong  : #1F2937;
+  --fg-heading : #1F2937;
+  --accent     : #C9A961;
+  --accent-strong: #B8923B;
+  --border     : rgba(31, 41, 55, 0.12);
+  --border-soft: rgba(31, 41, 55, 0.06);
+  --font-sans   : "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-logo   : "Inter", "Noto Sans JP", sans-serif;
+  --font-mono   : ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+}
+body {
+  background: #FFFFFF !important;
+  color: #374151 !important;
+  font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+body > main > article > section[aria-label*="冒頭エビデンス"] > p:first-of-type::first-letter {
+  font-family: "Inter", "Noto Sans JP", sans-serif !important;
+  color: #1F2937 !important;
+}
+strong { color: #1F2937 !important; font-weight: 700 !important; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", "Noto Sans JP", sans-serif !important;
+  color: #1F2937 !important;
+}
