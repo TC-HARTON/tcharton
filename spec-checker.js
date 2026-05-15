@@ -67,6 +67,15 @@ const STATIC_TARGETS = [
   'problems/ai-search-invisible/index.html',
   'problems/security-risk/index.html',
   'problems/no-mobile/index.html',
+  // Areas LP × 7 + Hub（地域別 LP セット）
+  'areas/index.html',
+  'areas/numazu/index.html',
+  'areas/mishima/index.html',
+  'areas/fuji/index.html',
+  'areas/fujinomiya/index.html',
+  'areas/susono/index.html',
+  'areas/nagaizumi/index.html',
+  'areas/shimizu/index.html',
   'insights/index.html',
   'insights/core-web-vitals/index.html',
   'insights/json-ld-implementation/index.html',
@@ -275,6 +284,14 @@ const PAGE_TYPE = {
   'problems/ai-search-invisible/index.html': 'minimal',  // Phase α stub / ① 起草中
   'problems/security-risk/index.html': 'minimal',  // Phase α stub / ① 起草中
   'problems/no-mobile/index.html': 'minimal',  // Phase α stub / ① 起草中
+  'areas/index.html': 'minimal',  // Areas hub
+  'areas/numazu/index.html': 'minimal',  // Areas city LP
+  'areas/mishima/index.html': 'minimal',
+  'areas/fuji/index.html': 'minimal',
+  'areas/fujinomiya/index.html': 'minimal',
+  'areas/susono/index.html': 'minimal',
+  'areas/nagaizumi/index.html': 'minimal',
+  'areas/shimizu/index.html': 'minimal',
   'insights/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/core-web-vitals/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/json-ld-implementation/index.html': 'minimal',  // Phase α stub / ① 起草中
