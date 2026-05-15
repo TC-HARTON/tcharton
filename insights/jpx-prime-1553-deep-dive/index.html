@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605141500"></script>
+  <title>東証プライム上場 1,553 社の WEB 品質を機械検証して見えた真実｜T.C.HARTON</title>
+  <meta name="description" content="JPX 公式の東証プライム市場上場企業 1,553 社（内国・外国株 / 東証 33 業種）を 4 軸機械検証した結果は、中央値 17 点・★認定取得 0 社・致命的 NG 9.6%。日本最大規模の優良企業群でも WEB 技術品質には大きな改善余地があることを、業種別格差・NG 内訳と共に一次出典付きで解説します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="東証プライム上場 1,553 社の WEB 品質を機械検証して見えた真実｜T.C.HARTON">
+  <meta property="og:description" content="JPX 公式の東証プライム市場上場企業 1,553 社（内国・外国株 / 東証 33 業種）を 4 軸機械検証した結果は、中央値 17 点・★認定取得 0 社・致命的 NG 9.6%。日本最大規模の優良企業群でも WEB 技術品質には大きな改善余地があることを、業種別格差・NG 内訳と共に一次出典付きで解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/insights/jpx-prime-1553-deep-dive/">
+  <meta property="og:image" content="https://tcharton.com/insights/jpx-prime-1553-deep-dive/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="東証プライム上場 1,553 社の WEB 品質を機械検証して見えた真実 — T.C.HARTON Insights">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="東証プライム上場 1,553 社の WEB 品質を機械検証して見えた真実｜T.C.HARTON">
+  <meta name="twitter:description" content="JPX 公式の東証プライム上場 1,553 社を 4 軸機械検証した結果、中央値 17 点・★認定取得 0 社・致命的 NG 9.6%。業種別格差・NG 内訳を一次出典付きで解説。">
+  <meta name="twitter:image" content="https://tcharton.com/insights/jpx-prime-1553-deep-dive/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/insights/jpx-prime-1553-deep-dive/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"Insights","item":"https://tcharton.com/insights/"},
+    {"@type":"ListItem","position":3,"name":"東証プライム上場 1,553 社の WEB 品質を機械検証して見えた真実","item":"https://tcharton.com/insights/jpx-prime-1553-deep-dive/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/insights/jpx-prime-1553-deep-dive/#article","headline":"東証プライム上場 1,553 社の WEB 品質を機械検証して見えた真実","description":"JPX 公式の東証プライム市場上場企業 1,553 社（内国・外国株 / 東証 33 業種）を 4 軸機械検証した結果は、中央値 17 点・★認定取得 0 社・致命的 NG 9.6%。業種別格差・NG 内訳を一次出典付きで解説。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified": "2026-05-15","inLanguage":"ja","url":"https://tcharton.com/insights/jpx-prime-1553-deep-dive/","mainEntityOfPage":"https://tcharton.com/insights/jpx-prime-1553-deep-dive/","image":"https://tcharton.com/insights/jpx-prime-1553-deep-dive/ogp.png","isBasedOn":"https://tcharton.com/press/2026-05-jpx-prime-1553/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"なぜ ★ 認定取得が 1 社もないのですか？","acceptedAnswer":{"@type":"Answer","text":"HARTON Stella の ★ 認定基準は 90 点超を要求し、構造化データ・llms.txt・Wikidata 連動などの AI 検索適合まで踏み込みます。Phase E スキャン時点（2026-05-11）で東証プライム上場企業の最高得点は 52 点で、80 点台到達企業もいませんでした。「★ ゼロ」は基準が厳しすぎるのではなく、現状の WEB 業界が AI 時代の品質要件に追いついていないことを示しています。"}},
+    {"@type":"Question","name":"中央値 17 点はどう解釈すれば良いですか？","acceptedAnswer":{"@type":"Answer","text":"100 点満点における 17 点は、HTTPS / 基本 SEO / モバイル対応など最低限の項目だけ満たし、構造化データ・アクセシビリティ・パフォーマンス最適化はほぼ未着手という状態を意味します。日本のトップ 1,500 社でこの水準であることは、それ以外の中小企業には更に大きな改善余地があることを示唆します。"}},
+    {"@type":"Question","name":"致命的 NG とは具体的に何ですか？","acceptedAnswer":{"@type":"Answer","text":"「公開してはいけない情報の漏洩」または「外部から悪用可能な脆弱性」のうち、機械検証で確実に検出できる 4 種類です。①HTTPS 非対応（13 社）②SSL 証明書問題（5 社）③WordPress 管理画面 URL の露出（129 社、NG の 87%）④CMS バージョン情報の露出（14 社）。WP 管理面露出は管理 URL が推測可能になっており、辞書攻撃の標的になります。"}},
+    {"@type":"Question","name":"業種別の最高と最低は何ですか？","acceptedAnswer":{"@type":"Answer","text":"中央値ベースで最高は鉱業（25 点 / n=5）、海運業（22 点）、鉄鋼・陸運業・その他金融業（21 点）。最低は空運業（0 点 / n=2 の小サンプル）、ゴム製品・パルプ紙・ガラス土石・非鉄金属（10-11 点）。NG 比率では小売業 18.1%・サービス業 15.9%・不動産業 19.1% が高く、BtoC 接点が多い業種ほど露呈リスクが顕在化しています。"}},
+    {"@type":"Question","name":"このデータは無料で使えますか？","acceptedAnswer":{"@type":"Answer","text":"はい。Stella データセットは Creative Commons Attribution 4.0 International（CC BY 4.0）で公開されており、出典に「T.C.HARTON（tcharton.com）」を明記すれば、商用・非商用を問わず再利用・引用・再配布できます。報道・研究・社内分析等にお使いください。"}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605141500" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605141500"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/insights/" class="hover:text-teal-700 py-3 inline-block">Insights</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">東証プライム 1,553 社の WEB 品質 機械検証</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Insight ／ 業界レポート</p>
+        <h1 class="mt-3 font-display text-4xl md:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">東証プライム 1,553 社の WEB 品質を機械検証して見えた真実</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-15">2026 年 5 月 15 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-15">最終更新 2026 年 5 月 15 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>読了目安 10 分</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">この記事の結論</p>
+        <p class="text-dark-800 leading-relaxed">JPX 公式の東証プライム市場上場企業 <strong class="text-dark-900">1,553 社</strong>（内国・外国株 / 東証 33 業種 / スキャン基準日 2026-05-11）を 4 軸機械検証した結果、<strong class="text-dark-900">中央スコア 17 点</strong>（100 点満点）/ 平均 16.6 / 最大 52 / ★認定取得 <strong class="text-dark-900">0 社</strong> / 致命的 NG <strong class="text-dark-900">9.6%（149 社）</strong>。日本最大規模の優良企業群でも WEB 技術品質は AI 時代の要件に追いついておらず、<strong class="text-dark-900">「規模 ≠ WEB 品質」</strong>が機械検証で初めて定量化されました。本記事は業種別格差・NG 内訳・解釈軸を一次出典付きで解説します。</p>
+      </div>
+
+      <div class="mt-8 callout-highlight rounded-r-lg p-5">
+        <p class="text-sm font-bold text-dark-900 mb-3">こんな前提を持っていませんか？</p>
+        <ul class="space-y-2 text-sm text-dark-700">
+          <li>□ 「上場企業のサイトなら品質は高いはず」と思っている</li>
+          <li>□ 「自社が中小だから WEB 品質が低いのは仕方ない」と諦めている</li>
+          <li>□ WEB 品質を業界中央値と比較した経験がない</li>
+          <li>□ 「致命的 NG」が何を指すか具体的に説明できない</li>
+          <li>□ 自社業種の WEB 品質ベンチマークを知らない</li>
+        </ul>
+        <p class="mt-3 text-sm text-dark-700">本記事は上記すべてに具体的な数値で答えます。</p>
+      </div>
+
+      <nav aria-label="目次" class="mt-8 bg-dark-50 border border-dark-200 rounded-xl p-5">
+        <p class="font-display font-bold text-dark-900 text-sm">目次</p>
+        <ol class="mt-3 space-y-2 text-sm text-teal-700">
+          <li><a href="#section-1" class="hover:underline py-1 inline-block">1. データの出所と検証方法（透明性の担保）</a></li>
+          <li><a href="#section-2" class="hover:underline py-1 inline-block">2. 全体スコアが語る「規模 ≠ 品質」</a></li>
+          <li><a href="#section-3" class="hover:underline py-1 inline-block">3. 致命的 NG 9.6% の内訳分析</a></li>
+          <li><a href="#section-4" class="hover:underline py-1 inline-block">4. 業種別 2.5 倍の格差</a></li>
+          <li><a href="#section-5" class="hover:underline py-1 inline-block">5. ★ ゼロが意味する「業界の天井」</a></li>
+          <li><a href="#section-6" class="hover:underline py-1 inline-block">6. 中小企業がこのデータをどう使うか</a></li>
+          <li><a href="#faq" class="hover:underline py-1 inline-block">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <figure class="mt-10">
+        <svg viewBox="0 0 680 280" class="w-full rounded-xl border border-dark-200 bg-white" role="img" aria-label="東証プライム上場 1,553 社のスコア分布。中央値 17 点・平均 16.6 点・最大 52 点・最小 0 点。100 点満点中、★認定基準（90 点以上）に到達した企業は 0 社という事実を可視化したヒストグラム風の図。">
+          <rect width="680" height="280" fill="#FFFFFF"/>
+          <text x="20" y="32" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1B4965">スコア分布（100 点満点 / n=1,553）</text>
+
+          <line x1="60" y1="220" x2="660" y2="220" stroke="#9db8c4" stroke-width="1.5"/>
+          <line x1="60" y1="60" x2="60" y2="220" stroke="#9db8c4" stroke-width="1.5"/>
+
+          <rect x="65" y="75" width="60" height="145" fill="#1B4965" opacity="0.7"/>
+          <rect x="125" y="65" width="60" height="155" fill="#1B4965"/>
+          <rect x="185" y="120" width="60" height="100" fill="#2a6a8a"/>
+          <rect x="245" y="155" width="60" height="65" fill="#9db8c4"/>
+          <rect x="305" y="180" width="60" height="40" fill="#9db8c4"/>
+          <rect x="365" y="195" width="60" height="25" fill="#c9d6dc"/>
+          <rect x="425" y="205" width="60" height="15" fill="#c9d6dc"/>
+          <rect x="485" y="212" width="60" height="8" fill="#c9d6dc"/>
+          <rect x="545" y="216" width="60" height="4" fill="#e0e6eb"/>
+          <rect x="605" y="218" width="55" height="2" fill="#e0e6eb"/>
+
+          <text x="95" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">0-10</text>
+          <text x="155" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">11-20</text>
+          <text x="215" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">21-30</text>
+          <text x="275" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">31-40</text>
+          <text x="335" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">41-50</text>
+          <text x="395" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">51-60</text>
+          <text x="455" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">61-70</text>
+          <text x="515" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">71-80</text>
+          <text x="575" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">81-90</text>
+          <text x="635" y="240" font-family="Inter, sans-serif" font-size="10" fill="#666666" text-anchor="middle">91-100</text>
+
+          <line x1="160" y1="55" x2="160" y2="225" stroke="#D4AF37" stroke-width="2" stroke-dasharray="4,3"/>
+          <text x="170" y="50" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#D4AF37">中央値 17</text>
+
+          <line x1="635" y1="55" x2="635" y2="225" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+          <text x="555" y="50" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#ef4444">★ 90 点以上 = 0 社</text>
+
+          <text x="20" y="270" font-family="Inter, sans-serif" font-size="10" fill="#666666">出典：scanner Phase E スキャン (2026-05-11) / JPX 公式 名簿 / 東証 33 業種</text>
+        </svg>
+        <figcaption class="mt-2 text-xs text-dark-500 text-center">図 1：東証プライム上場 1,553 社のスコア分布。最大 52 点で頭打ちし、★認定基準（90 点以上）到達はゼロ。</figcaption>
+      </figure>
+
+      <section id="section-1" aria-label="データの出所と検証方法" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">1. データの出所と検証方法（透明性の担保）</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>本記事のデータは <a href="https://www.jpx.co.jp/markets/statistics-equities/misc/01.html" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline hover:text-teal-500">JPX（日本取引所グループ）公式の上場会社情報</a> から、東証プライム市場に上場する全 <strong class="text-dark-900">1,553 社</strong>（内国株 + 外国株）を母集団とし、HARTON 独自開発の機械検証エンジン「Stella Scanner」で WEB サイトの公開技術仕様を 4 軸検証した結果です。スキャン基準日は 2026 年 5 月 11 日。業種分類は東証 33 業種に準拠しています。</p>
+          <p>4 軸とは <strong class="text-dark-900">パフォーマンス（Core Web Vitals）/ SEO / アクセシビリティ / セキュリティ</strong>。各軸は機械的に検証可能な公開仕様に基づき配点され、合計 100 点満点で評価します。各企業の個別スコアは公正性担保のため<strong class="text-dark-900">非公開</strong>とし、本記事も業種別の集計値のみを扱います。</p>
+          <p>本データは Creative Commons Attribution 4.0 International（CC BY 4.0）で公開されています。出典に「T.C.HARTON（tcharton.com）」を明記すれば、報道・研究・社内分析等で自由に利用できます。プレスリリース全文は <a href="/press/2026-05-jpx-prime-1553/" class="text-teal-700 underline hover:text-teal-500">こちら</a>。</p>
+        </div>
+      </section>
+
+      <section id="section-2" aria-label="全体スコアが語る規模 ≠ 品質" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">2. 全体スコアが語る「規模 ≠ 品質」</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">東証プライム市場は、日本の上場制度における<strong class="text-dark-900">最上位市場</strong>です。グローバル投資家との対話に耐える流動性・ガバナンス・情報開示水準を満たす企業群であり、つまり<strong class="text-dark-900">「日本のトップ企業 1,553 社」</strong>と言って差し支えありません。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">中央値</p>
+            <p class="mt-2 font-display text-3xl font-bold text-dark-900">17 点</p>
+            <p class="mt-1 text-xs text-dark-500">100 点満点中</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">平均</p>
+            <p class="mt-2 font-display text-3xl font-bold text-dark-900">16.6 点</p>
+            <p class="mt-1 text-xs text-dark-500">標準偏差 10.9</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">最大</p>
+            <p class="mt-2 font-display text-3xl font-bold text-dark-900">52 点</p>
+            <p class="mt-1 text-xs text-dark-500">最高得点でも半分未満</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">★ 認定取得</p>
+            <p class="mt-2 font-display text-3xl font-bold text-dark-900">0 社</p>
+            <p class="mt-1 text-xs text-dark-500">90 点以上は皆無</p>
+          </div>
+        </div>
+        <div class="mt-6 space-y-4 text-dark-700 leading-relaxed">
+          <p>17 点の中身は何かと言えば、HTTPS 化・基本的な SEO（title / description）・モバイル対応など<strong class="text-dark-900">「最低限の項目だけが満たされている」</strong>状態です。逆に言えば、構造化データ・WCAG 2.2 AA 準拠・Core Web Vitals 最適化・Wikidata 連動などは<strong class="text-dark-900">ほぼ未着手</strong>。</p>
+          <p>これは <strong class="text-dark-900">資金力・人材力・ブランド力で劣る中小企業に責任があるわけではない</strong>ことを意味します。日本最大規模の優良企業群でこの水準である以上、「規模が大きければ品質も高い」という直感は、少なくとも WEB 技術品質においては<strong class="text-dark-900">成立しない</strong>のです。</p>
+        </div>
+      </section>
+
+      <section id="section-3" aria-label="致命的 NG 9.6% の内訳分析" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">3. 致命的 NG 9.6% の内訳分析</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">致命的 NG とは「公開してはいけない情報の漏洩」または「外部から悪用可能な脆弱性」のうち、機械検証で確実に検出できる項目です。1,553 社中 <strong class="text-dark-900">149 社（9.6%）</strong>で検出されました。内訳：</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="flex items-baseline gap-2">
+              <p class="font-display text-3xl font-bold text-dark-900">129</p>
+              <p class="text-sm text-dark-500">社（NG の <strong class="text-dark-900">87%</strong>）</p>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-dark-900">WordPress 管理画面の URL 露出</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">/wp-admin/ や /wp-login.php が外部から直接到達可能。辞書攻撃・ブルートフォース攻撃の標的になります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="flex items-baseline gap-2">
+              <p class="font-display text-3xl font-bold text-dark-900">14</p>
+              <p class="text-sm text-dark-500">社</p>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-dark-900">CMS バージョン情報の露出</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">HTML / HTTP ヘッダから CMS（WordPress 等）のバージョンが外部に判別可能。既知脆弱性の攻撃対象になります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="flex items-baseline gap-2">
+              <p class="font-display text-3xl font-bold text-dark-900">13</p>
+              <p class="text-sm text-dark-500">社</p>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-dark-900">HTTPS 非対応</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">通信が暗号化されておらず、Chrome / Edge で「保護されていない通信」警告が出る状態。SEO 評価も大きく下がります。</p>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <div class="flex items-baseline gap-2">
+              <p class="font-display text-3xl font-bold text-dark-900">5</p>
+              <p class="text-sm text-dark-500">社</p>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-dark-900">SSL 証明書問題</h3>
+            <p class="mt-2 text-sm text-dark-600 leading-relaxed">証明書の期限切れ・ドメイン不一致・自己署名等。ブラウザでアクセス警告が出ます。</p>
+          </div>
+        </div>
+        <p class="mt-6 text-dark-700 leading-relaxed"><strong class="text-dark-900">注目すべきは、NG の 87% が WordPress 管理面露出に集中</strong>している事実です。これは「WordPress を使っているから危険」ではなく、「<strong class="text-dark-900">WordPress 標準のままで運用すると管理 URL が予測可能</strong>」という運用上の盲点です。/wp-admin/ を別パスに変更する・IP 制限をかける・Basic 認証を二重化するといった対策で大半は解消できます。詳細は <a href="/insights/wordpress-security-basics/" class="text-teal-700 underline hover:text-teal-500">WordPress セキュリティ基礎</a>記事を参照してください。</p>
+      </section>
+
+      <section id="section-4" aria-label="業種別 2.5 倍の格差" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 業種別 2.5 倍の格差</h2>
+        <p class="mt-5 text-dark-700 leading-relaxed">東証 33 業種別に集計すると、中央値の最高は鉱業（25 点 / n=5）、最低はゴム製品（10 点 / n=10）と <strong class="text-dark-900">2.5 倍の格差</strong>があります（空運業は n=2 のため母集団小すぎで除外）。NG 比率では BtoC 接点が多い業種ほど露呈リスクが顕在化しています。</p>
+
+        <h3 class="mt-8 font-display text-xl font-bold text-dark-900">中央値 上位 5 業種</h3>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-sm border border-dark-200 rounded-xl">
+            <caption class="sr-only">東証プライム上場 1,553 社のうち、中央値スコアが上位 5 業種の集計（n=社数 / 中央値・最大はスコア / 100 点満点）</caption>
+            <thead class="bg-teal-50">
+              <tr><th scope="col" class="text-left px-3 py-2 border-b border-dark-200">業種</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">n</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">中央値</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">最大</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="px-3 py-2 border-b border-dark-100">鉱業</td><td class="text-right px-3 py-2 border-b border-dark-100">5</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">25</td><td class="text-right px-3 py-2 border-b border-dark-100">35</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">海運業</td><td class="text-right px-3 py-2 border-b border-dark-100">5</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">22</td><td class="text-right px-3 py-2 border-b border-dark-100">30</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">鉄鋼</td><td class="text-right px-3 py-2 border-b border-dark-100">20</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">21</td><td class="text-right px-3 py-2 border-b border-dark-100">41</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">陸運業</td><td class="text-right px-3 py-2 border-b border-dark-100">37</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">21</td><td class="text-right px-3 py-2 border-b border-dark-100">37</td></tr>
+              <tr><td class="px-3 py-2">その他金融業</td><td class="text-right px-3 py-2">19</td><td class="text-right px-3 py-2 font-bold">21</td><td class="text-right px-3 py-2">36</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8 font-display text-xl font-bold text-dark-900">中央値 下位 5 業種（小サンプル除く）</h3>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-sm border border-dark-200 rounded-xl">
+            <caption class="sr-only">東証プライム上場 1,553 社のうち、中央値スコアが下位 5 業種の集計（小サンプル業種除く / n=社数 / 中央値・最大はスコア）</caption>
+            <thead class="bg-teal-50">
+              <tr><th scope="col" class="text-left px-3 py-2 border-b border-dark-200">業種</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">n</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">中央値</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">最大</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="px-3 py-2 border-b border-dark-100">ゴム製品</td><td class="text-right px-3 py-2 border-b border-dark-100">10</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">10</td><td class="text-right px-3 py-2 border-b border-dark-100">30</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">パルプ・紙</td><td class="text-right px-3 py-2 border-b border-dark-100">10</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">11</td><td class="text-right px-3 py-2 border-b border-dark-100">39</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">ガラス・土石製品</td><td class="text-right px-3 py-2 border-b border-dark-100">22</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">11</td><td class="text-right px-3 py-2 border-b border-dark-100">41</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">非鉄金属</td><td class="text-right px-3 py-2 border-b border-dark-100">21</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold">11</td><td class="text-right px-3 py-2 border-b border-dark-100">35</td></tr>
+              <tr><td class="px-3 py-2">電気・ガス業</td><td class="text-right px-3 py-2">23</td><td class="text-right px-3 py-2 font-bold">15</td><td class="text-right px-3 py-2">30</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8 font-display text-xl font-bold text-dark-900">致命的 NG 比率 上位 5 業種（n≥20）</h3>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-sm border border-dark-200 rounded-xl">
+            <caption class="sr-only">東証プライム上場 1,553 社のうち、致命的 NG 検出比率が高い業種上位 5（n=20 以上の業種に絞った集計）</caption>
+            <thead class="bg-red-50">
+              <tr><th scope="col" class="text-left px-3 py-2 border-b border-dark-200">業種</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">n</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">NG 社数</th><th scope="col" class="text-right px-3 py-2 border-b border-dark-200">NG 比率</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="px-3 py-2 border-b border-dark-100">不動産業</td><td class="text-right px-3 py-2 border-b border-dark-100">47</td><td class="text-right px-3 py-2 border-b border-dark-100">9</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold text-red-600">19.1%</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">小売業</td><td class="text-right px-3 py-2 border-b border-dark-100">127</td><td class="text-right px-3 py-2 border-b border-dark-100">23</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold text-red-600">18.1%</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">サービス業</td><td class="text-right px-3 py-2 border-b border-dark-100">145</td><td class="text-right px-3 py-2 border-b border-dark-100">23</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold text-red-600">15.9%</td></tr>
+              <tr><td class="px-3 py-2 border-b border-dark-100">情報・通信業</td><td class="text-right px-3 py-2 border-b border-dark-100">211</td><td class="text-right px-3 py-2 border-b border-dark-100">26</td><td class="text-right px-3 py-2 border-b border-dark-100 font-bold text-red-600">12.3%</td></tr>
+              <tr><td class="px-3 py-2">建設業</td><td class="text-right px-3 py-2">70</td><td class="text-right px-3 py-2">7</td><td class="text-right px-3 py-2 font-bold text-red-600">10.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-sm text-dark-600 leading-relaxed">注：表中の数値は scanner Phase E スキャン (2026-05-11) の集計に基づきます。情報・通信業の NG 比率が情報業界の WEB に対する期待を下回る点は注目に値します。</p>
+      </section>
+
+      <section id="section-5" aria-label="★ ゼロが意味する業界の天井" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">5. ★ ゼロが意味する「業界の天井」</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>HARTON Stella の ★ 認定基準は <strong class="text-dark-900">90 点以上</strong>を要求します。これは構造化データ完備・WCAG 2.2 AA 準拠・Core Web Vitals 全 GOOD・厳格 CSP・Wikidata 連動・llms.txt 設置・Schema.org 多型実装などを<strong class="text-dark-900">全て同時に満たす</strong>水準です。AI 検索（ChatGPT / Perplexity / Google AI Overviews）に引用される水準を意識した基準です。</p>
+          <p>東証プライム上場企業 1,553 社中、最高得点は <strong class="text-dark-900">52 点</strong>。80 点台到達企業もゼロ。これは<strong class="text-dark-900">業界全体の天井</strong>を可視化したと解釈できます。理由は 2 つ考えられます。</p>
+          <p><strong class="text-dark-900">理由 1：従来 SEO の延長で WEB を捉えている</strong> — 多くの上場企業は「検索順位向上」を WEB の目的に置いており、AI 引用率や機械可読性は経営指標になっていません。Pew Research の 2025 年 7 月調査では、AI 要約表示時に検索結果クリック率は 8%（非表示時 15%）まで下がっており、従来 SEO だけでは流入を維持できなくなりつつあります。</p>
+          <p><strong class="text-dark-900">理由 2：制作会社の納品基準が古い</strong> — 大手制作会社の標準仕様には WCAG 2.2（W3C 2023-10 勧告）や Core Web Vitals INP（Google 2024-03 公式採用）といった<strong class="text-dark-900">新基準が反映されていない</strong>ことが多いです。「制作してそのまま」運用される間に基準は前進し続けます。</p>
+          <p>つまり <strong class="text-dark-900">★ ゼロは制作・運用業界全体の構造的問題</strong>であり、特定企業の問題ではありません。同時に、これは中小企業にとってのチャンスでもあります。基準を理解し正しく実装すれば、<strong class="text-dark-900">業界トップ層を上回る WEB 品質を中小企業が達成可能</strong>な余白がそこに残されているからです。</p>
+        </div>
+      </section>
+
+      <section id="section-6" aria-label="中小企業がこのデータをどう使うか" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">6. 中小企業がこのデータをどう使うか</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>本データは中小企業に 4 つの実用的な示唆を与えます。</p>
+          <div class="space-y-2 text-dark-700">
+            <p>・<strong class="text-dark-900">ベンチマーク再設定</strong> — 自社サイトを業界中央値（17 点）と比較すれば、相対位置が初めて測れます。「うちはダメ」と諦める前に数値で確認すべき</p>
+            <p>・<strong class="text-dark-900">致命的 NG の自己点検</strong> — 9.6% の上場企業が引っかかっている WP 管理面露出・HTTPS 非対応・CMS バージョン露出は中小企業にも共通する盲点</p>
+            <p>・<strong class="text-dark-900">業種別比較</strong> — 自社業種の中央値・最大値・NG 比率を知ることで、「業界並みで満足」か「業界トップを目指す」かの戦略判断ができます</p>
+            <p>・<strong class="text-dark-900">差別化チャンスの可視化</strong> — 業界トップ層でも 52 点が天井である以上、60-80 点台に到達できれば<strong class="text-dark-900">業界 1 位の WEB 品質</strong>を取りに行けます</p>
+          </div>
+          <p>中央 17 点を 90 点超へ持ち上げる具体的な手順は <a href="/insights/from-17-to-90-points/" class="text-teal-700 underline hover:text-teal-500">中央 17 点を 90 点超へ — 改善 10 ステップ</a>記事で展開しています。</p>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">tcharton.com 自体が実証です。</strong>中小事業者の独立第三者として、本サイトは Stella ★★★（90 点超）を継続維持しています。実装の根拠は <a href="/methodology/" class="text-teal-700 underline hover:text-teal-500">方法論ページ</a>で全公開、本サイトの全コードは <a href="https://github.com/TC-HARTON/tcharton" rel="noopener noreferrer" target="_blank" class="text-teal-700 underline hover:text-teal-500">GitHub</a> で参照可能です。</p>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">よくある質問</h2>
+        <dl class="mt-6 space-y-4">
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">なぜ ★ 認定取得が 1 社もないのですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">HARTON Stella の ★ 認定基準は 90 点超を要求し、構造化データ・llms.txt・Wikidata 連動などの AI 検索適合まで踏み込みます。Phase E スキャン時点で東証プライム上場企業の最高得点は 52 点で、80 点台到達企業もいませんでした。「★ ゼロ」は基準が厳しすぎるのではなく、現状の WEB 業界が AI 時代の品質要件に追いついていないことを示しています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">中央値 17 点はどう解釈すれば良いですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">100 点満点における 17 点は、HTTPS / 基本 SEO / モバイル対応など最低限の項目だけ満たし、構造化データ・アクセシビリティ・パフォーマンス最適化はほぼ未着手という状態を意味します。日本のトップ 1,500 社でこの水準であることは、それ以外の中小企業には更に大きな改善余地があることを示唆します。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">致命的 NG とは具体的に何ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">「公開してはいけない情報の漏洩」または「外部から悪用可能な脆弱性」のうち、機械検証で確実に検出できる 4 種類です。①HTTPS 非対応（13 社）②SSL 証明書問題（5 社）③WordPress 管理画面 URL の露出（129 社、NG の 87%）④CMS バージョン情報の露出（14 社）。WP 管理面露出は管理 URL が推測可能になっており、辞書攻撃の標的になります。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">業種別の最高と最低は何ですか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">中央値ベースで最高は鉱業（25 点 / n=5）、海運業（22 点）、鉄鋼・陸運業・その他金融業（21 点）。最低は空運業（0 点 / n=2 の小サンプル）、ゴム製品・パルプ紙・ガラス土石・非鉄金属（10-11 点）。NG 比率では小売業 18.1%・サービス業 15.9%・不動産業 19.1% が高く、BtoC 接点が多い業種ほど露呈リスクが顕在化しています。</dd>
+          </div>
+          <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+            <dt class="font-display font-bold text-dark-900">このデータは無料で使えますか？</dt>
+            <dd class="mt-2 text-sm text-dark-700 leading-relaxed">はい。Stella データセットは Creative Commons Attribution 4.0 International（CC BY 4.0）で公開されており、出典に「T.C.HARTON（tcharton.com）」を明記すれば、商用・非商用を問わず再利用・引用・再配布できます。報道・研究・社内分析等にお使いください。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-label="関連 Insights 記事" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連 Insights 記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/standard-market-prediction/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">東証スタンダード市場 1,600 社の WEB 品質予測 — Phase F の前に</a></li>
+          <li><a href="/insights/from-17-to-90-points/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">中央 17 点を 90 点超へ — 業界トップを取りに行く改善 10 ステップ</a></li>
+          <li><a href="/insights/wordpress-security-basics/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">WordPress セキュリティ基礎 — 管理画面露出を塞ぐ</a></li>
+          <li><a href="/insights/security-5-principles/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">中小企業 WEB セキュリティ 5 原則</a></li>
+          <li><a href="/insights/llmo-explained/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">LLMO とは — AI 検索に引用される文章設計</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>JPX（日本取引所グループ）, 上場会社情報（プライム市場）— <a href="https://www.jpx.co.jp/markets/statistics-equities/misc/01.html" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">jpx.co.jp/markets/statistics-equities/misc/01.html</a></li>
+          <li>HARTON, scanner Phase E プライム集計 (2026-05-11) — 機械可読版は <a href="/stella/" class="text-teal-700 underline">Stella サブセクション</a> で CC BY 4.0 配布</li>
+          <li>HARTON, プレスリリース 2026-05-15 — <a href="/press/2026-05-jpx-prime-1553/" class="text-teal-700 underline">/press/2026-05-jpx-prime-1553/</a></li>
+          <li>Pew Research Center, AI Search Click Behavior (2025-07) — <a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">pewresearch.org</a></li>
+          <li>W3C, WCAG 2.2 (Recommendation 2023-10) — <a href="https://www.w3.org/TR/WCAG22/" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">w3.org/TR/WCAG22</a></li>
+          <li>Google Web.dev, Core Web Vitals — <a href="https://web.dev/articles/vitals" rel="nofollow noopener noreferrer" target="_blank" class="text-teal-700 underline">web.dev/articles/vitals</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">あなたのサイトは何点ですか？</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">無料診断では、現状サイトの 4 軸機械検証（パフォーマンス / SEO / アクセシビリティ / セキュリティ）スコアと、東証プライム業界中央値との比較をお見せします。診断だけで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>

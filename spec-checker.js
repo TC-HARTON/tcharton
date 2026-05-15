@@ -119,6 +119,10 @@ const STATIC_TARGETS = [
   'insights/how-to-choose-web-company/index.html',
   'insights/subsidy-for-website/index.html',
   'insights/no-results-after-launch/index.html',
+  // Insights 業界レポート / 方法論（Stella scanner Phase E 連動 / 2026-05-15 公開）
+  'insights/jpx-prime-1553-deep-dive/index.html',
+  'insights/standard-market-prediction/index.html',
+  'insights/from-17-to-90-points/index.html',
 
 
     // Stella サブセクション (v1.37 / certification 完全再現 / 131 pages)
@@ -344,6 +348,9 @@ const PAGE_TYPE = {
   'insights/how-to-choose-web-company/index.html': 'minimal',  // Insights 記事（本実装済み）
   'insights/subsidy-for-website/index.html': 'minimal',  // Insights 記事（本実装済み）
   'insights/no-results-after-launch/index.html': 'minimal',  // Insights 記事（本実装済み）
+  'insights/jpx-prime-1553-deep-dive/index.html': 'minimal',  // Insights 業界レポート (Phase E 連動)
+  'insights/standard-market-prediction/index.html': 'minimal',  // Insights 業界レポート (Phase F 予測)
+  'insights/from-17-to-90-points/index.html': 'minimal',  // Insights 方法論 (改善 10 ステップ)
   // Stella サブセクション (v1.37 Step 1 stub / ① 起草中)
   'stella/index.html': 'minimal',
   'stella/methodology/index.html': 'minimal',
