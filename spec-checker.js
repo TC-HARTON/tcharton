@@ -86,7 +86,7 @@ const STATIC_TARGETS = [
   'services/web/industries/real-estate/index.html',
   // Press Release（プレスリリース ハブ + 雛形 1 枚）
   'press/index.html',
-  'press/2026-05-stella-shizuoka-1553/index.html',
+  'press/2026-05-jpx-prime-1553/index.html',
   'insights/index.html',
   'insights/core-web-vitals/index.html',
   'insights/json-ld-implementation/index.html',
@@ -311,7 +311,7 @@ const PAGE_TYPE = {
   'services/web/industries/beauty/index.html': 'minimal',
   'services/web/industries/real-estate/index.html': 'minimal',
   'press/index.html': 'minimal',  // Press Release hub
-  'press/2026-05-stella-shizuoka-1553/index.html': 'minimal',  // Press Release
+  'press/2026-05-jpx-prime-1553/index.html': 'minimal',  // Press Release
   'insights/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/core-web-vitals/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/json-ld-implementation/index.html': 'minimal',  // Phase α stub / ① 起草中
