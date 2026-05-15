@@ -199,6 +199,46 @@ const outDir = path.join(PRESS_DIR, slug);
 
 ---
 
+## 10. Insights ハブ自動同期（記事追加時の必須手順）
+
+新規 Insights 記事を追加した場合、ハブから読者が見つけられない事故を防ぐため、
+以下の **3 ステップを必ず実施**：
+
+### Step 1：記事ファイル作成
+- `insights/{slug}/index.html` を gold-standard テンプレで作成
+- `insights/{slug}/ogp.png` を `node gen-ogp.js {slug}` で生成
+
+### Step 2：_categories.json に登録
+- `insights/_categories.json` の対応カテゴリ `articles[]` に追加：
+  ```json
+  {"slug": "your-new-slug", "title": "記事タイトル", "summary": "ハブカード用の要約 1-2 文"}
+  ```
+- 新カテゴリ追加時は `categories[]` に新エントリを追加
+
+### Step 3：ハブ自動再生成
+```bash
+node gen-insights-hub.js          # _categories.json から insights/index.html 再生成
+node spec-checker.js              # gl-insights-hub 整合性チェック含む全 12,000+ 項目
+```
+
+### 自動検出される事故
+- **孤立記事**: 物理ファイルあり / JSON 未登録 → FAIL（ハブから探せない状態）
+- **幽霊登録**: JSON あり / 物理ファイルなし → FAIL（404 リンクの危険）
+- **件数バッジ齟齬**: JSON の `articles[].length` から自動計算 → 手動カウント不要
+
+### 禁止事項
+- ❌ `insights/index.html` の手動編集（次回 gen 実行で上書きされる）
+- ❌ チップ件数バッジ `<span class="text-xs">N</span>` の手動更新
+- ❌ JSON 登録なしでの記事追加（spec-checker で push 阻止）
+
+### 過去の事故（2026-05-15）
+- 私（実装者）が Insights 記事 3 本を追加した際、ハブを 1 箇所も更新せず
+- カテゴリチップ・カテゴリセクション・件数バッジ全てがハードコードだった
+- 代表指摘で発覚 → 本ドキュメント §10 と gl-insights-hub 機械検証を追加
+- **二度と同じ事故を起こさないため、自動化と検証を構造化**
+
+---
+
 **Adopted**: 2026-05-15
 **Owner**: ① HARTON 総合責任者（最終承認）
 **Operator**: ② tcharton 構築チーム（実装）

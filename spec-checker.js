@@ -1530,6 +1530,41 @@ function cGlobal() {
     }
   }
 
+  // ─── insights/_categories.json ↔ insights/{slug}/index.html 整合性 ───
+  // 記事追加時のハブ漏れ事故（2026-05-15）の再発防止 machine gate
+  // 物理ファイル insights/{slug}/index.html が _categories.json articles[] に登録されているか
+  const catsPath = path.join(ROOT, 'insights', '_categories.json');
+  if (fs.existsSync(catsPath)) {
+    const cats = JSON.parse(fs.readFileSync(catsPath, 'utf-8'));
+    // JSON に登録された insights slug のセット（cat-industry 等の外部パスは除外）
+    const registeredSlugs = new Set();
+    for (const cat of cats.categories) {
+      const ap = cat.articlesPath || '/insights/';
+      if (ap === '/insights/') {
+        for (const art of cat.articles) registeredSlugs.add(art.slug);
+      }
+    }
+    // 物理ファイル insights/{slug}/index.html を走査
+    const insightsDir = path.join(ROOT, 'insights');
+    const physicalSlugs = fs.readdirSync(insightsDir, { withFileTypes: true })
+      .filter(d => d.isDirectory())
+      .map(d => d.name)
+      .filter(s => fs.existsSync(path.join(insightsDir, s, 'index.html')));
+    const orphans = physicalSlugs.filter(s => !registeredSlugs.has(s));
+    const ghosts = [...registeredSlugs].filter(s => !physicalSlugs.includes(s));
+
+    if (orphans.length === 0 && ghosts.length === 0) {
+      r.push(PASS('gl-insights-hub', S, 'insights/_categories.json ↔ 物理ファイル整合性',
+                  `${registeredSlugs.size} 記事 完全整合（hub 自動同期）`));
+    } else {
+      const issues = [];
+      if (orphans.length > 0) issues.push(`hub 未登録（孤立記事）: ${orphans.join(',')}`);
+      if (ghosts.length > 0) issues.push(`JSON あり物理なし: ${ghosts.join(',')}`);
+      r.push(FAIL('gl-insights-hub', S, 'insights/_categories.json ↔ 物理ファイル整合性',
+                  issues.join(' / ') + ' — _categories.json を更新後 node gen-insights-hub.js'));
+    }
+  }
+
   // ─── inline script ↔ CSP 'unsafe-inline' 整合性 machine gate (v1.15 ① 追加条件 3) ───
   // SPEC §8.1.4「script-src 'unsafe-inline' 🔴 禁止」規範違反再発防止
   // 4 象限判定: inline > 0 + 'unsafe-inline' あり → FAIL（規範違反）

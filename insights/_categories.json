@@ -1,0 +1,116 @@
+{
+  "_comment": "Insights ハブの正本データ。記事追加時はここに登録すれば gen-insights-hub.js で hub HTML が自動生成される。手動で insights/index.html を編集しない。",
+  "_owner": "① HARTON 総合責任者",
+  "_last_updated": "2026-05-15",
+  "intro": {
+    "lead1": "WEB サイトを発注する人と作る人、両方のための知見集。表示速度・AI 検索・セキュリティ・集客・構造化データ・発注の判断軸を、一次出典付きで解説します。",
+    "lead2": "専門用語は本文の中でその場で平易に言い換え、数値と引用はすべて一次出典付きで解説します。「読んで損のない」ことだけを基準に書いています。"
+  },
+  "categories": [
+    {
+      "id": "cat-ai-search",
+      "name": "AI 検索に選ばれる",
+      "intro": "ChatGPT や Google の AI 検索に「引用される」ための考え方。検索が「順位」から「引用」に変わった時代の WEB。",
+      "articlesPath": "/insights/",
+      "articles": [
+        {"slug": "llmo-explained", "title": "LLMO とは — AI 検索に引用される文章の書き方", "summary": "AI 検索に「引用される」ための最適化。KDD 2024 論文が示した、引用される文章の 4 条件。"},
+        {"slug": "geo-complete-guide", "title": "GEO 完全ガイド — KDD 2024 論文で読み解く AI 最適化", "summary": "GEO の原典 KDD 2024 論文が示した編集効果と、効果がドメイン依存である事実。"},
+        {"slug": "ai-search-engines-compared", "title": "ChatGPT・Perplexity・Gemini 攻略法の違い", "summary": "3 つの AI 検索は引用ロジックが全く違う。その個性と、中小企業がつけるべき優先順位。"},
+        {"slug": "llms-txt-debate", "title": "llms.txt は必要か — 賛否両論の検証", "summary": "llms.txt は AI 検索に効くのか。Google 公式見解とサーバーログ監査で検証する。"},
+        {"slug": "get-cited-by-ai", "title": "AI に「おすすめ」と言わせる方法", "summary": "AI に自社をおすすめさせる実務。第三者メディア（earned media）が効く理由。"},
+        {"slug": "search-intent", "title": "検索意図への回答設計 — Problem-Solution と AEO の考え方", "summary": "検索意図の 4 分類と AEO。「質問」起点でページを設計する方法。"}
+      ]
+    },
+    {
+      "id": "cat-speed",
+      "name": "速くて快適なサイト",
+      "intro": "表示速度と技術品質。遅いサイトがなぜ客を逃すのか、どこをどう直すのか。",
+      "articlesPath": "/insights/",
+      "articles": [
+        {"slug": "core-web-vitals", "title": "Core Web Vitals 完全解説 — INP 時代の表示速度改善", "summary": "LCP・INP・CLS の 3 指標と合格基準。ラボ値ではなく実ユーザーデータで判定される理由。"},
+        {"slug": "why-slow-site-loses-sales", "title": "サイトが遅いと、なぜ客が逃げるのか", "summary": "遅いサイトはなぜ問い合わせと売上を失うのか。速度とビジネス指標の研究。"},
+        {"slug": "inp-deep-dive", "title": "INP を 200ms 未満にする実装の全手法", "summary": "操作への応答速度 INP を 200ms 未満に保つための実装手法の全体像。"},
+        {"slug": "wordpress-vs-static", "title": "WordPress と静的 HTML、どちらを選ぶべきか", "summary": "中小企業サイトに向くのはどちらか。速度・更新・セキュリティで比較する判断軸。"},
+        {"slug": "modern-build-astro", "title": "HTML-first という選択肢 — Astro と Islands", "summary": "Astro と Islands Architecture。「HTML-first」の考え方を中小企業向けに。"},
+        {"slug": "image-font-optimization", "title": "画像とフォントで表示速度を半分にする", "summary": "サイトを重くする最大要因は画像とフォント。表示速度を大きく改善する手法。"}
+      ]
+    },
+    {
+      "id": "cat-security",
+      "name": "安全なサイト",
+      "intro": "中小企業のサイトが守るべきセキュリティの最低限。「うちは狙われない」は本当か。",
+      "articlesPath": "/insights/",
+      "articles": [
+        {"slug": "security-5-principles", "title": "中小企業 WEB セキュリティ 5 原則（2025 OWASP 準拠）", "summary": "中小企業の WEB を守る 5 原則。限られた予算で何から手を付けるか。"},
+        {"slug": "are-you-really-safe", "title": "「うちは狙われない」は本当か", "summary": "「小さい会社は狙われない」は誤り。中小企業の侵害の 88% にランサムが関与する現実。"},
+        {"slug": "wordpress-security-basics", "title": "WordPress のセキュリティで最低限やること", "summary": "脆弱性の 91% はプラグイン起因。専門ツールなしで着手できる対策。"}
+      ]
+    },
+    {
+      "id": "cat-seo",
+      "name": "見つけてもらう（集客・SEO）",
+      "intro": "地域 × 業種で見つけてもらう方法。個人事業が現実的に勝てる検索の戦い方。",
+      "articlesPath": "/insights/",
+      "articles": [
+        {"slug": "longtail-seo", "title": "ロングテール SEO 戦略 — 地域 × 課題で勝つ", "summary": "検索回数の少ない具体キーワードを束ねる戦略。なぜ中小企業に向くのか。"},
+        {"slug": "local-seo-guide", "title": "地域 × 業種で勝つローカル SEO", "summary": "ローカル SEO は関連性・距離・評判の 3 本柱。地図検索で見つかる設計。"},
+        {"slug": "google-business-profile", "title": "Google ビジネスプロフィール完全運用ガイド", "summary": "GBP はローカルパックの可視性を左右する基本ツール。何を埋めどう運用するか。"},
+        {"slug": "seo-from-zero-backlinks", "title": "被リンクゼロから始める SEO", "summary": "全 Web の 95% は被リンクゼロ。低競合キーワードからの現実的な立ち上げ方。"},
+        {"slug": "eat-improvement", "title": "E-E-A-T 強化ガイド — AI 時代の信頼シグナル", "summary": "E-E-A-T の中心は Trust。中小企業が信頼シグナルを積み上げる方法。"}
+      ]
+    },
+    {
+      "id": "cat-data",
+      "name": "機械に伝わるデータ設計",
+      "intro": "構造化データ・計測・運用。AI と検索エンジンに「事実」を正しく渡す。",
+      "articlesPath": "/insights/",
+      "articles": [
+        {"slug": "json-ld-implementation", "title": "JSON-LD 構造化データ実装ガイド", "summary": "構造化データを AI と検索エンジンに「事実」として渡す記法。必要な 6 つの Schema 型。"},
+        {"slug": "wikidata-for-ai", "title": "Wikidata Q コードで AI に正しく認識される", "summary": "Wikidata の Q コードで AI に事業者を「同じ実体」として認識させる手法。"},
+        {"slug": "measure-ai-traffic-ga4", "title": "GA4 で AI 流入を正しく計測する方法", "summary": "ChatGPT 等からの訪問は GA4 で 6〜7 割が Direct に誤分類される。可視化する設定手順。"},
+        {"slug": "publish-is-not-the-goal", "title": "「公開して終わり」にしないための月次運用", "summary": "WEB は公開がゴールではない。実質的な更新だけが評価される時代の月次運用。"},
+        {"slug": "accessibility-wcag22", "title": "アクセシビリティ WCAG 2.2 — 誰も取りこぼさない WEB", "summary": "WCAG 2.2 の新基準と、EAA のウェブ基準が 2.1 AA であって 2.2 ではない正確な事実。"}
+      ]
+    },
+    {
+      "id": "cat-owner",
+      "name": "ホームページ発注の前に",
+      "intro": "WEB の専門知識がなくても損をしないための、発注者の判断軸。専門用語は使いません。",
+      "articlesPath": "/insights/",
+      "articles": [
+        {"slug": "how-to-read-a-quote", "title": "ホームページ制作の見積もり、正しい見方", "summary": "制作の見積書をどう読むか。「一式」表記の危険と、必ず確認すべき 5 項目。"},
+        {"slug": "cheap-vs-expensive-site", "title": "安いホームページと高いホームページ、何が違うのか", "summary": "安いサイトと高いサイトの違いを、見た目ではなく「中身」で解説。"},
+        {"slug": "when-to-rebuild", "title": "ホームページを作り直すべきタイミング", "summary": "作り直すべきか、まだ使えるか。4 つの判断サインを専門用語なしで。"},
+        {"slug": "how-to-choose-web-company", "title": "制作会社の選び方 — 失敗しないチェックリスト", "summary": "制作会社の選び方を、発注して失敗しないためのチェックリスト形式で。"},
+        {"slug": "subsidy-for-website", "title": "補助金でホームページを作る方法", "summary": "補助金でホームページを作る方法。小規模事業者持続化補助金を例に（2026 年 5 月時点）。"},
+        {"slug": "no-results-after-launch", "title": "作ったのに問い合わせが来ない理由", "summary": "原因は「人が来ない」のか「来た人が行動しない」のか。切り分けと対策。"}
+      ]
+    },
+    {
+      "id": "cat-report",
+      "name": "業界レポート",
+      "intro": "HARTON Stella scanner の機械検証データに基づく業界 WEB 品質の現状分析。CC BY 4.0 で誰でも自由に引用・再配布できます。",
+      "articlesPath": "/insights/",
+      "articles": [
+        {"slug": "jpx-prime-1553-deep-dive", "title": "東証プライム 1,553 社の WEB 品質を機械検証して見えた真実", "summary": "中央 17 / NG 9.6% / ★ 取得 0 社。日本最大規模の優良企業群でも WEB 技術品質は AI 時代の要件に追いついていない事実を、業種別格差・NG 内訳付きで解説。"},
+        {"slug": "standard-market-prediction", "title": "東証スタンダード市場 1,600 社の WEB 品質を予測する — Phase F の前に", "summary": "Phase E プライム実測値と制度差・規模差・運用差から透明な仮説で予測。Phase F 完了時に「予測 vs 実測」で答え合わせ予定。"},
+        {"slug": "from-17-to-90-points", "title": "中央 17 点を 90 点超へ — 業界トップを取りに行く改善 10 ステップ", "summary": "東証プライム最高 52 点 / ★ 0 社という事実は、中小企業にとって業界トップを狙える余白の証明。配点・工数・優先度付き改善ロードマップ。"}
+      ]
+    },
+    {
+      "id": "cat-industry",
+      "name": "業種別ガイド",
+      "intro": "業種ごとの WEB 制作要点・必須実装項目・法令論点を、業種特化でまとめる詳細ガイド（/services/web/industries/ 配下）。",
+      "articlesPath": "/services/web/industries/",
+      "articles": [
+        {"slug": "manufacturing", "title": "製造業", "summary": "BtoB 引合い・技術カタログ・英語サイト・構造化データ。不正競争防止法 + 景表法対応。"},
+        {"slug": "clinic", "title": "医療・クリニック", "summary": "医療広告ガイドライン + 薬機法。誇大表現禁止 / 体験談原則禁止 / 24h 予約フォーム。"},
+        {"slug": "construction", "title": "建設・工務店", "summary": "施工事例ギャラリー + 職人プロフィール + JobPosting。建設業法 + 建築基準法対応。"},
+        {"slug": "legal", "title": "士業（税理士・社労士・行政書士・弁護士）", "summary": "個人情報保護法 2022 + E-E-A-T 強化。資格情報の構造化と解説記事の継続発信。"},
+        {"slug": "restaurant", "title": "飲食店", "summary": "Google ビジネスプロフィール + 予約導線 + 多言語。食品衛生法 + 食品表示法対応。"},
+        {"slug": "beauty", "title": "美容・サロン", "summary": "施術前後の見せ方 + 24h 予約。美容師法 + 特商法 + 景表法対応。"},
+        {"slug": "real-estate", "title": "不動産", "summary": "物件情報の正確性 + 取引態様の明示。宅建業法 §32/§34/§47 + 不動産公正競争規約。"}
+      ]
+    }
+  ]
+}
