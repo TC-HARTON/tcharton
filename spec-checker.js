@@ -1624,6 +1624,43 @@ function cGlobal() {
                 themeOffenders.slice(0, 5).join(' / ') + ' — DESIGN.md 「Background White メイン」と齟齬'));
   }
 
+  // ─── scanner Phase 0.5 / Phase E 数値の捏造禁止 (2026-05-16 /vision/ 事故再発防止) ───
+  // 真値: scanner/phase-0.5-shizuoka-summary.json + phase-e-prime-summary.json
+  // - Phase 0.5 静岡 902 社: max 56 / median 24 / mean 22.7 / NG 292 (32.4%) / ★ 取得 0
+  //   分布: 90+ 0 / 70-89 0 / 40-69 110 (12.2%) / 20-39 442 (49.0%) / <20 350 (38.8%)
+  // - Phase E プライム 1,553 社: max 52 / median 17 / mean 16.6 / NG 149 (9.6%) / ★ 取得 0
+  // 過去事故: /vision/ で「高品質 9 件」「モバイル遅延 627 / AI 758 / WCAG 412」を捏造
+  const fabricatedNumbers = [
+    // Phase 0.5 静岡県 902 社の捏造パターン（max=56 で 70+ は 0 件）
+    { pattern: /高品質[^0-9]*9 ?件/, label: 'Phase 0.5 高品質 9 件（実測 0 件 / max=56）' },
+    { pattern: /良好[^0-9]*54 ?件/, label: 'Phase 0.5 良好 54 件（実測 0 件 / max=56）' },
+    { pattern: /235 ?件[^0-9]*26\.1/, label: 'Phase 0.5 標準 235 件（実測 110 件）' },
+    { pattern: /311 ?件[^0-9]*34\.5/, label: 'Phase 0.5 要改善 311 件（実測 442 件）' },
+    { pattern: /293 ?件[^0-9]*32\.5/, label: 'Phase 0.5 緊急対応 293 件 32.5%（実測 350 件 / NG は 292 件 32.4%）' },
+    // 架空指標（scanner 未測定）
+    { pattern: /627 ?社[^A-Za-z]*69\.5/, label: 'モバイル遅延 627 社（scanner 未測定指標 / 削除）' },
+    { pattern: /758 ?社[^A-Za-z]*84\.0/, label: 'AI 引用 758 社（scanner 未測定指標 / 削除）' },
+    { pattern: /412 ?社[^A-Za-z]*45\.7/, label: 'WCAG 違反 412 社（scanner 未測定指標 / 削除）' },
+    // 沼津市の旧数値
+    { pattern: /沼津市内[^0-9]*134 ?社/, label: '沼津 134 社（実測 171 社）' },
+  ];
+  const dataOffenders = [];
+  for (const t of allHtmlFiles) {
+    const fp = path.join(ROOT, t);
+    if (!fs.existsSync(fp)) continue;
+    const c = fs.readFileSync(fp, 'utf-8');
+    for (const f of fabricatedNumbers) {
+      if (f.pattern.test(c)) dataOffenders.push(`${t} (${f.label})`);
+    }
+  }
+  if (dataOffenders.length === 0) {
+    r.push(PASS('gl-scanner-data', S, 'scanner Phase 0.5 / Phase E 実測値整合性',
+                `全 ${allHtmlFiles.length} HTML ファイルに捏造パターン 9 種残存なし`));
+  } else {
+    r.push(FAIL('gl-scanner-data', S, 'scanner Phase 0.5 / Phase E 実測値整合性',
+                dataOffenders.slice(0, 5).join(' / ') + ' — scanner/phase-*-summary.json と齟齬'));
+  }
+
   // ─── inline script ↔ CSP 'unsafe-inline' 整合性 machine gate (v1.15 ① 追加条件 3) ───
   // SPEC §8.1.4「script-src 'unsafe-inline' 🔴 禁止」規範違反再発防止
   // 4 象限判定: inline > 0 + 'unsafe-inline' あり → FAIL（規範違反）
