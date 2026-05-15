@@ -454,9 +454,9 @@ function tpl(slug, c) {
       <section id="section-4" aria-label="関連 Insights" class="mt-12">
         <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">4. 関連 Insights ／ Problem LP</h2>
         <ul class="mt-4 space-y-2 text-sm">
-          <li><a href="/insights/local-seo-for-shizuoka/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">静岡県の中小企業向け ローカル SEO 実装ガイド</a></li>
+          <li><a href="/insights/local-seo-guide/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">ローカル SEO 実装ガイド — 地方中小企業向け</a></li>
           <li><a href="/insights/google-business-profile/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Google ビジネスプロフィール — 地方事業者の必須設定</a></li>
-          <li><a href="/insights/web-for-shop-owners/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">店舗事業者のための WEB 戦略 — 来店誘導と問合せ</a></li>
+          <li><a href="/insights/longtail-seo/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">ロングテール SEO — 地域 × 業種で勝つ戦略</a></li>
           <li><a href="/services/web/industries/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">業種別 WEB 制作ガイド</a></li>
         </ul>
       </section>
