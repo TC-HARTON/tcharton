@@ -1467,20 +1467,10 @@ function cGlobal() {
     // 公開時 (Step 4-5 完遂後) に sitemap 登録予定
     const NO_SITEMAP = new Set([
       '404.html', 'thanks.html',
-      // Phase α stub (v1.36)
+      // Phase α Problem LP（本実装まで sitemap 除外）
       'problems/index.html', 'problems/site-speed/index.html', 'problems/no-inquiry/index.html',
       'problems/ai-search-invisible/index.html', 'problems/security-risk/index.html', 'problems/no-mobile/index.html',
-      'insights/index.html', 'insights/core-web-vitals/index.html', 'insights/json-ld-implementation/index.html',
-      'insights/llmo-explained/index.html', 'insights/wikidata-for-ai/index.html', 'insights/security-5-principles/index.html',
-      'insights/eat-improvement/index.html', 'insights/longtail-seo/index.html', 'insights/search-intent/index.html',
-      'insights/geo-complete-guide/index.html', 'insights/ai-search-engines-compared/index.html', 'insights/llms-txt-debate/index.html',
-      'insights/get-cited-by-ai/index.html', 'insights/why-slow-site-loses-sales/index.html', 'insights/inp-deep-dive/index.html',
-      'insights/wordpress-vs-static/index.html', 'insights/modern-build-astro/index.html', 'insights/image-font-optimization/index.html',
-      'insights/are-you-really-safe/index.html', 'insights/wordpress-security-basics/index.html', 'insights/local-seo-guide/index.html',
-      'insights/google-business-profile/index.html', 'insights/seo-from-zero-backlinks/index.html', 'insights/measure-ai-traffic-ga4/index.html',
-      'insights/publish-is-not-the-goal/index.html', 'insights/accessibility-wcag22/index.html', 'insights/how-to-read-a-quote/index.html',
-      'insights/cheap-vs-expensive-site/index.html', 'insights/when-to-rebuild/index.html', 'insights/how-to-choose-web-company/index.html',
-      'insights/subsidy-for-website/index.html', 'insights/no-results-after-launch/index.html',
+      // Insights は全 31 記事 + ハブを sitemap 登録済み（2026-05-15 公開）
 ]);
     const sitemapMissing = STATIC_TARGETS
       .filter(t => !NO_SITEMAP.has(t))
