@@ -1565,6 +1565,27 @@ function cGlobal() {
     }
   }
 
+  // ─── 古い母集団数 1,830 / 1830 の再混入禁止 (2026-05-15 事故再発防止) ───
+  // 真値: 東証プライム上場企業 = 1,553 社 (scanner Phase E 実測 / 2026-05-11)
+  // 旧値 1,830 は v1.26.1 (2026-05-08) の暫定目標値で v1.27 以降 1,553 に確定
+  // 公開 HTML への 1,830 混入を機械検証で禁止（archive 履歴 .md は対象外）
+  const oldStaleNumber = /1[,，]?830/g;
+  const allHtmlFiles = STATIC_TARGETS.filter(t => t.endsWith('.html'));
+  const offenders1830 = [];
+  for (const t of allHtmlFiles) {
+    const fp = path.join(ROOT, t);
+    if (!fs.existsSync(fp)) continue;
+    const c = fs.readFileSync(fp, 'utf-8');
+    if (oldStaleNumber.test(c)) offenders1830.push(t);
+  }
+  if (offenders1830.length === 0) {
+    r.push(PASS('gl-stale-1830', S, '旧母集団数 1,830 の再混入禁止',
+                `全 ${allHtmlFiles.length} HTML ファイルに 1,830 残存なし`));
+  } else {
+    r.push(FAIL('gl-stale-1830', S, '旧母集団数 1,830 の再混入禁止',
+                `1,830 残存検出: ${offenders1830.join(',')} — 真値は 1,553 社（scanner Phase E 実測）`));
+  }
+
   // ─── inline script ↔ CSP 'unsafe-inline' 整合性 machine gate (v1.15 ① 追加条件 3) ───
   // SPEC §8.1.4「script-src 'unsafe-inline' 🔴 禁止」規範違反再発防止
   // 4 象限判定: inline > 0 + 'unsafe-inline' あり → FAIL（規範違反）
