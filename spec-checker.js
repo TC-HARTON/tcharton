@@ -1467,9 +1467,7 @@ function cGlobal() {
     // 公開時 (Step 4-5 完遂後) に sitemap 登録予定
     const NO_SITEMAP = new Set([
       '404.html', 'thanks.html',
-      // Phase α Problem LP（本実装まで sitemap 除外）
-      'problems/index.html', 'problems/site-speed/index.html', 'problems/no-inquiry/index.html',
-      'problems/ai-search-invisible/index.html', 'problems/security-risk/index.html', 'problems/no-mobile/index.html',
+      // Problem LP 全 5 本 + ハブを sitemap 登録済み（2026-05-15 公開）
       // Insights は全 31 記事 + ハブを sitemap 登録済み（2026-05-15 公開）
 ]);
     const sitemapMissing = STATIC_TARGETS
