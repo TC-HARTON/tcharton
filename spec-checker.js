@@ -76,6 +76,14 @@ const STATIC_TARGETS = [
   'areas/susono/index.html',
   'areas/nagaizumi/index.html',
   'areas/shimizu/index.html',
+  // Industries LP × 7（業種別 LP セット）
+  'services/web/industries/manufacturing/index.html',
+  'services/web/industries/clinic/index.html',
+  'services/web/industries/construction/index.html',
+  'services/web/industries/legal/index.html',
+  'services/web/industries/restaurant/index.html',
+  'services/web/industries/beauty/index.html',
+  'services/web/industries/real-estate/index.html',
   'insights/index.html',
   'insights/core-web-vitals/index.html',
   'insights/json-ld-implementation/index.html',
@@ -292,6 +300,13 @@ const PAGE_TYPE = {
   'areas/susono/index.html': 'minimal',
   'areas/nagaizumi/index.html': 'minimal',
   'areas/shimizu/index.html': 'minimal',
+  'services/web/industries/manufacturing/index.html': 'minimal',  // Industry LP
+  'services/web/industries/clinic/index.html': 'minimal',
+  'services/web/industries/construction/index.html': 'minimal',
+  'services/web/industries/legal/index.html': 'minimal',
+  'services/web/industries/restaurant/index.html': 'minimal',
+  'services/web/industries/beauty/index.html': 'minimal',
+  'services/web/industries/real-estate/index.html': 'minimal',
   'insights/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/core-web-vitals/index.html': 'minimal',  // Phase α stub / ① 起草中
   'insights/json-ld-implementation/index.html': 'minimal',  // Phase α stub / ① 起草中
