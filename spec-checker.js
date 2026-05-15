@@ -1586,6 +1586,44 @@ function cGlobal() {
                 `1,830 残存検出: ${offenders1830.join(',')} — 真値は 1,553 社（scanner Phase E 実測）`));
   }
 
+  // ─── DESIGN.md ↔ 実装 整合性 / メインブランドはライトテーマ (2026-05-15 事故再発防止) ───
+  // 真実: DESIGN.md L57 「Background White: #ffffff = メイン背景」
+  // 実装: 全メインブランドページの body class は bg-white
+  // 過去事故: /about/ で「ダークテーマを基調にした」と虚偽記述 → 実物 light との drift
+  // /stella/ は別サブブランド（dark navy 許容）のため対象外
+  const driftClaims = [
+    'ダークテーマを基調',
+    'ダーク基調を採用',
+    'dark theme based',
+    'ダークモードを基調',
+  ];
+  const themeOffenders = [];
+  for (const t of allHtmlFiles) {
+    if (t.startsWith('stella/')) continue;  // Stella は別サブブランド
+    const fp = path.join(ROOT, t);
+    if (!fs.existsSync(fp)) continue;
+    const c = fs.readFileSync(fp, 'utf-8');
+    // body の bg-white チェック
+    const bodyMatch = c.match(/<body[^>]*class="([^"]+)"/);
+    if (bodyMatch && !bodyMatch[1].includes('bg-white')) {
+      themeOffenders.push(`${t} (body bg=${bodyMatch[1].split(/\s+/).find(c => c.startsWith('bg-')) || 'none'})`);
+    }
+    // 虚偽の「ダークテーマ」主張チェック
+    for (const claim of driftClaims) {
+      if (c.includes(claim)) {
+        themeOffenders.push(`${t} (drift claim: "${claim}")`);
+        break;
+      }
+    }
+  }
+  if (themeOffenders.length === 0) {
+    r.push(PASS('gl-light-theme', S, 'メインブランド ライトテーマ整合性 (DESIGN.md L57)',
+                `全 ${allHtmlFiles.filter(t => !t.startsWith('stella/')).length} ページ bg-white + ダークテーマ虚偽記述なし`));
+  } else {
+    r.push(FAIL('gl-light-theme', S, 'メインブランド ライトテーマ整合性 (DESIGN.md L57)',
+                themeOffenders.slice(0, 5).join(' / ') + ' — DESIGN.md 「Background White メイン」と齟齬'));
+  }
+
   // ─── inline script ↔ CSP 'unsafe-inline' 整合性 machine gate (v1.15 ① 追加条件 3) ───
   // SPEC §8.1.4「script-src 'unsafe-inline' 🔴 禁止」規範違反再発防止
   // 4 象限判定: inline > 0 + 'unsafe-inline' あり → FAIL（規範違反）
