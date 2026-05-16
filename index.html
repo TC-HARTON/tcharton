@@ -517,7 +517,48 @@
       </div>
     </section>
 
-    <!-- 最新の Insights（ヒーロー直後・記事サイトへの導線） -->
+    <!-- エリア × 業種 カスケード検索（ヒーロー直下 / 第一 CTA 入口） -->
+    <section aria-label="エリア × 業種 検索" class="px-6 lg:px-12 py-14 bg-teal-50 border-y border-teal-100">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <p class="text-xs lg:text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Area × Industry Search</p>
+          <h2 class="mt-3 font-display text-2xl lg:text-3xl font-bold text-dark-900">あなたの業界中央値を見る</h2>
+          <p class="mt-3 text-sm sm:text-base text-dark-700">都道府県・市町村・業種を選ぶと、HARTON 機械検証データに基づく業界実測値ページに移動します。</p>
+        </div>
+        <form id="area-search-form" class="bg-white border border-teal-200 rounded-2xl p-6 lg:p-8 shadow-sm">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label for="search-prefecture" class="block text-xs font-display font-bold text-dark-700 mb-2">都道府県</label>
+              <select id="search-prefecture" name="prefecture" required class="w-full h-11 px-3 border border-dark-300 rounded-lg bg-white text-dark-900 text-sm focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200">
+                <option value="">読み込み中…</option>
+              </select>
+            </div>
+            <div>
+              <label for="search-city" class="block text-xs font-display font-bold text-dark-700 mb-2">市町村</label>
+              <select id="search-city" name="city" class="w-full h-11 px-3 border border-dark-300 rounded-lg bg-white text-dark-900 text-sm focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200" disabled>
+                <option value="">先に都道府県を選択</option>
+              </select>
+            </div>
+            <div>
+              <label for="search-industry" class="block text-xs font-display font-bold text-dark-700 mb-2">業種（任意）</label>
+              <select id="search-industry" name="industry" class="w-full h-11 px-3 border border-dark-300 rounded-lg bg-white text-dark-900 text-sm focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200" disabled>
+                <option value="">先に市町村を選択</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <p class="text-xs text-dark-500">現在 7 都市 × 11-12 業種 / 1,320 社の実測データを公開中</p>
+            <button type="submit" class="inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-md font-bold text-sm shadow-md transition-colors">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>該当ページへ</span>
+            </button>
+          </div>
+        </form>
+        <p class="mt-4 text-center text-xs text-dark-500"><a href="/areas/" class="text-teal-700 underline hover:text-teal-600">対応エリア全体（11 都市）を一覧で見る →</a></p>
+      </div>
+    </section>
+
+    <!-- 最新の Insights（記事サイトへの導線） -->
     <section aria-label="最新の Insights" class="px-6 lg:px-12 py-16 lg:py-20 bg-dark-50">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-10">
@@ -627,46 +668,6 @@
         <div class="mt-10 text-center">
           <a href="/vision/" class="text-teal-700 hover:underline font-semibold">私たちの想いを詳しく読む →</a>
         </div>
-      </div>
-    </section>
-
-    <section aria-label="エリア × 業種 検索" class="px-6 lg:px-12 py-14 bg-teal-50 border-y border-teal-100">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-8">
-          <p class="text-xs lg:text-sm text-teal-700 font-display font-bold tracking-widest uppercase">Area × Industry Search</p>
-          <h2 class="mt-3 font-display text-2xl lg:text-3xl font-bold text-dark-900">あなたの業界中央値を見る</h2>
-          <p class="mt-3 text-sm sm:text-base text-dark-700">都道府県・市町村・業種を選ぶと、HARTON 機械検証データに基づく業界実測値ページに移動します。</p>
-        </div>
-        <form id="area-search-form" class="bg-white border border-teal-200 rounded-2xl p-6 lg:p-8 shadow-sm">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label for="search-prefecture" class="block text-xs font-display font-bold text-dark-700 mb-2">都道府県</label>
-              <select id="search-prefecture" name="prefecture" required class="w-full h-11 px-3 border border-dark-300 rounded-lg bg-white text-dark-900 text-sm focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200">
-                <option value="">読み込み中…</option>
-              </select>
-            </div>
-            <div>
-              <label for="search-city" class="block text-xs font-display font-bold text-dark-700 mb-2">市町村</label>
-              <select id="search-city" name="city" class="w-full h-11 px-3 border border-dark-300 rounded-lg bg-white text-dark-900 text-sm focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200" disabled>
-                <option value="">先に都道府県を選択</option>
-              </select>
-            </div>
-            <div>
-              <label for="search-industry" class="block text-xs font-display font-bold text-dark-700 mb-2">業種（任意）</label>
-              <select id="search-industry" name="industry" class="w-full h-11 px-3 border border-dark-300 rounded-lg bg-white text-dark-900 text-sm focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200" disabled>
-                <option value="">先に市町村を選択</option>
-              </select>
-            </div>
-          </div>
-          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
-            <p class="text-xs text-dark-500">現在 7 都市 × 11-12 業種 / 1,320 社の実測データを公開中</p>
-            <button type="submit" class="inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-md font-bold text-sm shadow-md transition-colors">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <span>該当ページへ</span>
-            </button>
-          </div>
-        </form>
-        <p class="mt-4 text-center text-xs text-dark-500"><a href="/areas/" class="text-teal-700 underline hover:text-teal-600">対応エリア全体（11 都市）を一覧で見る →</a></p>
       </div>
     </section>
 
