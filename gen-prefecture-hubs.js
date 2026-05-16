@@ -15,6 +15,14 @@ const path = require('path');
 
 const ROOT = __dirname;
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/prefectures.json'), 'utf-8'));
+const META = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/cities-meta.json'), 'utf-8')).cities;
+
+// 人口を「約 X.X 万」形式に整形 (千の位までで丸め)
+function popMan(pop) {
+  if (!pop) return '';
+  const man = pop / 10000;
+  return man >= 100 ? `約 ${man.toFixed(0)} 万` : `約 ${man.toFixed(1)} 万`;
+}
 
 // scanner データのある city slug → 既存 city hub URL
 const SCANNED_CITIES = {
@@ -185,25 +193,41 @@ function prefectureHubPage(pref) {
   const scannedCities = pref.cities.filter(c => SCANNED_CITIES[c]);
   const otherCities = pref.cities.filter(c => !SCANNED_CITIES[c]);
 
+  // 県庁所在地を tag から抽出
+  const capitalCity = pref.cities.find(c => META[c] && /県庁所在地|都庁所在地|府庁所在地|道庁所在地/.test(META[c].tag));
+
+  // /areas/ テンプレ準拠の rich カード (タグ + 都市名 + 人口/市制 + 1 行説明)
+  const richCard = (c, isScanned) => {
+    const m = META[c] || {};
+    const href = isScanned ? SCANNED_CITIES[c] : '/services/web/';
+    const tagText = isScanned ? `実測データあり ／ ${m.type || ''}` : (m.type || '');
+    const subline = `人口 ${popMan(m.pop)} ／ ${m.type || ''}`;
+    const description = m.tag || `${esc(pref.name)} 内の主要都市`;
+    const ctaText = isScanned ? '業種別実測値ページを見る →' : 'WEB 制作のご相談はこちら →';
+    return `          <a href="${href}" class="group block bg-white border ${isScanned ? 'border-teal-300 hover:border-teal-700' : 'border-dark-200 hover:border-teal-700'} rounded-xl p-6 transition-all hover:shadow-lg">
+            <p class="text-xs text-teal-700 font-display font-bold tracking-widest uppercase">${esc(tagText)}</p>
+            <h3 class="mt-2 font-display text-2xl font-bold text-dark-900 group-hover:text-teal-700">${esc(c)}</h3>
+            <p class="mt-2 text-xs text-dark-500">${esc(subline)}</p>
+            <p class="mt-3 text-sm text-dark-700 leading-relaxed">${esc(description)}</p>
+            <p class="mt-4 text-sm text-teal-700 font-bold group-hover:underline">${esc(ctaText)}</p>
+          </a>`;
+  };
+
   const scannedCardsHtml = scannedCities.length === 0 ? '' : `
       <section aria-label="業界実測データのある都市" class="mt-12">
         <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">業界実測データのある都市</h2>
         <p class="mt-3 text-dark-700 leading-relaxed">${esc(pref.name)}内で HARTON 機械検証スキャンを実施済みの都市。業種別の中央値・最高得点・致命的 NG 内訳を実測データで公開しています。</p>
-        <div class="mt-6 grid sm:grid-cols-2 gap-4">
-${scannedCities.map(c => `          <a href="${SCANNED_CITIES[c]}" class="block bg-white border border-teal-300 hover:border-teal-700 rounded-xl p-5 transition-all hover:shadow-md">
-            <p class="text-xs text-teal-700 font-display font-bold tracking-widest uppercase">実測データあり</p>
-            <h3 class="mt-2 font-display text-lg font-bold text-dark-900">${esc(c)}</h3>
-            <p class="mt-2 text-sm text-dark-600">業種別実測値ページを見る →</p>
-          </a>`).join('\n')}
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+${scannedCities.map(c => richCard(c, true)).join('\n')}
         </div>
       </section>`;
 
   const otherCitiesHtml = otherCities.length === 0 ? '' : `
-      <section aria-label="他の主要都市" class="mt-12">
-        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">${esc(pref.name)}内の他の主要都市</h2>
-        <p class="mt-3 text-dark-700 leading-relaxed">以下は ${esc(pref.name)} 内の人口 10 万以上の主要都市です（機械検証スキャン未実施）。</p>
-        <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 text-sm">
-${otherCities.map(c => `          <div class="bg-dark-50 border border-dark-200 rounded-md px-3 py-2 text-dark-700 text-center">${esc(c)}</div>`).join('\n')}
+      <section aria-label="${esc(pref.name)}の主要都市" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">${esc(pref.name)}の主要都市</h2>
+        <p class="mt-3 text-dark-700 leading-relaxed">${esc(pref.name)} 内の人口 10 万以上の主要都市 ${otherCities.length} 件（出典: 総務省 住民基本台帳に基づく人口 / Wikipedia 日本の市の人口順位 2024 年基準）。機械検証スキャンは順次拡大予定です。</p>
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+${otherCities.map(c => richCard(c, false)).join('\n')}
         </div>
       </section>`;
 
@@ -244,7 +268,8 @@ ${COMMON_BODY_START}
 
       <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
         <p class="text-sm font-bold text-teal-800 mb-2">${esc(pref.name)}の事業者向け WEB 制作</p>
-        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">${esc(pref.name)} 内 ${pref.cities.length} 主要都市（人口 10 万以上）</strong>を掲載しています。${scannedCities.length > 0 ? `そのうち <strong class="text-dark-900">${scannedCities.length} 都市</strong>は HARTON scanner で WEB 品質の業界実測データを公開しています。` : '機械検証スキャンは順次拡大中です。'}</p>
+        <p class="text-dark-800 leading-relaxed">${capitalCity ? `${esc(pref.name)}の県庁所在地は <strong class="text-dark-900">${esc(capitalCity)}</strong>。` : ''}<strong class="text-dark-900">${esc(pref.name)} 内 ${pref.cities.length} 主要都市（人口 10 万以上）</strong>を掲載しています。${scannedCities.length > 0 ? `そのうち <strong class="text-dark-900">${scannedCities.length} 都市</strong>は HARTON scanner で WEB 品質の業界実測データを公開しています。` : '機械検証スキャンは順次拡大中です。'}</p>
+        <p class="mt-2 text-xs text-dark-500">出典: 総務省 住民基本台帳に基づく人口 / Wikipedia 日本の市の人口順位（2024 年基準）</p>
       </div>
 ${scannedCardsHtml}
 ${otherCitiesHtml}
