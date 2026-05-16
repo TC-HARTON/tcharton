@@ -38,6 +38,7 @@
         "sapporo": {
           "name": "札幌市",
           "scanned": true,
+          "slug": "sapporo",
           "industries": [
             "clinic",
             "cosmeticclinic",
@@ -52,54 +53,64 @@
             "tax"
           ]
         },
-        "函館市": {
+        "hakodate": {
           "name": "函館市",
           "scanned": false,
+          "slug": "hakodate",
           "industries": []
         },
-        "小樽市": {
+        "otaru": {
           "name": "小樽市",
           "scanned": false,
+          "slug": "otaru",
           "industries": []
         },
-        "旭川市": {
+        "asahikawa": {
           "name": "旭川市",
           "scanned": false,
+          "slug": "asahikawa",
           "industries": []
         },
-        "室蘭市": {
+        "muroran": {
           "name": "室蘭市",
           "scanned": false,
+          "slug": "muroran",
           "industries": []
         },
-        "釧路市": {
+        "kushiro": {
           "name": "釧路市",
           "scanned": false,
+          "slug": "kushiro",
           "industries": []
         },
-        "帯広市": {
+        "obihiro": {
           "name": "帯広市",
           "scanned": false,
+          "slug": "obihiro",
           "industries": []
         },
-        "北見市": {
+        "kitami": {
           "name": "北見市",
           "scanned": false,
+          "slug": "kitami",
           "industries": []
         },
-        "苫小牧市": {
+        "tomakomai": {
           "name": "苫小牧市",
           "scanned": false,
+          "slug": "tomakomai",
           "industries": []
         },
-        "江別市": {
+        "ebetsu": {
           "name": "江別市",
           "scanned": false,
+          "slug": "ebetsu",
           "industries": []
         },
-        "千歳市": {
+        "chitose": {
           "name": "千歳市",
           "scanned": false,
+          "slug": "chitose",
           "industries": []
         }
       }
@@ -107,19 +118,22 @@
     "青森県": {
       "pref_slug": "aomori",
       "cities": {
-        "青森市": {
+        "aomori": {
           "name": "青森市",
           "scanned": false,
+          "slug": "aomori",
           "industries": []
         },
-        "弘前市": {
+        "hirosaki": {
           "name": "弘前市",
           "scanned": false,
+          "slug": "hirosaki",
           "industries": []
         },
-        "八戸市": {
+        "hachinohe": {
           "name": "八戸市",
           "scanned": false,
+          "slug": "hachinohe",
           "industries": []
         }
       }
@@ -127,19 +141,22 @@
     "岩手県": {
       "pref_slug": "iwate",
       "cities": {
-        "盛岡市": {
+        "morioka": {
           "name": "盛岡市",
           "scanned": false,
+          "slug": "morioka",
           "industries": []
         },
-        "奥州市": {
+        "oshu": {
           "name": "奥州市",
           "scanned": false,
+          "slug": "oshu",
           "industries": []
         },
-        "一関市": {
+        "ichinoseki": {
           "name": "一関市",
           "scanned": false,
+          "slug": "ichinoseki",
           "industries": []
         }
       }
@@ -147,14 +164,16 @@
     "宮城県": {
       "pref_slug": "miyagi",
       "cities": {
-        "仙台市": {
+        "sendai": {
           "name": "仙台市",
           "scanned": false,
+          "slug": "sendai",
           "industries": []
         },
-        "石巻市": {
+        "ishinomaki": {
           "name": "石巻市",
           "scanned": false,
+          "slug": "ishinomaki",
           "industries": []
         }
       }
@@ -162,19 +181,22 @@
     "秋田県": {
       "pref_slug": "akita",
       "cities": {
-        "秋田市": {
+        "akita": {
           "name": "秋田市",
           "scanned": false,
+          "slug": "akita",
           "industries": []
         },
-        "横手市": {
+        "yokote": {
           "name": "横手市",
           "scanned": false,
+          "slug": "yokote",
           "industries": []
         },
-        "大仙市": {
+        "daisen": {
           "name": "大仙市",
           "scanned": false,
+          "slug": "daisen",
           "industries": []
         }
       }
@@ -182,24 +204,28 @@
     "山形県": {
       "pref_slug": "yamagata",
       "cities": {
-        "山形市": {
+        "yamagata": {
           "name": "山形市",
           "scanned": false,
+          "slug": "yamagata",
           "industries": []
         },
-        "酒田市": {
+        "sakata": {
           "name": "酒田市",
           "scanned": false,
+          "slug": "sakata",
           "industries": []
         },
-        "鶴岡市": {
+        "tsuruoka": {
           "name": "鶴岡市",
           "scanned": false,
+          "slug": "tsuruoka",
           "industries": []
         },
-        "米沢市": {
+        "yonezawa": {
           "name": "米沢市",
           "scanned": false,
+          "slug": "yonezawa",
           "industries": []
         }
       }
@@ -207,24 +233,28 @@
     "福島県": {
       "pref_slug": "fukushima",
       "cities": {
-        "福島市": {
+        "fukushima": {
           "name": "福島市",
           "scanned": false,
+          "slug": "fukushima",
           "industries": []
         },
-        "郡山市": {
+        "koriyama": {
           "name": "郡山市",
           "scanned": false,
+          "slug": "koriyama",
           "industries": []
         },
-        "いわき市": {
+        "iwaki": {
           "name": "いわき市",
           "scanned": false,
+          "slug": "iwaki",
           "industries": []
         },
-        "会津若松市": {
+        "aizuwakamatsu": {
           "name": "会津若松市",
           "scanned": false,
+          "slug": "aizuwakamatsu",
           "industries": []
         }
       }
@@ -232,34 +262,40 @@
     "茨城県": {
       "pref_slug": "ibaraki",
       "cities": {
-        "水戸市": {
+        "mito": {
           "name": "水戸市",
           "scanned": false,
+          "slug": "mito",
           "industries": []
         },
-        "つくば市": {
+        "tsukuba": {
           "name": "つくば市",
           "scanned": false,
+          "slug": "tsukuba",
           "industries": []
         },
-        "日立市": {
+        "hitachi": {
           "name": "日立市",
           "scanned": false,
+          "slug": "hitachi",
           "industries": []
         },
-        "ひたちなか市": {
+        "hitachinaka": {
           "name": "ひたちなか市",
           "scanned": false,
+          "slug": "hitachinaka",
           "industries": []
         },
-        "土浦市": {
+        "tsuchiura": {
           "name": "土浦市",
           "scanned": false,
+          "slug": "tsuchiura",
           "industries": []
         },
-        "古河市": {
+        "koga": {
           "name": "古河市",
           "scanned": false,
+          "slug": "koga",
           "industries": []
         }
       }
@@ -267,24 +303,28 @@
     "栃木県": {
       "pref_slug": "tochigi",
       "cities": {
-        "宇都宮市": {
+        "utsunomiya": {
           "name": "宇都宮市",
           "scanned": false,
+          "slug": "utsunomiya",
           "industries": []
         },
-        "小山市": {
+        "oyama": {
           "name": "小山市",
           "scanned": false,
+          "slug": "oyama",
           "industries": []
         },
-        "足利市": {
+        "ashikaga": {
           "name": "足利市",
           "scanned": false,
+          "slug": "ashikaga",
           "industries": []
         },
-        "栃木市": {
+        "tochigi": {
           "name": "栃木市",
           "scanned": false,
+          "slug": "tochigi",
           "industries": []
         }
       }
@@ -292,24 +332,28 @@
     "群馬県": {
       "pref_slug": "gunma",
       "cities": {
-        "前橋市": {
+        "maebashi": {
           "name": "前橋市",
           "scanned": false,
+          "slug": "maebashi",
           "industries": []
         },
-        "高崎市": {
+        "takasaki": {
           "name": "高崎市",
           "scanned": false,
+          "slug": "takasaki",
           "industries": []
         },
-        "伊勢崎市": {
+        "isesaki": {
           "name": "伊勢崎市",
           "scanned": false,
+          "slug": "isesaki",
           "industries": []
         },
-        "太田市": {
+        "ota-gunma": {
           "name": "太田市",
           "scanned": false,
+          "slug": "ota-gunma",
           "industries": []
         }
       }
@@ -317,119 +361,142 @@
     "埼玉県": {
       "pref_slug": "saitama",
       "cities": {
-        "さいたま市": {
+        "saitama": {
           "name": "さいたま市",
           "scanned": false,
+          "slug": "saitama",
           "industries": []
         },
-        "川口市": {
+        "kawaguchi": {
           "name": "川口市",
           "scanned": false,
+          "slug": "kawaguchi",
           "industries": []
         },
-        "川越市": {
+        "kawagoe": {
           "name": "川越市",
           "scanned": false,
+          "slug": "kawagoe",
           "industries": []
         },
-        "所沢市": {
+        "tokorozawa": {
           "name": "所沢市",
           "scanned": false,
+          "slug": "tokorozawa",
           "industries": []
         },
-        "越谷市": {
+        "koshigaya": {
           "name": "越谷市",
           "scanned": false,
+          "slug": "koshigaya",
           "industries": []
         },
-        "草加市": {
+        "soka": {
           "name": "草加市",
           "scanned": false,
+          "slug": "soka",
           "industries": []
         },
-        "春日部市": {
+        "kasukabe": {
           "name": "春日部市",
           "scanned": false,
+          "slug": "kasukabe",
           "industries": []
         },
-        "上尾市": {
+        "ageo": {
           "name": "上尾市",
           "scanned": false,
+          "slug": "ageo",
           "industries": []
         },
-        "熊谷市": {
+        "kumagaya": {
           "name": "熊谷市",
           "scanned": false,
+          "slug": "kumagaya",
           "industries": []
         },
-        "新座市": {
+        "niiza": {
           "name": "新座市",
           "scanned": false,
+          "slug": "niiza",
           "industries": []
         },
-        "狭山市": {
+        "sayama": {
           "name": "狭山市",
           "scanned": false,
+          "slug": "sayama",
           "industries": []
         },
-        "入間市": {
+        "iruma": {
           "name": "入間市",
           "scanned": false,
+          "slug": "iruma",
           "industries": []
         },
-        "朝霞市": {
+        "asaka": {
           "name": "朝霞市",
           "scanned": false,
+          "slug": "asaka",
           "industries": []
         },
-        "戸田市": {
+        "toda": {
           "name": "戸田市",
           "scanned": false,
+          "slug": "toda",
           "industries": []
         },
-        "三郷市": {
+        "misato-saitama": {
           "name": "三郷市",
           "scanned": false,
+          "slug": "misato-saitama",
           "industries": []
         },
-        "八潮市": {
+        "yashio": {
           "name": "八潮市",
           "scanned": false,
+          "slug": "yashio",
           "industries": []
         },
-        "志木市": {
+        "shiki": {
           "name": "志木市",
           "scanned": false,
+          "slug": "shiki",
           "industries": []
         },
-        "和光市": {
+        "wako": {
           "name": "和光市",
           "scanned": false,
+          "slug": "wako",
           "industries": []
         },
-        "富士見市": {
+        "fujimi": {
           "name": "富士見市",
           "scanned": false,
+          "slug": "fujimi",
           "industries": []
         },
-        "桶川市": {
+        "okegawa": {
           "name": "桶川市",
           "scanned": false,
+          "slug": "okegawa",
           "industries": []
         },
-        "東松山市": {
+        "higashimatsuyama": {
           "name": "東松山市",
           "scanned": false,
+          "slug": "higashimatsuyama",
           "industries": []
         },
-        "坂戸市": {
+        "sakado": {
           "name": "坂戸市",
           "scanned": false,
+          "slug": "sakado",
           "industries": []
         },
-        "深谷市": {
+        "fukaya": {
           "name": "深谷市",
           "scanned": false,
+          "slug": "fukaya",
           "industries": []
         }
       }
@@ -437,89 +504,106 @@
     "千葉県": {
       "pref_slug": "chiba",
       "cities": {
-        "千葉市": {
+        "chiba": {
           "name": "千葉市",
           "scanned": false,
+          "slug": "chiba",
           "industries": []
         },
-        "船橋市": {
+        "funabashi": {
           "name": "船橋市",
           "scanned": false,
+          "slug": "funabashi",
           "industries": []
         },
-        "松戸市": {
+        "matsudo": {
           "name": "松戸市",
           "scanned": false,
+          "slug": "matsudo",
           "industries": []
         },
-        "市川市": {
+        "ichikawa": {
           "name": "市川市",
           "scanned": false,
+          "slug": "ichikawa",
           "industries": []
         },
-        "柏市": {
+        "kashiwa": {
           "name": "柏市",
           "scanned": false,
+          "slug": "kashiwa",
           "industries": []
         },
-        "市原市": {
+        "ichihara": {
           "name": "市原市",
           "scanned": false,
+          "slug": "ichihara",
           "industries": []
         },
-        "八千代市": {
+        "yachiyo": {
           "name": "八千代市",
           "scanned": false,
+          "slug": "yachiyo",
           "industries": []
         },
-        "流山市": {
+        "nagareyama": {
           "name": "流山市",
           "scanned": false,
+          "slug": "nagareyama",
           "industries": []
         },
-        "佐倉市": {
+        "sakura": {
           "name": "佐倉市",
           "scanned": false,
+          "slug": "sakura",
           "industries": []
         },
-        "茂原市": {
+        "mobara": {
           "name": "茂原市",
           "scanned": false,
+          "slug": "mobara",
           "industries": []
         },
-        "成田市": {
+        "narita": {
           "name": "成田市",
           "scanned": false,
+          "slug": "narita",
           "industries": []
         },
-        "習志野市": {
+        "narashino": {
           "name": "習志野市",
           "scanned": false,
+          "slug": "narashino",
           "industries": []
         },
-        "浦安市": {
+        "urayasu": {
           "name": "浦安市",
           "scanned": false,
+          "slug": "urayasu",
           "industries": []
         },
-        "我孫子市": {
+        "abiko": {
           "name": "我孫子市",
           "scanned": false,
+          "slug": "abiko",
           "industries": []
         },
-        "木更津市": {
+        "kisarazu": {
           "name": "木更津市",
           "scanned": false,
+          "slug": "kisarazu",
           "industries": []
         },
-        "印西市": {
+        "inzai": {
           "name": "印西市",
           "scanned": false,
+          "slug": "inzai",
           "industries": []
         },
-        "野田市": {
+        "noda": {
           "name": "野田市",
           "scanned": false,
+          "slug": "noda",
           "industries": []
         }
       }
@@ -527,84 +611,100 @@
     "東京都": {
       "pref_slug": "tokyo",
       "cities": {
-        "世田谷区": {
+        "setagaya": {
           "name": "世田谷区",
           "scanned": false,
+          "slug": "setagaya",
           "industries": []
         },
-        "練馬区": {
+        "nerima": {
           "name": "練馬区",
           "scanned": false,
+          "slug": "nerima",
           "industries": []
         },
-        "大田区": {
+        "ota-tokyo": {
           "name": "大田区",
           "scanned": false,
+          "slug": "ota-tokyo",
           "industries": []
         },
-        "江戸川区": {
+        "edogawa": {
           "name": "江戸川区",
           "scanned": false,
+          "slug": "edogawa",
           "industries": []
         },
-        "足立区": {
+        "adachi": {
           "name": "足立区",
           "scanned": false,
+          "slug": "adachi",
           "industries": []
         },
-        "杉並区": {
+        "suginami": {
           "name": "杉並区",
           "scanned": false,
+          "slug": "suginami",
           "industries": []
         },
-        "板橋区": {
+        "itabashi": {
           "name": "板橋区",
           "scanned": false,
+          "slug": "itabashi",
           "industries": []
         },
-        "江東区": {
+        "koto": {
           "name": "江東区",
           "scanned": false,
+          "slug": "koto",
           "industries": []
         },
-        "葛飾区": {
+        "katsushika": {
           "name": "葛飾区",
           "scanned": false,
+          "slug": "katsushika",
           "industries": []
         },
-        "品川区": {
+        "shinagawa": {
           "name": "品川区",
           "scanned": false,
+          "slug": "shinagawa",
           "industries": []
         },
-        "北区": {
+        "kita-tokyo": {
           "name": "北区",
           "scanned": false,
+          "slug": "kita-tokyo",
           "industries": []
         },
-        "新宿区": {
+        "shinjuku": {
           "name": "新宿区",
           "scanned": false,
+          "slug": "shinjuku",
           "industries": []
         },
-        "中野区": {
+        "nakano": {
           "name": "中野区",
           "scanned": false,
+          "slug": "nakano",
           "industries": []
         },
-        "豊島区": {
+        "toshima": {
           "name": "豊島区",
           "scanned": false,
+          "slug": "toshima",
           "industries": []
         },
-        "目黒区": {
+        "meguro": {
           "name": "目黒区",
           "scanned": false,
+          "slug": "meguro",
           "industries": []
         },
         "shibuya": {
           "name": "渋谷区",
           "scanned": true,
+          "slug": "shibuya",
           "industries": [
             "clinic",
             "cosmeticclinic",
@@ -619,134 +719,160 @@
             "tax"
           ]
         },
-        "港区": {
+        "minato": {
           "name": "港区",
           "scanned": false,
+          "slug": "minato",
           "industries": []
         },
-        "墨田区": {
+        "sumida": {
           "name": "墨田区",
           "scanned": false,
+          "slug": "sumida",
           "industries": []
         },
-        "台東区": {
+        "taito": {
           "name": "台東区",
           "scanned": false,
+          "slug": "taito",
           "industries": []
         },
-        "文京区": {
+        "bunkyo": {
           "name": "文京区",
           "scanned": false,
+          "slug": "bunkyo",
           "industries": []
         },
-        "千代田区": {
+        "chiyoda": {
           "name": "千代田区",
           "scanned": false,
+          "slug": "chiyoda",
           "industries": []
         },
-        "中央区": {
+        "chuo-tokyo": {
           "name": "中央区",
           "scanned": false,
+          "slug": "chuo-tokyo",
           "industries": []
         },
-        "荒川区": {
+        "arakawa": {
           "name": "荒川区",
           "scanned": false,
+          "slug": "arakawa",
           "industries": []
         },
-        "八王子市": {
+        "hachioji": {
           "name": "八王子市",
           "scanned": false,
+          "slug": "hachioji",
           "industries": []
         },
-        "町田市": {
+        "machida": {
           "name": "町田市",
           "scanned": false,
+          "slug": "machida",
           "industries": []
         },
-        "府中市": {
+        "fuchu": {
           "name": "府中市",
           "scanned": false,
+          "slug": "fuchu",
           "industries": []
         },
-        "調布市": {
+        "chofu": {
           "name": "調布市",
           "scanned": false,
+          "slug": "chofu",
           "industries": []
         },
-        "西東京市": {
+        "nishitokyo": {
           "name": "西東京市",
           "scanned": false,
+          "slug": "nishitokyo",
           "industries": []
         },
-        "小平市": {
+        "kodaira": {
           "name": "小平市",
           "scanned": false,
+          "slug": "kodaira",
           "industries": []
         },
-        "武蔵野市": {
+        "musashino": {
           "name": "武蔵野市",
           "scanned": false,
+          "slug": "musashino",
           "industries": []
         },
-        "三鷹市": {
+        "mitaka": {
           "name": "三鷹市",
           "scanned": false,
+          "slug": "mitaka",
           "industries": []
         },
-        "日野市": {
+        "hino": {
           "name": "日野市",
           "scanned": false,
+          "slug": "hino",
           "industries": []
         },
-        "立川市": {
+        "tachikawa": {
           "name": "立川市",
           "scanned": false,
+          "slug": "tachikawa",
           "industries": []
         },
-        "東村山市": {
+        "higashimurayama": {
           "name": "東村山市",
           "scanned": false,
+          "slug": "higashimurayama",
           "industries": []
         },
-        "多摩市": {
+        "tama": {
           "name": "多摩市",
           "scanned": false,
+          "slug": "tama",
           "industries": []
         },
-        "国分寺市": {
+        "kokubunji": {
           "name": "国分寺市",
           "scanned": false,
+          "slug": "kokubunji",
           "industries": []
         },
-        "小金井市": {
+        "koganei": {
           "name": "小金井市",
           "scanned": false,
+          "slug": "koganei",
           "industries": []
         },
-        "東久留米市": {
+        "higashikurume": {
           "name": "東久留米市",
           "scanned": false,
+          "slug": "higashikurume",
           "industries": []
         },
-        "青梅市": {
+        "ome": {
           "name": "青梅市",
           "scanned": false,
+          "slug": "ome",
           "industries": []
         },
-        "昭島市": {
+        "akishima": {
           "name": "昭島市",
           "scanned": false,
+          "slug": "akishima",
           "industries": []
         },
-        "狛江市": {
+        "komae": {
           "name": "狛江市",
           "scanned": false,
+          "slug": "komae",
           "industries": []
         },
-        "東大和市": {
+        "higashiyamato": {
           "name": "東大和市",
           "scanned": false,
+          "slug": "higashiyamato",
           "industries": []
         }
       }
@@ -754,79 +880,94 @@
     "神奈川県": {
       "pref_slug": "kanagawa",
       "cities": {
-        "横浜市": {
+        "yokohama": {
           "name": "横浜市",
           "scanned": false,
+          "slug": "yokohama",
           "industries": []
         },
-        "川崎市": {
+        "kawasaki": {
           "name": "川崎市",
           "scanned": false,
+          "slug": "kawasaki",
           "industries": []
         },
-        "相模原市": {
+        "sagamihara": {
           "name": "相模原市",
           "scanned": false,
+          "slug": "sagamihara",
           "industries": []
         },
-        "藤沢市": {
+        "fujisawa": {
           "name": "藤沢市",
           "scanned": false,
+          "slug": "fujisawa",
           "industries": []
         },
-        "横須賀市": {
+        "yokosuka": {
           "name": "横須賀市",
           "scanned": false,
+          "slug": "yokosuka",
           "industries": []
         },
-        "平塚市": {
+        "hiratsuka": {
           "name": "平塚市",
           "scanned": false,
+          "slug": "hiratsuka",
           "industries": []
         },
-        "茅ヶ崎市": {
+        "chigasaki": {
           "name": "茅ヶ崎市",
           "scanned": false,
+          "slug": "chigasaki",
           "industries": []
         },
-        "厚木市": {
+        "atsugi": {
           "name": "厚木市",
           "scanned": false,
+          "slug": "atsugi",
           "industries": []
         },
-        "大和市": {
+        "yamato": {
           "name": "大和市",
           "scanned": false,
+          "slug": "yamato",
           "industries": []
         },
-        "小田原市": {
+        "odawara": {
           "name": "小田原市",
           "scanned": false,
+          "slug": "odawara",
           "industries": []
         },
-        "鎌倉市": {
+        "kamakura": {
           "name": "鎌倉市",
           "scanned": false,
+          "slug": "kamakura",
           "industries": []
         },
-        "秦野市": {
+        "hadano": {
           "name": "秦野市",
           "scanned": false,
+          "slug": "hadano",
           "industries": []
         },
-        "海老名市": {
+        "ebina": {
           "name": "海老名市",
           "scanned": false,
+          "slug": "ebina",
           "industries": []
         },
-        "座間市": {
+        "zama": {
           "name": "座間市",
           "scanned": false,
+          "slug": "zama",
           "industries": []
         },
-        "伊勢原市": {
+        "isehara": {
           "name": "伊勢原市",
           "scanned": false,
+          "slug": "isehara",
           "industries": []
         }
       }
@@ -834,19 +975,22 @@
     "新潟県": {
       "pref_slug": "niigata",
       "cities": {
-        "新潟市": {
+        "niigata": {
           "name": "新潟市",
           "scanned": false,
+          "slug": "niigata",
           "industries": []
         },
-        "長岡市": {
+        "nagaoka": {
           "name": "長岡市",
           "scanned": false,
+          "slug": "nagaoka",
           "industries": []
         },
-        "上越市": {
+        "joetsu": {
           "name": "上越市",
           "scanned": false,
+          "slug": "joetsu",
           "industries": []
         }
       }
@@ -854,14 +998,16 @@
     "富山県": {
       "pref_slug": "toyama",
       "cities": {
-        "富山市": {
+        "toyama": {
           "name": "富山市",
           "scanned": false,
+          "slug": "toyama",
           "industries": []
         },
-        "高岡市": {
+        "takaoka": {
           "name": "高岡市",
           "scanned": false,
+          "slug": "takaoka",
           "industries": []
         }
       }
@@ -869,19 +1015,22 @@
     "石川県": {
       "pref_slug": "ishikawa",
       "cities": {
-        "金沢市": {
+        "kanazawa": {
           "name": "金沢市",
           "scanned": false,
+          "slug": "kanazawa",
           "industries": []
         },
-        "小松市": {
+        "komatsu": {
           "name": "小松市",
           "scanned": false,
+          "slug": "komatsu",
           "industries": []
         },
-        "白山市": {
+        "hakusan": {
           "name": "白山市",
           "scanned": false,
+          "slug": "hakusan",
           "industries": []
         }
       }
@@ -889,9 +1038,10 @@
     "福井県": {
       "pref_slug": "fukui",
       "cities": {
-        "福井市": {
+        "fukui": {
           "name": "福井市",
           "scanned": false,
+          "slug": "fukui",
           "industries": []
         }
       }
@@ -899,14 +1049,16 @@
     "山梨県": {
       "pref_slug": "yamanashi",
       "cities": {
-        "甲府市": {
+        "kofu": {
           "name": "甲府市",
           "scanned": false,
+          "slug": "kofu",
           "industries": []
         },
-        "甲斐市": {
+        "kai": {
           "name": "甲斐市",
           "scanned": false,
+          "slug": "kai",
           "industries": []
         }
       }
@@ -914,24 +1066,28 @@
     "長野県": {
       "pref_slug": "nagano",
       "cities": {
-        "長野市": {
+        "nagano": {
           "name": "長野市",
           "scanned": false,
+          "slug": "nagano",
           "industries": []
         },
-        "松本市": {
+        "matsumoto": {
           "name": "松本市",
           "scanned": false,
+          "slug": "matsumoto",
           "industries": []
         },
-        "上田市": {
+        "ueda": {
           "name": "上田市",
           "scanned": false,
+          "slug": "ueda",
           "industries": []
         },
-        "飯田市": {
+        "iida": {
           "name": "飯田市",
           "scanned": false,
+          "slug": "iida",
           "industries": []
         }
       }
@@ -939,24 +1095,28 @@
     "岐阜県": {
       "pref_slug": "gifu",
       "cities": {
-        "岐阜市": {
+        "gifu": {
           "name": "岐阜市",
           "scanned": false,
+          "slug": "gifu",
           "industries": []
         },
-        "大垣市": {
+        "ogaki": {
           "name": "大垣市",
           "scanned": false,
+          "slug": "ogaki",
           "industries": []
         },
-        "各務原市": {
+        "kakamigahara": {
           "name": "各務原市",
           "scanned": false,
+          "slug": "kakamigahara",
           "industries": []
         },
-        "多治見市": {
+        "tajimi": {
           "name": "多治見市",
           "scanned": false,
+          "slug": "tajimi",
           "industries": []
         }
       }
@@ -967,6 +1127,7 @@
         "shizuoka": {
           "name": "静岡市",
           "scanned": true,
+          "slug": "shizuoka",
           "industries": [
             "clinic",
             "cosmeticclinic",
@@ -984,6 +1145,7 @@
         "hamamatsu": {
           "name": "浜松市",
           "scanned": true,
+          "slug": "hamamatsu",
           "industries": [
             "clinic",
             "cosmeticclinic",
@@ -1001,6 +1163,7 @@
         "numazu": {
           "name": "沼津市",
           "scanned": true,
+          "slug": "numazu",
           "industries": [
             "cosmeticclinic",
             "gyoseishoshi",
@@ -1019,6 +1182,7 @@
         "mishima": {
           "name": "三島市",
           "scanned": true,
+          "slug": "mishima",
           "industries": [
             "clinic",
             "cosmeticclinic",
@@ -1036,6 +1200,7 @@
         "fuji": {
           "name": "富士市",
           "scanned": true,
+          "slug": "fuji",
           "industries": [
             "clinic",
             "cosmeticclinic",
@@ -1050,44 +1215,52 @@
             "tax"
           ]
         },
-        "富士宮市": {
+        "fujinomiya": {
           "name": "富士宮市",
           "scanned": false,
+          "slug": "fujinomiya",
           "industries": []
         },
-        "裾野市": {
+        "susono": {
           "name": "裾野市",
           "scanned": false,
+          "slug": "susono",
           "industries": []
         },
-        "長泉町": {
+        "nagaizumi": {
           "name": "長泉町",
           "scanned": false,
+          "slug": "nagaizumi",
           "industries": []
         },
-        "藤枝市": {
+        "fujieda": {
           "name": "藤枝市",
           "scanned": false,
+          "slug": "fujieda",
           "industries": []
         },
-        "島田市": {
+        "shimada": {
           "name": "島田市",
           "scanned": false,
+          "slug": "shimada",
           "industries": []
         },
-        "磐田市": {
+        "iwata": {
           "name": "磐田市",
           "scanned": false,
+          "slug": "iwata",
           "industries": []
         },
-        "掛川市": {
+        "kakegawa": {
           "name": "掛川市",
           "scanned": false,
+          "slug": "kakegawa",
           "industries": []
         },
-        "焼津市": {
+        "yaizu": {
           "name": "焼津市",
           "scanned": false,
+          "slug": "yaizu",
           "industries": []
         }
       }
@@ -1095,94 +1268,112 @@
     "愛知県": {
       "pref_slug": "aichi",
       "cities": {
-        "名古屋市": {
+        "nagoya": {
           "name": "名古屋市",
           "scanned": false,
+          "slug": "nagoya",
           "industries": []
         },
-        "豊田市": {
+        "toyota": {
           "name": "豊田市",
           "scanned": false,
+          "slug": "toyota",
           "industries": []
         },
-        "岡崎市": {
+        "okazaki": {
           "name": "岡崎市",
           "scanned": false,
+          "slug": "okazaki",
           "industries": []
         },
-        "一宮市": {
+        "ichinomiya": {
           "name": "一宮市",
           "scanned": false,
+          "slug": "ichinomiya",
           "industries": []
         },
-        "豊橋市": {
+        "toyohashi": {
           "name": "豊橋市",
           "scanned": false,
+          "slug": "toyohashi",
           "industries": []
         },
-        "春日井市": {
+        "kasugai": {
           "name": "春日井市",
           "scanned": false,
+          "slug": "kasugai",
           "industries": []
         },
-        "安城市": {
+        "anjo": {
           "name": "安城市",
           "scanned": false,
+          "slug": "anjo",
           "industries": []
         },
-        "豊川市": {
+        "toyokawa": {
           "name": "豊川市",
           "scanned": false,
+          "slug": "toyokawa",
           "industries": []
         },
-        "西尾市": {
+        "nishio": {
           "name": "西尾市",
           "scanned": false,
+          "slug": "nishio",
           "industries": []
         },
-        "小牧市": {
+        "komaki": {
           "name": "小牧市",
           "scanned": false,
+          "slug": "komaki",
           "industries": []
         },
-        "刈谷市": {
+        "kariya": {
           "name": "刈谷市",
           "scanned": false,
+          "slug": "kariya",
           "industries": []
         },
-        "稲沢市": {
+        "inazawa": {
           "name": "稲沢市",
           "scanned": false,
+          "slug": "inazawa",
           "industries": []
         },
-        "東海市": {
+        "tokai": {
           "name": "東海市",
           "scanned": false,
+          "slug": "tokai",
           "industries": []
         },
-        "瀬戸市": {
+        "seto": {
           "name": "瀬戸市",
           "scanned": false,
+          "slug": "seto",
           "industries": []
         },
-        "知多市": {
+        "chita": {
           "name": "知多市",
           "scanned": false,
+          "slug": "chita",
           "industries": []
         },
-        "あま市": {
+        "ama": {
           "name": "あま市",
           "scanned": false,
+          "slug": "ama",
           "industries": []
         },
-        "尾張旭市": {
+        "owariasahi": {
           "name": "尾張旭市",
           "scanned": false,
+          "slug": "owariasahi",
           "industries": []
         },
-        "日進市": {
+        "nisshin": {
           "name": "日進市",
           "scanned": false,
+          "slug": "nisshin",
           "industries": []
         }
       }
@@ -1190,39 +1381,46 @@
     "三重県": {
       "pref_slug": "mie",
       "cities": {
-        "津市": {
+        "tsu": {
           "name": "津市",
           "scanned": false,
+          "slug": "tsu",
           "industries": []
         },
-        "四日市市": {
+        "yokkaichi": {
           "name": "四日市市",
           "scanned": false,
+          "slug": "yokkaichi",
           "industries": []
         },
-        "鈴鹿市": {
+        "suzuka": {
           "name": "鈴鹿市",
           "scanned": false,
+          "slug": "suzuka",
           "industries": []
         },
-        "桑名市": {
+        "kuwana": {
           "name": "桑名市",
           "scanned": false,
+          "slug": "kuwana",
           "industries": []
         },
-        "松阪市": {
+        "matsusaka": {
           "name": "松阪市",
           "scanned": false,
+          "slug": "matsusaka",
           "industries": []
         },
-        "伊勢市": {
+        "ise": {
           "name": "伊勢市",
           "scanned": false,
+          "slug": "ise",
           "industries": []
         },
-        "伊賀市": {
+        "iga": {
           "name": "伊賀市",
           "scanned": false,
+          "slug": "iga",
           "industries": []
         }
       }
@@ -1230,34 +1428,40 @@
     "滋賀県": {
       "pref_slug": "shiga",
       "cities": {
-        "大津市": {
+        "otsu": {
           "name": "大津市",
           "scanned": false,
+          "slug": "otsu",
           "industries": []
         },
-        "草津市": {
+        "kusatsu": {
           "name": "草津市",
           "scanned": false,
+          "slug": "kusatsu",
           "industries": []
         },
-        "彦根市": {
+        "hikone": {
           "name": "彦根市",
           "scanned": false,
+          "slug": "hikone",
           "industries": []
         },
-        "長浜市": {
+        "nagahama": {
           "name": "長浜市",
           "scanned": false,
+          "slug": "nagahama",
           "industries": []
         },
-        "東近江市": {
+        "higashiomi": {
           "name": "東近江市",
           "scanned": false,
+          "slug": "higashiomi",
           "industries": []
         },
-        "甲賀市": {
+        "koka": {
           "name": "甲賀市",
           "scanned": false,
+          "slug": "koka",
           "industries": []
         }
       }
@@ -1265,24 +1469,28 @@
     "京都府": {
       "pref_slug": "kyoto",
       "cities": {
-        "京都市": {
+        "kyoto": {
           "name": "京都市",
           "scanned": false,
+          "slug": "kyoto",
           "industries": []
         },
-        "宇治市": {
+        "uji": {
           "name": "宇治市",
           "scanned": false,
+          "slug": "uji",
           "industries": []
         },
-        "福知山市": {
+        "fukuchiyama": {
           "name": "福知山市",
           "scanned": false,
+          "slug": "fukuchiyama",
           "industries": []
         },
-        "舞鶴市": {
+        "maizuru": {
           "name": "舞鶴市",
           "scanned": false,
+          "slug": "maizuru",
           "industries": []
         }
       }
@@ -1290,124 +1498,148 @@
     "大阪府": {
       "pref_slug": "osaka",
       "cities": {
-        "大阪市": {
+        "osaka": {
           "name": "大阪市",
           "scanned": false,
+          "slug": "osaka",
           "industries": []
         },
-        "堺市": {
+        "sakai": {
           "name": "堺市",
           "scanned": false,
+          "slug": "sakai",
           "industries": []
         },
-        "東大阪市": {
+        "higashiosaka": {
           "name": "東大阪市",
           "scanned": false,
+          "slug": "higashiosaka",
           "industries": []
         },
-        "枚方市": {
+        "hirakata": {
           "name": "枚方市",
           "scanned": false,
+          "slug": "hirakata",
           "industries": []
         },
-        "吹田市": {
+        "suita": {
           "name": "吹田市",
           "scanned": false,
+          "slug": "suita",
           "industries": []
         },
-        "豊中市": {
+        "toyonaka": {
           "name": "豊中市",
           "scanned": false,
+          "slug": "toyonaka",
           "industries": []
         },
-        "高槻市": {
+        "takatsuki": {
           "name": "高槻市",
           "scanned": false,
+          "slug": "takatsuki",
           "industries": []
         },
-        "八尾市": {
+        "yao": {
           "name": "八尾市",
           "scanned": false,
+          "slug": "yao",
           "industries": []
         },
-        "茨木市": {
+        "ibaraki": {
           "name": "茨木市",
           "scanned": false,
+          "slug": "ibaraki",
           "industries": []
         },
-        "寝屋川市": {
+        "neyagawa": {
           "name": "寝屋川市",
           "scanned": false,
+          "slug": "neyagawa",
           "industries": []
         },
-        "松原市": {
+        "matsubara": {
           "name": "松原市",
           "scanned": false,
+          "slug": "matsubara",
           "industries": []
         },
-        "岸和田市": {
+        "kishiwada": {
           "name": "岸和田市",
           "scanned": false,
+          "slug": "kishiwada",
           "industries": []
         },
-        "和泉市": {
+        "izumi": {
           "name": "和泉市",
           "scanned": false,
+          "slug": "izumi",
           "industries": []
         },
-        "箕面市": {
+        "minoh": {
           "name": "箕面市",
           "scanned": false,
+          "slug": "minoh",
           "industries": []
         },
-        "池田市": {
+        "ikeda": {
           "name": "池田市",
           "scanned": false,
+          "slug": "ikeda",
           "industries": []
         },
-        "守口市": {
+        "moriguchi": {
           "name": "守口市",
           "scanned": false,
+          "slug": "moriguchi",
           "industries": []
         },
-        "大東市": {
+        "daito": {
           "name": "大東市",
           "scanned": false,
+          "slug": "daito",
           "industries": []
         },
-        "羽曳野市": {
+        "habikino": {
           "name": "羽曳野市",
           "scanned": false,
+          "slug": "habikino",
           "industries": []
         },
-        "泉佐野市": {
+        "izumisano": {
           "name": "泉佐野市",
           "scanned": false,
+          "slug": "izumisano",
           "industries": []
         },
-        "富田林市": {
+        "tondabayashi": {
           "name": "富田林市",
           "scanned": false,
+          "slug": "tondabayashi",
           "industries": []
         },
-        "河内長野市": {
+        "kawachinagano": {
           "name": "河内長野市",
           "scanned": false,
+          "slug": "kawachinagano",
           "industries": []
         },
-        "門真市": {
+        "kadoma": {
           "name": "門真市",
           "scanned": false,
+          "slug": "kadoma",
           "industries": []
         },
-        "柏原市": {
+        "kashiwara": {
           "name": "柏原市",
           "scanned": false,
+          "slug": "kashiwara",
           "industries": []
         },
-        "摂津市": {
+        "settsu": {
           "name": "摂津市",
           "scanned": false,
+          "slug": "settsu",
           "industries": []
         }
       }
@@ -1415,59 +1647,70 @@
     "兵庫県": {
       "pref_slug": "hyogo",
       "cities": {
-        "神戸市": {
+        "kobe": {
           "name": "神戸市",
           "scanned": false,
+          "slug": "kobe",
           "industries": []
         },
-        "姫路市": {
+        "himeji": {
           "name": "姫路市",
           "scanned": false,
+          "slug": "himeji",
           "industries": []
         },
-        "西宮市": {
+        "nishinomiya": {
           "name": "西宮市",
           "scanned": false,
+          "slug": "nishinomiya",
           "industries": []
         },
-        "尼崎市": {
+        "amagasaki": {
           "name": "尼崎市",
           "scanned": false,
+          "slug": "amagasaki",
           "industries": []
         },
-        "明石市": {
+        "akashi": {
           "name": "明石市",
           "scanned": false,
+          "slug": "akashi",
           "industries": []
         },
-        "加古川市": {
+        "kakogawa": {
           "name": "加古川市",
           "scanned": false,
+          "slug": "kakogawa",
           "industries": []
         },
-        "宝塚市": {
+        "takarazuka": {
           "name": "宝塚市",
           "scanned": false,
+          "slug": "takarazuka",
           "industries": []
         },
-        "伊丹市": {
+        "itami": {
           "name": "伊丹市",
           "scanned": false,
+          "slug": "itami",
           "industries": []
         },
-        "川西市": {
+        "kawanishi": {
           "name": "川西市",
           "scanned": false,
+          "slug": "kawanishi",
           "industries": []
         },
-        "三田市": {
+        "sanda": {
           "name": "三田市",
           "scanned": false,
+          "slug": "sanda",
           "industries": []
         },
-        "芦屋市": {
+        "ashiya": {
           "name": "芦屋市",
           "scanned": false,
+          "slug": "ashiya",
           "industries": []
         }
       }
@@ -1475,29 +1718,34 @@
     "奈良県": {
       "pref_slug": "nara",
       "cities": {
-        "奈良市": {
+        "nara": {
           "name": "奈良市",
           "scanned": false,
+          "slug": "nara",
           "industries": []
         },
-        "橿原市": {
+        "kashihara": {
           "name": "橿原市",
           "scanned": false,
+          "slug": "kashihara",
           "industries": []
         },
-        "生駒市": {
+        "ikoma": {
           "name": "生駒市",
           "scanned": false,
+          "slug": "ikoma",
           "industries": []
         },
-        "大和郡山市": {
+        "yamatokoriyama": {
           "name": "大和郡山市",
           "scanned": false,
+          "slug": "yamatokoriyama",
           "industries": []
         },
-        "大和高田市": {
+        "yamatotakada": {
           "name": "大和高田市",
           "scanned": false,
+          "slug": "yamatotakada",
           "industries": []
         }
       }
@@ -1505,14 +1753,16 @@
     "和歌山県": {
       "pref_slug": "wakayama",
       "cities": {
-        "和歌山市": {
+        "wakayama": {
           "name": "和歌山市",
           "scanned": false,
+          "slug": "wakayama",
           "industries": []
         },
-        "田辺市": {
+        "tanabe": {
           "name": "田辺市",
           "scanned": false,
+          "slug": "tanabe",
           "industries": []
         }
       }
@@ -1520,14 +1770,16 @@
     "鳥取県": {
       "pref_slug": "tottori",
       "cities": {
-        "鳥取市": {
+        "tottori": {
           "name": "鳥取市",
           "scanned": false,
+          "slug": "tottori",
           "industries": []
         },
-        "米子市": {
+        "yonago": {
           "name": "米子市",
           "scanned": false,
+          "slug": "yonago",
           "industries": []
         }
       }
@@ -1535,14 +1787,16 @@
     "島根県": {
       "pref_slug": "shimane",
       "cities": {
-        "松江市": {
+        "matsue": {
           "name": "松江市",
           "scanned": false,
+          "slug": "matsue",
           "industries": []
         },
-        "出雲市": {
+        "izumo": {
           "name": "出雲市",
           "scanned": false,
+          "slug": "izumo",
           "industries": []
         }
       }
@@ -1550,19 +1804,22 @@
     "岡山県": {
       "pref_slug": "okayama",
       "cities": {
-        "岡山市": {
+        "okayama": {
           "name": "岡山市",
           "scanned": false,
+          "slug": "okayama",
           "industries": []
         },
-        "倉敷市": {
+        "kurashiki": {
           "name": "倉敷市",
           "scanned": false,
+          "slug": "kurashiki",
           "industries": []
         },
-        "津山市": {
+        "tsuyama": {
           "name": "津山市",
           "scanned": false,
+          "slug": "tsuyama",
           "industries": []
         }
       }
@@ -1570,29 +1827,34 @@
     "広島県": {
       "pref_slug": "hiroshima",
       "cities": {
-        "広島市": {
+        "hiroshima": {
           "name": "広島市",
           "scanned": false,
+          "slug": "hiroshima",
           "industries": []
         },
-        "福山市": {
+        "fukuyama": {
           "name": "福山市",
           "scanned": false,
+          "slug": "fukuyama",
           "industries": []
         },
-        "呉市": {
+        "kure": {
           "name": "呉市",
           "scanned": false,
+          "slug": "kure",
           "industries": []
         },
-        "東広島市": {
+        "higashihiroshima": {
           "name": "東広島市",
           "scanned": false,
+          "slug": "higashihiroshima",
           "industries": []
         },
-        "尾道市": {
+        "onomichi": {
           "name": "尾道市",
           "scanned": false,
+          "slug": "onomichi",
           "industries": []
         }
       }
@@ -1600,29 +1862,34 @@
     "山口県": {
       "pref_slug": "yamaguchi",
       "cities": {
-        "下関市": {
+        "shimonoseki": {
           "name": "下関市",
           "scanned": false,
+          "slug": "shimonoseki",
           "industries": []
         },
-        "山口市": {
+        "yamaguchi": {
           "name": "山口市",
           "scanned": false,
+          "slug": "yamaguchi",
           "industries": []
         },
-        "宇部市": {
+        "ube": {
           "name": "宇部市",
           "scanned": false,
+          "slug": "ube",
           "industries": []
         },
-        "周南市": {
+        "shunan": {
           "name": "周南市",
           "scanned": false,
+          "slug": "shunan",
           "industries": []
         },
-        "岩国市": {
+        "iwakuni": {
           "name": "岩国市",
           "scanned": false,
+          "slug": "iwakuni",
           "industries": []
         }
       }
@@ -1630,9 +1897,10 @@
     "徳島県": {
       "pref_slug": "tokushima",
       "cities": {
-        "徳島市": {
+        "tokushima": {
           "name": "徳島市",
           "scanned": false,
+          "slug": "tokushima",
           "industries": []
         }
       }
@@ -1640,14 +1908,16 @@
     "香川県": {
       "pref_slug": "kagawa",
       "cities": {
-        "高松市": {
+        "takamatsu": {
           "name": "高松市",
           "scanned": false,
+          "slug": "takamatsu",
           "industries": []
         },
-        "丸亀市": {
+        "marugame": {
           "name": "丸亀市",
           "scanned": false,
+          "slug": "marugame",
           "industries": []
         }
       }
@@ -1655,24 +1925,28 @@
     "愛媛県": {
       "pref_slug": "ehime",
       "cities": {
-        "松山市": {
+        "matsuyama": {
           "name": "松山市",
           "scanned": false,
+          "slug": "matsuyama",
           "industries": []
         },
-        "今治市": {
+        "imabari": {
           "name": "今治市",
           "scanned": false,
+          "slug": "imabari",
           "industries": []
         },
-        "新居浜市": {
+        "niihama": {
           "name": "新居浜市",
           "scanned": false,
+          "slug": "niihama",
           "industries": []
         },
-        "西条市": {
+        "saijo": {
           "name": "西条市",
           "scanned": false,
+          "slug": "saijo",
           "industries": []
         }
       }
@@ -1680,9 +1954,10 @@
     "高知県": {
       "pref_slug": "kochi",
       "cities": {
-        "高知市": {
+        "kochi": {
           "name": "高知市",
           "scanned": false,
+          "slug": "kochi",
           "industries": []
         }
       }
@@ -1690,54 +1965,64 @@
     "福岡県": {
       "pref_slug": "fukuoka",
       "cities": {
-        "福岡市": {
+        "fukuoka": {
           "name": "福岡市",
           "scanned": false,
+          "slug": "fukuoka",
           "industries": []
         },
-        "北九州市": {
+        "kitakyushu": {
           "name": "北九州市",
           "scanned": false,
+          "slug": "kitakyushu",
           "industries": []
         },
-        "久留米市": {
+        "kurume": {
           "name": "久留米市",
           "scanned": false,
+          "slug": "kurume",
           "industries": []
         },
-        "大牟田市": {
+        "omuta": {
           "name": "大牟田市",
           "scanned": false,
+          "slug": "omuta",
           "industries": []
         },
-        "春日市": {
+        "kasuga": {
           "name": "春日市",
           "scanned": false,
+          "slug": "kasuga",
           "industries": []
         },
-        "筑紫野市": {
+        "chikushino": {
           "name": "筑紫野市",
           "scanned": false,
+          "slug": "chikushino",
           "industries": []
         },
-        "飯塚市": {
+        "iizuka": {
           "name": "飯塚市",
           "scanned": false,
+          "slug": "iizuka",
           "industries": []
         },
-        "古賀市": {
+        "koga-fukuoka": {
           "name": "古賀市",
           "scanned": false,
+          "slug": "koga-fukuoka",
           "industries": []
         },
-        "大野城市": {
+        "onojo": {
           "name": "大野城市",
           "scanned": false,
+          "slug": "onojo",
           "industries": []
         },
-        "宗像市": {
+        "munakata": {
           "name": "宗像市",
           "scanned": false,
+          "slug": "munakata",
           "industries": []
         }
       }
@@ -1745,14 +2030,16 @@
     "佐賀県": {
       "pref_slug": "saga",
       "cities": {
-        "佐賀市": {
+        "saga": {
           "name": "佐賀市",
           "scanned": false,
+          "slug": "saga",
           "industries": []
         },
-        "唐津市": {
+        "karatsu": {
           "name": "唐津市",
           "scanned": false,
+          "slug": "karatsu",
           "industries": []
         }
       }
@@ -1760,19 +2047,22 @@
     "長崎県": {
       "pref_slug": "nagasaki",
       "cities": {
-        "長崎市": {
+        "nagasaki": {
           "name": "長崎市",
           "scanned": false,
+          "slug": "nagasaki",
           "industries": []
         },
-        "佐世保市": {
+        "sasebo": {
           "name": "佐世保市",
           "scanned": false,
+          "slug": "sasebo",
           "industries": []
         },
-        "諫早市": {
+        "isahaya": {
           "name": "諫早市",
           "scanned": false,
+          "slug": "isahaya",
           "industries": []
         }
       }
@@ -1780,14 +2070,16 @@
     "熊本県": {
       "pref_slug": "kumamoto",
       "cities": {
-        "熊本市": {
+        "kumamoto": {
           "name": "熊本市",
           "scanned": false,
+          "slug": "kumamoto",
           "industries": []
         },
-        "八代市": {
+        "yatsushiro": {
           "name": "八代市",
           "scanned": false,
+          "slug": "yatsushiro",
           "industries": []
         }
       }
@@ -1795,14 +2087,16 @@
     "大分県": {
       "pref_slug": "oita",
       "cities": {
-        "大分市": {
+        "oita": {
           "name": "大分市",
           "scanned": false,
+          "slug": "oita",
           "industries": []
         },
-        "別府市": {
+        "beppu": {
           "name": "別府市",
           "scanned": false,
+          "slug": "beppu",
           "industries": []
         }
       }
@@ -1810,19 +2104,22 @@
     "宮崎県": {
       "pref_slug": "miyazaki",
       "cities": {
-        "宮崎市": {
+        "miyazaki": {
           "name": "宮崎市",
           "scanned": false,
+          "slug": "miyazaki",
           "industries": []
         },
-        "都城市": {
+        "miyakonojo": {
           "name": "都城市",
           "scanned": false,
+          "slug": "miyakonojo",
           "industries": []
         },
-        "延岡市": {
+        "nobeoka": {
           "name": "延岡市",
           "scanned": false,
+          "slug": "nobeoka",
           "industries": []
         }
       }
@@ -1830,19 +2127,22 @@
     "鹿児島県": {
       "pref_slug": "kagoshima",
       "cities": {
-        "鹿児島市": {
+        "kagoshima": {
           "name": "鹿児島市",
           "scanned": false,
+          "slug": "kagoshima",
           "industries": []
         },
-        "霧島市": {
+        "kirishima": {
           "name": "霧島市",
           "scanned": false,
+          "slug": "kirishima",
           "industries": []
         },
-        "鹿屋市": {
+        "kanoya": {
           "name": "鹿屋市",
           "scanned": false,
+          "slug": "kanoya",
           "industries": []
         }
       }
@@ -1850,29 +2150,34 @@
     "沖縄県": {
       "pref_slug": "okinawa",
       "cities": {
-        "那覇市": {
+        "naha": {
           "name": "那覇市",
           "scanned": false,
+          "slug": "naha",
           "industries": []
         },
-        "沖縄市": {
+        "okinawa-city": {
           "name": "沖縄市",
           "scanned": false,
+          "slug": "okinawa-city",
           "industries": []
         },
-        "うるま市": {
+        "uruma": {
           "name": "うるま市",
           "scanned": false,
+          "slug": "uruma",
           "industries": []
         },
-        "浦添市": {
+        "urasoe": {
           "name": "浦添市",
           "scanned": false,
+          "slug": "urasoe",
           "industries": []
         },
-        "宜野湾市": {
+        "ginowan": {
           "name": "宜野湾市",
           "scanned": false,
+          "slug": "ginowan",
           "industries": []
         }
       }
@@ -1956,16 +2261,12 @@
       var url = '/areas/';
       if (pref && city) {
         var cityData = DATA[pref].cities[city];
-        if (cityData && cityData.scanned) {
-          // scanned: city は romanized slug
-          if (ind) {
-            url = '/areas/' + city + '/' + ind + '/';
-          } else {
-            url = '/areas/' + city + '/';
-          }
-        } else {
-          // 非 scanned: 都道府県ハブへ
-          url = '/areas/pref/' + DATA[pref].pref_slug + '/';
+        if (cityData && cityData.scanned && ind) {
+          // scanned + industry → /areas/{slug}/{industry}/
+          url = '/areas/' + cityData.slug + '/' + ind + '/';
+        } else if (cityData) {
+          // 全都市: /areas/{slug}/ の個別 city hub へ
+          url = '/areas/' + cityData.slug + '/';
         }
       } else if (pref) {
         url = '/areas/pref/' + DATA[pref].pref_slug + '/';

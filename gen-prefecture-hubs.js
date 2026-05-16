@@ -16,6 +16,7 @@ const path = require('path');
 const ROOT = __dirname;
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/prefectures.json'), 'utf-8'));
 const META = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/cities-meta.json'), 'utf-8')).cities;
+const SLUGS = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/city-slugs.json'), 'utf-8')).slugs;
 
 // 人口を「約 X.X 万」形式に整形 (千の位までで丸め)
 function popMan(pop) {
@@ -199,11 +200,12 @@ function prefectureHubPage(pref) {
   // /areas/ テンプレ準拠の rich カード (タグ + 都市名 + 人口/市制 + 1 行説明)
   const richCard = (c, isScanned) => {
     const m = META[c] || {};
-    const href = isScanned ? SCANNED_CITIES[c] : '/services/web/';
+    const slug = SLUGS[c];
+    const href = isScanned ? SCANNED_CITIES[c] : (slug ? `/areas/${slug}/` : '/services/web/');
     const tagText = isScanned ? `実測データあり ／ ${m.type || ''}` : (m.type || '');
     const subline = `人口 ${popMan(m.pop)} ／ ${m.type || ''}`;
     const description = m.tag || `${esc(pref.name)} 内の主要都市`;
-    const ctaText = isScanned ? '業種別実測値ページを見る →' : 'WEB 制作のご相談はこちら →';
+    const ctaText = isScanned ? '業種別実測値ページを見る →' : 'エリアガイドを見る →';
     return `          <a href="${href}" class="group block bg-white border ${isScanned ? 'border-teal-300 hover:border-teal-700' : 'border-dark-200 hover:border-teal-700'} rounded-xl p-6 transition-all hover:shadow-lg">
             <p class="text-xs text-teal-700 font-display font-bold tracking-widest uppercase">${esc(tagText)}</p>
             <h3 class="mt-2 font-display text-2xl font-bold text-dark-900 group-hover:text-teal-700">${esc(c)}</h3>

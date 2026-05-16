@@ -24,6 +24,7 @@ const path = require('path');
 const ROOT = __dirname;
 const PREFS = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/prefectures.json'), 'utf-8')).prefectures;
 const SCAN  = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/areas-cities-industries.json'), 'utf-8'));
+const CITY_SLUGS = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/city-slugs.json'), 'utf-8')).slugs;
 
 // scanner data の citySlug を日本語都市名にマップ（既存ハブ ＆ 検索 routing 用）
 const SCAN_CITIES = {
@@ -74,13 +75,16 @@ for (const p of PREFS) {
       entry.cities[scanned] = {
         name: cityName,
         scanned: true,
+        slug: scanned,
         industries: industries
       };
     } else {
-      // 非 scanner: 業種は全 13 業種を選択可能（routing は pref hub へ）
-      entry.cities[cityName] = {
+      // 非 scanner: 業種は全 13 業種を選択可能（routing は /areas/{slug}/ 個別 city hub へ）
+      const slug = CITY_SLUGS[cityName] || cityName;
+      entry.cities[slug] = {
         name: cityName,
         scanned: false,
+        slug: slug,
         industries: []
       };
     }
@@ -187,16 +191,12 @@ const out = `/**
       var url = '/areas/';
       if (pref && city) {
         var cityData = DATA[pref].cities[city];
-        if (cityData && cityData.scanned) {
-          // scanned: city は romanized slug
-          if (ind) {
-            url = '/areas/' + city + '/' + ind + '/';
-          } else {
-            url = '/areas/' + city + '/';
-          }
-        } else {
-          // 非 scanned: 都道府県ハブへ
-          url = '/areas/pref/' + DATA[pref].pref_slug + '/';
+        if (cityData && cityData.scanned && ind) {
+          // scanned + industry → /areas/{slug}/{industry}/
+          url = '/areas/' + cityData.slug + '/' + ind + '/';
+        } else if (cityData) {
+          // 全都市: /areas/{slug}/ の個別 city hub へ
+          url = '/areas/' + cityData.slug + '/';
         }
       } else if (pref) {
         url = '/areas/pref/' + DATA[pref].pref_slug + '/';
