@@ -203,7 +203,9 @@ function tpl(slug, c) {
   {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/areas/numazu/${slug}/#article","headline":"沼津市の${esc(c.nameJa)} ホームページ制作 — 実測 ${d.n} 社のデータと改善方針","description":"沼津 ${esc(c.nameShort)} ${d.n} 社の機械検証実測（中央値 ${d.median} / 最高 ${d.max} / NG ${d.ng_pct}%）と HARTON の解決策","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":"ja","url":"https://tcharton.com/areas/numazu/${slug}/","mainEntityOfPage":"https://tcharton.com/areas/numazu/${slug}/","image":"https://tcharton.com/areas/numazu/${slug}/ogp.png"}
   </script>
 
-  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="stylesheet" href="/dist/critical.css?v=202605161900">
+  <link rel="stylesheet" data-defer-css media="print" href="/dist/output.css?v=202605161900" fetchpriority="high">
+  <noscript><link rel="stylesheet" href="/dist/output.css?v=202605161900"></noscript>
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">

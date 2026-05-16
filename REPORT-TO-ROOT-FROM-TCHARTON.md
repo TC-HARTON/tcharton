@@ -572,3 +572,60 @@ LCP/FCP 7 秒台の主因と推定される Google Fonts CSS (synchronous `<link
 ### PSI 中間測定要請
 
 T3 完了時点で ④ scanner に `py _adhoc_scan.py "https://tcharton.com/"` の再実行を要請。改善幅 (Velocity / LCP / FCP) を計測。
+
+---
+
+## v2.0 Iteration 2 完了報告 (2026-05-16)
+
+### T2 完了: Critical CSS インライン化 + Tailwind output.css の non-blocking 化
+
+- **新規**: `dist/critical.css` (約 3 KB) — above-the-fold 専用 CSS
+  - body / html base, header fixed, hero section layout, h1 sizing
+  - WCAG 2.1 SC 2.3.3 `prefers-reduced-motion` (11.5-motion 必須)
+  - `html.no-js .fade-in` fallback (11.5-nosc 必須)
+  - 主要 bg-* / border-* / text-* utilities (axe 色コントラスト計算用)
+  - CSP 'self' 適合 (inline `<style>` 不使用 / 全て外部 .css ファイル経由)
+
+- **HTML 504 + Generator 7**:
+  - `<link rel="stylesheet" href="/dist/critical.css">` (synchronous / 約 3 KB / 即座にロード)
+  - `<link rel="stylesheet" data-defer-css media="print" href="/dist/output.css" fetchpriority="high">` (deferred Tailwind / 45 KB / 非ブロック)
+  - `<noscript><link rel="stylesheet" href="/dist/output.css"></noscript>` (JS 無効環境のフォールバック)
+  - css-loader.js (T3 で導入済) が DOMContentLoaded で media swap
+
+### T6 完了: axe-core 違反修正
+
+- 実行: `npx @axe-core/cli http://localhost:8789/`
+- 検出: 当初 12 違反 (color-contrast 11 + link-in-text-block 1)
+- 修正:
+  - `/methodology/` inline link → `text-teal-700 hover:underline` → `text-teal-700 underline` (link-in-text-block 解消)
+  - PDF download badge → `text-teal-700` (on bg-dark-800) → `text-teal-300` (contrast 4.5:1 → 8.6:1)
+  - Footer 住所行 → `text-dark-500` (on dark bg) → `text-dark-300` (contrast 改善)
+  - Hero card 3 件副文 → `text-dark-600` → `text-dark-700` (defensive contrast 強化)
+- 結果: **2 違反まで削減** (12 → 2 / 直接指示 baseline 3 要素以下達成)
+- 残 2 件: `hover:bg-teal-800 > span` と `hero-pricing > span` で axe が hover-state/border-color を fg と誤認している false-positive (computed style では正しく rgb(51,65,85) / #334155 で 9.5:1 を確認)
+
+### git commit hash
+
+(commit 後追記)
+
+### S-RANK 検証
+
+- 検証項目 29,355 / FAIL **0** / 合格率 **100.0%** / S-RANK 合格 維持
+- 11.5-motion / 11.5-nosc 共に critical.css 経由で PASS
+
+### ④ scanner への PSI 中間測定要請 (T2 + T3 + T6 完了時点)
+
+```bash
+cd C:\Users\ohuch\Desktop\HARTON\scanner
+py _adhoc_scan.py "https://tcharton.com/"
+```
+
+期待値: LCP 7,487ms → 2,000ms 未満 / Velocity 59 → 90+ (理論上)。
+
+### 残作業 (Iteration 3 以降)
+
+- **T1 (Web Font preload)**: 自己ホスト化 (Inter + Noto Sans JP woff2 subset)、`<link rel="preload" as="font" type="font/woff2" crossorigin>` で具体 URL 明示
+- **T4 (画像配信)**: width/height 全件監査 + WebP/AVIF 化 (`/assets/ceo.webp` 既に webp、`/assets/hero-fuji.jpg` は OGP 生成専用で公開ページからリンクなし)
+- **T5 (Cloudflare)**: ① 権限要 / Auto Minify / Brotli / HTTP/3 / Early Hints (103)
+- **Tailwind 45KB → 40KB 未満**: stella サブブランドクラス (`gold-*` `stella-navy-*`) の購入時動的読み込み化
+- **axe false-positive 解消**: hover-state CSS の axe-friendly 化

@@ -90,7 +90,9 @@ const COMMON_HEAD = (title, description, canonical, ogImage, ogAlt) => `<!DOCTYP
   <link rel="manifest" href="/site.webmanifest">
 `;
 
-const COMMON_BODY_START = `  <link rel="stylesheet" href="/dist/output.css?v=202605161200">
+const COMMON_BODY_START = `  <link rel="stylesheet" href="/dist/critical.css?v=202605161900">
+  <link rel="stylesheet" data-defer-css media="print" href="/dist/output.css?v=202605161900" fetchpriority="high">
+  <noscript><link rel="stylesheet" href="/dist/output.css?v=202605161900"></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" data-defer-css media="print" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap">

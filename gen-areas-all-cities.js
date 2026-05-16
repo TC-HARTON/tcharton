@@ -139,7 +139,9 @@ const COMMON_HEAD = (title, description, canonical, ogImage, ogAlt) => `<!DOCTYP
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">`;
 
-const COMMON_BODY_START = `  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+const COMMON_BODY_START = `  <link rel="stylesheet" href="/dist/critical.css?v=202605161900">
+  <link rel="stylesheet" data-defer-css media="print" href="/dist/output.css?v=202605161900" fetchpriority="high">
+  <noscript><link rel="stylesheet" href="/dist/output.css?v=202605161900"></noscript>
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">

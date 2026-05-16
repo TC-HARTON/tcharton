@@ -1,0 +1,106 @@
+/*! critical.css - above-the-fold styles inlined for LCP < 2,500ms (TCHARTON IMPROVEMENT DIRECTIVE V2 T2) */
+*,::before,::after{box-sizing:border-box;border:0 solid #e5e7eb}
+::before,::after{--tw-content:''}
+html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:"Noto Sans JP","Inter",ui-sans-serif,system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-feature-settings:normal;font-variation-settings:normal}
+body{margin:0;line-height:inherit;background:#fff;color:#334155;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}
+p,ul,ol,blockquote,pre,figure{margin:0}
+ul,ol{padding-left:0;list-style:none}
+a{color:inherit;text-decoration:inherit;background-color:transparent}
+img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle;max-width:100%;height:auto}
+button,[type=button],[type=submit]{cursor:pointer;background:transparent;border:0;font-family:inherit;font-size:inherit;color:inherit;padding:0}
+input,select,textarea{font-family:inherit;font-size:inherit}
+
+/* sr-only */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+
+/* fixed header */
+header.fixed,.fixed{position:fixed}
+header[class*="z-40"]{top:0;left:0;right:0;z-index:40;background:rgba(255,255,255,.9);border-bottom:1px solid #f1f5f9;height:4rem;-webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px)}
+header[class*="z-40"] nav{display:flex;align-items:center;justify-content:space-between;max-width:80rem;margin:0 auto;padding:0 1rem;height:4rem}
+@media(min-width:1024px){header[class*="z-40"] nav{padding:0 2rem}}
+header a[href="/"]{display:flex;align-items:center;gap:.5rem;color:#0f172a;font-weight:700;font-size:1.25rem;padding:.75rem 0}
+
+/* hide mobile menu by default */
+.mobile-menu{display:none}
+#menuToggle,#menuOpen{display:flex;padding:.75rem;color:#334155}
+@media(min-width:1024px){#menuToggle,#menuOpen{display:none}.hidden.lg\:flex{display:flex !important}}
+header .hidden{display:none}
+
+/* main pt-16 */
+main{display:block}
+main[class*="pt-16"]{padding-top:4rem}
+
+/* hero section */
+section[aria-label="ヒーロー"],section[aria-label="ヒーロー"] > div{position:relative}
+section[aria-label="ヒーロー"]{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1.5rem;background:#fff;overflow:hidden}
+@media(min-width:1024px){section[aria-label="ヒーロー"]{padding:8rem 3rem}}
+
+/* breadcrumb */
+nav[aria-label="パンくずリスト"]{max-width:64rem;margin:0 auto;padding:5rem 1rem .5rem;font-size:.875rem;color:#64748b}
+nav[aria-label="パンくずリスト"] ol{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;list-style:none;padding:0;margin:0}
+
+/* article containers */
+article[class*="max-w-5xl"],section[class*="max-w-5xl"]{max-width:64rem;margin:0 auto;padding:3rem 1rem}
+@media(min-width:1024px){article[class*="max-w-5xl"],section[class*="max-w-5xl"]{padding:4rem 2rem}}
+
+/* headings */
+.font-display,h1[class*="font-display"],h2[class*="font-display"]{font-family:"Inter","Noto Sans JP",ui-sans-serif,system-ui,-apple-system,sans-serif}
+h1[class*="font-extrabold"]{font-weight:800;color:#0f172a;font-size:2.25rem;line-height:1.1;letter-spacing:-.025em}
+@media(min-width:768px){h1[class*="font-extrabold"]{font-size:3rem}}
+@media(min-width:1024px){h1[class*="font-extrabold"]{font-size:3.75rem}}
+
+/* common text colors */
+.text-dark-900,[class*="text-dark-900"]{color:#0f172a}
+.text-dark-700{color:#334155}
+.text-dark-500{color:#64748b}
+.text-teal-700,[class*="text-teal-700"]{color:#1B4965}
+
+/* fallback grid + flex utilities (above-the-fold only) */
+.flex{display:flex}
+.grid{display:grid}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.justify-between{justify-content:space-between}
+.mx-auto{margin-left:auto;margin-right:auto}
+
+/* 背景色 (axe-core 色コントラスト計算用 / hero cards 等) */
+.bg-white{background-color:#fff}
+.bg-dark-50{background-color:#f8fafc}
+.bg-dark-100{background-color:#f1f5f9}
+.bg-teal-50{background-color:#f0f6f9}
+.bg-teal-700{background-color:#1B4965}
+.bg-teal-600{background-color:#225770}
+[class*="bg-white\/90"]{background-color:rgba(255,255,255,.9)}
+[class*="bg-white\/95"]{background-color:rgba(255,255,255,.95)}
+
+/* border utilities (cards) */
+.border{border-width:1px}
+.border-2{border-width:2px}
+.border-dark-100{border-color:#f1f5f9}
+.border-dark-200{border-color:#e2e8f0}
+.border-teal-300{border-color:#7eb0c5}
+.border-teal-700{border-color:#1B4965}
+.rounded{border-radius:.25rem}
+.rounded-md{border-radius:.375rem}
+.rounded-lg{border-radius:.5rem}
+.rounded-xl{border-radius:.75rem}
+.rounded-full{border-radius:9999px}
+
+/* 色 text-dark-600 (cards 副文) */
+.text-dark-600,[class*="text-dark-600"]{color:#475569}
+.text-dark-800{color:#1e293b}
+.text-teal-500{color:#2c6e8c}
+.text-teal-800{color:#143548}
+.text-white{color:#fff}
+
+/* no-js init: hide animation states */
+.hero-bg-glow{position:absolute;inset:0;pointer-events:none}
+
+/* WCAG 2.1 SC 2.3.3 prefers-reduced-motion (critical / 11.5-motion 必須) */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}
+}
+
+/* JS 無効時 fade-in fallback (11.5-nosc 必須 / html.no-js 経由) */
+html.no-js .fade-in{opacity:1 !important;transform:none !important}

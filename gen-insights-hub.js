@@ -117,7 +117,9 @@ function buildHub() {
   {"@context":"https://schema.org","@type":"CollectionPage","@id":"https://tcharton.com/insights/#collection","name":"Insights","description":"${esc(config.intro.lead1)}","url":"https://tcharton.com/insights/","inLanguage":"ja","publisher":{"@id":"https://tcharton.com/#organization"}}
   </script>
 
-  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="stylesheet" href="/dist/critical.css?v=202605161900">
+  <link rel="stylesheet" data-defer-css media="print" href="/dist/output.css?v=202605161900" fetchpriority="high">
+  <noscript><link rel="stylesheet" href="/dist/output.css?v=202605161900"></noscript>
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
