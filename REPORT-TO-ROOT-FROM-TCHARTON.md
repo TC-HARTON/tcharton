@@ -629,3 +629,59 @@ py _adhoc_scan.py "https://tcharton.com/"
 - **T5 (Cloudflare)**: ① 権限要 / Auto Minify / Brotli / HTTP/3 / Early Hints (103)
 - **Tailwind 45KB → 40KB 未満**: stella サブブランドクラス (`gold-*` `stella-navy-*`) の購入時動的読み込み化
 - **axe false-positive 解消**: hover-state CSS の axe-friendly 化
+
+---
+
+## v2.0 Iteration 3 完了報告 (2026-05-16)
+
+### main 直接 push (代表 B 選択)
+
+- commit `d1cbe83` (T2+T6) を `45e5518..d1cbe83 -> main` で push 完了
+- pre-push hook で S-RANK gate 通過確認後 deploy
+- Cloudflare Pages 自動 deploy + cache purge 進行中
+
+### Iteration 3-A: GEO 強化 (`<blockquote cite>` + 公的ソースリンク)
+
+scanner GEO スコア 20 の主因 (`<blockquote cite>` 引用無 / 公的リンク 0 件 / LeadEvidence:statistics) に対応。
+
+`index.html` 新規セクション「研究と公的基準」追加:
+- **`<blockquote cite="https://arxiv.org/abs/2311.09735">`** + `<cite>` + DOI リンク (KDD 2024 / Aggarwal et al. "GEO: Generative Engine Optimization")
+- 公的ソースリンク (.go.jp, .jp 公的 statistics):
+  - JPX 日本取引所グループ 上場会社数 (https://www.jpx.co.jp/markets/statistics-equities/misc/01.html)
+  - 総務省 住民基本台帳人口 (https://www.soumu.go.jp/menu_news/s-news/01gyosei02_02000297.html)
+- 国際標準リンク:
+  - W3C WCAG 2.2 公式仕様 (https://www.w3.org/TR/WCAG22/)
+  - web.dev Core Web Vitals (https://web.dev/articles/vitals)
+
+期待効果: GEO スコア 20 → 60+ (KDD 2024 引用 +27.8% AI 引用率) + E-E-A-T (公的ソース被リンク)
+
+### Iteration 3-B: JSON-LD 拡充
+
+`index.html` に Schema.org 構造化データを 3 種追加:
+- **WebSite** (`@id #website`) — サイト全体メタ (SearchAction は spec-checker gl-searchaction 規約に従い未追加)
+- **Service** × 2 — WEB 制作 4 プラン + AI 予測モデル開発
+  - AggregateOffer (price range / offerCount) で料金根拠を構造化
+
+期待効果: JSON-LD スコア 30 → 60+ (Service 検出 + WebSite + 既存 ProfessionalService/LocalBusiness/Person/HowTo)
+
+### Iteration 3-C: 保留
+
+- **T1 fetchpriority="high"** — index.html hero は inline SVG で `<img>` LCP 候補なし、効果限定的
+- **Tailwind 45KB → 40KB** — Tailwind purge は既稼働 (`--minify`)。さらに削減には stella サブブランドクラス分離など構造的改修必要 → 次イテレーション
+
+### git commit hash
+
+(commit 後追記)
+
+### S-RANK 検証
+
+- 検証項目 29,355 / FAIL **0** / 合格率 **100.0%** / S-RANK 合格 維持
+
+### ④ scanner への再測定要請 (本番デプロイ完了 + Iteration 3 反映後)
+
+```bash
+cd C:\Users\ohuch\Desktop\HARTON\scanner
+py _adhoc_scan.py "https://tcharton.com/"
+```
+
+期待値: GEO 20 → 60+ / JSON-LD 30 → 60+ / Velocity 59 → 大幅改善 (T3 + T2 効果)
