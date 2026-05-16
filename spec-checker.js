@@ -1631,18 +1631,27 @@ function cGlobal() {
   // - Phase E プライム 1,553 社: max 52 / median 17 / mean 16.6 / NG 149 (9.6%) / ★ 取得 0
   // 過去事故: /vision/ で「高品質 9 件」「モバイル遅延 627 / AI 758 / WCAG 412」を捏造
   const fabricatedNumbers = [
-    // Phase 0.5 静岡県 902 社の捏造パターン（max=56 で 70+ は 0 件）
-    { pattern: /高品質[^0-9]*9 ?件/, label: 'Phase 0.5 高品質 9 件（実測 0 件 / max=56）' },
-    { pattern: /良好[^0-9]*54 ?件/, label: 'Phase 0.5 良好 54 件（実測 0 件 / max=56）' },
-    { pattern: /235 ?件[^0-9]*26\.1/, label: 'Phase 0.5 標準 235 件（実測 110 件）' },
-    { pattern: /311 ?件[^0-9]*34\.5/, label: 'Phase 0.5 要改善 311 件（実測 442 件）' },
-    { pattern: /293 ?件[^0-9]*32\.5/, label: 'Phase 0.5 緊急対応 293 件 32.5%（実測 350 件 / NG は 292 件 32.4%）' },
+    // Phase 0.5 静岡県 902 社の捏造パターン（最大の事故 / 過去 vision）
+    { pattern: /高品質[^0-9]*9 ?件/, label: 'Phase 0.5 高品質 9 件（実測 0 件 / max=52）' },
+    { pattern: /良好[^0-9]*54 ?件/, label: 'Phase 0.5 良好 54 件（実測 0 件 / max=52）' },
+    { pattern: /235 ?件[^0-9]*26\.1/, label: 'Phase 0.5 標準 235 件（実測 51 件）' },
+    { pattern: /311 ?件[^0-9]*34\.5/, label: 'Phase 0.5 要改善 311 件（実測 344 件）' },
+    { pattern: /293 ?件[^0-9]*32\.5/, label: 'Phase 0.5 緊急対応 293 件 32.5%（実測 NG 277 件 30.7%）' },
     // 架空指標（scanner 未測定）
     { pattern: /627 ?社[^A-Za-z]*69\.5/, label: 'モバイル遅延 627 社（scanner 未測定指標 / 削除）' },
     { pattern: /758 ?社[^A-Za-z]*84\.0/, label: 'AI 引用 758 社（scanner 未測定指標 / 削除）' },
     { pattern: /412 ?社[^A-Za-z]*45\.7/, label: 'WCAG 違反 412 社（scanner 未測定指標 / 削除）' },
     // 沼津市の旧数値
     { pattern: /沼津市内[^0-9]*134 ?社/, label: '沼津 134 社（実測 171 社）' },
+    // Consolidated CSV stale values (2026-05-16 per-industry latest 反映後)
+    { pattern: /中央値 24 ?点 vs/, label: '業界中央値 24（旧 consolidated / 実測 17）' },
+    { pattern: /3\.8 ?倍 ?= ?当社実測/, label: '3.8 倍 = 90/24（旧 consolidated / 実測 90/17 = 5.3 倍）' },
+    { pattern: /業界中央値の 3\.8 ?倍/, label: '業界中央値の 3.8 倍（旧 / 実測 5.3 倍）' },
+    { pattern: /32\.4%（292\/902/, label: '32.4% 292 社（旧 consolidated / 実測 30.7% 277 社）' },
+    { pattern: /232 ?社（25\.7%）.*WordPress 管理面/, label: 'WP 管理面 232 社 25.7%（旧 / 実測 212 社 23.5%）' },
+    { pattern: /業界 max <strong>56<\/strong> 点/, label: '業界 max 56 点（旧 consolidated / 実測 52 点）' },
+    { pattern: /中央値 <strong[^>]*>23 ?点<\/strong>（県/, label: '沼津 中央値 23 点（旧 / 実測 18 点）' },
+    { pattern: /3\.9 ?倍</, label: '沼津 3.9 倍 = 90/23（旧 / 実測 90/18 = 5.0 倍）' },
   ];
   const dataOffenders = [];
   for (const t of allHtmlFiles) {
