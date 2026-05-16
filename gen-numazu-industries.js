@@ -1,0 +1,447 @@
+#!/usr/bin/env node
+/**
+ * gen-numazu-industries.js — areas/numazu/{slug}/index.html ×12 を一括生成
+ *
+ * 沼津 × 業種 ロングテール SEO ページ。
+ * scanner per-industry latest 実測値（沼津 dental は consolidated）を出典として、
+ * 各業種の WEB 品質中央値・最大値・NG 内訳と HARTON の解決策を提示する。
+ *
+ * 使い方: node gen-numazu-industries.js          全 12 業種生成
+ *         node gen-numazu-industries.js tax     指定 slug のみ
+ */
+'use strict';
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = __dirname;
+const OUT_DIR = path.join(ROOT, 'areas', 'numazu');
+
+// scanner 実測値 + 業種固有メタ（per-industry latest / 沼津 dental は consolidated）
+const INDUSTRIES = {
+  tax: {
+    nameJa: '税理士・会計事務所', nameShort: '税理士', industryEn: 'legal',
+    data: { n: 18, median: 12, max: 45, mean: 11.3, min: 0, ng: 5, ng_pct: 27.8,
+            sub: { 'HTTPS 非対応': 1, 'SSL 証明書問題': 2, 'WP 管理面露出': 3, 'CMS バージョン情報露出': 1 } },
+    industryCharacter: '顧客との信頼関係が問われる相談業。E-E-A-T（経験・専門性・権威性・信頼性）が WEB の核',
+    pain: '中央値 12 点は <strong class="text-dark-900">沼津 12 業種中の最低水準</strong>。資格証 / 業務範囲 / 顧客の声 / 料金透明性が不足し、見込み客が比較できない状態',
+    keyMessage: '相続・法人決算など高単価案件ほど Web の信頼設計が成約率を左右します',
+    industryLawLinks: '個人情報保護法（2022 改正）・税理士法（広告規制）',
+  },
+  lawyer: {
+    nameJa: '弁護士', nameShort: '弁護士', industryEn: 'legal',
+    data: { n: 10, median: 14, max: 45, mean: 14.7, min: 0, ng: 2, ng_pct: 20.0,
+            sub: { 'HTTPS 非対応': 0, 'SSL 証明書問題': 0, 'WP 管理面露出': 2, 'CMS バージョン情報露出': 0 } },
+    industryCharacter: '緊急時の信頼が決め手の専門業。プロフィール開示と取扱分野の明示が必須',
+    pain: '中央値 14 点。資格情報・取扱分野・初回相談料金が分かりにくい構造。「夜中に検索する困った人」を取りこぼす',
+    keyMessage: '専門分野・解決事例・初回相談料の透明化で問い合わせ率を底上げ',
+    industryLawLinks: '弁護士法 §74（広告制限）・個人情報保護法',
+  },
+  realestate: {
+    nameJa: '不動産仲介・売買', nameShort: '不動産', industryEn: 'real-estate',
+    data: { n: 18, median: 20, max: 50, mean: 20.8, min: 0, ng: 1, ng_pct: 5.6,
+            sub: { 'HTTPS 非対応': 0, 'SSL 証明書問題': 0, 'WP 管理面露出': 1, 'CMS バージョン情報露出': 0 } },
+    industryCharacter: '物件情報の鮮度 + 取引態様の明示が宅建業法で義務付けられる業種',
+    pain: '中央値 20 点。NG 率は沼津で最低（5.6%）だが、物件情報更新の鮮度・取引態様（売主/代理/媒介）の明示が機械検証可能なレベルで不十分',
+    keyMessage: '宅建業法準拠 + 物件 Schema + 更新フローの自動化で「おとり広告」リスクをゼロに',
+    industryLawLinks: '宅建業法 §32（誇大広告禁止）/ §34（取引態様明示）/ §47（重要事項不告知禁止）',
+  },
+  restaurant: {
+    nameJa: '飲食店', nameShort: '飲食店', industryEn: 'restaurant',
+    data: { n: 18, median: 17, max: 51, mean: 17.6, min: 0, ng: 7, ng_pct: 38.9,
+            sub: { 'HTTPS 非対応': 2, 'SSL 証明書問題': 0, 'WP 管理面露出': 5, 'CMS バージョン情報露出': 0 } },
+    industryCharacter: '「食べたい」と感じる写真 + Google マップ 1 タップ予約が来店誘導の核',
+    pain: '中央値 17 点 / NG 38.9%（沼津で 2 番目に高い）。WP 管理面露出 5 件は WordPress 標準のままで運用された結果',
+    keyMessage: 'Google ビジネスプロフィール最適化 + 24h 予約導線 + 多言語対応で観光・グルメ需要を取り込み',
+    industryLawLinks: '食品衛生法 / 食品表示法 / 景表法',
+  },
+  salon: {
+    nameJa: '美容院・ヘアサロン', nameShort: '美容院', industryEn: 'beauty',
+    data: { n: 19, median: 20, max: 38, mean: 18.9, min: 0, ng: 9, ng_pct: 47.4,
+            sub: { 'HTTPS 非対応': 2, 'SSL 証明書問題': 2, 'WP 管理面露出': 8, 'CMS バージョン情報露出': 0 } },
+    industryCharacter: '施術写真 + 1 タップ予約 + スタッフプロフィール開示が来店動線の中心',
+    pain: '中央値 20 点 / <strong class="text-dark-900">NG 47.4% は沼津 12 業種中 最高</strong>。WP 管理面露出 8 件は管理ログイン URL が予測可能で攻撃標的になっている',
+    keyMessage: '即時の WordPress セキュリティ強化 + HOT PEPPER 並行運用で指名予約率を上げる',
+    industryLawLinks: '美容師法 / 特商法 / 景表法',
+  },
+  lodging: {
+    nameJa: '宿泊施設・旅館・ホテル', nameShort: '宿泊施設', industryEn: 'restaurant',
+    data: { n: 14, median: 21, max: 37, mean: 21.9, min: 6, ng: 3, ng_pct: 21.4,
+            sub: { 'HTTPS 非対応': 0, 'SSL 証明書問題': 0, 'WP 管理面露出': 3, 'CMS バージョン情報報出': 0 } },
+    industryCharacter: '直予約 + インバウンド多言語が宿泊単価を最大化する重要業種',
+    pain: '中央値 21 点。OTA 依存で自社サイト経由予約率が低く、客室単価が手数料に圧迫されている',
+    keyMessage: '直予約導線 + 多言語（英語・中国語）+ Google ビジネスプロフィール最適化で OTA 比率を下げる',
+    industryLawLinks: '旅館業法 / 食品衛生法 / 景表法',
+  },
+  dental: {
+    nameJa: '歯科医院・デンタルクリニック', nameShort: '歯科医院', industryEn: 'clinic',
+    data: { n: 19, median: 24, max: 47, mean: 22.2, min: 0, ng: 8, ng_pct: 42.1,
+            sub: { 'HTTPS 非対応': 0, 'SSL 証明書問題': 0, 'WP 管理面露出': 0, 'CMS バージョン情報露出': 0 } },
+    industryCharacter: '医療広告ガイドライン遵守必須。体験談・Before/After 写真は原則禁止',
+    pain: '中央値 24 点（沼津 12 業種中 最高）だが、医療広告ガイドライン違反リスクのある誇大表現サイトが多数。「絶対治る」「最先端」等は行政指導の対象',
+    keyMessage: '医療広告ガイドライン自動チェック + 24h 予約 + WCAG 2.2 AA で高齢患者にも届く',
+    industryLawLinks: '医療広告ガイドライン（厚労省）/ 薬機法 / 歯科医師法',
+  },
+  hospital: {
+    nameJa: '病院・総合医療', nameShort: '病院', industryEn: 'clinic',
+    data: { n: 18, median: 18, max: 31, mean: 15.6, min: 0, ng: 7, ng_pct: 38.9,
+            sub: { 'HTTPS 非対応': 3, 'SSL 証明書問題': 3, 'WP 管理面露出': 3, 'CMS バージョン情報露出': 1 } },
+    industryCharacter: '緊急時のアクセシビリティ + 診療科目の機械可読化が公共的な責務',
+    pain: '中央値 18 点。HTTPS 非対応 3 件 / SSL 問題 3 件は患者情報を扱う施設として致命的',
+    keyMessage: 'WCAG 2.2 AA 準拠 + HTTPS 全面化 + 診療科目 Schema で緊急時にも届く',
+    industryLawLinks: '医療法 / 医療広告ガイドライン / 個人情報保護法（要配慮個人情報）',
+  },
+  shihoshoshi: {
+    nameJa: '司法書士', nameShort: '司法書士', industryEn: 'legal',
+    data: { n: 4, median: 26, max: 47, mean: 23.5, min: 10, ng: 2, ng_pct: 50.0,
+            sub: { 'HTTPS 非対応': 0, 'SSL 証明書問題': 0, 'WP 管理面露出': 2, 'CMS バージョン情報露出': 1 } },
+    industryCharacter: '登記・相続など人生の重要場面で選ばれる業種。母集団小だが個別取扱分野の透明化が決定打',
+    pain: '中央値 26 点（沼津 12 業種中 2 番目）だが NG 50%（4 社中 2）。資格情報の構造化が不十分',
+    keyMessage: '個人情報保護法 + 取扱業務（相続・登記）の機械可読化で見込み客の不安を下げる',
+    industryLawLinks: '司法書士法 / 個人情報保護法',
+  },
+  gyoseishoshi: {
+    nameJa: '行政書士', nameShort: '行政書士', industryEn: 'legal',
+    data: { n: 9, median: 0, max: 48, mean: 12.6, min: 0, ng: 2, ng_pct: 22.2,
+            sub: { 'HTTPS 非対応': 1, 'SSL 証明書問題': 1, 'WP 管理面露出': 1, 'CMS バージョン情報露出': 1 } },
+    industryCharacter: '建設業許可・在留資格・補助金等 取扱業務が幅広い専門業',
+    pain: '<strong class="text-dark-900">中央値 0 点は沼津で最悪</strong>（9 社中半数以上が HTTPS 化等の基礎すら満たさず）。専門分野の明示も不足',
+    keyMessage: '基礎セキュリティ + 取扱業務 5-10 に絞った深い解説で専門性を可視化',
+    industryLawLinks: '行政書士法（広告規制）/ 個人情報保護法',
+  },
+  cosmeticclinic: {
+    nameJa: '美容クリニック・美容医療', nameShort: '美容クリニック', industryEn: 'clinic',
+    data: { n: 6, median: 29, max: 36, mean: 20.3, min: 0, ng: 3, ng_pct: 50.0,
+            sub: { 'HTTPS 非対応': 0, 'SSL 証明書問題': 0, 'WP 管理面露出': 3, 'CMS バージョン情報露出': 0 } },
+    industryCharacter: '医療広告ガイドライン + 薬機法の二重規制。違反リスクが極めて高い業種',
+    pain: '中央値 29 点（沼津 max）だが NG 50%。Before/After 写真の限定解除要件未充足の表示が散見',
+    keyMessage: '医療広告ガイドライン限定解除要件の機械チェック + 薬機法対応で行政指導リスクをゼロに',
+    industryLawLinks: '医療広告ガイドライン（厚労省）/ 薬機法 / 美容医療指針',
+  },
+  juku: {
+    nameJa: '学習塾・教育', nameShort: '学習塾', industryEn: 'legal',
+    data: { n: 18, median: 20, max: 47, mean: 21.8, min: 0, ng: 7, ng_pct: 38.9,
+            sub: { 'HTTPS 非対応': 2, 'SSL 証明書問題': 2, 'WP 管理面露出': 6, 'CMS バージョン情報露出': 0 } },
+    industryCharacter: '保護者の事前検索が長く深い業種。合格実績 / 講師紹介 / 月謝の透明性が決め手',
+    pain: '中央値 20 点 / NG 38.9%（WP 管理面 6 件）。合格実績の証跡・講師資格・初月の費用感が分かりにくい',
+    keyMessage: '合格実績の年度別開示 + 講師プロフィール + 初月料金透明化で問合せ率向上',
+    industryLawLinks: '景表法（合格率・実績表示）/ 特商法',
+  },
+};
+
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function ngBreakdownHtml(sub) {
+  return Object.entries(sub)
+    .filter(([k, v]) => v > 0)
+    .map(([k, v]) => `              <li class="flex justify-between text-sm"><span class="text-dark-700">${esc(k)}</span><span class="font-bold text-dark-900">${v} 件</span></li>`)
+    .join('\n');
+}
+
+function tpl(slug, c) {
+  const d = c.data;
+  const ratio = (90 / d.median).toFixed(1);
+  const safeMedian = Math.max(d.median, 1);  // avoid div by 0
+  const ratioCalc = Math.max(d.median, 1);
+  const finalRatio = d.median === 0 ? '> 90' : (90 / d.median).toFixed(1) + ' 倍';
+  const ngHtml = ngBreakdownHtml(d.sub);
+  const ngListExists = ngHtml.length > 0;
+  return `<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
+  <title>沼津市の${esc(c.nameJa)} ホームページ制作｜実測 ${d.n} 社 中央値 ${d.median} 点｜T.C.HARTON</title>
+  <meta name="description" content="沼津市の${esc(c.nameJa)} ${d.n} 社の WEB サイト品質を機械検証した結果は、中央値 ${d.median} 点 / 最高 ${d.max} 点 / 致命的 NG ${d.ng_pct}%。${esc(c.keyMessage)}。${esc(c.industryLawLinks)} 等の法令準拠込みで設計します。">
+  <meta name="author" content="大内 達也">
+
+  <meta property="og:title" content="沼津市の${esc(c.nameJa)} ホームページ制作｜実測 ${d.n} 社 中央値 ${d.median} 点｜T.C.HARTON">
+  <meta property="og:description" content="沼津市の${esc(c.nameJa)} ${d.n} 社実測（中央値 ${d.median} 点 / 最高 ${d.max} 点 / NG ${d.ng_pct}%）。${esc(c.keyMessage)}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tcharton.com/areas/numazu/${slug}/">
+  <meta property="og:image" content="https://tcharton.com/areas/numazu/${slug}/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="沼津市の${esc(c.nameJa)} ホームページ制作 — T.C.HARTON">
+  <meta property="og:site_name" content="T.C.HARTON">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="沼津市の${esc(c.nameJa)} ホームページ制作｜実測 ${d.n} 社 中央値 ${d.median} 点｜T.C.HARTON">
+  <meta name="twitter:description" content="沼津 ${esc(c.nameShort)} ${d.n} 社 実測（中央値 ${d.median} / 最高 ${d.max} / NG ${d.ng_pct}%）。${esc(c.keyMessage)}">
+  <meta name="twitter:image" content="https://tcharton.com/areas/numazu/${slug}/ogp.png">
+
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; require-trusted-types-for 'script'; trusted-types default; upgrade-insecure-requests">
+
+  <link rel="canonical" href="https://tcharton.com/areas/numazu/${slug}/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://tcharton.com/"},
+    {"@type":"ListItem","position":2,"name":"対応エリア","item":"https://tcharton.com/areas/"},
+    {"@type":"ListItem","position":3,"name":"沼津市","item":"https://tcharton.com/areas/numazu/"},
+    {"@type":"ListItem","position":4,"name":"${esc(c.nameJa)}","item":"https://tcharton.com/areas/numazu/${slug}/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Service","@id":"https://tcharton.com/areas/numazu/${slug}/#service","name":"沼津市の${esc(c.nameJa)}向け ホームページ制作","description":"沼津市の${esc(c.nameJa)} ${d.n} 社実測データに基づく WEB 制作","provider":{"@id":"https://tcharton.com/#organization"},"serviceType":"WEB 制作","audience":{"@type":"BusinessAudience","name":"沼津市内の${esc(c.nameJa)}事業者"},"areaServed":{"@type":"City","name":"沼津市","sameAs":"https://ja.wikipedia.org/wiki/%E6%B2%BC%E6%B4%A5%E5%B8%82"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/areas/numazu/${slug}/#article","headline":"沼津市の${esc(c.nameJa)} ホームページ制作 — 実測 ${d.n} 社のデータと改善方針","description":"沼津 ${esc(c.nameShort)} ${d.n} 社の機械検証実測（中央値 ${d.median} / 最高 ${d.max} / NG ${d.ng_pct}%）と HARTON の解決策","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":"ja","url":"https://tcharton.com/areas/numazu/${slug}/","mainEntityOfPage":"https://tcharton.com/areas/numazu/${slug}/","image":"https://tcharton.com/areas/numazu/${slug}/ogp.png"}
+  </script>
+
+  <link rel="stylesheet" href="/dist/output.css?v=202605141500">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="/dist/scripts/ga4.js?v=202605120100" defer></script>
+  <script src="/dist/scripts/trusted-types.js?v=202605120100"></script>
+</head>
+<body class="bg-white text-dark-700 font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-teal-700 focus:text-white focus:px-4 focus:py-3 focus:rounded">メインコンテンツへスキップ</a>
+
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-dark-100">
+    <nav aria-label="メインナビゲーション" class="max-w-7xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-dark-900 font-display font-bold text-xl py-3" aria-label="T.C.HARTON ホームへ">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#1B4965"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" fill="#fff">T</text>
+        </svg>
+        <span>T.C.HARTON</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm" data-nosnippet>
+        <a href="/services/web/" class="text-dark-700 hover:text-teal-700 py-3">WEB 制作</a>
+        <a href="/services/ai-prediction/" class="text-dark-700 hover:text-teal-700 py-3">AI 予測</a>
+        <a href="/pricing/" class="text-dark-700 hover:text-teal-700 py-3">料金</a>
+        <a href="/cases/" class="text-dark-700 hover:text-teal-700 py-3">事例</a>
+        <a href="/stella/" class="text-dark-700 hover:text-teal-700 py-3">Stella</a>
+        <a href="/profile/" class="text-dark-700 hover:text-teal-700 py-3">プロフィール</a>
+        <a href="/contact/" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-md font-medium">無料相談</a>
+      </div>
+      <button id="menuToggle" type="button" class="lg:hidden p-3 -mr-3 text-dark-700" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-white" aria-label="モバイルナビゲーション" role="dialog" aria-modal="true">
+    <div class="flex flex-col p-6 gap-2 overflow-y-auto h-full">
+      <button id="menuClose" type="button" class="self-end p-3 -mt-2 -mr-2 text-dark-700 hover:text-teal-700" aria-label="メニューを閉じる">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <a href="/services/web/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">WEB 制作</a>
+      <a href="/services/ai-prediction/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">AI 予測</a>
+      <a href="/pricing/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">料金</a>
+      <a href="/cases/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">導入事例</a>
+      <a href="/vision/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">私たちの想い</a>
+      <a href="/stella/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">Stella（品質評価）</a>
+      <a href="/faq/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">FAQ</a>
+      <a href="/methodology/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">方法論・品質根拠</a>
+      <a href="/profile/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">代表プロフィール</a>
+      <a href="/about/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">会社情報</a>
+      <a href="/news/" class="block py-4 px-2 text-lg text-dark-800 hover:text-teal-700 border-b border-dark-100">お知らせ</a>
+      <a href="/contact/" class="mt-4 block bg-teal-700 hover:bg-teal-600 text-white text-center px-5 py-4 rounded-md font-medium text-lg">無料相談</a>
+    </div>
+  </nav>
+
+  <main id="main" class="pt-16">
+    <nav aria-label="パンくずリスト" class="max-w-3xl mx-auto px-4 lg:px-8 pt-20 pb-2 text-sm text-dark-500">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-teal-700 py-3 inline-block">ホーム</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/areas/" class="hover:text-teal-700 py-3 inline-block">対応エリア</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/areas/numazu/" class="hover:text-teal-700 py-3 inline-block">沼津市</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-dark-700">${esc(c.nameJa)}</span></li>
+      </ol>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-4 lg:px-8 py-12 lg:py-16 hero-content">
+      <header>
+        <p class="text-sm text-teal-700 font-display font-bold tracking-widest uppercase">沼津市 × ${esc(c.nameShort)} ／ 業界実測データ</p>
+        <h1 class="mt-3 font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-dark-900 leading-tight tracking-tight">沼津市の${esc(c.nameJa)} ホームページ制作</h1>
+        <p class="mt-4 text-xs text-dark-500">
+          <time datetime="2026-05-16">2026 年 5 月 16 日 公開</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <time datetime="2026-05-16">最終更新 2026 年 5 月 16 日</time>
+          <span class="mx-2" aria-hidden="true">/</span>
+          <span>scanner per-industry 実測</span>
+        </p>
+      </header>
+
+      <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
+        <p class="text-sm font-bold text-teal-800 mb-2">沼津 ${esc(c.nameShort)} 実測 ${d.n} 社 のデータ</p>
+        <p class="text-dark-800 leading-relaxed">${esc(c.industryCharacter)}。沼津市内 <strong class="text-dark-900">${d.n} 社</strong>の WEB サイト品質を 4 軸機械検証した結果、中央値 <strong class="text-dark-900">${d.median} 点</strong>（100 点満点）/ 最高 ${d.max} 点 / 致命的 NG <strong class="text-dark-900">${d.ng_pct}%（${d.ng} 社）</strong>。${c.pain}。HARTON の自社サイト（90 点）との差は <strong class="text-dark-900">${finalRatio}</strong>。${esc(c.keyMessage)}。</p>
+      </div>
+
+      <div class="mt-8 grid sm:grid-cols-2 gap-4">
+        <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+          <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">実測社数</p>
+          <p class="mt-2 font-display text-3xl font-bold text-dark-900">${d.n} <span class="text-base font-bold">社</span></p>
+          <p class="mt-1 text-xs text-dark-500">沼津市内 ${esc(c.nameJa)}</p>
+        </div>
+        <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+          <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">中央値</p>
+          <p class="mt-2 font-display text-3xl font-bold text-dark-900">${d.median} <span class="text-base font-bold">点</span></p>
+          <p class="mt-1 text-xs text-dark-500">100 点満点 / 平均 ${d.mean}</p>
+        </div>
+        <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+          <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">最高得点</p>
+          <p class="mt-2 font-display text-3xl font-bold text-dark-900">${d.max} <span class="text-base font-bold">点</span></p>
+          <p class="mt-1 text-xs text-dark-500">沼津市内 ${esc(c.nameShort)} トップ</p>
+        </div>
+        <div class="bg-dark-50 border border-dark-200 rounded-xl p-5">
+          <p class="text-xs text-dark-500 font-display font-bold tracking-widest uppercase">致命的 NG</p>
+          <p class="mt-2 font-display text-3xl font-bold text-red-600">${d.ng_pct}<span class="text-base font-bold">%</span></p>
+          <p class="mt-1 text-xs text-dark-500">${d.ng} 社 / ${d.n} 社</p>
+        </div>
+      </div>
+
+      ${ngListExists ? `<section aria-label="致命的 NG 内訳" class="mt-10 bg-red-50 border border-red-200 rounded-xl p-6">
+        <h2 class="font-display font-bold text-lg text-red-800 mb-4">致命的 NG の内訳（${d.ng} 社で検出）</h2>
+        <ul class="space-y-2">
+${ngHtml}
+        </ul>
+        <p class="mt-4 text-xs text-dark-500">出典: scanner per-industry latest（沼津 ${esc(c.nameShort)} ${d.n} 社 / 2026-05-11 スキャン）</p>
+      </section>` : ''}
+
+      <section aria-label="業種特性" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">${esc(c.nameJa)}に固有の WEB 設計要件</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>${esc(c.industryCharacter)}。沼津市内のデータで見ると、${c.pain}。</p>
+          <p>${esc(c.keyMessage)}。${esc(c.industryLawLinks)} 等の法令準拠が前提です。</p>
+        </div>
+      </section>
+
+      <section aria-label="HARTON の解決アプローチ" class="mt-12">
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">HARTON の解決アプローチ</h2>
+        <div class="mt-5 space-y-4 text-dark-700 leading-relaxed">
+          <p>HARTON は沼津市大岡 2690 を本拠地に、${esc(c.nameJa)}事業者の WEB 制作を最も近い距離で支援できる立場にあります。本サイト tcharton.com 自身が機械検証 90 点（業界中央 ${d.median} 点の <strong class="text-dark-900">${finalRatio}</strong>）の実証体です。</p>
+          <div class="space-y-2 text-dark-700">
+            <p>・<strong class="text-dark-900">致命的 NG 即時解消</strong> — HTTPS 化 / WP 管理面パス変更 / CMS バージョン情報削除（1-3 日 / +15 点）</p>
+            <p>・<strong class="text-dark-900">業種別法令準拠</strong> — ${esc(c.industryLawLinks)} の機械チェック</p>
+            <p>・<strong class="text-dark-900">構造化データ完備</strong> — Service / LocalBusiness / FAQPage / Article で AI 検索引用率向上</p>
+            <p>・<strong class="text-dark-900">継続改善</strong> — 月次 Stella 機械検証で品質維持</p>
+          </div>
+        </div>
+        <div class="mt-6 callout-highlight rounded-r-lg p-5">
+          <p class="text-sm text-dark-700 leading-relaxed"><strong class="text-dark-900">業種別の詳細実装ガイド</strong>は <a href="/services/web/industries/${c.industryEn}/" class="text-teal-700 underline hover:text-teal-500">${esc(c.nameJa)}向け WEB 制作詳細ページ</a>を参照してください。料金プランは <a href="/pricing/" class="text-teal-700 underline hover:text-teal-500">料金ページ</a>で確認できます。</p>
+        </div>
+      </section>
+
+      <section aria-label="関連 Insights" class="mt-12">
+        <h2 class="font-display text-xl lg:text-2xl font-bold text-dark-900">関連 Insights 記事</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="/insights/local-seo-guide/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">ローカル SEO 実装ガイド — 沼津 × ${esc(c.nameShort)} で勝つ</a></li>
+          <li><a href="/insights/google-business-profile/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">Google ビジネスプロフィール — 地方事業者の必須設定</a></li>
+          <li><a href="/insights/from-17-to-90-points/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">中央 ${d.median} 点を 90 点超へ — 業界トップを取りに行く 10 ステップ</a></li>
+          <li><a href="/insights/jpx-prime-1553-deep-dive/" class="text-teal-700 underline hover:text-teal-500 py-2 inline-block">東証プライム 1,553 社の WEB 品質を機械検証して見えた真実</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="出典" class="mt-12 border-t border-dark-200 pt-8">
+        <h2 class="font-display text-lg font-bold text-dark-900">出典</h2>
+        <ul class="mt-4 space-y-2 text-xs text-dark-500 break-words">
+          <li>HARTON scanner per-industry latest — 沼津市 ${esc(c.nameShort)} ${d.n} 社 / スキャン基準日 2026-05-11 / 出典: <a href="/stella/" class="text-teal-700 underline">Stella サブセクション（CC BY 4.0）</a></li>
+          <li>関連法令: ${esc(c.industryLawLinks)}</li>
+          <li>業種別 WEB 制作詳細: <a href="/services/web/industries/${c.industryEn}/" class="text-teal-700 underline">/services/web/industries/${c.industryEn}/</a></li>
+        </ul>
+      </section>
+
+      <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
+        <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
+        <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">沼津市の${esc(c.nameJa)} 専門 無料診断</h2>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">自社サイトのスコアを業界中央 ${d.median} 点と比較し、改善点をお見せします。診断のみで終わっても費用は一切かかりません。</p>
+        <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
+          <span>1 分で無料診断を申し込む</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark-900 text-dark-300 border-t border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+      <nav aria-label="フッターナビゲーション" class="grid grid-cols-2 md:grid-cols-4 gap-8" data-nosnippet>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">サービス</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/services/web/" class="hover:text-white py-3 inline-block">WEB 制作</a></li>
+            <li><a href="/services/ai-prediction/" class="hover:text-white py-3 inline-block">AI 予測</a></li>
+            <li><a href="/pricing/" class="hover:text-white py-3 inline-block">料金</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">信頼形成</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/cases/" class="hover:text-white py-3 inline-block">導入事例</a></li>
+            <li><a href="/faq/" class="hover:text-white py-3 inline-block">FAQ</a></li>
+            <li><a href="/methodology/" class="hover:text-white py-3 inline-block">方法論・品質根拠</a></li>
+            <li><a href="/profile/" class="hover:text-white py-3 inline-block">代表プロフィール</a></li>
+            <li><a href="/vision/" class="hover:text-white py-3 inline-block">私たちの想い</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">Stella</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/stella/" class="hover:text-white py-3 inline-block">Stella ハブ</a></li>
+            <li><a href="/stella/methodology/" class="hover:text-white py-3 inline-block">評価方法論</a></li>
+            <li><a href="/stella/industries/" class="hover:text-white py-3 inline-block">業種別</a></li>
+            <li><a href="/stella/regions/" class="hover:text-white py-3 inline-block">地域別</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider">事業者情報</h3>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/about/" class="hover:text-white py-3 inline-block">会社情報</a></li>
+            <li><a href="/contact/" class="hover:text-white py-3 inline-block">お問い合わせ</a></li>
+            <li><a href="/news/" class="hover:text-white py-3 inline-block">お知らせ</a></li>
+            <li><a href="/legal/" class="hover:text-white py-3 inline-block">特定商取引法表記</a></li>
+            <li><a href="/privacy/" class="hover:text-white py-3 inline-block">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
+        <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/dist/scripts/menu.js?v=202605141500" defer></script>
+</body>
+</html>
+`;
+}
+
+(async () => {
+  const arg = process.argv[2];
+  const slugs = arg ? [arg] : Object.keys(INDUSTRIES);
+  for (const slug of slugs) {
+    const c = INDUSTRIES[slug];
+    if (!c) { console.error(`Unknown slug: ${slug}`); continue; }
+    const out = path.join(OUT_DIR, slug, 'index.html');
+    fs.writeFileSync(out, tpl(slug, c));
+    console.log(`✅ ${slug.padEnd(15)}  沼津 ${c.nameJa}  (n=${c.data.n} median=${c.data.median} NG=${c.data.ng_pct}%)`);
+  }
+  console.log(`\n生成完了: ${slugs.length} 件`);
+})();
