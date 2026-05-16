@@ -262,7 +262,7 @@ function industryPage(citySlug, industrySlug, scanData) {
   const finalRatio = d.median === 0 ? '> 90' : (90 / d.median).toFixed(1) + ' 倍';
   const ngHtml = ngBreakdownHtml(d.sub);
   const distanceText = city.hq ? '本社所在地（沼津市大岡 2690）'
-    : (city.distance_min ? `沼津本社から車 ${city.distance_min} 分（${city.remote ? '出張+リモート' : '訪問対応'}）` : '完全リモート対応（全国）');
+    : (city.distance_min ? `沼津本社から車 ${city.distance_min} 分` : '全国対応');
 
   const title = `${city.nameJa}の${ind.nameJa} ホームページ制作｜実測 ${d.n} 社 中央値 ${d.median} 点｜T.C.HARTON`;
   const description = `${city.nameJa}の${ind.nameJa} ${d.n} 社の WEB サイト品質を機械検証した結果、中央値 ${d.median} 点 / 最高 ${d.max} 点 / 致命的 NG ${d.ng_pct}%。${ind.key}。${ind.law} 等の法令準拠込みで設計します。`;
@@ -436,7 +436,7 @@ function cityHubPage(citySlug, cityData) {
           </a>`;
   }).filter(Boolean).join('\n');
 
-  const distanceText = city.hq ? '本社所在地' : (city.distance_min ? `沼津本社から車 約 ${city.distance_min} 分` : '完全リモート対応');
+  const distanceText = city.hq ? '本社所在地' : (city.distance_min ? `沼津本社から車 約 ${city.distance_min} 分` : '全国対応');
 
   return `${COMMON_HEAD(title, description, canonical, ogImage, ogAlt)}
 
@@ -475,7 +475,7 @@ ${COMMON_BODY_START}
 
       <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
         <p class="text-sm font-bold text-teal-800 mb-2">${esc(city.nameJa)}の概要</p>
-        <p class="text-dark-800 leading-relaxed">${esc(city.accent)}。HARTON は ${esc(distanceText)}でリモート対応します。${esc(city.nameJa)}内 <strong class="text-dark-900">${all_scores_count} 業種 ${n_total} 社</strong>の WEB サイト品質を機械検証実測しており、業種別ロングテールページで個別データを公開しています。</p>
+        <p class="text-dark-800 leading-relaxed">${esc(city.accent)}。${esc(city.nameJa)}内 <strong class="text-dark-900">${all_scores_count} 業種 ${n_total} 社</strong>の WEB サイト品質を機械検証実測しており、業種別ロングテールページで個別データを公開しています。</p>
       </div>
 
       <section aria-label="業種別ページ" class="mt-12">

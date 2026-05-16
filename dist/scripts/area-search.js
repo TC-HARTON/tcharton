@@ -9,7 +9,7 @@
  * 動作:
  *   scanned 都市 + 業種  → /areas/{citySlug}/{industry}/
  *   scanned 都市のみ     → /areas/{citySlug}/
- *   非 scanned 都市      → /areas/pref/{prefSlug}/（リモート対応訴求）
+ *   非 scanned 都市      → /areas/pref/{prefSlug}/（都道府県ハブ）
  *   都道府県のみ          → /areas/pref/{prefSlug}/
  */
 (function() {
@@ -1915,12 +1915,14 @@
       Object.keys(cities).forEach(function(slug) {
         var opt = document.createElement('option');
         opt.value = slug;
-        opt.textContent = cities[slug].name + (cities[slug].scanned ? '' : '（リモート対応）');
+        opt.textContent = cities[slug].name + (cities[slug].scanned ? '' : '（業種データ準備中）');
         citySel.appendChild(opt);
       });
     });
 
     // 3. 市町村変更 → 業種絞り込み
+    // 全 13 業種は常に選択可能（scanned 都市のみ実測ページへ遷移、非 scanned は都道府県ハブへ）
+    var ALL_IND_SLUGS = Object.keys(IND_NAMES);
     citySel.addEventListener('change', function() {
       var pref = prefSel.value;
       var city = citySel.value;
@@ -1928,15 +1930,16 @@
       indSel.disabled = !city;
       if (!city) return;
       var cityData = DATA[pref].cities[city];
-      if (!cityData || cityData.industries.length === 0) {
+      // scanned 都市は実測ありの業種を優先表示、それ以外も選択可
+      var primary = (cityData && cityData.scanned) ? cityData.industries : [];
+      var rest = ALL_IND_SLUGS.filter(function(s) { return primary.indexOf(s) === -1; });
+      primary.forEach(function(slug) {
         var opt = document.createElement('option');
-        opt.value = '';
-        opt.textContent = '（リモート対応 - 都道府県ハブへ遷移）';
-        opt.disabled = true;
+        opt.value = slug;
+        opt.textContent = IND_NAMES[slug] + '（実測データあり）';
         indSel.appendChild(opt);
-        return;
-      }
-      cityData.industries.forEach(function(slug) {
+      });
+      rest.forEach(function(slug) {
         var opt = document.createElement('option');
         opt.value = slug;
         opt.textContent = IND_NAMES[slug] || slug;

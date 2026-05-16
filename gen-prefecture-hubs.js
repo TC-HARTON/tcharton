@@ -4,7 +4,6 @@
  *
  * 各都道府県ハブは：
  *   - 都道府県内の主要都市（人口 10 万以上）リンク一覧
- *   - HARTON のリモート対応訴求
  *   - scanner データのある都市があれば実測データ ハブへのリンク
  *   - 全国共通 chrome（header / mobile menu / footer）
  *
@@ -179,7 +178,7 @@ const COMMON_FOOTER = `  </main>
 function prefectureHubPage(pref) {
   const canonical = `https://tcharton.com/areas/pref/${pref.slug}/`;
   const title = `${pref.name}の WEB 制作・ホームページ制作｜T.C.HARTON`;
-  const description = `${pref.name}（${pref.region}）の WEB 制作・AI 予測対応エリア。${pref.cities.length} 主要都市（人口 10 万以上）に対応。沼津本社からフルリモートで全国対応します。`;
+  const description = `${pref.name}（${pref.region}）の WEB 制作・AI 予測対応エリア。${pref.cities.length} 主要都市（人口 10 万以上）に対応。`;
   const ogImage = 'https://tcharton.com/areas/ogp.png';
   const ogAlt = `${pref.name}の WEB 制作 — T.C.HARTON`;
 
@@ -201,8 +200,8 @@ ${scannedCities.map(c => `          <a href="${SCANNED_CITIES[c]}" class="block 
 
   const otherCitiesHtml = otherCities.length === 0 ? '' : `
       <section aria-label="他の主要都市" class="mt-12">
-        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">${esc(pref.name)}内の他の主要都市（リモート対応）</h2>
-        <p class="mt-3 text-dark-700 leading-relaxed">以下の都市は機械検証スキャン未実施ですが、<strong class="text-dark-900">フルリモートで WEB 制作 + AI 予測を承ります</strong>。Zoom / Google Meet による打合せ、機械検証ベースの納品基準で品質を担保します。</p>
+        <h2 class="font-display text-2xl lg:text-3xl font-bold text-dark-900">${esc(pref.name)}内の他の主要都市</h2>
+        <p class="mt-3 text-dark-700 leading-relaxed">以下は ${esc(pref.name)} 内の人口 10 万以上の主要都市です（機械検証スキャン未実施）。</p>
         <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 text-sm">
 ${otherCities.map(c => `          <div class="bg-dark-50 border border-dark-200 rounded-md px-3 py-2 text-dark-700 text-center">${esc(c)}</div>`).join('\n')}
         </div>
@@ -218,7 +217,7 @@ ${otherCities.map(c => `          <div class="bg-dark-50 border border-dark-200 
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","description":"${esc(pref.name)}の WEB 制作・AI 予測（フルリモート対応）","areaServed":{"@type":"AdministrativeArea","name":"${esc(pref.name)}"},"founder":{"@type":"Person","name":"大内 達也"},"telephone":"+81-80-1058-0538","email":"info@tcharton.com"}
+  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","description":"${esc(pref.name)}の WEB 制作・AI 予測","areaServed":{"@type":"AdministrativeArea","name":"${esc(pref.name)}"},"founder":{"@type":"Person","name":"大内 達也"},"telephone":"+81-80-1058-0538","email":"info@tcharton.com"}
   </script>
 
 ${COMMON_BODY_START}
@@ -239,13 +238,13 @@ ${COMMON_BODY_START}
         <p class="mt-4 text-xs text-dark-500">
           <time datetime="2026-05-16">2026 年 5 月 16 日 公開</time>
           <span class="mx-2" aria-hidden="true">/</span>
-          <span>${esc(pref.region)}地方 / フルリモート対応</span>
+          <span>${esc(pref.region)}地方</span>
         </p>
       </header>
 
       <div class="mt-8 bg-teal-50 border-l-4 border-teal-700 rounded-r-lg p-6">
         <p class="text-sm font-bold text-teal-800 mb-2">${esc(pref.name)}の事業者向け WEB 制作</p>
-        <p class="text-dark-800 leading-relaxed">HARTON は沼津本社からフルリモートで全国対応しています。<strong class="text-dark-900">${esc(pref.name)} 内 ${pref.cities.length} 主要都市（人口 10 万以上）</strong>の事業者様の WEB 制作・AI 予測モデル開発を、Zoom / Google Meet + 機械検証ベースの納品基準で品質保証します。${scannedCities.length > 0 ? `${esc(pref.name)} 内で <strong class="text-dark-900">${scannedCities.length} 都市</strong>は HARTON scanner で WEB 品質の業界実測データを公開しています。` : '機械検証スキャンは順次拡大中です。'}</p>
+        <p class="text-dark-800 leading-relaxed"><strong class="text-dark-900">${esc(pref.name)} 内 ${pref.cities.length} 主要都市（人口 10 万以上）</strong>を掲載しています。${scannedCities.length > 0 ? `そのうち <strong class="text-dark-900">${scannedCities.length} 都市</strong>は HARTON scanner で WEB 品質の業界実測データを公開しています。` : '機械検証スキャンは順次拡大中です。'}</p>
       </div>
 ${scannedCardsHtml}
 ${otherCitiesHtml}
@@ -284,7 +283,7 @@ ${otherCitiesHtml}
       <section aria-label="お問い合わせ" class="mt-12 bg-teal-50 border-y border-teal-100 rounded-xl p-8 text-center">
         <p class="text-teal-700 font-display font-bold text-xs lg:text-sm tracking-widest uppercase">Free Diagnosis</p>
         <h2 class="mt-3 font-display text-xl lg:text-2xl font-bold text-dark-900">${esc(pref.name)}の WEB 制作・改善は HARTON へ</h2>
-        <p class="mt-3 text-dark-700 text-sm leading-relaxed">業界中央値との比較レポートを無料でお見せします。フルリモートで全国対応。診断のみで終わっても費用は一切かかりません。</p>
+        <p class="mt-3 text-dark-700 text-sm leading-relaxed">業界中央値との比較レポートを無料でお見せします。診断のみで終わっても費用は一切かかりません。</p>
         <a href="/contact/" class="mt-6 inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-lg">
           <span>1 分で無料診断を申し込む</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>

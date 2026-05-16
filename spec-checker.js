@@ -1583,6 +1583,26 @@ function cGlobal() {
                 `1,830 残存検出: ${offenders1830.join(',')} — 真値は 1,553 社（scanner Phase E 実測）`));
   }
 
+  // ─── 「リモート対応」訴求の再混入禁止 (2026-05-16 代表指示) ───
+  // 代表指示: 「リモート対応指示したか？消せ！」
+  // 「フルリモート」「完全リモート」「リモート対応」等の訓求語は禁止
+  // distance_min を持つエリアの訪問対応、清水区等の「車60分→訪問」は許容（事実）
+  const remoteRegex = /(フルリモート|完全リモート|リモート対応|リモート併用)/g;
+  const remoteOffenders = [];
+  for (const t of allHtmlFiles) {
+    const fp = path.join(ROOT, t);
+    if (!fs.existsSync(fp)) continue;
+    const c = fs.readFileSync(fp, 'utf-8');
+    if (remoteRegex.test(c)) remoteOffenders.push(t);
+  }
+  if (remoteOffenders.length === 0) {
+    r.push(PASS('gl-no-remote-claims', S, '「リモート対応」訴求の再混入禁止',
+                `全 ${allHtmlFiles.length} HTML ファイルにリモート訴求語なし`));
+  } else {
+    r.push(FAIL('gl-no-remote-claims', S, '「リモート対応」訴求の再混入禁止',
+                `リモート訴求語検出: ${remoteOffenders.join(',')} — 代表指示で削除済（2026-05-16）`));
+  }
+
   // ─── DESIGN.md ↔ 実装 整合性 / メインブランドはライトテーマ (2026-05-15 事故再発防止) ───
   // 真実: DESIGN.md L57 「Background White: #ffffff = メイン背景」
   // 実装: 全メインブランドページの body class は bg-white
