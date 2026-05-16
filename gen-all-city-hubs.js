@@ -93,8 +93,9 @@ const COMMON_HEAD = (title, description, canonical, ogImage, ogAlt) => `<!DOCTYP
 const COMMON_BODY_START = `  <link rel="stylesheet" href="/dist/output.css?v=202605161200">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" as="style">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" data-defer-css media="print" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"></noscript>
+  <script src="/dist/scripts/css-loader.js?v=202605161800" defer></script>
 
   <script src="/dist/scripts/ga4.js?v=202605120100" defer></script>
   <script src="/dist/scripts/trusted-types.js?v=202605120100"></script>

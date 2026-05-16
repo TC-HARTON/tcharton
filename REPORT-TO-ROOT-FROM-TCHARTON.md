@@ -516,3 +516,59 @@ stub 共通構造:
 | `/requesting-code-review` | content 確定後（Step 4 で起動予定）| pending |
 | `/receiving-code-review` | n/a (Step 1 段階) | — |
 | `/gstack` | spec-checker 直走行で 100% / 公開後 ① scanner で代替 | OK |
+
+---
+
+## v2.0 改修指示書 (TCHARTON-IMPROVEMENT-DIRECTIVE-V2.md) Iteration 1 中間報告 (2026-05-16)
+
+### 受領確認
+
+- 指示書: `C:\Users\ohuch\Desktop\HARTON\TCHARTON-IMPROVEMENT-DIRECTIVE-V2.md`
+- 根拠: scanner v3.9.3 / Google PSI v5 lighthouseResult verbatim
+- 達成目標: 総合 88 → 96+ / Velocity 59 → 90+ / LCP 7,487ms → < 2,500ms
+
+### Iteration 1 実施内容 (T3 着手)
+
+**T3-1: Google Fonts CSS の render-blocking 解消**
+
+LCP/FCP 7 秒台の主因と推定される Google Fonts CSS (synchronous `<link rel="stylesheet">`) を非ブロック化。
+
+- **新規 script**: `/dist/scripts/css-loader.js` (CSP 適合 / Trusted Types 安全 / external-script-only)
+  - `<link data-defer-css media="print">` をブラウザに低優先・非ブロック取得させ、DOMContentLoaded で `media="all"` に swap
+  - inline onload (`onload="this.rel='stylesheet'"`) は CSP `script-src 'self'` に違反するため使用せず、外部スクリプト方式で実装
+
+- **適用範囲**: 504 HTML ファイル + 7 generator (`gen-prefecture-hubs.js` / `gen-all-city-hubs.js` / `gen-areas-all-cities.js` / `gen-areas.js` / `gen-industries.js` / `gen-insights-hub.js` / `gen-numazu-industries.js`) のテンプレート
+
+- **置換 Before**:
+  ```html
+  <link rel="preload" href="...Google Fonts CSS..." as="style">
+  <link href="...Google Fonts CSS..." rel="stylesheet">
+  ```
+
+- **置換 After**:
+  ```html
+  <link rel="stylesheet" data-defer-css media="print" href="...Google Fonts CSS...">
+  <noscript><link rel="stylesheet" href="...Google Fonts CSS..."></noscript>
+  <script src="/dist/scripts/css-loader.js?v=202605161800" defer></script>
+  ```
+
+### git commit hash
+
+- (commit 後追記)
+
+### S-RANK 検証
+
+- 検証項目 29,355 / FAIL **0** / 合格率 **100.0%** / **S-RANK 合格 維持**
+
+### 残作業 (Iteration 2 以降)
+
+1. **T1: LCP 要素特定 + 即時最適化** — 推定: hero h1 テキストが LCP。font-display:swap で fallback フォント即時描画 → Web Font 到着で swap
+2. **T2: Critical CSS インライン化** — 642 ページに critical extraction 適用（build pipeline 改修要）
+3. **T4: 画像配信最適化** — width/height 明示の全件監査 / 全画像 WebP/AVIF 化
+4. **Tailwind CSS 44.9KB → 40KB 未満** — 未使用クラス purge + carbon-fiber 系の sub-brand クラス分離 (`gold-*` `stella-navy-*` は /stella/ 系ページ専用化)
+5. **T5: Cloudflare 設定** — Auto Minify / Brotli / HTTP/3 / Early Hints (103) を ① ルート権限で設定
+6. **T6: axe-core 違反 2 ルール / 3 要素** — `npx @axe-core/cli` 実行 → 個別修正
+
+### PSI 中間測定要請
+
+T3 完了時点で ④ scanner に `py _adhoc_scan.py "https://tcharton.com/"` の再実行を要請。改善幅 (Velocity / LCP / FCP) を計測。
