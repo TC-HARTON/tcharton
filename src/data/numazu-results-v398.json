@@ -1,0 +1,1406 @@
+{
+  "_source": "scanner v3.9.8 / 沼津 12 業種 / 2026-05-17",
+  "_scoring_rule": "致命的NG件数>0 は 0 点に補正。70+/80+/90+ で B/A/S 判定",
+  "industries": {
+    "cosmeticclinic": {
+      "nameJa": "美容クリニック",
+      "n": 6,
+      "companies": [
+        {
+          "name": "ナチュラリビューティークリニック",
+          "url": "https://www.nachurari-bc.com/",
+          "raw": 89,
+          "ng": 0,
+          "adj": 89,
+          "cls": "A"
+        },
+        {
+          "name": "肌とかたちのクリニック",
+          "url": "https://hada-katachi.com/",
+          "raw": 88,
+          "ng": 0,
+          "adj": 88,
+          "cls": "A"
+        },
+        {
+          "name": "けやき美容クリニック 沼津院",
+          "url": "http://www.keyaki-bc.com/",
+          "raw": 65,
+          "ng": 0,
+          "adj": 65,
+          "cls": "-"
+        },
+        {
+          "name": "東京青山クリニック 沼津院",
+          "url": "https://www.tokyoaoyama-aga.com/",
+          "raw": 84,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "医療法人清和会沼津",
+          "url": "https://numazu-seiwa.coral-beauty.jp/",
+          "raw": 76,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津血管外科形成クリニック",
+          "url": "https://kekkangeka.net/",
+          "raw": 72,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "dental": {
+      "nameJa": "歯科医院",
+      "n": 19,
+      "companies": [
+        {
+          "name": "沼津せせらぎ歯科クリニック",
+          "url": "https://numazu-seseragidental.com/",
+          "raw": 89,
+          "ng": 0,
+          "adj": 89,
+          "cls": "A"
+        },
+        {
+          "name": "デンタルオフィスみなと",
+          "url": "https://dentoffice-minato.com/",
+          "raw": 88,
+          "ng": 0,
+          "adj": 88,
+          "cls": "A"
+        },
+        {
+          "name": "中江歯科クリニック",
+          "url": "http://nakae-dent.com/",
+          "raw": 78,
+          "ng": 0,
+          "adj": 78,
+          "cls": "B"
+        },
+        {
+          "name": "パル博愛歯科",
+          "url": "http://pal-hakuai-dental.com/",
+          "raw": 75,
+          "ng": 0,
+          "adj": 75,
+          "cls": "B"
+        },
+        {
+          "name": "松本デンタルクリニック",
+          "url": "https://www.matumoto-dc.com/",
+          "raw": 75,
+          "ng": 0,
+          "adj": 75,
+          "cls": "B"
+        },
+        {
+          "name": "中央歯科医院",
+          "url": "http://www.chuo-shika.jp/",
+          "raw": 66,
+          "ng": 0,
+          "adj": 66,
+          "cls": "-"
+        },
+        {
+          "name": "アイ デンタルクリニック",
+          "url": "http://www.idc0559517088.com/",
+          "raw": 58,
+          "ng": 0,
+          "adj": 58,
+          "cls": "-"
+        },
+        {
+          "name": "植松歯科医院",
+          "url": "http://www.uematsu-dc.jp/",
+          "raw": 81,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "鈴木歯科クリニック",
+          "url": "https://www.kyoueikai-dental.com/",
+          "raw": 81,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "カナリヤ歯科医院",
+          "url": "https://canary-dc.com/",
+          "raw": 77,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "にいづま歯科",
+          "url": "http://www.niiduma-shika.com/",
+          "raw": 73,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "佐野歯科クリニック",
+          "url": "https://www.sanodentalclinic.com/",
+          "raw": 69,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "はせがわ歯科",
+          "url": "https://dc-hase.com/",
+          "raw": 66,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "あさい歯科クリニック",
+          "url": "http://www.asai-dc.net/",
+          "raw": 63,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津フォンターナ歯科",
+          "url": "https://www.numazu-dental.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津リコー通り けやきデンタルクリニック",
+          "url": "http://numazu-keyakidental.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津歯科",
+          "url": "https://www.numazu-dentalclinic.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "津野歯科医院（沼津の歯科）",
+          "url": "https://tsuno-dc.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "芹澤歯科医院",
+          "url": "http://www.serizawashika.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "gyoseishoshi": {
+      "nameJa": "行政書士",
+      "n": 9,
+      "companies": [
+        {
+          "name": "社会保険労務士・行政書士ゆたか事務所",
+          "url": "https://office-ozawayutaka.com/",
+          "raw": 94,
+          "ng": 0,
+          "adj": 94,
+          "cls": "S"
+        },
+        {
+          "name": "香陵行政書士法人",
+          "url": "https://www.kouryo-gyoseishoshi.com/",
+          "raw": 88,
+          "ng": 0,
+          "adj": 88,
+          "cls": "A"
+        },
+        {
+          "name": "行政書士法人 藩屋事務所",
+          "url": "https://www.hanya-office.com/",
+          "raw": 86,
+          "ng": 0,
+          "adj": 86,
+          "cls": "A"
+        },
+        {
+          "name": "米原透事務所",
+          "url": "http://www2.tokai.or.jp/yonehara/",
+          "raw": 78,
+          "ng": 0,
+          "adj": 78,
+          "cls": "B"
+        },
+        {
+          "name": "市原誠事務所",
+          "url": "http://www.m-ichihara.jp/",
+          "raw": 72,
+          "ng": 0,
+          "adj": 72,
+          "cls": "B"
+        },
+        {
+          "name": "司法書士法人 はなえみ",
+          "url": "https://yamada-jimusho.net/",
+          "raw": 86,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "行政書士 内村直志事務所",
+          "url": "http://www.gyoseisyosi-uchimura.com/",
+          "raw": 74,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "行政書士田中綜合法務事務所",
+          "url": "https://www.tanaka-sogo.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "静岡相続相談室（静岡県） AZ経法会 高橋 茂 行政書士事務所",
+          "url": "http://ameblo.jp/st1031saturn/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "hospital": {
+      "nameJa": "病院",
+      "n": 18,
+      "companies": [
+        {
+          "name": "えがわ医院",
+          "url": "https://www.egawa-iin.com/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "森医院",
+          "url": "https://website2.infomity.net/8120000111/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "西島病院",
+          "url": "https://www.shinwakai.or.jp/nishijima/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "聖隷沼津病院",
+          "url": "http://www.seirei.or.jp/numazu-hp/",
+          "raw": 82,
+          "ng": 0,
+          "adj": 82,
+          "cls": "A"
+        },
+        {
+          "name": "ベル内科・脳神経クリニック",
+          "url": "https://bell-neuro-clinic.com/",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "沼津夜間救急医療センター",
+          "url": "http://www.city.numazu.shizuoka.jp/kyouryokui/yakan.htm",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "大沢医院",
+          "url": "https://osawa-iin.com/",
+          "raw": 79,
+          "ng": 0,
+          "adj": 79,
+          "cls": "B"
+        },
+        {
+          "name": "沼津はまゆう病院",
+          "url": "https://kenjinkai.hospital/index.html",
+          "raw": 75,
+          "ng": 0,
+          "adj": 75,
+          "cls": "B"
+        },
+        {
+          "name": "沼津医師会",
+          "url": "http://www.numazu-med.or.jp/",
+          "raw": 74,
+          "ng": 0,
+          "adj": 74,
+          "cls": "B"
+        },
+        {
+          "name": "沼津市立病院",
+          "url": "http://www.numazu-hospital.shizuoka.jp/",
+          "raw": 72,
+          "ng": 0,
+          "adj": 72,
+          "cls": "B"
+        },
+        {
+          "name": "沼津中央病院",
+          "url": "http://www.numazuchuo.jp/",
+          "raw": 69,
+          "ng": 0,
+          "adj": 69,
+          "cls": "-"
+        },
+        {
+          "name": "とりい内科クリニック",
+          "url": "https://torii-cl.jp/",
+          "raw": 87,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津グルメ街道クリニック",
+          "url": "https://gourmet-road.clinic/",
+          "raw": 87,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "きせがわ病院",
+          "url": "http://shinyoukai.or.jp/kisegawa/",
+          "raw": 79,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "田沢医院",
+          "url": "http://shinyoukai.or.jp/tazawa-clinic/",
+          "raw": 76,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "べっく・メディカル・クリニック",
+          "url": "http://www.benet-medic.jp/",
+          "raw": 74,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "勝呂医院",
+          "url": "http://suguroclinic.jp/",
+          "raw": 74,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "瀬尾記念慶友病院",
+          "url": "https://www.seomh.net/",
+          "raw": 74,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "juku": {
+      "nameJa": "学習塾",
+      "n": 17,
+      "companies": [
+        {
+          "name": "アイン学習塾",
+          "url": "https://www.eine-school.com/",
+          "raw": 91,
+          "ng": 0,
+          "adj": 91,
+          "cls": "S"
+        },
+        {
+          "name": "武田塾 沼津校",
+          "url": "https://www.takeda.tv/numazu/",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "沼津進学塾大岡教室",
+          "url": "http://numashin-jyuku.com/",
+          "raw": 79,
+          "ng": 0,
+          "adj": 79,
+          "cls": "B"
+        },
+        {
+          "name": "峯尾塾 香貫教室",
+          "url": "http://www.mineojuku.com/",
+          "raw": 78,
+          "ng": 0,
+          "adj": 78,
+          "cls": "B"
+        },
+        {
+          "name": "個別指導塾 s-Liveしずおか沼津学園通り校",
+          "url": "https://www.s-live-juku.com/gakuendouri/",
+          "raw": 76,
+          "ng": 0,
+          "adj": 76,
+          "cls": "B"
+        },
+        {
+          "name": "ハイスクール@will沼津駅南口校",
+          "url": "https://www.sanaru-net.com/school/shizuoka/numazuekiminami/",
+          "raw": 72,
+          "ng": 0,
+          "adj": 72,
+          "cls": "B"
+        },
+        {
+          "name": "学習空間 沼津西教室",
+          "url": "http://www.gakushu-kukan.com/",
+          "raw": 71,
+          "ng": 0,
+          "adj": 71,
+          "cls": "B"
+        },
+        {
+          "name": "個別指導の明光義塾 沼津駅前教室",
+          "url": "https://www.meikogijuku.jp/school/shizuoka/numazu-shi/S3590/?utm_source=GMB&utm_medium=profile&utm_campaign=Local_Search_S3590",
+          "raw": 66,
+          "ng": 0,
+          "adj": 66,
+          "cls": "-"
+        },
+        {
+          "name": "個別指導の学習塾 スクールIE 沼津原校",
+          "url": "https://www.schoolie-net.jp/classrooms/detail/869/?utm_source=google&utm_medium=map&utm_campaign=shizuoka_5C43",
+          "raw": 60,
+          "ng": 0,
+          "adj": 60,
+          "cls": "-"
+        },
+        {
+          "name": "個別教室のトライ 沼津駅前校",
+          "url": "https://www.kobekyo.com/around/shizuoka/numazu/?utm_campaign=&utm_medium=map&utm_source=google",
+          "raw": 56,
+          "ng": 0,
+          "adj": 56,
+          "cls": "-"
+        },
+        {
+          "name": "学習塾NEST",
+          "url": "https://nest-lab.jp/",
+          "raw": 92,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "学習塾コラボ",
+          "url": "http://etoshin.chu.jp/",
+          "raw": 88,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "次世代型学習塾Literrace(リテラス)",
+          "url": "http://literrace.com/",
+          "raw": 88,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "静岡個別進学館 沼津校",
+          "url": "https://numadusatukicai.chips.jp/",
+          "raw": 86,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "個別指導塾SHIFT",
+          "url": "http://kobetsu-shift.com/",
+          "raw": 81,
+          "ng": 3,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "クラウン進学塾",
+          "url": "http://crown-only-one.com/",
+          "raw": 76,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "進学個別 atama＋塾 沼津校",
+          "url": "https://www.atama.plus/numazu/",
+          "raw": 72,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "lawyer": {
+      "nameJa": "弁護士",
+      "n": 10,
+      "companies": [
+        {
+          "name": "のぞみ法律事務所",
+          "url": "https://nozomilawfirm.jp/",
+          "raw": 88,
+          "ng": 0,
+          "adj": 88,
+          "cls": "A"
+        },
+        {
+          "name": "髙木法律事務所",
+          "url": "https://www.takagi-law-firm.com/",
+          "raw": 87,
+          "ng": 0,
+          "adj": 87,
+          "cls": "A"
+        },
+        {
+          "name": "みどり合同法律事務所",
+          "url": "http://midorigodo.com/",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "沼津総合法律事務所",
+          "url": "http://numasou-law.jp/",
+          "raw": 78,
+          "ng": 0,
+          "adj": 78,
+          "cls": "B"
+        },
+        {
+          "name": "平岩法律事務所",
+          "url": "http://www.hiraiwa-lawoffice.com/office/",
+          "raw": 74,
+          "ng": 0,
+          "adj": 74,
+          "cls": "B"
+        },
+        {
+          "name": "法テラス沼津",
+          "url": "https://www.houterasu.or.jp/site/chihoujimusho-shizuoka/numaduaccess.html",
+          "raw": 68,
+          "ng": 0,
+          "adj": 68,
+          "cls": "-"
+        },
+        {
+          "name": "利他法律事務所",
+          "url": "http://ritalawoffice.com/",
+          "raw": 65,
+          "ng": 0,
+          "adj": 65,
+          "cls": "-"
+        },
+        {
+          "name": "静岡県弁護士会沼津支部",
+          "url": "https://www.s-bengoshikai.com/",
+          "raw": 64,
+          "ng": 0,
+          "adj": 64,
+          "cls": "-"
+        },
+        {
+          "name": "アディーレ法律事務所 沼津支店",
+          "url": "https://numazu.adire.jp/?utm_source=google&utm_medium=gmb&utm_campaign=gmb_numazu&utm_id=utm_id",
+          "raw": 81,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "梅田法律事務所",
+          "url": "http://umeda-lo.com/",
+          "raw": 78,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "lodging": {
+      "nameJa": "宿泊施設",
+      "n": 13,
+      "companies": [
+        {
+          "name": "沼津 一休庵",
+          "url": "https://zuihaodeanpai.wixsite.com/numazu",
+          "raw": 86,
+          "ng": 0,
+          "adj": 86,
+          "cls": "A"
+        },
+        {
+          "name": "ゲストハウス沼津港",
+          "url": "https://chat.line.biz/U3034b2037684a3717d569d621cb21ae9/chat/2Uc8aceb6cdc3dedd14c1f99f2cee7b9ed?messageId=587066526994268418",
+          "raw": 85,
+          "ng": 0,
+          "adj": 85,
+          "cls": "A"
+        },
+        {
+          "name": "DEEP BLUE",
+          "url": "https://abnb.me/tCMyHY7WjEb",
+          "raw": 81,
+          "ng": 0,
+          "adj": 81,
+          "cls": "A"
+        },
+        {
+          "name": "月の湯温泉 割烹旅館 翠泉閣",
+          "url": "https://suisenkaku.com/",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "貸切宿 ひととき",
+          "url": "https://hitotoki-numazu.jp/",
+          "raw": 79,
+          "ng": 0,
+          "adj": 79,
+          "cls": "B"
+        },
+        {
+          "name": "uminca ウミンカ 古民家ゲストハウス",
+          "url": "https://airbnb.com/h/uminca",
+          "raw": 78,
+          "ng": 0,
+          "adj": 78,
+          "cls": "B"
+        },
+        {
+          "name": "ビーチハウス沼津(Beach House Numazu)",
+          "url": "https://zuihaodeanpai.wixsite.com/beach",
+          "raw": 76,
+          "ng": 0,
+          "adj": 76,
+          "cls": "B"
+        },
+        {
+          "name": "西伊豆 天空テラス",
+          "url": "https://www.tenkuu-terrace.jp/",
+          "raw": 72,
+          "ng": 0,
+          "adj": 72,
+          "cls": "B"
+        },
+        {
+          "name": "ホテルリブマックス沼津駅前",
+          "url": "https://www.hotel-livemax.com/shizuoka/numazust/",
+          "raw": 70,
+          "ng": 0,
+          "adj": 70,
+          "cls": "B"
+        },
+        {
+          "name": "沼津ライダーハウス しんちゃん",
+          "url": "https://www.booking.com/hotel/jp/zhao-jin-raidahaususintiyan.ja.html",
+          "raw": 68,
+          "ng": 0,
+          "adj": 68,
+          "cls": "-"
+        },
+        {
+          "name": "バレルサウナ沼津",
+          "url": "https://barrel-sauna.jp/",
+          "raw": 81,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "hotorino",
+          "url": "https://hotorino.jp/",
+          "raw": 79,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "KOKO HOTEL 沼津駅前",
+          "url": "https://koko-hotels.com/numazu_ekimae",
+          "raw": 66,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "realestate": {
+      "nameJa": "不動産",
+      "n": 17,
+      "companies": [
+        {
+          "name": "ハウスドゥ 沼津原",
+          "url": "https://numazuhara-housedo.com/",
+          "raw": 86,
+          "ng": 0,
+          "adj": 86,
+          "cls": "A"
+        },
+        {
+          "name": "株式会社あおば",
+          "url": "https://www.aoba-estate-agent.jp/",
+          "raw": 85,
+          "ng": 0,
+          "adj": 85,
+          "cls": "A"
+        },
+        {
+          "name": "ハウスドゥ 沼津香貫",
+          "url": "https://numazukanuki-housedo.com/sp/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "株式会社アトモ",
+          "url": "https://www.atomo.life/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "沼津不動産BASE",
+          "url": "https://numazu.site/realestatebase/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "センチュリー21ワンズエステート",
+          "url": "https://www.century21.jp/store/152901-/",
+          "raw": 82,
+          "ng": 0,
+          "adj": 82,
+          "cls": "A"
+        },
+        {
+          "name": "株式会社めぐみ不動産",
+          "url": "https://www.megumi-estate.jp/?utm_source=google&utm_medium=maps",
+          "raw": 77,
+          "ng": 0,
+          "adj": 77,
+          "cls": "B"
+        },
+        {
+          "name": "ハウスコム 沼津店",
+          "url": "https://www.housecom.jp/shop/numazu-hc/?utm_medium=organic&utm_source=GMBlisting",
+          "raw": 76,
+          "ng": 0,
+          "adj": 76,
+          "cls": "B"
+        },
+        {
+          "name": "木村不動産",
+          "url": "https://kimurafudousan.com/",
+          "raw": 74,
+          "ng": 0,
+          "adj": 74,
+          "cls": "B"
+        },
+        {
+          "name": "(株)大河不動産",
+          "url": "https://www.ookawahudousan.co.jp/",
+          "raw": 71,
+          "ng": 0,
+          "adj": 71,
+          "cls": "B"
+        },
+        {
+          "name": "ミニミニ静岡 沼津店",
+          "url": "https://minimini.jp/pref/shizuoka/",
+          "raw": 70,
+          "ng": 0,
+          "adj": 70,
+          "cls": "B"
+        },
+        {
+          "name": "(株)東部不動産開発",
+          "url": "https://www.tfkinc.co.jp/",
+          "raw": 66,
+          "ng": 0,
+          "adj": 66,
+          "cls": "-"
+        },
+        {
+          "name": "アパマンショップ沼津北店",
+          "url": "https://www.apamanshop.com/shop/22008407?utm_source=google&utm_medium=maps&utm_campaign=22008407",
+          "raw": 61,
+          "ng": 0,
+          "adj": 61,
+          "cls": "-"
+        },
+        {
+          "name": "アパマンショップ沼津店",
+          "url": "https://www.apamanshop.com/shop/22008403?utm_source=google&utm_medium=maps&utm_campaign=22008403",
+          "raw": 61,
+          "ng": 0,
+          "adj": 61,
+          "cls": "-"
+        },
+        {
+          "name": "エイブルネットワーク 沼津駅前通り店",
+          "url": "https://shop.able.co.jp/C03000787/",
+          "raw": 56,
+          "ng": 0,
+          "adj": 56,
+          "cls": "-"
+        },
+        {
+          "name": "しずなび株式会社 沼津店",
+          "url": "https://www.s-est.co.jp/",
+          "raw": 74,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "（有）三陽住宅",
+          "url": "https://www.sanyo-34.co.jp/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "restaurant": {
+      "nameJa": "飲食店",
+      "n": 17,
+      "companies": [
+        {
+          "name": "御膳屋丸天(魚河岸丸天本店)",
+          "url": "https://uogashi-maruten.co.jp/gozenya/",
+          "raw": 91,
+          "ng": 0,
+          "adj": 91,
+          "cls": "S"
+        },
+        {
+          "name": "あやみ屋",
+          "url": "https://www.ayamiya.info/",
+          "raw": 86,
+          "ng": 0,
+          "adj": 86,
+          "cls": "A"
+        },
+        {
+          "name": "駿河湾 沼津海いち",
+          "url": "https://www.instagram.com/umiichi2023/",
+          "raw": 85,
+          "ng": 0,
+          "adj": 85,
+          "cls": "A"
+        },
+        {
+          "name": "洋食 千楽 北口店",
+          "url": "https://www.instagram.com/senrakukita?igsh=MWYwZHR2NDdhdXl2Ng==",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "漁師の台所 たんぱく大国",
+          "url": "http://www.sawaken.info/tanpakuookoku/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "旬食処 春夏秋冬",
+          "url": "https://www.instagram.com/shunkashutou1001?igsh=cDY1Y3d5Mnk5dGoz",
+          "raw": 82,
+          "ng": 0,
+          "adj": 82,
+          "cls": "A"
+        },
+        {
+          "name": "華味（ファーウェイ）",
+          "url": "https://nbve100.gorp.jp/",
+          "raw": 82,
+          "ng": 0,
+          "adj": 82,
+          "cls": "A"
+        },
+        {
+          "name": "PISOLA 沼津店",
+          "url": "https://pisola.jp/",
+          "raw": 81,
+          "ng": 0,
+          "adj": 81,
+          "cls": "A"
+        },
+        {
+          "name": "沼津 お魚ダイニング hiro",
+          "url": "https://osakana-hiro.com/",
+          "raw": 76,
+          "ng": 0,
+          "adj": 76,
+          "cls": "B"
+        },
+        {
+          "name": "Italian Kitchen VANSAN 沼津店",
+          "url": "https://vansan-ltd.jp/vansan/vansan-numazu/?utm_source=google_map&utm_medium=map",
+          "raw": 72,
+          "ng": 0,
+          "adj": 72,
+          "cls": "B"
+        },
+        {
+          "name": "【沼津/ハワイアンカフェレストラン】トニーズホノルル",
+          "url": "http://www.tonys-h.com/",
+          "raw": 88,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "福食堂",
+          "url": "https://www.facebook.com/fukusyokudo",
+          "raw": 83,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "さくら食堂",
+          "url": "https://www.facebook.com/Sakurashokudou.numazu/",
+          "raw": 82,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "山正本店",
+          "url": "http://yamasho-japan.com/",
+          "raw": 82,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "洋食酒房 壱膳屋",
+          "url": "https://ichizen-ya.jp/",
+          "raw": 79,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津魚市場食堂",
+          "url": "http://www.numaduuoichibashokudo.jp/index2.html",
+          "raw": 72,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津魚健海ごはん食堂",
+          "url": "https://numazu-umigohan.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "salon": {
+      "nameJa": "美容院",
+      "n": 19,
+      "companies": [
+        {
+          "name": "美容室 chat noir（シャノワール）",
+          "url": "https://lin.ee/SG1CrqL",
+          "raw": 82,
+          "ng": 0,
+          "adj": 82,
+          "cls": "A"
+        },
+        {
+          "name": "しもやま美容室",
+          "url": "https://shimoyama-hair.com/",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "アクス",
+          "url": "https://axe-passage.jp/",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "hair salon & spa Soa.",
+          "url": "http://www.instagram.com/amiishii__",
+          "raw": 78,
+          "ng": 0,
+          "adj": 78,
+          "cls": "B"
+        },
+        {
+          "name": "Agu hair bright 沼津",
+          "url": "https://b-merit.jp/web/login/?shop_code=fS7te9&utm_source=google&utm_medium=gbp&utm_campaign=map",
+          "raw": 64,
+          "ng": 0,
+          "adj": 64,
+          "cls": "-"
+        },
+        {
+          "name": "沼津 フラミューム",
+          "url": "https://beauty.hotpepper.jp/slnH000522551/",
+          "raw": 63,
+          "ng": 0,
+          "adj": 63,
+          "cls": "-"
+        },
+        {
+          "name": "スマイリィー",
+          "url": "https://beauty.hotpepper.jp/slnH000286882/",
+          "raw": 62,
+          "ng": 0,
+          "adj": 62,
+          "cls": "-"
+        },
+        {
+          "name": "美容室 MIYU",
+          "url": "https://lit.link/biyoumiyu",
+          "raw": 62,
+          "ng": 0,
+          "adj": 62,
+          "cls": "-"
+        },
+        {
+          "name": "【沼津 美容室】GUK",
+          "url": "https://guk-guk.com/",
+          "raw": 93,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "ミチ-michi美容室",
+          "url": "https://michi-hairsalon.com/",
+          "raw": 84,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "美容室 じゅんの木",
+          "url": "https://junnoki-hair-since2016.com/",
+          "raw": 84,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "boozu",
+          "url": "https://boozu.net/",
+          "raw": 82,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "美容室FORIS(フォーリス）",
+          "url": "https://foris.co.jp/",
+          "raw": 80,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "美容室ダグトドス Hair salon Dag Todos",
+          "url": "http://dagtodos.com/",
+          "raw": 80,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "Ｇｉｒｌ★",
+          "url": "http://girl-in-red.com/",
+          "raw": 79,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "bube・hairdesign",
+          "url": "http://bubehairdesign.com/shop-information/",
+          "raw": 77,
+          "ng": 3,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "Club Hair",
+          "url": "http://www.club-hair.co.jp/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "a nu hair",
+          "url": "https://onoanju.wixsite.com/anuhair",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "atelier~hair~",
+          "url": "http://atelier-hair.com/",
+          "raw": 0,
+          "ng": 0,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "shihoshoshi": {
+      "nameJa": "司法書士",
+      "n": 4,
+      "companies": [
+        {
+          "name": "田村雄一司法書士事務所",
+          "url": "https://www.tamurajimusho.com/",
+          "raw": 90,
+          "ng": 0,
+          "adj": 90,
+          "cls": "S"
+        },
+        {
+          "name": "司法書士法人 貝原事務所",
+          "url": "http://www.office-kaibara.com/",
+          "raw": 84,
+          "ng": 0,
+          "adj": 84,
+          "cls": "A"
+        },
+        {
+          "name": "司法書士法人 はなえみ",
+          "url": "https://yamada-jimusho.net/",
+          "raw": 84,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "静岡東部相続遺言相談室",
+          "url": "https://www.numazu-souzoku.com/",
+          "raw": 83,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    },
+    "tax": {
+      "nameJa": "税理士",
+      "n": 17,
+      "companies": [
+        {
+          "name": "東海税理士会沼津支部",
+          "url": "http://numazei.net/",
+          "raw": 87,
+          "ng": 0,
+          "adj": 87,
+          "cls": "A"
+        },
+        {
+          "name": "松原克巳税理士事務所",
+          "url": "https://www.matsu-tax.biz/",
+          "raw": 87,
+          "ng": 0,
+          "adj": 87,
+          "cls": "A"
+        },
+        {
+          "name": "税理士法人オオタケ",
+          "url": "http://www.ohtake-cpa.co.jp/",
+          "raw": 81,
+          "ng": 0,
+          "adj": 81,
+          "cls": "A"
+        },
+        {
+          "name": "塚本静雄税理士事務所",
+          "url": "https://www.tsukamotozeirishi.com/",
+          "raw": 80,
+          "ng": 0,
+          "adj": 80,
+          "cls": "A"
+        },
+        {
+          "name": "税理士法人あすなろパートナーズ",
+          "url": "https://asunaro-tax.tkcnf.com/",
+          "raw": 79,
+          "ng": 0,
+          "adj": 79,
+          "cls": "B"
+        },
+        {
+          "name": "中山美砂税理士事務所",
+          "url": "https://nakayama-kaikei.tkcnf.com/",
+          "raw": 78,
+          "ng": 0,
+          "adj": 78,
+          "cls": "B"
+        },
+        {
+          "name": "MAKOTO税理士法人",
+          "url": "https://www.makoto-tax.or.jp/",
+          "raw": 76,
+          "ng": 0,
+          "adj": 76,
+          "cls": "B"
+        },
+        {
+          "name": "木村治司 税理士事務所",
+          "url": "https://kimura-ao.tkcnf.com/",
+          "raw": 76,
+          "ng": 0,
+          "adj": 76,
+          "cls": "B"
+        },
+        {
+          "name": "久松但公認会計士・税理士事務所",
+          "url": "https://matsukaikei.tkcnf.com/page2",
+          "raw": 75,
+          "ng": 0,
+          "adj": 75,
+          "cls": "B"
+        },
+        {
+          "name": "袴田智明税理士事務所",
+          "url": "http://hakamata.tax/",
+          "raw": 74,
+          "ng": 0,
+          "adj": 74,
+          "cls": "B"
+        },
+        {
+          "name": "株式会社イワサキ経営 / 税理士法人イワサキ",
+          "url": "https://www.tax-iwasaki.com/",
+          "raw": 72,
+          "ng": 0,
+          "adj": 72,
+          "cls": "B"
+        },
+        {
+          "name": "税理士法人トップ",
+          "url": "http://www.top-zeirishi.net/",
+          "raw": 70,
+          "ng": 0,
+          "adj": 70,
+          "cls": "B"
+        },
+        {
+          "name": "税理士法人Bridge静岡",
+          "url": "https://bridge-tokyo.co/2019/10/23/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-7/",
+          "raw": 66,
+          "ng": 0,
+          "adj": 66,
+          "cls": "-"
+        },
+        {
+          "name": "グッドブリッジ税理士法人",
+          "url": "https://www.gb-tax.com/",
+          "raw": 80,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "FLLIP会計事務所",
+          "url": "http://www.souzoku-fllip.com/",
+          "raw": 72,
+          "ng": 2,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "沼津･三島あんしん相続税相談室",
+          "url": "http://numazu-souzoku.jp/",
+          "raw": 72,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        },
+        {
+          "name": "真田剛税理士事務所",
+          "url": "http://www.sanada-cptao.jdlibex.jp/",
+          "raw": 71,
+          "ng": 1,
+          "adj": 0,
+          "cls": "-"
+        }
+      ]
+    }
+  }
+}
