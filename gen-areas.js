@@ -217,8 +217,7 @@ function tpl(slug, c) {
   <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
   <title>${c.cityJa}の WEB 制作｜${c.industriesShort}に強い地元密着｜T.C.HARTON</title>
   <meta name="description" content="${c.cityJa}（${c.population}）の事業者向け WEB 制作。${c.industriesShort}を中心に、機械検証ベースの納品基準で対応。本社から${c.distanceTime}の地元密着体制。">
-  <meta name="author" content="大内 達也">
-
+  <meta name="author" content="T.C.HARTON">
   <meta property="og:title" content="${c.cityJa}の WEB 制作｜${c.industriesShort}に強い地元密着｜T.C.HARTON">
   <meta property="og:description" content="${c.cityJa}（${c.population}）の事業者向け WEB 制作。${c.industriesShort}を中心に、機械検証ベースの納品基準で対応。本社から${c.distanceTime}の地元密着体制。">
   <meta property="og:type" content="article">
@@ -258,10 +257,10 @@ function tpl(slug, c) {
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://tcharton.com/areas/${slug}/#localbusiness","name":"T.C.HARTON","alternateName":"ティーシーハートン","url":"https://tcharton.com/","telephone":"+81-80-1058-0538","email":"info@tcharton.com","address":{"@type":"PostalAddress","streetAddress":"大岡2690","addressLocality":"沼津市","addressRegion":"静岡県","postalCode":"410-0022","addressCountry":"JP"},"areaServed":[{"@type":"City","name":"${c.cityJa}","sameAs":"${wpUrl}"}],"founder":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"description":"${c.cityJa}の WEB 制作・AI 予測・S クラス品質基準のコンサルティング","priceRange":"¥¥¥","sameAs":["https://note.com/harton_official"]}
+  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://tcharton.com/areas/${slug}/#localbusiness","name":"T.C.HARTON","alternateName":"ティーシーハートン","url":"https://tcharton.com/","telephone":"+81-80-1058-0538","email":"info@tcharton.com","address":{"@type":"PostalAddress","streetAddress":"大岡2690","addressLocality":"沼津市","addressRegion":"静岡県","postalCode":"410-0022","addressCountry":"JP"},"areaServed":[{"@type":"City","name":"${c.cityJa}","sameAs":"${wpUrl}"}],"description":"${c.cityJa}の WEB 制作・AI 予測・S クラス品質基準のコンサルティング","priceRange":"¥¥¥","sameAs":["https://note.com/harton_official"]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/areas/${slug}/#article","headline":"${c.cityJa}の WEB 制作｜${c.industriesShort}に強い地元密着","description":"${c.cityJa}（${c.population}）の事業者向け WEB 制作。${c.industriesShort}を中心に、機械検証ベースの納品基準で対応。本社から${c.distanceTime}の地元密着体制。","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified":"2026-05-15","inLanguage":"ja","url":"https://tcharton.com/areas/${slug}/","mainEntityOfPage":"https://tcharton.com/areas/${slug}/","image":"https://tcharton.com/areas/${slug}/ogp.png","about":{"@type":"City","name":"${c.cityJa}","sameAs":"${wpUrl}"}}
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/areas/${slug}/#article","headline":"${c.cityJa}の WEB 制作｜${c.industriesShort}に強い地元密着","description":"${c.cityJa}（${c.population}）の事業者向け WEB 制作。${c.industriesShort}を中心に、機械検証ベースの納品基準で対応。本社から${c.distanceTime}の地元密着体制。","author":{"@type":"Person","name":"T.C.HARTON 代表","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified":"2026-05-15","inLanguage":"ja","url":"https://tcharton.com/areas/${slug}/","mainEntityOfPage":"https://tcharton.com/areas/${slug}/","image":"https://tcharton.com/areas/${slug}/ogp.png","about":{"@type":"City","name":"${c.cityJa}","sameAs":"${wpUrl}"}}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -545,7 +544,7 @@ ${sourcesHtml}
       </nav>
       <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
         <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / T.C.HARTON 代表</p>
       </div>
     </div>
   </footer>

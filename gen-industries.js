@@ -243,8 +243,7 @@ function tpl(slug, c) {
   <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
   <title>${c.titleSuffix}の WEB 制作｜業種別実装ガイド｜T.C.HARTON</title>
   <meta name="description" content="${c.descLong}">
-  <meta name="author" content="大内 達也">
-
+  <meta name="author" content="T.C.HARTON">
   <meta property="og:title" content="${c.titleSuffix}の WEB 制作｜業種別実装ガイド｜T.C.HARTON">
   <meta property="og:description" content="${c.descLong}">
   <meta property="og:type" content="article">
@@ -288,7 +287,7 @@ function tpl(slug, c) {
   {"@context":"https://schema.org","@type":"Service","@id":"https://tcharton.com/services/web/industries/${slug}/#service","name":"${c.titleSuffix}の WEB 制作","description":${JSON.stringify(c.descLong)},"provider":{"@id":"https://tcharton.com/#organization"},"serviceType":"WEB 制作","audience":{"@type":"BusinessAudience","name":"${c.nameJa}事業者"},"areaServed":{"@type":"AdministrativeArea","name":"日本"}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/services/web/industries/${slug}/#article","headline":"${c.titleSuffix}の WEB 制作｜業種別実装ガイド","description":${JSON.stringify(c.descLong)},"author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified":"2026-05-15","inLanguage":"ja","url":"https://tcharton.com/services/web/industries/${slug}/","mainEntityOfPage":"https://tcharton.com/services/web/industries/${slug}/","image":"https://tcharton.com/services/web/industries/${slug}/ogp.png","about":{"@type":"Thing","name":${JSON.stringify(c.nameJa)},"sameAs":"${wpUrl}"}}
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/services/web/industries/${slug}/#article","headline":"${c.titleSuffix}の WEB 制作｜業種別実装ガイド","description":${JSON.stringify(c.descLong)},"author":{"@type":"Person","name":"T.C.HARTON 代表","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-15","dateModified":"2026-05-15","inLanguage":"ja","url":"https://tcharton.com/services/web/industries/${slug}/","mainEntityOfPage":"https://tcharton.com/services/web/industries/${slug}/","image":"https://tcharton.com/services/web/industries/${slug}/ogp.png","about":{"@type":"Thing","name":${JSON.stringify(c.nameJa)},"sameAs":"${wpUrl}"}}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -542,7 +541,7 @@ function tpl(slug, c) {
       </nav>
       <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
         <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / T.C.HARTON 代表</p>
       </div>
     </div>
   </footer>

@@ -1,180 +1,181 @@
 {
   "numazu": {
     "name": "沼津市",
+    "_source": "scanner v3.9.8 / Numazu CSVs / 2026-05-17",
     "industries": {
       "cosmeticclinic": {
         "n": 6,
-        "median": 29,
-        "max": 36,
-        "min": 0,
-        "mean": 20.3,
+        "median": 80,
+        "max": 89,
+        "min": 65,
+        "mean": 79,
         "ng": 3,
-        "ng_pct": 50.0,
+        "ng_pct": 50,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
-          "WP管理面露出": 3,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "dental": {
+        "n": 19,
+        "median": 69,
+        "max": 89,
+        "min": 0,
+        "mean": 54.7,
+        "ng": 7,
+        "ng_pct": 36.8,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
           "CMSバージョン情報露出": 0
         }
       },
       "gyoseishoshi": {
         "n": 9,
-        "median": 0,
-        "max": 48,
+        "median": 78,
+        "max": 94,
         "min": 0,
-        "mean": 12.6,
+        "mean": 64.2,
         "ng": 2,
         "ng_pct": 22.2,
         "sub": {
-          "HTTPS非対応": 1,
-          "SSL証明書": 1,
-          "WP管理面露出": 1,
-          "CMSバージョン情報露出": 1
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
         }
       },
       "hospital": {
         "n": 18,
-        "median": 18,
-        "max": 31,
-        "min": 0,
-        "mean": 15.6,
+        "median": 79,
+        "max": 87,
+        "min": 69,
+        "mean": 78.6,
         "ng": 7,
         "ng_pct": 38.9,
         "sub": {
-          "HTTPS非対応": 3,
-          "SSL証明書": 3,
-          "WP管理面露出": 3,
-          "CMSバージョン情報露出": 1
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
         }
       },
       "juku": {
-        "n": 18,
-        "median": 20,
-        "max": 47,
-        "min": 0,
-        "mean": 21.8,
+        "n": 17,
+        "median": 78,
+        "max": 92,
+        "min": 56,
+        "mean": 77.2,
         "ng": 7,
-        "ng_pct": 38.9,
+        "ng_pct": 41.2,
         "sub": {
-          "HTTPS非対応": 2,
-          "SSL証明書": 2,
-          "WP管理面露出": 6,
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
           "CMSバージョン情報露出": 0
         }
       },
       "lawyer": {
         "n": 10,
-        "median": 14,
-        "max": 45,
-        "min": 0,
-        "mean": 14.7,
+        "median": 78,
+        "max": 88,
+        "min": 64,
+        "mean": 76.3,
         "ng": 2,
-        "ng_pct": 20.0,
+        "ng_pct": 20,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
-          "WP管理面露出": 2,
+          "WP管理面露出": 0,
           "CMSバージョン情報露出": 0
         }
       },
       "lodging": {
-        "n": 14,
-        "median": 21,
-        "max": 37,
-        "min": 6,
-        "mean": 21.9,
+        "n": 13,
+        "median": 79,
+        "max": 86,
+        "min": 66,
+        "mean": 77,
         "ng": 3,
-        "ng_pct": 21.4,
+        "ng_pct": 23.1,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
-          "WP管理面露出": 3,
+          "WP管理面露出": 0,
           "CMSバージョン情報露出": 0
         }
       },
       "realestate": {
-        "n": 18,
-        "median": 20,
-        "max": 50,
+        "n": 17,
+        "median": 74,
+        "max": 86,
         "min": 0,
-        "mean": 20.8,
+        "mean": 70.1,
         "ng": 1,
-        "ng_pct": 5.6,
+        "ng_pct": 5.9,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
-          "WP管理面露出": 1,
+          "WP管理面露出": 0,
           "CMSバージョン情報露出": 0
         }
       },
       "restaurant": {
-        "n": 18,
-        "median": 17,
-        "max": 51,
+        "n": 17,
+        "median": 82,
+        "max": 91,
         "min": 0,
-        "mean": 17.6,
-        "ng": 7,
-        "ng_pct": 38.9,
+        "mean": 77,
+        "ng": 6,
+        "ng_pct": 35.3,
         "sub": {
-          "HTTPS非対応": 2,
+          "HTTPS非対応": 0,
           "SSL証明書": 0,
-          "WP管理面露出": 5,
+          "WP管理面露出": 0,
           "CMSバージョン情報露出": 0
         }
       },
       "salon": {
         "n": 19,
-        "median": 20,
-        "max": 38,
+        "median": 79,
+        "max": 93,
         "min": 0,
-        "mean": 18.9,
-        "ng": 9,
-        "ng_pct": 47.4,
+        "mean": 64.7,
+        "ng": 8,
+        "ng_pct": 42.1,
         "sub": {
-          "HTTPS非対応": 2,
-          "SSL証明書": 2,
-          "WP管理面露出": 8,
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
           "CMSバージョン情報露出": 0
         }
       },
       "shihoshoshi": {
         "n": 4,
-        "median": 26,
-        "max": 47,
-        "min": 10,
-        "mean": 23.5,
+        "median": 84,
+        "max": 90,
+        "min": 83,
+        "mean": 85.2,
         "ng": 2,
-        "ng_pct": 50.0,
+        "ng_pct": 50,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
-          "WP管理面露出": 2,
-          "CMSバージョン情報露出": 1
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
         }
       },
       "tax": {
-        "n": 18,
-        "median": 12,
-        "max": 45,
-        "min": 0,
-        "mean": 11.3,
-        "ng": 5,
-        "ng_pct": 27.8,
-        "sub": {
-          "HTTPS非対応": 1,
-          "SSL証明書": 2,
-          "WP管理面露出": 3,
-          "CMSバージョン情報露出": 1
-        }
-      },
-      "dental": {
-        "n": 19,
-        "median": 24,
-        "max": 47,
-        "min": 0,
-        "mean": 22.2,
-        "ng": 8,
-        "ng_pct": 42.1,
+        "n": 17,
+        "median": 76,
+        "max": 87,
+        "min": 66,
+        "mean": 76.2,
+        "ng": 4,
+        "ng_pct": 23.5,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -209,7 +210,7 @@
         "min": 0,
         "mean": 19.8,
         "ng": 9,
-        "ng_pct": 50.0,
+        "ng_pct": 50,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 2,
@@ -222,9 +223,9 @@
         "median": 2,
         "max": 22,
         "min": 0,
-        "mean": 7.0,
+        "mean": 7,
         "ng": 6,
-        "ng_pct": 60.0,
+        "ng_pct": 60,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 0,
@@ -254,7 +255,7 @@
         "min": 0,
         "mean": 12.4,
         "ng": 2,
-        "ng_pct": 25.0,
+        "ng_pct": 25,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -314,7 +315,7 @@
         "min": 0,
         "mean": 24.8,
         "ng": 3,
-        "ng_pct": 15.0,
+        "ng_pct": 15,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -329,7 +330,7 @@
         "min": 0,
         "mean": 15.6,
         "ng": 4,
-        "ng_pct": 80.0,
+        "ng_pct": 80,
         "sub": {
           "HTTPS非対応": 2,
           "SSL証明書": 2,
@@ -454,7 +455,7 @@
         "min": 0,
         "mean": 11.1,
         "ng": 1,
-        "ng_pct": 5.0,
+        "ng_pct": 5,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -484,7 +485,7 @@
         "min": 0,
         "mean": 11.2,
         "ng": 5,
-        "ng_pct": 25.0,
+        "ng_pct": 25,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -549,7 +550,7 @@
         "min": 0,
         "mean": 30.2,
         "ng": 10,
-        "ng_pct": 50.0,
+        "ng_pct": 50,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,
@@ -564,7 +565,7 @@
         "min": 0,
         "mean": 23.2,
         "ng": 11,
-        "ng_pct": 55.0,
+        "ng_pct": 55,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -594,7 +595,7 @@
         "min": 0,
         "mean": 20.9,
         "ng": 8,
-        "ng_pct": 40.0,
+        "ng_pct": 40,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,
@@ -609,7 +610,7 @@
         "min": 0,
         "mean": 20.9,
         "ng": 6,
-        "ng_pct": 30.0,
+        "ng_pct": 30,
         "sub": {
           "HTTPS非対応": 2,
           "SSL証明書": 2,
@@ -624,7 +625,7 @@
         "min": 0,
         "mean": 19.7,
         "ng": 3,
-        "ng_pct": 15.0,
+        "ng_pct": 15,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -654,7 +655,7 @@
         "min": 0,
         "mean": 22.2,
         "ng": 3,
-        "ng_pct": 15.0,
+        "ng_pct": 15,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -717,9 +718,9 @@
         "median": 18,
         "max": 34,
         "min": 0,
-        "mean": 17.0,
+        "mean": 17,
         "ng": 6,
-        "ng_pct": 30.0,
+        "ng_pct": 30,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,
@@ -749,7 +750,7 @@
         "min": 0,
         "mean": 16.9,
         "ng": 7,
-        "ng_pct": 35.0,
+        "ng_pct": 35,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 0,
@@ -764,7 +765,7 @@
         "min": 0,
         "mean": 22.2,
         "ng": 8,
-        "ng_pct": 40.0,
+        "ng_pct": 40,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,
@@ -794,7 +795,7 @@
         "min": 0,
         "mean": 20.9,
         "ng": 6,
-        "ng_pct": 30.0,
+        "ng_pct": 30,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,
@@ -854,7 +855,7 @@
         "min": 0,
         "mean": 16.6,
         "ng": 8,
-        "ng_pct": 40.0,
+        "ng_pct": 40,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,
@@ -874,7 +875,7 @@
         "min": 2,
         "mean": 28.4,
         "ng": 12,
-        "ng_pct": 60.0,
+        "ng_pct": 60,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -919,7 +920,7 @@
         "min": 6,
         "mean": 32.1,
         "ng": 5,
-        "ng_pct": 25.0,
+        "ng_pct": 25,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -932,9 +933,9 @@
         "median": 30,
         "max": 55,
         "min": 0,
-        "mean": 27.0,
+        "mean": 27,
         "ng": 11,
-        "ng_pct": 55.0,
+        "ng_pct": 55,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,
@@ -964,7 +965,7 @@
         "min": 0,
         "mean": 12.2,
         "ng": 6,
-        "ng_pct": 30.0,
+        "ng_pct": 30,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 1,
@@ -994,7 +995,7 @@
         "min": 0,
         "mean": 21.1,
         "ng": 0,
-        "ng_pct": 0.0,
+        "ng_pct": 0,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -1024,7 +1025,7 @@
         "min": 0,
         "mean": 21.5,
         "ng": 8,
-        "ng_pct": 40.0,
+        "ng_pct": 40,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 0,
@@ -1059,7 +1060,7 @@
         "min": 5,
         "mean": 32.4,
         "ng": 7,
-        "ng_pct": 35.0,
+        "ng_pct": 35,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -1074,7 +1075,7 @@
         "min": 0,
         "mean": 27.6,
         "ng": 10,
-        "ng_pct": 50.0,
+        "ng_pct": 50,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 2,
@@ -1104,7 +1105,7 @@
         "min": 0,
         "mean": 25.1,
         "ng": 9,
-        "ng_pct": 45.0,
+        "ng_pct": 45,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 1,
@@ -1134,7 +1135,7 @@
         "min": 0,
         "mean": 21.6,
         "ng": 4,
-        "ng_pct": 20.0,
+        "ng_pct": 20,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 0,
@@ -1164,7 +1165,7 @@
         "min": 0,
         "mean": 17.1,
         "ng": 5,
-        "ng_pct": 25.0,
+        "ng_pct": 25,
         "sub": {
           "HTTPS非対応": 0,
           "SSL証明書": 1,
@@ -1194,7 +1195,7 @@
         "min": 0,
         "mean": 23.3,
         "ng": 9,
-        "ng_pct": 45.0,
+        "ng_pct": 45,
         "sub": {
           "HTTPS非対応": 1,
           "SSL証明書": 1,

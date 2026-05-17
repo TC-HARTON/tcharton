@@ -74,8 +74,7 @@ function buildHub() {
   <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
   <title>Insights — WEB の知見｜T.C.HARTON</title>
   <meta name="description" content="${esc(config.intro.lead1)}">
-  <meta name="author" content="大内 達也">
-
+  <meta name="author" content="T.C.HARTON">
   <meta property="og:title" content="Insights — WEB の知見｜T.C.HARTON">
   <meta property="og:description" content="${esc(config.intro.lead1)}">
   <meta property="og:type" content="website">
@@ -266,7 +265,7 @@ ${sections}
       </nav>
       <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
         <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / T.C.HARTON 代表</p>
       </div>
     </div>
   </footer>

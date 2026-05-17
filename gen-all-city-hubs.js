@@ -55,8 +55,7 @@ const COMMON_HEAD = (title, description, canonical, ogImage, ogAlt) => `<!DOCTYP
   <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
-  <meta name="author" content="大内 達也">
-
+  <meta name="author" content="T.C.HARTON">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="article">
@@ -153,7 +152,7 @@ const COMMON_FOOTER = `  </main>
   <footer class="border-t border-dark-100 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-sm text-dark-700">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <p>© 2026 T.C.HARTON ／ 個人事業主 大内 達也</p>
+        <p>© 2026 T.C.HARTON ／ 個人事業主 T.C.HARTON 代表</p>
         <ul class="flex flex-wrap gap-x-5 gap-y-2">
           <li><a href="/legal/" class="hover:text-teal-700">特定商取引法</a></li>
           <li><a href="/privacy/" class="hover:text-teal-700">プライバシー</a></li>
@@ -162,7 +161,7 @@ const COMMON_FOOTER = `  </main>
         </ul>
       </div>
       <div class="mt-6 pt-6 border-t border-dark-100">
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / T.C.HARTON 代表</p>
       </div>
     </div>
   </footer>
@@ -190,7 +189,7 @@ function cityHubPage(cityName, slug, prefName, prefSlug, region) {
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","description":"${esc(cityName)}の WEB 制作・AI 予測","areaServed":{"@type":"City","name":"${esc(cityName)}","containedInPlace":{"@type":"AdministrativeArea","name":"${esc(prefName)}"}},"founder":{"@type":"Person","name":"大内 達也"},"telephone":"+81-80-1058-0538","email":"info@tcharton.com"}
+  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","description":"${esc(cityName)}の WEB 制作・AI 予測","areaServed":{"@type":"City","name":"${esc(cityName)}","containedInPlace":{"@type":"AdministrativeArea","name":"${esc(prefName)}"}},"telephone":"+81-80-1058-0538","email":"info@tcharton.com"}
   </script>
 
 ${COMMON_BODY_START}

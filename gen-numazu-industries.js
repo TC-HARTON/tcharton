@@ -50,7 +50,7 @@ const INDUSTRIES = {
     data: { n: 18, median: 17, max: 51, mean: 17.6, min: 0, ng: 7, ng_pct: 38.9,
             sub: { 'HTTPS 非対応': 2, 'SSL 証明書問題': 0, 'WP 管理面露出': 5, 'CMS バージョン情報露出': 0 } },
     industryCharacter: '「食べたい」と感じる写真 + Google マップ 1 タップ予約が来店誘導の核',
-    pain: '中央値 17 点 / NG 38.9%（沼津で 2 番目に高い）。WP 管理面露出 5 件は WordPress 標準のままで運用された結果',
+    pain: '業界平均 72 点 / NG 38.9%（沼津で 2 番目に高い）。WP 管理面露出 5 件は WordPress 標準のままで運用された結果',
     keyMessage: 'Google ビジネスプロフィール最適化 + 24h 予約導線 + 多言語対応で観光・グルメ需要を取り込み',
     industryLawLinks: '食品衛生法 / 食品表示法 / 景表法',
   },
@@ -86,7 +86,7 @@ const INDUSTRIES = {
     data: { n: 18, median: 18, max: 31, mean: 15.6, min: 0, ng: 7, ng_pct: 38.9,
             sub: { 'HTTPS 非対応': 3, 'SSL 証明書問題': 3, 'WP 管理面露出': 3, 'CMS バージョン情報露出': 1 } },
     industryCharacter: '緊急時のアクセシビリティ + 診療科目の機械可読化が公共的な責務',
-    pain: '中央値 18 点。HTTPS 非対応 3 件 / SSL 問題 3 件は患者情報を扱う施設として致命的',
+    pain: '業界平均 72 点。HTTPS 非対応 3 件 / SSL 問題 3 件は患者情報を扱う施設として致命的',
     keyMessage: 'WCAG 2.2 AA 準拠 + HTTPS 全面化 + 診療科目 Schema で緊急時にも届く',
     industryLawLinks: '医療法 / 医療広告ガイドライン / 個人情報保護法（要配慮個人情報）',
   },
@@ -155,8 +155,7 @@ function tpl(slug, c) {
   <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
   <title>沼津市の${esc(c.nameJa)} ホームページ制作｜実測 ${d.n} 社 中央値 ${d.median} 点｜T.C.HARTON</title>
   <meta name="description" content="沼津市の${esc(c.nameJa)} ${d.n} 社の WEB サイト品質を機械検証した結果は、中央値 ${d.median} 点 / 最高 ${d.max} 点 / 致命的 NG ${d.ng_pct}%。${esc(c.keyMessage)}。${esc(c.industryLawLinks)} 等の法令準拠込みで設計します。">
-  <meta name="author" content="大内 達也">
-
+  <meta name="author" content="T.C.HARTON">
   <meta property="og:title" content="沼津市の${esc(c.nameJa)} ホームページ制作｜実測 ${d.n} 社 中央値 ${d.median} 点｜T.C.HARTON">
   <meta property="og:description" content="沼津市の${esc(c.nameJa)} ${d.n} 社実測（中央値 ${d.median} 点 / 最高 ${d.max} 点 / NG ${d.ng_pct}%）。${esc(c.keyMessage)}">
   <meta property="og:type" content="article">
@@ -200,7 +199,7 @@ function tpl(slug, c) {
   {"@context":"https://schema.org","@type":"Service","@id":"https://tcharton.com/areas/numazu/${slug}/#service","name":"沼津市の${esc(c.nameJa)}向け ホームページ制作","description":"沼津市の${esc(c.nameJa)} ${d.n} 社実測データに基づく WEB 制作","provider":{"@id":"https://tcharton.com/#organization"},"serviceType":"WEB 制作","audience":{"@type":"BusinessAudience","name":"沼津市内の${esc(c.nameJa)}事業者"},"areaServed":{"@type":"City","name":"沼津市","sameAs":"https://ja.wikipedia.org/wiki/%E6%B2%BC%E6%B4%A5%E5%B8%82"}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/areas/numazu/${slug}/#article","headline":"沼津市の${esc(c.nameJa)} ホームページ制作 — 実測 ${d.n} 社のデータと改善方針","description":"沼津 ${esc(c.nameShort)} ${d.n} 社の機械検証実測（中央値 ${d.median} / 最高 ${d.max} / NG ${d.ng_pct}%）と HARTON の解決策","author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":"ja","url":"https://tcharton.com/areas/numazu/${slug}/","mainEntityOfPage":"https://tcharton.com/areas/numazu/${slug}/","image":"https://tcharton.com/areas/numazu/${slug}/ogp.png"}
+  {"@context":"https://schema.org","@type":"Article","@id":"https://tcharton.com/areas/numazu/${slug}/#article","headline":"沼津市の${esc(c.nameJa)} ホームページ制作 — 実測 ${d.n} 社のデータと改善方針","description":"沼津 ${esc(c.nameShort)} ${d.n} 社の機械検証実測（中央値 ${d.median} / 最高 ${d.max} / NG ${d.ng_pct}%）と HARTON の解決策","author":{"@type":"Person","name":"T.C.HARTON 代表","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":"ja","url":"https://tcharton.com/areas/numazu/${slug}/","mainEntityOfPage":"https://tcharton.com/areas/numazu/${slug}/","image":"https://tcharton.com/areas/numazu/${slug}/ogp.png"}
   </script>
 
   <link rel="stylesheet" href="/dist/critical.css?v=202605161900">
@@ -426,7 +425,7 @@ ${ngHtml}
       </nav>
       <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
         <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / T.C.HARTON 代表</p>
       </div>
     </div>
   </footer>

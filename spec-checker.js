@@ -2175,6 +2175,62 @@ function cGlobal() {
                 `1,830 残存検出: ${offenders1830.join(',')} — 真値は 1,553 社（scanner Phase E 実測）`));
   }
 
+  // ─── v3.9.8 以前の古い数値主張の再混入禁止 (2026-05-17 代表指示) ───
+  // 真値: 沼津市 12 業種 166 社 (scanner v3.9.8 / 2026-05-17)
+  //       業界平均 72 点 / 致命的 NG 31.3% (52/166) / HARTON 1.3 倍 (95.3 vs 72)
+  // 旧値 902 社 (静岡県 5 都市) / 171 社 (沼津 v3.x) / 5.3 倍 / 3.8 倍 / 5.0 倍 /
+  //       17 点 / 18 点 / 30.7% / 32.7% / 277 社 / 56 社 — 全て v3.9.8 で更新済
+  const staleNumberPatterns = [
+    { p: /5\.3\s*倍/g, name: '5.3 倍 (旧 90÷17 主張)' },
+    { p: /3\.8\s*倍/g, name: '3.8 倍 (旧)' },
+    { p: /5\.0\s*倍/g, name: '5.0 倍 (旧 90÷18 主張)' },
+    { p: /902\s*社/g, name: '902 社 (旧 静岡県 5 都市)' },
+    { p: /902\s*件/g, name: '902 件' },
+    { p: /171\s*社/g, name: '171 社 (旧 沼津 v3.x)' },
+    { p: /中央値\s*17\s*点/g, name: '中央値 17 点 (旧 Velocity-only)' },
+    { p: /中央値\s*18\s*点/g, name: '中央値 18 点' },
+    { p: /277\s*社/g, name: '277 社 (旧 NG)' },
+    { p: /30\.7%/g, name: '30.7% (旧 NG 率)' },
+    { p: /32\.7%/g, name: '32.7% (旧 沼津 NG 率)' },
+  ];
+  const staleNumberOffenders = [];
+  for (const t of allHtmlFiles) {
+    const fp = path.join(ROOT, t);
+    if (!fs.existsSync(fp)) continue;
+    const c = fs.readFileSync(fp, 'utf-8');
+    for (const { p, name } of staleNumberPatterns) {
+      if (p.test(c)) { staleNumberOffenders.push(`${t} → ${name}`); break; }
+    }
+  }
+  if (staleNumberOffenders.length === 0) {
+    r.push(PASS('gl-stale-v398', S, 'v3.9.8 以前の古い数値主張の再混入禁止',
+                `全 ${allHtmlFiles.length} HTML ファイルに古数値残存なし`));
+  } else {
+    r.push(FAIL('gl-stale-v398', S, 'v3.9.8 以前の古い数値主張の再混入禁止',
+                `古数値検出: ${staleNumberOffenders.slice(0, 5).join(' / ')}${staleNumberOffenders.length > 5 ? ` 他 ${staleNumberOffenders.length - 5} 件` : ''} — 真値: 沼津 166 社 / 業界平均 72 点 / NG 31.3% / HARTON 1.3 倍`));
+  }
+
+  // ─── 大内達也表記の再混入禁止 (2026-05-17 代表指示) ───
+  // 例外: about/index.html / privacy/index.html / legal/index.html
+  // visible 表記 + JSON-LD founder.name + meta author 等 全て削除済
+  const founderPattern = /大内\s*達也|大内達也/g;
+  const founderAllowed = new Set(['about/index.html', 'privacy/index.html', 'legal/index.html']);
+  const founderOffenders = [];
+  for (const t of allHtmlFiles) {
+    if (founderAllowed.has(t)) continue;
+    const fp = path.join(ROOT, t);
+    if (!fs.existsSync(fp)) continue;
+    const c = fs.readFileSync(fp, 'utf-8');
+    if (founderPattern.test(c)) founderOffenders.push(t);
+  }
+  if (founderOffenders.length === 0) {
+    r.push(PASS('gl-no-founder-name', S, '大内達也 表記の再混入禁止 (会社情報/PP/特商法 以外)',
+                `全 ${allHtmlFiles.length - founderAllowed.size} HTML ファイルに残存なし`));
+  } else {
+    r.push(FAIL('gl-no-founder-name', S, '大内達也 表記の再混入禁止 (会社情報/PP/特商法 以外)',
+                `大内達也 残存検出: ${founderOffenders.slice(0, 5).join(',')}${founderOffenders.length > 5 ? ` 他 ${founderOffenders.length - 5} 件` : ''} — 代表指示 (2026-05-17) で削除`));
+  }
+
   // ─── 「リモート対応」訴求の再混入禁止 (2026-05-16 代表指示) ───
   // 代表指示: 「リモート対応指示したか？消せ！」
   // 「フルリモート」「完全リモート」「リモート対応」等の訓求語は禁止

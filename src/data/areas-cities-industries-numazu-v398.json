@@ -1,0 +1,188 @@
+{
+  "numazu": {
+    "name": "沼津市",
+    "_source": "scanner v3.9.8 / Numazu CSVs / 2026-05-17",
+    "industries": {
+      "cosmeticclinic": {
+        "n": 6,
+        "median": 80,
+        "max": 89,
+        "min": 65,
+        "mean": 79.0,
+        "ng": 3,
+        "ng_pct": 50.0,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "dental": {
+        "n": 19,
+        "median": 69,
+        "max": 89,
+        "min": 0,
+        "mean": 54.7,
+        "ng": 7,
+        "ng_pct": 36.8,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "gyoseishoshi": {
+        "n": 9,
+        "median": 78,
+        "max": 94,
+        "min": 0,
+        "mean": 64.2,
+        "ng": 2,
+        "ng_pct": 22.2,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "hospital": {
+        "n": 18,
+        "median": 79,
+        "max": 87,
+        "min": 69,
+        "mean": 78.6,
+        "ng": 7,
+        "ng_pct": 38.9,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "juku": {
+        "n": 17,
+        "median": 78,
+        "max": 92,
+        "min": 56,
+        "mean": 77.2,
+        "ng": 7,
+        "ng_pct": 41.2,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "lawyer": {
+        "n": 10,
+        "median": 78,
+        "max": 88,
+        "min": 64,
+        "mean": 76.3,
+        "ng": 2,
+        "ng_pct": 20.0,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "lodging": {
+        "n": 13,
+        "median": 79,
+        "max": 86,
+        "min": 66,
+        "mean": 77.0,
+        "ng": 3,
+        "ng_pct": 23.1,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "realestate": {
+        "n": 17,
+        "median": 74,
+        "max": 86,
+        "min": 0,
+        "mean": 70.1,
+        "ng": 1,
+        "ng_pct": 5.9,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "restaurant": {
+        "n": 17,
+        "median": 82,
+        "max": 91,
+        "min": 0,
+        "mean": 77.0,
+        "ng": 6,
+        "ng_pct": 35.3,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "salon": {
+        "n": 19,
+        "median": 79,
+        "max": 93,
+        "min": 0,
+        "mean": 64.7,
+        "ng": 8,
+        "ng_pct": 42.1,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "shihoshoshi": {
+        "n": 4,
+        "median": 84,
+        "max": 90,
+        "min": 83,
+        "mean": 85.2,
+        "ng": 2,
+        "ng_pct": 50.0,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      },
+      "tax": {
+        "n": 17,
+        "median": 76,
+        "max": 87,
+        "min": 66,
+        "mean": 76.2,
+        "ng": 4,
+        "ng_pct": 23.5,
+        "sub": {
+          "HTTPS非対応": 0,
+          "SSL証明書": 0,
+          "WP管理面露出": 0,
+          "CMSバージョン情報露出": 0
+        }
+      }
+    }
+  }
+}

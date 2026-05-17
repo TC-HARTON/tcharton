@@ -106,8 +106,7 @@ const COMMON_HEAD = (title, description, canonical, ogImage, ogAlt) => `<!DOCTYP
   <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
-  <meta name="author" content="大内 達也">
-
+  <meta name="author" content="T.C.HARTON">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="article">
@@ -247,7 +246,7 @@ const COMMON_FOOTER = `  </main>
       </nav>
       <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
         <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / T.C.HARTON 代表</p>
       </div>
     </div>
   </footer>
@@ -285,7 +284,7 @@ function industryPage(citySlug, industrySlug, scanData) {
   {"@context":"https://schema.org","@type":"Service","@id":"${canonical}#service","name":"${esc(city.nameJa)}の${esc(ind.nameJa)}向け ホームページ制作","description":${JSON.stringify(description)},"provider":{"@id":"https://tcharton.com/#organization"},"serviceType":"WEB 制作","audience":{"@type":"BusinessAudience","name":"${esc(city.nameJa)}内の${esc(ind.nameJa)}事業者"},"areaServed":{"@type":"City","name":"${esc(city.nameJa)}","sameAs":"https://ja.wikipedia.org/wiki/${city.wp}"}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","@id":"${canonical}#article","headline":"${esc(city.nameJa)}の${esc(ind.nameJa)} ホームページ制作 — 実測 ${d.n} 社のデータと改善方針","description":${JSON.stringify(description)},"author":{"@type":"Person","name":"大内 達也","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":"ja","url":"${canonical}","mainEntityOfPage":"${canonical}","image":"${ogImage}"}
+  {"@context":"https://schema.org","@type":"Article","@id":"${canonical}#article","headline":"${esc(city.nameJa)}の${esc(ind.nameJa)} ホームページ制作 — 実測 ${d.n} 社のデータと改善方針","description":${JSON.stringify(description)},"author":{"@type":"Person","name":"T.C.HARTON 代表","url":"https://tcharton.com/profile/"},"publisher":{"@id":"https://tcharton.com/#organization"},"datePublished":"2026-05-16","dateModified":"2026-05-16","inLanguage":"ja","url":"${canonical}","mainEntityOfPage":"${canonical}","image":"${ogImage}"}
   </script>`;
 
   return `${COMMON_HEAD(title, description, canonical, ogImage, ogAlt)}
@@ -451,7 +450,7 @@ function cityHubPage(citySlug, cityData) {
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","areaServed":[{"@type":"City","name":"${esc(city.nameJa)}","sameAs":"https://ja.wikipedia.org/wiki/${city.wp}"}],"founder":{"@type":"Person","name":"大内 達也"},"description":"${esc(city.nameJa)}の WEB 制作"}
+  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","areaServed":[{"@type":"City","name":"${esc(city.nameJa)}","sameAs":"https://ja.wikipedia.org/wiki/${city.wp}"}],"description":"${esc(city.nameJa)}の WEB 制作"}
   </script>
 
 ${COMMON_BODY_START}

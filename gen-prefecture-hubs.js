@@ -50,8 +50,7 @@ const COMMON_HEAD = (title, description, canonical, ogImage, ogAlt) => `<!DOCTYP
   <script src="/dist/scripts/js-marker.js?v=202605120100"></script>
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
-  <meta name="author" content="大内 達也">
-
+  <meta name="author" content="T.C.HARTON">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="article">
@@ -178,7 +177,7 @@ const COMMON_FOOTER = `  </main>
       </nav>
       <div class="mt-12 pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
         <p data-nosnippet class="flex items-center gap-3 flex-wrap"><span>© 2026 T.C.HARTON. All rights reserved.</span><span aria-hidden="true" class="text-dark-600">·</span><a href="https://note.com/harton_official" target="_blank" rel="noopener noreferrer" class="hover:text-white py-3 inline-block">note で日々の発信 <span aria-hidden="true">↗</span></a></p>
-        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / 代表 大内 達也</p>
+        <p class="text-dark-500" data-nosnippet>静岡県沼津市大岡2690 / T.C.HARTON 代表</p>
       </div>
     </div>
   </footer>
@@ -246,7 +245,7 @@ ${otherCities.map(c => richCard(c, false)).join('\n')}
   ]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","description":"${esc(pref.name)}の WEB 制作・AI 予測","areaServed":{"@type":"AdministrativeArea","name":"${esc(pref.name)}"},"founder":{"@type":"Person","name":"大内 達也"},"telephone":"+81-80-1058-0538","email":"info@tcharton.com"}
+  {"@context":"https://schema.org","@type":"LocalBusiness","@id":"${canonical}#localbusiness","name":"T.C.HARTON","url":"https://tcharton.com/","description":"${esc(pref.name)}の WEB 制作・AI 予測","areaServed":{"@type":"AdministrativeArea","name":"${esc(pref.name)}"},"telephone":"+81-80-1058-0538","email":"info@tcharton.com"}
   </script>
 
 ${COMMON_BODY_START}
